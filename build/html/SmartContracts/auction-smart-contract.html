@@ -1,0 +1,158 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Auction Smart Contract &#8212; Stratis Academy  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="Deploying Your First Smart Contract" href="deploying-your-first-smart-contract.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-auction-smart-contract">
+<h1>The Auction Smart Contract<a class="headerlink" href="#the-auction-smart-contract" title="Permalink to this headline">¶</a></h1>
+<p>This chapter takes a further look at the smart contract-specific parts of the Auction C# class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">Stratis</span><span class="o">.</span><span class="n">SmartContracts</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Auction</span> <span class="p">:</span> <span class="n">SmartContract</span>
+</pre></div>
+</div>
+<p>The first line in the contract is a reference to the <code class="docutils literal notranslate"><span class="pre">Stratis.SmartContracts</span></code> NuGet package. This package allows you to inherit from the <code class="docutils literal notranslate"><span class="pre">SmartContract</span></code> class and thereby provides subclasses with useful functionality such as sending funds, hashing, and saving data. If you are not using the Visual Studio template, you can create smart contracts just by including the <code class="docutils literal notranslate"><span class="pre">Stratis.SmartContracts</span></code> NuGet package in your project and inheriting from <code class="docutils literal notranslate"><span class="pre">SmartContract</span></code>.</p>
+<p>The only libraries that can be included in the current iteration of Stratis smart contracts are <code class="docutils literal notranslate"><span class="pre">System</span></code>, <code class="docutils literal notranslate"><span class="pre">System.Linq</span></code> and <code class="docutils literal notranslate"><span class="pre">Stratis.SmartContracts</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">Address</span> <span class="n">Owner</span>
+<span class="p">{</span>
+  <span class="n">get</span>
+  <span class="p">{</span>
+      <span class="k">return</span> <span class="n">PersistentState</span><span class="o">.</span><span class="n">GetObject</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Owner&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nb">set</span>
+  <span class="p">{</span>
+      <span class="n">PersistentState</span><span class="o">.</span><span class="n">SetObject</span><span class="o">&lt;</span><span class="n">Address</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;Owner&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The Auction object has several properties which are structured in a similar way to the Owner property. To persist data in a smart contract, use <code class="docutils literal notranslate"><span class="pre">PersistentState</span></code>. Data can be persisted anywhere in the smart contract not just inside a property. However, persisting data inside properties makes the code inside your methods easier to read.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Address</span></code> class is included as part of <code class="docutils literal notranslate"><span class="pre">Stratis.SmartContracts</span></code>. It is an abstraction over a series of strings that enables funds to be sent to addresses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">ISmartContractMapping</span><span class="o">&lt;</span><span class="n">ulong</span><span class="o">&gt;</span> <span class="n">ReturnBalances</span>
+<span class="p">{</span>
+  <span class="n">get</span>
+  <span class="p">{</span>
+      <span class="k">return</span> <span class="n">PersistentState</span><span class="o">.</span><span class="n">GetMapping</span><span class="o">&lt;</span><span class="n">ulong</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;ReturnBalances&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">PersistentState.GetMapping</span></code> returns a dictionary-like structure for storage. Using a standard .NET dictionary would require serializing and deserializing all the dictionary data every time it was updated. For dictionaries with thousands of entries (think balances of a token contract), this would require a significant amount of processing. <code class="docutils literal notranslate"><span class="pre">ISmartContractMapping</span></code> instead stores individual values directly into the underlying <code class="docutils literal notranslate"><span class="pre">PersistentState</span></code>.</p>
+<p>If you require lists of information, you also have access to <code class="docutils literal notranslate"><span class="pre">ISmartContractList</span></code> and <code class="docutils literal notranslate"><span class="pre">PersistentState.GetList</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">Auction</span><span class="p">(</span><span class="n">ISmartContractState</span> <span class="n">smartContractState</span><span class="p">,</span> <span class="n">ulong</span> <span class="n">durationBlocks</span><span class="p">)</span>
+ <span class="p">:</span> <span class="n">base</span><span class="p">(</span><span class="n">smartContractState</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="n">Owner</span> <span class="o">=</span> <span class="n">Message</span><span class="o">.</span><span class="n">Sender</span><span class="p">;</span>
+     <span class="n">EndBlock</span> <span class="o">=</span> <span class="n">Block</span><span class="o">.</span><span class="n">Number</span> <span class="o">+</span> <span class="n">durationBlocks</span><span class="p">;</span>
+     <span class="n">HasEnded</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>The contract constructor gets run when the contract is created for the first time. Contracts must override the base class constructor and inject <code class="docutils literal notranslate"><span class="pre">ISmartContractState</span></code>, which must be the first parameter of the constructor. Other parameters should be positioned after this parameter.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Message</span></code> and <code class="docutils literal notranslate"><span class="pre">Block</span></code> objects are read-only properties on the <code class="docutils literal notranslate"><span class="pre">SmartContract</span></code> class which the Auction class inherits from. These properties provide access to information about the current context that a contract call is executing in. For example: block numbers, the address that called the contract, etc.</p>
+<p>Assigning a value to <code class="docutils literal notranslate"><span class="pre">Owner</span></code>, <code class="docutils literal notranslate"><span class="pre">EndBlock</span></code>, and <code class="docutils literal notranslate"><span class="pre">HasEnded</span></code> saves the values in <code class="docutils literal notranslate"><span class="pre">PersistentState</span></code> via their property setters. Setting <code class="docutils literal notranslate"><span class="pre">Owner</span></code> is a very common pattern when developing smart contracts and gives extra functionality to the creator of the contract. You will notice that in the <code class="docutils literal notranslate"><span class="pre">AuctionEnd</span></code> method, funds are sent to <code class="docutils literal notranslate"><span class="pre">Owner</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Assert</span></code> method, inherited from <code class="docutils literal notranslate"><span class="pre">SmartContract</span></code>, provides a simple way to reject contract executions that don’t meet certain criteria. In this case, we’re using it to reject any further execution when the message sender doesn’t have a balance in our contract.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">TransferFunds</span></code> method, also inherited from <code class="docutils literal notranslate"><span class="pre">SmartContract</span></code>, enables the sending of funds to a specific address. This will send funds to ordinary addresses or contracts. A third parameter can be specified as input for this method to give more information about the method etc. to call on a contract.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>public bool Withdraw()
+{
+    ulong amount = ReturnBalances[Message.Sender];
+    Assert(amount &gt; 0);
+    ReturnBalances[Message.Sender] = 0;
+    ITransferResult transferResult = TransferFunds(Message.Sender, amount);
+    if (!transferResult.Success)
+        ReturnBalances[Message.Sender] = amount;
+    return transferResult.Success;
+}
+</pre></div>
+</div>
+<p>There are a few more methods in the <code class="docutils literal notranslate"><span class="pre">Auction</span></code> class, but the final method to look at is <code class="docutils literal notranslate"><span class="pre">Withdraw</span></code>. This method checks whether the caller has a balance to withdraw from. If they do, this balance will be deducted from the smart contract state and they will be sent the funds.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may be wondering why there is a <code class="docutils literal notranslate"><span class="pre">Withdraw</span></code> method at all. Why not just transfer the funds to their owner as soon as they become available? The reason is because the owner of these funds could be another smart contract that cannot be controlled. Sending the funds back to such a contract would potentially call unknown code using another user’s funds. Therefore, the <code class="docutils literal notranslate"><span class="pre">Withdraw</span></code> pattern is very common in smart contracts. If users call a contract, that contract execution should never execute an untrusted smart contract’s code.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="smart-contracts-introduction.html">Stratis Smart Contracts</a><ul>
+      <li>Previous: <a href="deploying-your-first-smart-contract.html" title="previous chapter">Deploying Your First Smart Contract</a></li>
+      <li>Next: <a href="testing.html" title="next chapter">Testing</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/SmartContracts/auction-smart-contract.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Stratis Platform.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/SmartContracts/auction-smart-contract.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
