@@ -1,0 +1,144 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>A breakdown of the two-way federated peg solution &#8212; Stratis Academy  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Stratis Sidechains" href="sidechains-introduction.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="a-breakdown-of-the-two-way-federated-peg-solution">
+<h1>A breakdown of the two-way federated peg solution<a class="headerlink" href="#a-breakdown-of-the-two-way-federated-peg-solution" title="Permalink to this headline">¶</a></h1>
+<p>This chapter details specific mechanics of a Two-Way Peg sidechain solution from initial creation of the sidechain to mining the transactions made on it. It also details the roles of the users involved.</p>
+<div class="section" id="the-creation-of-the-apex-sidechain">
+<h2>The creation of the APEX sidechain<a class="headerlink" href="#the-creation-of-the-apex-sidechain" title="Permalink to this headline">¶</a></h2>
+<p>The creation of APEX sidechain involved mining the genesis block and premine block, which are the first and second blocks on the sidechain repectively. The premine block contains the “premine” of 20 million APEX coins, which are issued by the federation when STRAT are deposited in the mainchain.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As this is the Alpha version of sidechains, you will use test STRAT and test APEX. In this document, they are referred to as TSTRAT and TAPEX. TAPEX are issued at the following rate: 1 TSTRAT = 1 TAPEX.</p>
+</div>
+<p>The following figure shows the creation of the TAPEX sidechain:</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/Sidechains1-Creation.png"><img alt="Sidechains Creation" class="align-center" src="../_images/Sidechains1-Creation.png" style="width: 793px;" /></a>
+</div></blockquote>
+<p>The role played by the federation and the signifcance of the P2SH addresses is discussed in the next section.</p>
+</div>
+<div class="section" id="the-role-of-a-federation">
+<h2>The role of a Federation<a class="headerlink" href="#the-role-of-a-federation" title="Permalink to this headline">¶</a></h2>
+<p>The role of a federation is to sign-off the deposits from the mainchain to the sidechain and withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology in the Stratis nodes: <a class="reference external" href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses">Pay-To-Script-Hash addresses</a>. P2SH addresses are a convenient way for a user to make payments to an organization that requires <a class="reference external" href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature">UTXOs with multisignature locking scripts</a>, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signaturies, not all the possible signaturies are usually required. For example, only 4 of 5 signaturies may be required to spend a payment. The deposits and withdrawals that the federation controls also require a predefined number of signatures from federation members.</p>
+<p>When a TSTRAT deposit is made, the federation signs for the release of APEX on the sidechain. When a TSTRAT withdrawal is made, the federation signs for the release of TSTAT on the mainchain</p>
+<p>To achieve this, the Stratis Sidechains solution employs two P2SH addresses:</p>
+<ol class="arabic simple">
+<li>The federation members supply private keys from their mainchain wallets and a mainchain P2SH address is created. TSTRAT deposits are sent to this P2SH  address and remain there until they are withdrawn. Withdrawal of STRAT from this P2SH address requires multisignature unlocking.</li>
+<li>The federation members supply private keys from their sidechain wallets, and a sidechain P2SH address is created. The premine of the 20 million TAPEX coins is sent to this P2SH address, which is shown in the previous figure. TAPEX are the issued from this P2SH address, subject to multisignature unlocking, when Strat are deposited. When TSTRAT are withdrawn, TAPEX are returned to this address.</li>
+</ol>
+<p>Creation of the each P2SH address requires a public key from each federation member, which is shown in the previous figure. All supplied keys are hashed before they are used in the locking script. More information on this is available <a class="reference external" href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#pay-to-script-hash-p2sh">here</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As this is the Alpha version of sidechains, the federation controlling the APEX sidechain is made up of Stratis Platform team members. Future versions will enable users to become federation members themselves and create their own sidechains.</p>
+</div>
+</div>
+<div class="section" id="federation-leaders">
+<h2>Federation leaders<a class="headerlink" href="#federation-leaders" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="more-on-sidechain-deposits-and-withdrawals">
+<h2>More on sidechain deposits and withdrawals<a class="headerlink" href="#more-on-sidechain-deposits-and-withdrawals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="federated-gateways">
+<h3>Federated Gateways<a class="headerlink" href="#federated-gateways" title="Permalink to this headline">¶</a></h3>
+<p>Deposits and withdrawals are different from standard transactions because they require something to be done on the the other chain. Only certain nodes on both the mainchain or sidechain, which are known as federated gateways, react to deposits or withdrawals in a special way; other nodes just treat them as normal transactions. Deposits and withdrawals include an address for the transaction on the other chain. It kis this extra piece of information that these</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A breakdown of the two-way federated peg solution</a><ul>
+<li><a class="reference internal" href="#the-creation-of-the-apex-sidechain">The creation of the APEX sidechain</a></li>
+<li><a class="reference internal" href="#the-role-of-a-federation">The role of a Federation</a></li>
+<li><a class="reference internal" href="#federation-leaders">Federation leaders</a></li>
+<li><a class="reference internal" href="#more-on-sidechain-deposits-and-withdrawals">More on sidechain deposits and withdrawals</a><ul>
+<li><a class="reference internal" href="#federated-gateways">Federated Gateways</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="sidechains-introduction.html">Stratis Sidechains</a><ul>
+      <li>Previous: <a href="sidechains-introduction.html" title="previous chapter">Stratis Sidechains</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Sidechains/two-way-federated-peg-solution.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Stratis Platform.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/Sidechains/two-way-federated-peg-solution.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

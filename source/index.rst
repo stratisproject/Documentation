@@ -16,5 +16,6 @@ Welcome to Stratis Academy
    :maxdepth: 2
 
 	Smart Contracts <SmartContracts/smart-contracts-introduction>
+	Sidechains <Sidechains/sidechains-introduction>
 
 * :ref:`search`
