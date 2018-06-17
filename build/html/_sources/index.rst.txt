@@ -15,7 +15,10 @@ Welcome to Stratis Academy
 .. toctree::
    :maxdepth: 2
 
+	Blockchain 101 Course <Blockchain101/blockchain101-introduction>
+	ICO Platform <ICO/ico-introduction>
 	Smart Contracts <SmartContracts/smart-contracts-introduction>
 	Sidechains <Sidechains/sidechains-introduction>
+
 
 * :ref:`search`
