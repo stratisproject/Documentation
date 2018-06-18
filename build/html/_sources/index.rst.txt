@@ -17,6 +17,7 @@ Welcome to Stratis Academy
 
 	Blockchain 101 Course <Blockchain101/blockchain101-introduction>
 	Wallets <Wallets/wallet-introduction>
+	Full Node <FullNode/full-node-introduction>
 	ICO Platform <ICO/ico-introduction>
 	Smart Contracts <SmartContracts/smart-contracts-introduction>
 	Sidechains <Sidechains/sidechains-introduction>

@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Components and Features Overview &#8212; Stratis Academy  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stratis ICO Platform" href="../ICO/ico-introduction.html" />
+    <link rel="prev" title="Stratis Full Node" href="full-node-introduction.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="components-and-features-overview">
+<h1>Components and Features Overview<a class="headerlink" href="#components-and-features-overview" title="Permalink to this headline">¶</a></h1>
+<p>The following figure shows the components and features of the Full Node:</p>
+<a class="reference internal image-reference" href="../_images/Full-Node-Overview.png"><img alt="Full Node Overview" class="align-center" src="../_images/Full-Node-Overview.png" style="width: 738px;" /></a>
+<div class="section" id="accessing-the-network">
+<h2>Accessing the network<a class="headerlink" href="#accessing-the-network" title="Permalink to this headline">¶</a></h2>
+<p>The <em>P2P</em> and <em>Connection</em> components are responsible for getting and maintaining access to other peers on the P2P network.</p>
+<p>When a full node connected to the network, <em>Behaviours</em> respond to messages received from other nodes.</p>
+<div class="section" id="p2p">
+<h3>P2P<a class="headerlink" href="#p2p" title="Permalink to this headline">¶</a></h3>
+<p>The P2P component tries to make the P2P network bigger. As more peers are found, they are added to a local database. This information is kept up-to-date. The decision about which peer to conenct to when a choice is available is designed to be unpredictable. This adds an extra element of security.</p>
+<p>The mechanism used to grow the P2P network is the Peer Discovery Loop, which asks the peers it discovers about the location of other peers.</p>
+<p>The P2P component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol the it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on wehether the message is relevant to them.</p>
+<p>The P2P component also takes care of message payloads. A payload is a description of a mesage, which describes how to take a C# object and serialize it for the network. This also works for incoming messages. Once the message has been identified by its message type, it can be changed from a byte stream to a C# object.</p>
+<div class="section" id="an-example-of-the-p2p-component-messaging">
+<h4>An example of the P2P component messaging<a class="headerlink" href="#an-example-of-the-p2p-component-messaging" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>A peer is located on the network and an object is created to represent this peer.</li>
+<li>An attempt is made to connect to the peer.</li>
+<li>The Peer Discovery Loop asks for a “handshake” to be initialized.</li>
+<li>After the handshake has been completed a <code class="docutils literal notranslate"><span class="pre">getaddr</span></code> message sent.</li>
+<li>The returned <code class="docutils literal notranslate"><span class="pre">addr</span></code> message containing information on known nodes is handled by the <em>Peer Address Manager Behaviour Component</em>.</li>
+</ol>
+<p>The Stratis network protocol is 98% similar to the Bitcoin network protocol. More information on Bitcoin network protocol is available <a class="reference external" href="https://en.bitcoin.it/wiki/Protocol_documentation#Message_types">here</a>.</p>
+</div>
+</div>
+<div class="section" id="connection">
+<h3>Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
+<p>The connection component contains a list of the comnnected peers. This class and not P2P is talked to by the higher level components. This component is also responsible for banning peers and decides who to ban and why. The actual mechanism for banning the peers is implemented by the Peer Banning Behaviour component. The Peer Banning Behaviour component does not ban</p>
+</div>
+</div>
+<div class="section" id="nbitcoin">
+<h2>NBitcoin<a class="headerlink" href="#nbitcoin" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Components and Features Overview</a><ul>
+<li><a class="reference internal" href="#accessing-the-network">Accessing the network</a><ul>
+<li><a class="reference internal" href="#p2p">P2P</a><ul>
+<li><a class="reference internal" href="#an-example-of-the-p2p-component-messaging">An example of the P2P component messaging</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#connection">Connection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nbitcoin">NBitcoin</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="full-node-introduction.html">Stratis Full Node</a><ul>
+      <li>Previous: <a href="full-node-introduction.html" title="previous chapter">Stratis Full Node</a></li>
+      <li>Next: <a href="../ICO/ico-introduction.html" title="next chapter">Stratis ICO Platform</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/FullNode/full-node-components-and-features-overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Stratis Platform.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/FullNode/full-node-components-and-features-overview.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
