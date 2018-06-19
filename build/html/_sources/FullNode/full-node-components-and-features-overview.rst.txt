@@ -25,7 +25,7 @@ The *P2P* component tries to make the P2P network bigger. As more peers are foun
 
 The mechanism used to grow the P2P network is the Peer Discovery Loop, which asks the peers it discovers about the location of other peers.
 
-The *P2P* component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol the it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.     
+The *P2P* component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.     
 The *P2P* component also takes care of message payloads. A payload is a description of a message, which describes how to take a C# object and serialize it for the network. This also works for incoming messages. Once the message has been identified by its message type, it can be changed from a byte stream to a C# object.
 
 An example of the P2P component messaging
@@ -42,12 +42,12 @@ The Stratis network protocol is 98% similar to the Bitcoin network protocol. Mor
 Connection
 -----------
 
-The *Connection* component contains a list of the comnnected peers. This class and not P2P is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by *Peer Banning Behaviour*. The *Peer Banning Behaviour* component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is cut.
+The *Connection* component contains a list of the comnnected peers. This component and not *P2P* is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by *Peer Banning Behaviour*. The *Peer Banning Behaviour* component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is cut.
 
 Behaviour Components
 ---------------------
 
-There are numerous behaviour components in the Full Node. For example: *Block Puller Behaviour*, *Chained Header Behaviour*, *Memory Pool Behaviour*, *Block Store Behaviour*. You can think of the behaviour components as a plugin which is responsible for filtering out messages that are not relevant to the component they are connected to. For example, *Memory Pool Behaviour* only cares about messages related to the memory pool.
+There are numerous behaviour components in the Full Node. For example: *Block Puller Behaviour*, *Chained Header Behaviour*, *Memory Pool Behaviour*, *Block Store Behaviour*. You can think of the behaviour components as plugins which are responsible for filtering out messages that are not relevant to their related component. For example, *Memory Pool Behaviour* only cares about messages related to the *Memory Pool*.
 
 
 
