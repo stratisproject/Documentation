@@ -18,7 +18,7 @@
   {% block htmltitle %}
   <title>{{ title|striptags|e }}{{ titlesuffix }}</title>
   {% endblock %}
-
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   {# FAVICON #}
   {% if favicon %}
     <link rel="shortcut icon" href="{{ pathto('_static/' + favicon, 1) }}"/>
@@ -176,13 +176,13 @@
            {% endif%}
           </div>
           {%- endblock %}
-          {% include "footer.html" %}
+          
         </div>
       {%- endblock %}
       </div>
-
+      {% include "footer.html" %}
     </section>
-
+    
   </div>
   {% include "versions.html" %}
 
