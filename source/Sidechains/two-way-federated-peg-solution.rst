@@ -14,7 +14,7 @@ The creation of APEX sidechain involved mining the genesis block and premine blo
 	
 The following figure shows the creation of the TAPEX sidechain:
 
- .. image:: Sidechain Creation.png
+ .. image:: Sidechain_Creation.png
      :width: 793px
      :alt: Sidechains Creation
      :align: center
@@ -54,9 +54,9 @@ Deposits and withdrawals are different from standard transactions because they r
 Sidechain deposits
 -------------------
 
-An example of a sidechain deposit, the following figure shows the user, who has been introduced previously, making a deposit of 100 TSTRAT on the sidechain:
+For an example of a sidechain deposit, the following figure shows the user, who has been introduced previously, making a deposit of 100 TSTRAT on the sidechain:
   
- .. image:: Sidechain Deposit.png
+ .. image:: Sidechain_Deposit.png
      :width: 906px
      :alt: Sidechains Creation
      :align: center
@@ -65,5 +65,27 @@ An example of a sidechain deposit, the following figure shows the user, who has 
 The sequence of events is as follows:
 
 1. The user obtains a sidechains wallet. 
-2. The user makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They also supply a TAPEX address from their sidechain wallet. The journey of this address is shown in red. The UTXO containing the 100 TSTRAT is spent (unlocked).  
-3. One of the mainchain federated gateways 
+2. The user makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They supply a TAPEX address from their sidechain wallet with this transaction. The journey of this address is shown in red. In this case, the user's 100 TSTRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
+3. One of the mainchain federated gateways detects the transaction containing the deposit and contacts the leader of the federation.
+4. The leader of the federation contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 20 million that was premined.
+5. A transaction is created that poys 100 TAPEX to the sidechain user's wallet. The two UTXOs that make up the transaction are shown in the block. The red UTXO is sent (locked) to the sidechain address supplied by the user. The green UTXO pays the the change (19,999,900 TAPEX) back to the federation's sidechain P2SH address.
+
+Sidechain withdrawals
+----------------------
+
+For an example of a sidechain withdrawal, the following figure shows the user (who made the deposit of 100 TSRAT) making a withdrawal of 50 TAPEX from the sidechain:
+
+ .. image:: Sidechain_Withdrawal.png
+     :width: 906px
+     :alt: Sidechains Withdrawal
+     :align: center
+
+The sequence of events is as follows:
+
+1. The user makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address is shown in purple. In this case, the user's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. 
+3. One of the mainchain federated gateways detects the transaction containing the withdrawal and contacts the leader of the federation.
+4. The leader of the federation contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTAT that was previously deposited.
+5. A transaction is created that poys 50 TSTRAT to the user's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the user. The blue UTXO pays the the change (50 TSTRAT) back to the federation's mainchain P2SH address.
+
+.. note::
+    At the end of this withdrawal, the federation has 50 TSTRAT in the mainchain P2SH address.
