@@ -4842,3 +4842,7 @@ span[id*='MathJax-Span']{
 .toctree-wrapper a {
     color: #0f4182 !important;
 }
+
+#welcome-to-stratis-academy .simple {
+    display: none;
+}
