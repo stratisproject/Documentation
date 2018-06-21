@@ -93,7 +93,6 @@ ul,ol,dl{
     padding:0;
     list-style:none;
     list-style-image:none;
-    color: #2378c8;
 }
 li{
     list-style:none
@@ -3643,7 +3642,7 @@ code.code-large,.rst-content tt.code-large{
     list-style:decimal;
     line-height:24px;
     margin-bottom:24px;
-    color: #2378c8;
+    color: #0f4182;
 }
 .wy-plain-list-decimal li,.rst-content .section ol li,.rst-content ol.arabic li,article ol li{
     list-style:decimal;
@@ -3995,6 +3994,7 @@ code.code-large,.rst-content tt.code-large{
     max-width: 1120px;
     width: 100%;
     margin: 0 auto;
+    position: relative;
 }
 .wy-nav-side{
     padding-bottom:2em;
@@ -4006,6 +4006,7 @@ code.code-large,.rst-content tt.code-large{
     background:#ffffff;
     z-index:200;
     float: left;
+    position: fixed;
 }
 
 .wy-nav-top{
@@ -4168,8 +4169,8 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
 }
 @media screen and (min-width: 1100px){
     .wy-nav-content{
-        margin:0;
-        background:#fcfcfc
+        margin:0 0 0 300px;
+        background:#fcfcfc;
     }
 }
 @media print{
@@ -4720,6 +4721,8 @@ span[id*='MathJax-Span']{
     background-color: #fcfcfc;
 }
 
+
+
 .footer-copyright {
     background: #2378c8;
     background: -moz-linear-gradient(left, #2378c8 0%, #0f4283 100%);
@@ -4776,4 +4779,66 @@ span[id*='MathJax-Span']{
 .highlight {
     background: #edf8f9 !important;
     color: #06233f;
+}
+
+@media screen and (min-width: 1100px){
+    .footer-container{
+        margin: 0 0 0 300px;
+        max-width: 800px;
+        width: 100%;
+    }
+}
+
+#welcome-to-stratis-academy .toctree-wrapper ul,
+#welcome-to-stratis-academy .toctree-wrapper li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper ul ul {
+    display: none;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper li {
+    width: calc(50% - 10px);
+    float: left;
+    padding: 40px 20px !important;
+    box-sizing: border-box;
+    margin-bottom: 20px !important;
+    margin-right: 20px !important;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background: #2378c8;
+    background: -moz-linear-gradient(left, #2378c8 0%, #0f4283 100%);
+    background: -webkit-linear-gradient(left, #2378c8 0%,#0f4283 100%);
+    background: linear-gradient(to right, #2378c8 0%,#0f4283 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2378c8', endColorstr='#0f4283',GradientType=1 );
+    border-radius: 20px;
+    text-align: center;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper li a {
+    color: #ffffff !important;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper li:nth-child(even) {
+    margin-right: 0 !important;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper ul {
+    padding-top: 40px !important;
+}
+
+#welcome-to-stratis-academy .toctree-wrapper ul::after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.toctree-wrapper a {
+    color: #0f4182 !important;
 }
