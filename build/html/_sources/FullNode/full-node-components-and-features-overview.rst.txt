@@ -25,7 +25,7 @@ The *P2P* component tries to make the P2P network bigger. As more peers are foun
 
 The mechanism used to grow the P2P network is the Peer Discovery Loop, which asks the peers it discovers about the location of other peers.
 
-The *P2P* component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol the it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.     
+The *P2P* component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.     
 The *P2P* component also takes care of message payloads. A payload is a description of a message, which describes how to take a C# object and serialize it for the network. This also works for incoming messages. Once the message has been identified by its message type, it can be changed from a byte stream to a C# object.
 
 An example of the P2P component messaging
@@ -42,19 +42,89 @@ The Stratis network protocol is 98% similar to the Bitcoin network protocol. Mor
 Connection
 -----------
 
-The *Connection* component contains a list of the comnnected peers. This class and not P2P is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by *Peer Banning Behaviour*. The *Peer Banning Behaviour* component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is cut.
+The *Connection* component contains a list of the comnnected peers. This component and not *P2P* is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by *Peer Banning Behaviour*. The *Peer Banning Behaviour* component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is dropped.
 
 Behaviour Components
 ---------------------
 
-There are numerous behaviour components in the Full Node. For example: *Block Puller Behaviour*, *Chained Header Behaviour*, *Memory Pool Behaviour*, *Block Store Behaviour*. You can think of the behaviour components as a plugin which is responsible for filtering out messages that are not relevant to the component they are connected to. For example, *Memory Pool Behaviour* only cares about messages related to the memory pool.
+There are numerous behaviour components in the Full Node. For example: *Block Puller Behaviour*, *Chained Header Behaviour*, *Memory Pool Behaviour*, *Block Store Behaviour*. You can think of the behaviour components as plugins which are responsible for filtering out messages that are not relevant to their related component. For example, *Memory Pool Behaviour* only cares about messages related to the *Memory Pool*.
+
+Syncing with the blockchain
+============================
+
+Once a Stratis Full Node has found other peers on the network, it needs to sync its copy of the blockchain. The components involved with this are the *Consensus Manager*, *Chained Header Tree*, *Block Puller*, *Validators*, and *Coin View*.
+
+Consensus Manager
+------------------
+
+Once a connection has been made to other peers on the network, the peers send block headers to the *Conesnsus Manager*. The *Consensus Manager* contacts the *Chained Header Tree* and informs it that it has new headers. The *Chained Header Tree* analyses whether the blocks are interesting and reports back to the *Conesnsus Manager* if they are. The *Consensus Manager's* response is to download the full blocks for the headers. The *Block Puller* is in invoked to download the blocks. 
+ 
+Chained Header Tree
+--------------------
+
+The first thing to realize about the *Chained Header Tree* is that, as its name implies, it is a tree structure. This is distinct from the blockchain, which does not have branches in it. It is related to a concept known as the consensus tip, which is the height in blocks on the blockchain at which a consensus has been reached. If the *Chained Header Tree* becomes aware of a branch which is ahead of the blockchain at the consensus tip, it requests the *Consensus Manager* obtains the blocks for this new branch. Once the blocks are obtained, the *Consensus Manager* begins validating the blocks for this potentially interesting branch.
+
+
+
+The *Chained Header Tree* is built out of block headers, which are stored into memory. However, the *Chained Header Tree* can store blocks as well. 
+
+The *Chained Header Tree* represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a branch that is ahead of the consensus tip only to then switch to a second branch half way through this. 
+
+ 
+Validation Steps
+^^^^^^^^^^^^^^^^^
+
+Validation is broken down into three steps:
+
+1. Header validation
+2. Minimal validation (block integrity validation)
+3. Partial validation
+4. Full validation
+
+As discussed in the *Block Puller* section, in the case of an initial block download, validation requirements are significantly less when dealing with a block that proceeds a checkpoint. 
+
+Block Puller
+--------------
+
+The *Block Puller* works in one of two modes:
+
+1. IBD (Initial Block Download)
+2. Network synced.
+
+The mode that is selected depends on whether you have passed a checkpoint. A checkpoint is a point at which the blockchain can never be re-organised behind (if you think of the blockchain moving as forward). IBD is selected if you are not yet synced to the blockchain network, and the blocks you require are behind the checkpoint. Because these blocks can never be changed, validation is minimal. The headers are validated and minimal validation is carried out on the blocks. Part of the full validation is carried out. This is the part the involves updating the *Coinview*
+
+The network synced mode is used when the network is syncedm, and all blocks behind the checkpoint are already on the node's blockchain.  
+
+
+Download Strategy
+^^^^^^^^^^^^^^^^^^
+The strategy is to download blocks sufficiently fast. A node is aware of the connection speed of the peers, so it decides to give small tasks to slower peers.
+
+Two modes:
+1.	IBD (Initial Block Download)
+2.	Synced with network and only behind when somebody mines a block.
+
+IBD
+
+Task distribution is important: Imagine 1000 blocks to be downloaded. Distributed by bandwidth that a peer has and historical data – Nodes are assigned a value between 0 and 150 based on how fast they are. Fast peer with 75 (50% of the power) is asked to download 500 blocks. Some “fast nodes” become maxed out and their ratings drop. Other nodes are configured to only allow 10 connection so maintain a constant high rating.
+
+Coin View
+-----------
+The *Coin View* represents the UTXO set. Each time the consensus tip moves forward, it needs to be recalculated. It can be thought of as the amount of STRAT which is spendable at any given block height. As the consensus tip moves forward one block, the number of UTXOs changes, which reflects UTXOs being spent and new UTXOs being created as payments and change.
+
+The *Coin View* makes use of a database and cache. It can be rewound although rewinding is expensive 
+
+Updating the *Coin View* is the last step of full validation. 
 
 
 
 
 
+Useful libraries
+=================
 
+The full node contains some libraries that supply functionality to all components.
 
-
-NBitcoin
-==========
+NBitcoin 
+---------
+NBitcoin is a Bitcoin library for the .NET platform. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and crytographic hashing and signing.   

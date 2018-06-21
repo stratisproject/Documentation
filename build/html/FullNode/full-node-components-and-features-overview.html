@@ -44,7 +44,7 @@
 <h3>P2P<a class="headerlink" href="#p2p" title="Permalink to this headline">¶</a></h3>
 <p>The <em>P2P</em> component tries to make the P2P network bigger. As more peers are found, they are added to a local database. This information is kept up-to-date. The decision about which peer to connect to when a choice is available is designed to be unpredictable. This adds an extra element of security.</p>
 <p>The mechanism used to grow the P2P network is the Peer Discovery Loop, which asks the peers it discovers about the location of other peers.</p>
-<p>The <em>P2P</em> component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol the it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.
+<p>The <em>P2P</em> component also needs to represent the located peers. Once it is represented, a peer can, for example, be asked which version of the protocol it is running. Communication with other peers is achieved by sending messages. Behaviour components on the other peers process received messages depending on whether the message is relevant to them.
 The <em>P2P</em> component also takes care of message payloads. A payload is a description of a message, which describes how to take a C# object and serialize it for the network. This also works for incoming messages. Once the message has been identified by its message type, it can be changed from a byte stream to a C# object.</p>
 <div class="section" id="an-example-of-the-p2p-component-messaging">
 <h4>An example of the P2P component messaging<a class="headerlink" href="#an-example-of-the-p2p-component-messaging" title="Permalink to this headline">¶</a></h4>
@@ -60,15 +60,70 @@ The <em>P2P</em> component also takes care of message payloads. A payload is a d
 </div>
 <div class="section" id="connection">
 <h3>Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Connection</em> component contains a list of the comnnected peers. This class and not P2P is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by <em>Peer Banning Behaviour</em>. The <em>Peer Banning Behaviour</em> component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is cut.</p>
+<p>The <em>Connection</em> component contains a list of the comnnected peers. This component and not <em>P2P</em> is talked to by the higher-level components. This component is also responsible for banning peers and decides who to ban and why. The mechanism for banning the peers is implemented by <em>Peer Banning Behaviour</em>. The <em>Peer Banning Behaviour</em> component does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is dropped.</p>
 </div>
 <div class="section" id="behaviour-components">
 <h3>Behaviour Components<a class="headerlink" href="#behaviour-components" title="Permalink to this headline">¶</a></h3>
-<p>There are numerous behaviour components in the Full Node. For example: <em>Block Puller Behaviour</em>, <em>Chained Header Behaviour</em>, <em>Memory Pool Behaviour</em>, <em>Block Store Behaviour</em>. You can think of the behaviour components as a plugin which is responsible for filtering out messages that are not relevant to the component they are connected to. For example, <em>Memory Pool Behaviour</em> only cares about messages related to the memory pool.</p>
+<p>There are numerous behaviour components in the Full Node. For example: <em>Block Puller Behaviour</em>, <em>Chained Header Behaviour</em>, <em>Memory Pool Behaviour</em>, <em>Block Store Behaviour</em>. You can think of the behaviour components as plugins which are responsible for filtering out messages that are not relevant to their related component. For example, <em>Memory Pool Behaviour</em> only cares about messages related to the <em>Memory Pool</em>.</p>
 </div>
 </div>
+<div class="section" id="syncing-with-the-blockchain">
+<h2>Syncing with the blockchain<a class="headerlink" href="#syncing-with-the-blockchain" title="Permalink to this headline">¶</a></h2>
+<p>Once a Stratis Full Node has found other peers on the network, it needs to sync its copy of the blockchain. The components involved with this are the <em>Consensus Manager</em>, <em>Chained Header Tree</em>, <em>Block Puller</em>, <em>Validators</em>, and <em>Coin View</em>.</p>
+<div class="section" id="consensus-manager">
+<h3>Consensus Manager<a class="headerlink" href="#consensus-manager" title="Permalink to this headline">¶</a></h3>
+<p>Once a connection has been made to other peers on the network, the peers send block headers to the <em>Conesnsus Manager</em>. The <em>Consensus Manager</em> contacts the <em>Chained Header Tree</em> and informs it that it has new headers. The <em>Chained Header Tree</em> analyses whether the blocks are interesting and reports back to the <em>Conesnsus Manager</em> if they are. The <em>Consensus Manager’s</em> response is to download the full blocks for the headers. The <em>Block Puller</em> is in invoked to download the blocks.</p>
+</div>
+<div class="section" id="chained-header-tree">
+<h3>Chained Header Tree<a class="headerlink" href="#chained-header-tree" title="Permalink to this headline">¶</a></h3>
+<p>The first thing to realize about the <em>Chained Header Tree</em> is that, as its name implies, it is a tree structure. This is distinct from the blockchain, which does not have branches in it. It is related to a concept known as the consensus tip, which is the height in blocks on the blockchain at which a consensus has been reached. If the <em>Chained Header Tree</em> becomes aware of a branch which is ahead of the blockchain at the consensus tip, it requests the <em>Consensus Manager</em> obtains the blocks for this new branch. Once the blocks are obtained, the <em>Consensus Manager</em> begins validating the blocks for this potentially interesting branch.</p>
+<p>The <em>Chained Header Tree</em> is built out of block headers, which are stored into memory. However, the <em>Chained Header Tree</em> can store blocks as well.</p>
+<p>The <em>Chained Header Tree</em> represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a branch that is ahead of the consensus tip only to then switch to a second branch half way through this.</p>
+<div class="section" id="validation-steps">
+<h4>Validation Steps<a class="headerlink" href="#validation-steps" title="Permalink to this headline">¶</a></h4>
+<p>Validation is broken down into three steps:</p>
+<ol class="arabic simple">
+<li>Header validation</li>
+<li>Minimal validation (block integrity validation)</li>
+<li>Partial validation</li>
+<li>Full validation</li>
+</ol>
+<p>As discussed in the <em>Block Puller</em> section, in the case of an initial block download, validation requirements are significantly less when dealing with a block that proceeds a checkpoint.</p>
+</div>
+</div>
+<div class="section" id="block-puller">
+<h3>Block Puller<a class="headerlink" href="#block-puller" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Block Puller</em> works in one of two modes:</p>
+<ol class="arabic simple">
+<li>IBD (Initial Block Download)</li>
+<li>Network synced.</li>
+</ol>
+<p>The mode that is selected depends on whether you have passed a checkpoint. A checkpoint is a point at which the blockchain can never be re-organised behind (if you think of the blockchain moving as forward). IBD is selected if you are not yet synced to the blockchain network, and the blocks you require are behind the checkpoint. Because these blocks can never be changed, validation is minimal. The headers are validated and minimal validation is carried out on the blocks. Part of the full validation is carried out. This is the part the involves updating the <em>Coinview</em></p>
+<p>The network synced mode is used when the network is syncedm, and all blocks behind the checkpoint are already on the node’s blockchain.</p>
+<div class="section" id="download-strategy">
+<h4>Download Strategy<a class="headerlink" href="#download-strategy" title="Permalink to this headline">¶</a></h4>
+<p>The strategy is to download blocks sufficiently fast. A node is aware of the connection speed of the peers, so it decides to give small tasks to slower peers.</p>
+<p>Two modes:
+1.      IBD (Initial Block Download)
+2.      Synced with network and only behind when somebody mines a block.</p>
+<p>IBD</p>
+<p>Task distribution is important: Imagine 1000 blocks to be downloaded. Distributed by bandwidth that a peer has and historical data – Nodes are assigned a value between 0 and 150 based on how fast they are. Fast peer with 75 (50% of the power) is asked to download 500 blocks. Some “fast nodes” become maxed out and their ratings drop. Other nodes are configured to only allow 10 connection so maintain a constant high rating.</p>
+</div>
+</div>
+<div class="section" id="coin-view">
+<h3>Coin View<a class="headerlink" href="#coin-view" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Coin View</em> represents the UTXO set. Each time the consensus tip moves forward, it needs to be recalculated. It can be thought of as the amount of STRAT which is spendable at any given block height. As the consensus tip moves forward one block, the number of UTXOs changes, which reflects UTXOs being spent and new UTXOs being created as payments and change.</p>
+<p>The <em>Coin View</em> makes use of a database and cache. It can be rewound although rewinding is expensive</p>
+<p>Updating the <em>Coin View</em> is the last step of full validation.</p>
+</div>
+</div>
+<div class="section" id="useful-libraries">
+<h2>Useful libraries<a class="headerlink" href="#useful-libraries" title="Permalink to this headline">¶</a></h2>
+<p>The full node contains some libraries that supply functionality to all components.</p>
 <div class="section" id="nbitcoin">
-<h2>NBitcoin<a class="headerlink" href="#nbitcoin" title="Permalink to this headline">¶</a></h2>
+<h3>NBitcoin<a class="headerlink" href="#nbitcoin" title="Permalink to this headline">¶</a></h3>
+<p>NBitcoin is a Bitcoin library for the .NET platform. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and crytographic hashing and signing.</p>
+</div>
 </div>
 </div>
 
@@ -90,7 +145,23 @@ The <em>P2P</em> component also takes care of message payloads. A payload is a d
 <li><a class="reference internal" href="#behaviour-components">Behaviour Components</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#syncing-with-the-blockchain">Syncing with the blockchain</a><ul>
+<li><a class="reference internal" href="#consensus-manager">Consensus Manager</a></li>
+<li><a class="reference internal" href="#chained-header-tree">Chained Header Tree</a><ul>
+<li><a class="reference internal" href="#validation-steps">Validation Steps</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#block-puller">Block Puller</a><ul>
+<li><a class="reference internal" href="#download-strategy">Download Strategy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coin-view">Coin View</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#useful-libraries">Useful libraries</a><ul>
 <li><a class="reference internal" href="#nbitcoin">NBitcoin</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
