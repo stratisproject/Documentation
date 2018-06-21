@@ -45,7 +45,7 @@ Federation leaders
 More on sidechain deposits and withdrawals
 ==========================================
 
-This section follows on from the previous section by describing a sidechain deposit and withdrawing in more detail. A case study which follows on from the previous figure is used to describe this. The first topic covered is federated gateways. These are special nodes, which keep the connection between the mainchain and the sidechain and make withdrawals and deposits possible. 
+This section follows on from the previous section by describing a sidechain deposit and withdrawal in more detail. A case study which follows on from the previous figure is used to describe these two processes. The first topic covered is federated gateways. These are special nodes, which keep the connection between the mainchain and the sidechain and make withdrawals and deposits possible. 
 
 Federated gateways
 ------------------
@@ -66,4 +66,4 @@ The sequence of events is as follows:
 
 1. The user obtains a sidechains wallet. 
 2. The user makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They also supply a TAPEX address from their sidechain wallet. The journey of this address is shown in red. The UTXO containing the 100 TSTRAT is spent (unlocked).  
-3. One of rhe mainchain federated gateways
+3. One of the mainchain federated gateways 
