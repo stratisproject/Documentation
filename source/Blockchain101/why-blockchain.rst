@@ -2,7 +2,7 @@
 Why Blockchain?
 ************************
 
-“The Internet 3.0”.
+Hello World
 
 The blockchain is a network and a database with rules written in code that allow users to manage it, without the need for a trusted middleman.
 It is a *decentralized ledger* that is validated and secured by a network of peer to peer nodes.
