@@ -85,10 +85,10 @@ For an example of a sidechain withdrawal, the following figure shows the user (w
 
 The sequence of events is as follows:
 
-1. The user makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address is shown in purple. In this case, the user's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. 
-3. One of the mainchain federated gateways detects the transaction containing the withdrawal and contacts the leader of the federation.
-4. The leader of the federation contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTAT that was previously deposited.
-5. A transaction is created that poys 50 TSTRAT to the user's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the user. The blue UTXO pays the the change (50 TSTRAT) back to the federation's mainchain P2SH address.
+1. The user makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address is shown in purple. In this case, the user's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction.
+2. One of the mainchain federated gateways detects the transaction containing the withdrawal and contacts the leader of the federation.
+3. The leader of the federation contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTAT that was previously deposited.
+4. A transaction is created that poys 50 TSTRAT to the user's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the user. The blue UTXO pays the the change (50 TSTRAT) back to the federation's mainchain P2SH address.
 
 .. note::
     At the end of this withdrawal, the federation has 50 TSTRAT in the mainchain P2SH address.
