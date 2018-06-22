@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = StratisAcademy
 SOURCEDIR     = source
-BUILDDIR      = build
+BUILDDIR      = ../build
 
 # Put it first so that "make" without argument is like "make help".
 help:
