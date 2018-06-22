@@ -39,8 +39,6 @@ Creation of the each P2SH address requires a public key from each federation mem
 .. note::
     As this is the Alpha version of sidechains, the federation controlling the APEX sidechain is made up of Stratis Platform team members. Future versions will enable users to become federation members themselves and create their own sidechains. 
 
-Federation leaders
-==================
 
 More on sidechain deposits and withdrawals
 ==========================================
@@ -50,6 +48,11 @@ This section follows on from the previous section by describing a sidechain depo
 Federated gateways
 ------------------
 Deposits and withdrawals are different from standard transactions because they require something to be done on the the other chain. Only certain nodes on both the mainchain or sidechain, which are known as federated gateways, react to deposits or withdrawals in a special way; other nodes just treat them as normal transactions. Deposits and withdrawals include an address for the transaction on the other chain. Federated gateways monitor transactions for this extra piece of information. Each federation member runs two federated gateway nodes: one on the mainchain and one on the sidechain.
+
+Signature collection
+---------------------
+
+
 
 Sidechain deposits
 -------------------
