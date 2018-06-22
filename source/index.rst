@@ -8,7 +8,7 @@ Welcome to Stratis Academy
 ###########################
 
 .. image:: strat.svg
-    :width: 250px
+    :width: 150px
     :alt: Stratis logo
     :align: center
 
