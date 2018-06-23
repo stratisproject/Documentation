@@ -1,0 +1,13 @@
+###############################
+Support and Community
+###############################
+
+If you're having issues with any part of the process, want to provide us with any feedback, or just want to drop by and show us something cool you made, join us in the #sidechains room on `Discord <https://discord.gg/VKttmAV>`_.
+
+Report a Bug
+------------
+
+You can also raise any issues you have along the way in the `Stratis Full Node github repository <https://github.com/stratisproject/StratisBitcoinFullNode/tree/sc-alpha>`_. Please apply the `sidechains` label to any issues that are specific to sidechains.
+
+For anything urgent, feel free to contact us in the `#sidechains` channel in Discord. 
+

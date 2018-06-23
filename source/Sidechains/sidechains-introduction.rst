@@ -13,7 +13,7 @@ The target audience for this document include federation members, users of the S
 
 Like the Stratis Full Node, Stratis sidechains are written in C# using the .NET Core platform. Although this material does not cover any programming tasks, a working knowledge of blockchain topics such as transactions and wallets will be very useful.
 
-This documentation covers the Alpha release of Stratis sidechains. To enable users to get started, Stratis has created a sidechain running on the Stratis testnet. It has 5 federation members supporting it drawn from the Stratis Platform internal team. The sidechain has its own token called the APEX. Users can deposit STRAT on the sidechain and in return they receive APEX to spend on the sidechain. Stratis provides amodifed STRAT wallet and an APEX wallet to help facilitate this.
+This documentation covers the Alpha release of Stratis sidechains. To enable users to get started, Stratis has created a sidechain running on the Stratis testnet. It has 5 federation members supporting it drawn from the Stratis Platform internal team. The sidechain has its own token called the APEX. Users can deposit STRAT on the sidechain and in return they receive APEX to spend on the sidechain. Stratis provides a modifed STRAT wallet and an APEX wallet to help facilitate this.
 
 One way of understanding sidechains is to think of a sidechain as a foreign country and the Stratis mainchain as the user’s home country. The federation secures an amount of the foreign currency (in this case APEX), which it can loan to sidechain visitors in return for depositing STRAT. When a user returns home, they can relinquish their APEX and withdraw the equivalent amount in STRAT on the mainchain.
 
@@ -24,3 +24,4 @@ This document first details the workings of a Two-Way Federated Peg solution. It
    :caption: Contents:   
    
    two-way-federated-peg-solution
+   support-and-community
