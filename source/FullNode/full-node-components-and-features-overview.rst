@@ -122,8 +122,13 @@ Updating the *Coin View* is the last step of full validation.
 Useful libraries
 =================
 
-The full node contains some libraries that supply functionality to all components.
+The full node contains some internal libraries to supply functionality to all components. It also makes use of one external library.
 
-NBitcoin 
+Core
+-----
+
+
+
+NBitcoin
 ---------
 NBitcoin is a Bitcoin library for the .NET platform. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and crytographic hashing and signing.   
