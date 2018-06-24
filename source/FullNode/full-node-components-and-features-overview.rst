@@ -9,7 +9,7 @@ The following figure shows the components and features of the Full Node:
     :alt: Full Node Overview
     :align: center
 
-All the components and features are described in the following sections, each of which covers a task that the full node needs to carry out.  
+All the components and features are described in the following sections. Several of the sections cover a task that the full node needs to carry out and explain the individual components along the way.  
 
 
 Accessing the network
@@ -66,9 +66,9 @@ When the *Consensus Manager* fully validates a block, the consensus tip moves fo
 Chained Header Tree
 --------------------
 
-The first thing to realize about the *Chained Header Tree* is that, as its name implies, it is a tree structure that is built out of block headers. This is distinct from the blockchain, which does not have branches in it and is made up as full blocks. The *Chained Header Tree* relates to a concept known as the consensus tip, which is the height in blocks on the blockchain at which a consensus has been reached. If the *Chained Header Tree* becomes aware of a branch which is ahead of the blockchain at the consensus tip, it requests the *Consensus Manager* obtains the blocks for this new branch. Once the blocks are obtained, the *Consensus Manager* begins validating the blocks for this potentially interesting branch.
+The first thing to realize about the *Chained Header Tree* is that, as its name implies, it is a tree structure that is built out of block headers. This is distinct from the blockchain, which does not have forks (branches) in it and is made up as full blocks. The *Chained Header Tree* relates to a concept known as the consensus tip, which is the height in blocks on the blockchain at which a consensus has been reached. If the *Chained Header Tree* becomes aware of a fork which is ahead of the blockchain at the consensus tip, it requests the *Consensus Manager* obtains the blocks for this new fork. Once the blocks are obtained, the *Consensus Manager* begins validating the blocks for this potentially interesting fork.
 
-The *Chained Header Tree* represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a branch that is ahead of the consensus tip only to then switch to a second branch half way through this. 
+The *Chained Header Tree* represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a fork that is ahead of the consensus tip only to then switch to a second fork half way through this. 
 
 The *Chained Header Tree* stores the headers it receives in memory and contacts the *Validators* to perform header validation on these headers.
  
@@ -117,18 +117,64 @@ The *Coin View* represents the UTXO set. Each time the consensus tip moves forwa
 
 The *Coin View* makes use of a database and cache. It can be rewound although rewinding is expensive.
 
-Updating the *Coin View* is the last step of full validation. 
+Updating the *Coin View* is the last step of full validation.
 
-Useful libraries
-=================
+Mining new blocks
+==================
+
+If the Mining feature is enabled on the full node, it is able to mine new blocks on the network using the proof-of-stake methodology. The following components are involved with this: *Memory Pool*, *Miner*, and *Wallet*.
+
+Memory Pool
+------------
+The *Memory Pool* keeps a record of transactions that are not in blocks. The *Miner* component uses the  
+The *Memory Pool's* record of pending transactions when it is preparing a block. The *Memory Pool* also has an internal coinview, seperate from the *Coinview* component, which describes what would happen if all the pending TXs were added to the blockchain. When a transaction is validated and added to the mempool, the node can now relay the transaction to other peers which the node is connected to.
+
+The *Memory Pool* is limitted by default to 300MB. This means that when the *Memory Pool* is full, transactions that do not pay a big enough fee must be removed from the *Memory Pool* to create more space. Around 10% of the low paying transactions are removed in response to a full *Memory Pool*.
+
+When blocks arrive via the *Block Puller*, the transactions within them are removed from the *Memory Pool*. This is because these blocks have, after passing validation, the potential to be added to the blockchain; therefore, the transactions they contain should not be included in any new blocks.
+
+The concept of an orphan block is relevant to the *Memory Pool*. It relates to the state of flux around the consensus tip as the node analyses the forks in the blockchain and decides which to follow. Orphan blocks are created when the node abandons a chain and switches to another chain. The blocks from the tip of the abandonned chain back where the fork occurred with the new chain are now considered to be orphans. The question now is are all the transactions in the orphaned blocks present in the blocks in the new chain? If any transactions are not found in the blocks in the new chain, they are returned to the *Memory Pool*. This gives them a chance to be added to future blocks mined by the node.
+
+Miner
+=====
+
+The *Miner* component fills block templates up with transactions from the *Memory Pool* (sorted by fees). When the block is full, the miner attempts to mine it using either the proof-of-stake function (for STRAT) or thre proof-of-work function (for BTC). When a block is succesfully mined, it is presented to the peers on the network who will then attempt to validate it.
+
+The Stratis proof-of-stake algorithm
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The Stratis proof-of-stake algorithm is designed to mine a block every minute. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about one minute for one miner to hit the target. The more STRAT the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAT currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
+
+Because the algorithm is dependent on the STRAT that a miner is staking, the *Wallet* is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
+
+Wallet
+=======
+
+The wallet component is interested in transactions from three sources:
+
+1. Historical transactions stored in the block store.
+2. Transactions in blocks that are arriving from other peers on the network.
+3. Transactions in the memory pool. 
+
+In all cases the wallet iterates through all the transactions in the block to see if any of the UTXOs matches the addresses contained within it.
+
+
+Node-wide libraries
+=====================
 
 The full node contains some internal libraries to supply functionality to all components. It also makes use of one external library.
 
 Core
 -----
 
+This library contains code related to the state of the blockchain. It enables components to share their state between each other so they can get an overall view on the full node. For example, the consensus tip and the block store tip are shared between all components, and this library enables the sharing to be done without creating a dependency on the consensus and block store features.
 
+Interfaces are employed to pass information around. For example, the initial block download state is implemented in the consensus feature; other components just pass around an interface to it.
 
 NBitcoin
 ---------
-NBitcoin is a Bitcoin library for the .NET platform. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and crytographic hashing and signing.   
+`NBitcoin <https://github.com/MetacoSA/NBitcoin/tree/master/NBitcoin>`_ is a external Bitcoin library for the .NET platform written in C#. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and crytographic hashing and signing.
+
+Interfacing with the Full Node
+===============================
+
+It is possible to connect to a full node using Remote Procedural Calls (RPCs) and a RESTful API. The API exposes the same API as Bitcoin and includes some extra features.
