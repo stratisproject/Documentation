@@ -3994,18 +3994,20 @@ code.code-large,.rst-content tt.code-large{
     max-width: 1120px;
     width: 100%;
     margin: 0 auto;
-    position: relative;
+    position: absolute;
 }
 .wy-nav-side{
     padding-bottom:2em;
-    width:300px;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    min-height:100%;
+    width: 300px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
     color:#9b9b9b;
     background:#ffffff;
     z-index:200;
-    float: left;
     position: fixed;
 }
 
@@ -4134,7 +4136,7 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
         bottom: 0;
     }
     .wy-nav-side.shift{
-        width:85%;
+        width:320px;
         left:0
     }
     .wy-side-scroll{
@@ -4155,7 +4157,7 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
     .wy-nav-content-wrap.shift{
         position:fixed;
         min-width:100%;
-        left:85%;
+        left:340px;
         top:0;
         height:100%;
         overflow:hidden
@@ -4167,7 +4169,7 @@ footer span.commit code,footer span.commit .rst-content tt,.rst-content footer s
     width: 100%;
     max-width: 800px;
 }
-@media screen and (min-width: 1100px){
+@media screen and (min-width: 769px){
     .wy-nav-content{
         margin:0 0 0 300px;
         background:#fcfcfc;
@@ -4845,4 +4847,12 @@ span[id*='MathJax-Span']{
 
 #welcome-to-stratis-academy .simple {
     display: none;
+}
+
+.wy-side-scroll {
+    width: 320px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
 }
