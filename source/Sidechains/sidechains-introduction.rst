@@ -24,6 +24,7 @@ This document first details the workings of a Two-Way Federated Peg solution. It
    :caption: Contents:   
    
    two-way-federated-peg-solution
+   getting-started-with-wallets
    making-deposits-and-withdrawals
    support-and-community
 

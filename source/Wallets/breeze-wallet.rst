@@ -2,26 +2,11 @@
 Breeze Wallet
 **********************************************
 
-Dual-cryptocurrency, Bitcoin and Strat, light wallet with security features to keep your wallet safe and protected. 
+The Breeze Wallet is a lightweight `Hierarchical Deterministic (HD) wallet <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch05.asciidoc#hd-wallets-bip-32bip-44>`_ that supports both BTC and STRAT transactions. This wallet is considered lightweight because it doesn't rely on blocks saved in a file system to run; instead the wallet relies on network peers to download the blocks.
 
-Features
-=========
-* Dual cryptocurrency network functionality: Bitcoin and Stratis  
-* Wallet recovery using mnemonic words allow for easy restoration  
-* Full block Simplified Payment Verification (SPV) wallet ensures valid transactions are in the block and confirmed  
-* Hierarchical Deterministic (HD) Wallet  
-* Transaction fee privacy consciousness  
-* Change address privacy protocol
+The source for the Breeze wallet is available `here <https://github.com/stratisproject/Breeze>`_. Full instructions on building and running the wallet `are also available <https://github.com/stratisproject/Breeze/blob/master/Breeze.UI/README.md>`_. Like the Stratis Core wallet, the Breeze wallet requires a Stratis Full Node daemon to be running. However, a Breeze-specific version of the Stratis Full Node daemon is used. The Breeze daemon doesn't validate the full blockchain and only uses the blocks it receives to build the wallet UTXO database. It then attempts to match UTXOs in the database with the addresses that it holds.
 
-Customer Value
-===============
-* Create a wallet that is registered on both the Bitcoin and Stratis blockchain and you are ready to transact in an instant 
-* Simple, intuitive and clean wallet interface allows users to send or receive both Strat and Bitcoin and monitor the progress of any ongoing transactions  
-* Increased security with a full node SPV limiting traceability without saving the entire blockchain   
-* HD wallets greatly improve your privacy by being able to generate new wallet addresses from a single seed for every transaction activity 
-* Transaction fees are requested in time blocks whereby transactions are grouped and the fees of that time period are applied which keeps the information exposed via the API not as easily linked to specific transactions and fees
+The Breeze Wallet front-end is built using Electron and Angular technologies.
 
-Target Audience
-=================
-Regular investors, corporate clients and cryto-traders
+
 

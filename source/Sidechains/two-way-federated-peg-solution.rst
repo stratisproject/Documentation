@@ -2,7 +2,12 @@
 A breakdown of the Two-Way Federated Peg solution
 **************************************************
 
-This chapter details the specific mechanics of a Two-Way Federated Peg sidechain solution from initial creation of the sidechain to mining the transactions made on it. It also covers the roles played by the different users involved.
+This chapter details the specific mechanics of a Two-Way Federated Peg sidechain solution from initial creation of the sidechain to mining the transactions made on it. Before these steps are covered, it is useful to define the four different types of sidechain user.
+
+Sidechain creator. Involved in setting up the sidechain. Not neccessarilly be a federation member.
+Federation member. Controls cross-chain transactions.
+Sidecahin funder. Deposits funds on the sidechain and withdraws funds from sidechain.
+Sidecahin user. Makes transaction on the sidechain but does not deposit or withdraw funds. In other words, they make no cross-chain transactions. 
 
 The creation of the APEX sidechain
 ===================================
@@ -32,7 +37,7 @@ The next section discusses the role played by the federation and the signifcance
 The role of the federation
 ===========================
 
-The role of a federation is to sign-off the deposits from the mainchain to the sidechain and sign-off withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology already built into the Stratis nodes: `Pay-To-Script-Hash addresses <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses>`_. P2SH addresses are a convenient way for a user to make payments to an organization that requires `UTXOs with multisignature locking scripts <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature>`_, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signaturies, not all the possible signaturies are usually required. For example, only 4 of 5 signaturies may be required to spend a payment. When a predefined minimum amount of signaturies is required from a group for an operation to proceed, this is also known as a quorum. The deposits and withdrawals that the federation controls also require the approval of a quorum.
+The role of a federation is to sign-off the deposits from the mainchain to the sidechain and sign-off withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology already built into the Stratis nodes: `Pay-To-Script-Hash addresses <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses>`_. P2SH addresses are a convenient way for a user to make payments to an organization that requires `UTXOs with multisignature locking scripts <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature>`_, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signatories, not all the possible signatories are usually required. For example, only 4 of 5 signatories may be required to spend a payment. When a predefined minimum amount of signatories is required from a group for an operation to proceed, this is also known as a quorum. The deposits and withdrawals that the federation controls also require the approval of a quorum.
 
 When a TSTRAT deposit is made, the federation signs for the release of APEX on the sidechain. When a TSTRAT withdrawal is made, the federation signs for the release of TSTRAT on the mainchain.
 
