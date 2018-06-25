@@ -6,7 +6,12 @@ Blockchain 101
 .. toctree::
    :maxdepth: 2
 
-   what-is-the-blockchain
-   why-use-the-blockchain
-   why-blockchain
-   introduction-to-the-components-of-the-blockchain
+   origins-of-blockchain
+   what-is-blockchain
+   purpose-of-blockchain
+   peer-to-peer-nodes
+   consensus-rules
+   cryptographic-keys-digital-signatures
+   transactions
+   pow-pos
+   enter-stratis
