@@ -136,7 +136,7 @@ When blocks arrive via the *Block Puller*, the transactions within them are remo
 The concept of an orphan block is relevant to the *Memory Pool*. It relates to the state of flux around the consensus tip as the node analyses the forks in the blockchain and decides which to follow. Orphan blocks are created when the node abandons a chain and switches to another chain. The blocks from the tip of the abandonned chain back where the fork occurred with the new chain are now considered to be orphans. The question now is are all the transactions in the orphaned blocks present in the blocks in the new chain? If any transactions are not found in the blocks in the new chain, they are returned to the *Memory Pool*. This gives them a chance to be added to future blocks mined by the node.
 
 Miner
-=====
+------
 
 The *Miner* component fills block templates up with transactions from the *Memory Pool* (sorted by fees). When the block is full, the miner attempts to mine it using either the proof-of-stake function (for STRAT) or thre proof-of-work function (for BTC). When a block is succesfully mined, it is presented to the peers on the network who will then attempt to validate it.
 
@@ -147,7 +147,7 @@ The Stratis proof-of-stake algorithm is designed to mine a block every minute. B
 Because the algorithm is dependent on the STRAT that a miner is staking, the *Wallet* is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
 
 Wallet
-=======
+---------
 
 The wallet component is interested in transactions from three sources:
 
