@@ -2,10 +2,7 @@
 Making deposits and withdrawals to and from the sidechain
 ###########################################################
 
-This chapter details the practical steps you just take to make deposits and withdrawals to and from a sidechain. To begin with, you must download two wallets:
-
-1. A version of the Stratis Core with sidechain deposit functionality ||Link
-2. The APEX wallet ||Link
+This chapter details the practical steps a sidechain funder must take to make deposits and withdrawals to and from a sidechain. To begin with, you must have a sidechain-enabled version of the Stratis Core wallet running and an APEX Core wallet running.
 
 Turning on cross-chain functionality
 ====================================
@@ -70,10 +67,10 @@ Withdraw TSTRAT on the sidechain using the Stratis Core wallet
 7. Specify a transaction fee.
 8. Enter your wallet password and press the *Deposit* button.
 
-Setting up to auto-population for the Federation address 
+Setting a default federation address
 =========================================================
 
-You can speed up the deposit and withdrawal process by setting a default Federation address to use each time you make a cross-chain transaction. The procedure is the same for both wallets. The screenshots below are from the Stratis Core wallet.
+You can speed up the deposit and withdrawal process by setting a default federation address to use each time you make a cross-chain transaction. The procedure is the same for both wallets. The screenshots below are from the Stratis Core wallet.
 
 1. On the main page, click the *Settings* button.
 2. The *Settings* dialog is displayed:
@@ -83,7 +80,7 @@ You can speed up the deposit and withdrawal process by setting a default Federat
      :alt: Stratis Core settings
      :align: center
 
-3. Click the *Enable* button for Federation address auto-populate.
+3. Click the *Enable* button for the "Use Default Federation Address" option.
 
  .. image:: default-federation-address.png
      :width: 900px
