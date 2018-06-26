@@ -4,11 +4,21 @@ A breakdown of the Two-Way Federated Peg solution
 
 This chapter details the specific mechanics of a Two-Way Federated Peg sidechain solution from initial creation of the sidechain to mining the transactions made on it. Before these steps are covered, it is useful to define the four different types of sidechain user.
 
-Sidechain creator. Involved in setting up the sidechain. Not neccessarilly be a federation member.
-Federation member. Controls cross-chain transactions.
-Sidecahin funder. Deposits funds on the sidechain and withdraws funds from sidechain.
-Sidecahin user. Makes transaction on the sidechain but does not deposit or withdraw funds. In other words, they make no cross-chain transactions. 
++-------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| User              | Description                                                                                                                       |
++===================+===================================================================================================================================+
+| Sidechain creator | Sets up and configures the sidechain. Not necessarily a federation member.                                                        |
++-------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| Federation member | Authorizes cross-chain transactions in conjunction with other federation members.                                                 |
++-------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| Sidechain funder  | Deposits funds on the sidechain and withdraws funds from sidechain.                                                               |
++-------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| Sidechain user    | Makes transaction on the sidechain but does not deposit or withdraw funds. In other words, they make no cross-chain transactions. |
++-------------------+-----------------------------------------------------------------------------------------------------------------------------------+
 
+.. note::
+    Depending on the business case, there may be one sidechain funder or many. For example, a single deposit might be made at the start of a sidechain's life followed by a single withdrawal at the end of its life. Alternatively, cross-chain transactions from several users might be a common occurrence.
+	
 The creation of the APEX sidechain
 ===================================
 
@@ -25,25 +35,25 @@ The following figure shows the creation of the TAPEX sidechain:
      :alt: Sidechains Creation
      :align: center
 
-The UTXO for the premine is shown inside the premine block. The "locked padlock" symbol indicates that at this point the UTXO is unspent, but it is ready to be spent by the federation when they honour TSTRAT deposits made on the mainchain. A user who owns 100 TSTRAT is also shown in the figure, and their single UTXO of 100 TSTRAT is shown inside one of the mainchain blocks.
+The UTXO for the premine is shown inside the premine block. The "locked padlock" symbol indicates that at this point the UTXO is unspent, but it is ready to be spent by the federation when they honour TSTRAT deposits made on the mainchain. A sidechain funder who owns 100 TSTRAT is also shown in the figure, and their single UTXO of 100 TSTRAT is shown inside one of the mainchain blocks.
+
+The previous figure is the first of 3 figures. In the subsequent figures, the sidechain funder deposits 100 TSTRAT on the sidechain and, finally, they withdraw 50 TSTRAT back.
 
 .. note::
-    When the term "locked" is used in relation to individual UTXOs, it refers to the fact they are spendable (when unlocked using the correct signature/s) and contribute to a balance in a wallet. Unlocked UTXOs are spent and no longer contribute to anyone's balance. You may have encountered references to STRAT being locked on the sidechain. In this case, the text is describing in general terms the deposits made by sidechain users which remain held by the federation until they are withdrawn. 
+    When the term "locked" is used in relation to individual UTXOs, it refers to the fact they are spendable (when unlocked using the correct signature/s) and contribute to a balance in a wallet. Unlocked UTXOs are spent and no longer contribute to anyone's balance. You may have encountered references to STRAT being locked on the sidechain. In this case, the text is describing in general terms the deposits made by sidechain funders which remain held by the federation until they are withdrawn. 
 
-The previous figure is the first of 3 figures. In the subsequent figures, this user deposits 100 TSTRAT on the sidechain and, finally, the user withdraws 50 TSTRAT back.
-
-The next section discusses the role played by the federation and the signifcance of the P2SH addresses.
+The next section discusses the role played by the federation and the significance of the P2SH addresses.
 
 The role of the federation
 ===========================
 
-The role of a federation is to sign-off the deposits from the mainchain to the sidechain and sign-off withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology already built into the Stratis nodes: `Pay-To-Script-Hash addresses <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses>`_. P2SH addresses are a convenient way for a user to make payments to an organization that requires `UTXOs with multisignature locking scripts <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature>`_, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signatories, not all the possible signatories are usually required. For example, only 4 of 5 signatories may be required to spend a payment. When a predefined minimum amount of signatories is required from a group for an operation to proceed, this is also known as a quorum. The deposits and withdrawals that the federation controls also require the approval of a quorum.
+The role of a federation is to sign-off the deposits from the mainchain to the sidechain and sign-off withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology already built into the Stratis nodes: `Pay-To-Script-Hash addresses <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses>`_. P2SH addresses are a convenient way to make payments to an organization that requires `UTXOs with multisignature locking scripts <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature>`_, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signatories, not all the possible signatories are usually required. For example, only 4 of 5 signatories may be required to spend a payment. When a predefined minimum number of signatories is required from a group for an operation to proceed, this is also known as a quorum. The deposits and withdrawals that the federation controls also require the approval of a quorum.
 
 When a TSTRAT deposit is made, the federation signs for the release of APEX on the sidechain. When a TSTRAT withdrawal is made, the federation signs for the release of TSTRAT on the mainchain.
 
 To achieve this, the Stratis Sidechains solution employs two P2SH addresses:
     
-1. The federation members supply private keys from their mainchain wallets and a mainchain P2SH address is created. TSTRAT sidechain deposits are sent to this P2SH address and remain there until they are withdrawn fromn the sidechain. Withdrawal of TSTRAT from this P2SH address requires multisignature unlocking.
+1. The federation members supply private keys from their mainchain wallets and a mainchain P2SH address is created. TSTRAT sidechain deposits are sent to this P2SH address and remain there until they are withdrawn from the sidechain. Withdrawal of TSTRAT from this P2SH address requires multisignature unlocking.
 
 2. The federation members supply private keys from their sidechain wallets, and a sidechain P2SH address is created. The premine of the 20 million TAPEX coins is sent to this P2SH address, which is shown in the previous figure. TAPEX are the issued from this P2SH address, subject to multisignature unlocking, when TSTRAT are deposited. When TSTRAT are withdrawn, TAPEX are returned to this address.  
 
@@ -76,7 +86,7 @@ From now on in this document, the term "boss" is used for the federation member 
 Sidechain deposits
 -------------------
 
-For an example of a sidechain deposit, the following figure shows a user, :ref:`who has been introduced previously <image1>`, making a deposit of 100 TSTRAT on the sidechain:
+For an example of a sidechain deposit, the following figure shows a sidechain funder, :ref:`who has been introduced previously <image1>`, making a deposit of 100 TSTRAT on the sidechain:
   
  .. _image2:
  .. image:: Sidechain_Deposit.png
@@ -87,19 +97,19 @@ For an example of a sidechain deposit, the following figure shows a user, :ref:`
 
 The sequence of events is as follows:
 
-1. The user obtains a sidechains wallet. 
-2. The user makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They supply a TAPEX address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the user's 100 TSTRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
+1. The sidechain funder obtains a sidechains wallet. 
+2. The sidechain funder makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They supply a TAPEX address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the sidechain funder's 100 TSTRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
 3. One of the mainchain federated gateways detects the transaction containing the deposit. The gateway must now wait for 10 blocks to be mined on top of the block containing the 100 TSTRAT deposit. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the deposit on the mainchain before proceeding to honour the deposit on the sidechain.  
 4. A federation boss is assigned to co-ordinate the sidechain deposit.
 5. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 20 million TAPEX that was premined.
-6. A transaction is created that pays 100 TAPEX to the sidechain user's wallet. The two UTXOs that make up the transaction are shown in the latest sidechain block. The red UTXO is sent (locked) to the sidechain address supplied by the user. The green UTXO pays the change (19,999,900 TAPEX) back to the federation's sidechain P2SH address.
+6. A transaction is created that pays 100 TAPEX to the sidechain funder's wallet. The two UTXOs that make up the transaction are shown in the latest sidechain block. The red UTXO is sent (locked) to the sidechain address supplied by the sidechain funder. The green UTXO pays the change (19,999,900 TAPEX) back to the federation's sidechain P2SH address.
 
 .. note::
     At the end of this withdrawal, the federation has 100 TSTRAT locked in the mainchain P2SH address and 19,999,900 TAPEX locked in the sidechain P2SH address.
 
 Sidechain withdrawals
 ----------------------
-For an example of a sidechain withdrawal, the following figure shows the user (who made the deposit of 100 TSRAT) making a withdrawal of 50 TAPEX from the sidechain:
+For an example of a sidechain withdrawal, the following figure shows the sidechain funder (who made the deposit of 100 TSRAT) making a withdrawal of 50 TAPEX from the sidechain:
 
  .. _image3:
  .. image:: Sidechain_Withdrawal.png
@@ -109,11 +119,11 @@ For an example of a sidechain withdrawal, the following figure shows the user (w
 
 The sequence of events is as follows:
 
-1. The user makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the user's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 TAPEX change back to the user.
+1. The sidechain funder makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the sidechain funder's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 TAPEX change back to the sidechain funder.
 2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 TAPEX withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the withdrawal on the mainchain.
 3. A federation boss is assigned to co-ordinate the mainchain withdrawal.
 4. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTRAT that was previously deposited.
-5. A transaction is created that pays 50 TSTRAT to the user's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the user. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
+5. A transaction is created that pays 50 TSTRAT to the sidechain funder's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
 
 .. note::
     At the end of this withdrawal, the federation has 50 TSTRAT locked in the mainchain P2SH address and 19,999,950 TAPEX locked in the sidechain P2SH address.
