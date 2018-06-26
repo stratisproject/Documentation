@@ -75,7 +75,7 @@ You can speed up the deposit and withdrawal process by setting a default federat
 1. On the main page, click the *Settings* button.
 2. The *Settings* dialog is displayed:
 
- .. image:: settings.png
+ .. image:: enable-cross-chain-tx.png
      :width: 900px
      :alt: Stratis Core settings
      :align: center
