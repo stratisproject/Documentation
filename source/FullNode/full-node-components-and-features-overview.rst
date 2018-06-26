@@ -9,7 +9,9 @@ The following figure shows the components and features of the Full Node:
     :alt: Full Node Overview
     :align: center
 
-All the components and features are described in the following sections. Several of the sections cover a task that the full node needs to carry out. The individual components are explained along the way.  
+All the components and features are described in the following sections. Several of the sections cover a task that the full node needs to carry out. The individual components are explained along the way.
+
+The source code for the Full Node is available here: <>   
 
 
 Accessing the network

@@ -21,6 +21,8 @@ A background knowledge of `peer-to-peer (P2P) <https://en.wikipedia.org/wiki/Pee
 
 The purpose of this document is to provide a high-level overview of the Full Node, so you can gain an idea of how the components work together. It does not touch on individual C# classes.
 
+The Full Node is open source, and you can find the source here on GitHub: https://github.com/stratisproject/StratisBitcoinFullNode.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

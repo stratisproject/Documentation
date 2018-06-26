@@ -2,7 +2,7 @@
 Making deposits and withdrawals to and from the sidechain
 ###########################################################
 
-This chapter details the practical steps a sidechain funder must take to make deposits and withdrawals to and from a sidechain. To begin with, you must have a sidechain-enabled version of the Stratis Core wallet running and an APEX Core wallet running.
+This chapter details the practical steps a sidechain funder must take to make deposits and withdrawals to and from a sidechain. To begin with, you must have a sidechain-enabled version of the Stratis Core wallet running and an Apex Core wallet running.
 
 Turning on cross-chain functionality
 ====================================
@@ -11,7 +11,7 @@ Before you begin make cross-chain transactions, you must ensure cross-chain func
 1. On the main page, click the *Settings* button.
 2. The *Settings* dialog is displayed:
 
- .. image:: settings.png
+ .. image:: enable-cross-chain-tx.png
      :width: 900px
      :alt: Stratis Core settings
      :align: center
@@ -24,7 +24,7 @@ Deposit TSTRAT on the sidechain using the Stratis Core wallet
 
 1. Log in to your Stratis Core wallet.
 
- .. image:: stratis-core-main-page.png
+ .. image:: stratis-core.png
      :width: 900px
      :alt: Stratis Core main page
      :align: center
@@ -46,9 +46,9 @@ Deposit TSTRAT on the sidechain using the Stratis Core wallet
 Withdraw TSTRAT on the sidechain using the Stratis Core wallet
 ===============================================================
 
-1. Log in to your APEX wallet.
+1. Log in to your Apex Core wallet.
 
- .. image:: stratis-core-main-page.png
+ .. image:: apex-core.png
      :width: 900px
      :alt: APEX wallet main page
      :align: center

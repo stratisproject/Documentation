@@ -48,7 +48,7 @@ Running a Stratis Sidechain Node daemon
 4. Navigate to the ``src/Stratis.SidechainD`` subdirectory in your copy of the Sidechain Node source directory.
 5. Enter ``dotnet run -testnet -datadir=[FULL_PATH_TO_SIDECHAIN_DATA_FOLDER]`` to run the Sidechain Node daemon.
 
-Running an APEX Core wallet
+Running an Apex Core wallet
 =============================
 
 .. note::
@@ -60,7 +60,7 @@ Running an APEX Core wallet
 4. Navigate to the ``FullNodeUI\FullNode.UI`` subdirectory in your copy of the Full Node UI source directory.
 5. Enter ``npm install`` to install the dependencies.
 6. Make sure an instance of the Sidechain Node daemon is running.
-7. Enter ``npm run testnet:sidechain`` to run the APEX Core wallet.  
+7. Enter ``npm run testnet:sidechain`` to run the Apex Core wallet.  
  
 
 
