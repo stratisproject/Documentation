@@ -6,20 +6,21 @@
 ###########################
 Welcome to Stratis Academy
 ###########################
-
 .. image:: strat.svg
     :width: 100px
     :alt: Stratis logo
     :align: center
 
+|
+
 Stratis is dedicated to sharing the knowledge of blockchain and nurturing a global C# and .Net developer community. The Stratis Academy will train the next generation of blockchain developers around the world to prepare them for in-demand blockchain projects in different industries. By providing course materials, worked examples, technical infrastructure and hands-on projects, we hope to build a community committed empowered with knowledge of the Stratis blockchain.
 
-The Stratis Blockchain academy will introduce:
+The Stratis Academy will introduce:
   The blockchain beginner to the basics of the Stratis blockchain.
 
   The seasoned developer to tools and techniques for working with the Stratis blockchain.
 
-  The business minded to sound practices and applications of the Stratis blockchain in various sectors.
+  The business minded to sound practices and applications of the Stratis blockchain across various sectors.
 
 
 .. toctree::
