@@ -4785,6 +4785,7 @@ span[id*='MathJax-Span']{
 
 .highlight * {
     color: #06233f !important;
+    font-weight: normal !important;
 }
 
 @media screen and (min-width: 1100px){
