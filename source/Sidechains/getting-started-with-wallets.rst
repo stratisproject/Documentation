@@ -6,8 +6,8 @@ If you want to fund the sidechain, you must have each of the following running b
 
 1. A standard Stratis Full Node daemon to support a Stratis Core wallet.
 2. A special version of the Stratis Core wallet with built-in sidechains functionality.
-3. A Stratis Sidechain Node daemon to support an APEX Core wallet.
-4. An APEX Core wallet.
+3. A Stratis Sidechain Node daemon to support an Apex Core wallet.
+4. An Apex Core wallet.
 
 The following sections expand on the steps to take to get each item from the above table up and running. If you only want to make transactions on the sidechain, you only need to set up items 3 and 4.
 

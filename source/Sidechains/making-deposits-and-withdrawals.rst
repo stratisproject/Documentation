@@ -38,12 +38,12 @@ Deposit TSTRAT on the sidechain using the Stratis Core wallet
      :align: center
 
 4. Specify the amount of TSTRAT you wish to deposit.
-5. Specify the Mainchain Federation address. For the alpha release of sidechains, use ??Add later??. This is a P2SH address. More details are available here. || Link
-6. Specify the Sidechain Destination address. You can obtain an address by clicking the *Receive* button in your APEX wallet.
+5. Specify the Mainchain Federation address. For the alpha release, use ``2N3UFTMd9ywUSqd12FkBPmYwEebxbGA8rQy``. This is a P2SH address.
+6. Specify the Sidechain Destination address. You can obtain an address by clicking the *Receive* button in your Apex Core wallet.
 7. Specify a transaction fee.
 8. Enter your wallet password and press the *Deposit* button.
 
-Withdraw TSTRAT on the sidechain using the Stratis Core wallet
+Withdraw TSTRAT on the sidechain using the Apex Core wallet
 ===============================================================
 
 1. Log in to your Apex Core wallet.
@@ -62,7 +62,7 @@ Withdraw TSTRAT on the sidechain using the Stratis Core wallet
      :align: center
 	 
 4. Specify the amount of TAPEX you wish to withdraw. TAPEX have a 1:1 ratio with TSTRAT.
-5. Specify the Sidechain Federation address. For the alpha release of sidechains use ??Add later??. This is a P2SH address. More details are available here. || Link
+5. Specify the Sidechain Federation address. For the alpha release, use ``pFmbfn5PtgsEENzBKbsDTeS5vkc52bBftL``. This is a P2SH address.
 6. Specify the Mainchain Destination address. You can obtain an address by clicking the *Receive* button in your Stratis Core wallet.
 7. Specify a transaction fee.
 8. Enter your wallet password and press the *Deposit* button.
@@ -87,13 +87,13 @@ You can speed up the deposit and withdrawal process by setting a default federat
      :alt: Stratis Core settings
      :align: center
  
-4. Add the default address. For the alpha release of sidechains, use ??Add later?? for the mainchain federation address and ??Add later?? for the sidechain federation address.
+4. Add the default address. For this alpha release, use ``2N3UFTMd9ywUSqd12FkBPmYwEebxbGA8rQy`` for the mainchain federation address and ``pFmbfn5PtgsEENzBKbsDTeS5vkc52bBftL`` for the sidechain federation address.
 5. Click the *Save* button.
 
 Getting the funds to make deposits on the sidechain
 =====================================================
 
-The easiest way to get some TSTRAT to deposit on the sidechain is to use the `smart contracts faucet <https://smartcontractsfaucet.stratisplatform.com/>`_. To receive 100 TSTRAT, specify a TSTRAT address from your Stratis Core wallet. You can then use these funds to make a deposit on the sidechain, and from there, you can begin making further transactions on the sidechain including withdrawals. 
+The easiest way to get some TSTRAT to deposit on the sidechain is to use the `faucet <https://faucet.stratisplatform.com/>`_. To receive 100 TSTRAT, specify a TSTRAT address from your Stratis Core wallet. You can then use these funds to make a deposit on the sidechain, and from there, you can begin making further transactions on the sidechain including withdrawals. 
 
 
 

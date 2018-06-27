@@ -21,6 +21,6 @@ This document assumes that you are familiar with basic blockchain concepts. When
    deploying-your-first-smart-contract
    auction-smart-contract
    testing
-   support-and-community
+   support
    appendix-future-enhancements-to-smart-contracts
    appendix-gas-prices
