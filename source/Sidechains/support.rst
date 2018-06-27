@@ -2,7 +2,7 @@
 Support
 ###############################
 
-If you're having issues with any part of the process or want to provide us with any feedback, join us in the #sidechains channel on `Discord <https://discord.gg/VKttmAV>`_.
+If you're having issues with any part of the process or want to provide us with any feedback, join us in the #sidechains channel on `Discord <https://discord.gg/DbUusDh>`_.
 
 Report a Bug
 ------------

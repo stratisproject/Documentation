@@ -79,7 +79,7 @@ Sidechain deposits and withdrawals are different from standard transactions beca
 Signature collection
 ---------------------
 
-Each time a transaction occurs, one federation member is assigned the task of co-ordinating the signature collection. The member chosen changes for each block, but will be responsible for co-ordinating all the transactions in a given block. If a member is not available, an attempt is made to assign the co-ordination task to the next member and so on. Not giving any particular node the responsibility of co-ordinating the signature collection increases the robustness of the solution.
+Each time a transaction occurs, one federation member has the task of co-ordinating the signature collection. The member chosen changes for each block, and this member is responsible for co-ordinating all the transactions in the given block. If a member is not available, an attempt is made to assign the co-ordination task to the next member and so on. Not giving any particular node the responsibility of co-ordinating the signature collection increases the robustness of the solution.
 
 From now on in this document, the term "boss" is used for the federation member who takes on the co-ordination task for a given block.  
 
@@ -100,7 +100,7 @@ The sequence of events is as follows:
 1. The sidechain funder obtains a sidechains wallet. 
 2. The sidechain funder makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They supply a TAPEX address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the sidechain funder's 100 TSTRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
 3. One of the mainchain federated gateways detects the transaction containing the deposit. The gateway must now wait for 10 blocks to be mined on top of the block containing the 100 TSTRAT deposit. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the deposit on the mainchain before proceeding to honour the deposit on the sidechain.  
-4. A federation boss is assigned to co-ordinate the sidechain deposit, and all subsequent deposits on the given block (not represented here).
+4. A federation boss is assigned to co-ordinate this sidechain deposit and all subsequent deposits that are made on this block.
 5. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 20 million TAPEX that was premined.
 6. A transaction is created that pays 100 TAPEX to the sidechain funder's wallet. The two UTXOs that make up the transaction are shown in the latest sidechain block. The red UTXO is sent (locked) to the sidechain address supplied by the sidechain funder. The green UTXO pays the change (19,999,900 TAPEX) back to the federation's sidechain P2SH address.
 
