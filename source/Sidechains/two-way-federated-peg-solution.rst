@@ -71,17 +71,17 @@ This section follows on from the previous section by describing a sidechain depo
 Federated gateways
 -------------------
 
-Sidechain deposits and withdrawals are different from standard transactions because they require something to be done on the other chain. Only certain nodes on both the mainchain or sidechain, which are known as federated gateways, react to deposits or withdrawals in a special way; other nodes just treat them as normal transactions. Deposits and withdrawals include an address for the transaction on the other chain. Federated gateways monitor transactions to see if there are any which require the other chain to be contacted. Each federation member runs two federated gateway nodes: one on the mainchain and one on the sidechain.
+Sidechain deposits and withdrawals are different from standard transactions because they require something to be done on the other chain. Only certain nodes on both the mainchain or sidechain, which are known as federated gateways, react to deposits or withdrawals in a special way; other nodes just treat them as normal transactions. Deposits and withdrawals include an address for the transaction on the target chain. Federated gateways monitor transactions to see if there are any which require the other chain to be contacted. Each federation member runs two federated gateway nodes: one on the mainchain and one on the sidechain.
 
 .. note::
-     In any transaction federated gateways receive as part of a validated block, they scan for an individual UTXO that is being sent to the federation's P2SH address (for that chain). This flags the transaction up as something special. Deposit and withdrawal transactions must include a second UTXO containing a `RETURN output <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#data-recording-output-return>`_.  This second UTXO is used to "transmit" the address from the other chain which the deposit or withdrawal will be paid to. After identifying a special transaction, the federated gateway also scans the transaction for the RETURN output UTXO.   
+     In any transaction federated gateways receive as part of a validated block, they scan for an individual UTXO that is being sent to the federation's P2SH address (for that chain). This flags the transaction up as something special. Deposit and withdrawal transactions must include a second UTXO containing a `RETURN output <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#data-recording-output-return>`_.  This second UTXO is used to "transmit" the address to which the deposit or withdrawal will be transferred on the targeted chain. After identifying a special transaction, the federated gateway also scans the transaction for the RETURN output UTXO.   
 
 Signature collection
 ---------------------
 
-Each time a transaction occurs, one federation member is assigned the task of co-ordinating the signature collection. The member chosen changes for each transaction. If a member is not available, an attempt is made to assign the co-ordination task to the next member and so on. Not giving any particular node the responsibility of co-ordinating the signature collection increases the robustness of the solution.
+Each time a transaction occurs, one federation member is assigned the task of co-ordinating the signature collection. The member chosen changes for each block, but will be responsible for co-ordinating all the transactions in a given block. If a member is not available, an attempt is made to assign the co-ordination task to the next member and so on. Not giving any particular node the responsibility of co-ordinating the signature collection increases the robustness of the solution.
 
-From now on in this document, the term "boss" is used for the federation member who takes on the co-ordination task for a transaction.  
+From now on in this document, the term "boss" is used for the federation member who takes on the co-ordination task for a given block.  
 
 Sidechain deposits
 -------------------
@@ -100,12 +100,12 @@ The sequence of events is as follows:
 1. The sidechain funder obtains a sidechains wallet. 
 2. The sidechain funder makes a payment of 100 TSTRAT to the federation's mainchain P2SH address. They supply a TAPEX address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the sidechain funder's 100 TSTRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
 3. One of the mainchain federated gateways detects the transaction containing the deposit. The gateway must now wait for 10 blocks to be mined on top of the block containing the 100 TSTRAT deposit. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the deposit on the mainchain before proceeding to honour the deposit on the sidechain.  
-4. A federation boss is assigned to co-ordinate the sidechain deposit.
+4. A federation boss is assigned to co-ordinate the sidechain deposit, and all subsequent deposits on the given block (not represented here).
 5. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 20 million TAPEX that was premined.
 6. A transaction is created that pays 100 TAPEX to the sidechain funder's wallet. The two UTXOs that make up the transaction are shown in the latest sidechain block. The red UTXO is sent (locked) to the sidechain address supplied by the sidechain funder. The green UTXO pays the change (19,999,900 TAPEX) back to the federation's sidechain P2SH address.
 
 .. note::
-    At the end of this withdrawal, the federation has 100 TSTRAT locked in the mainchain P2SH address and 19,999,900 TAPEX locked in the sidechain P2SH address.
+    At the end of this deposit, the federation has 100 TSTRAT locked in the mainchain P2SH address and 19,999,900 TAPEX locked in the sidechain P2SH address.
 
 Sidechain withdrawals
 ----------------------
@@ -120,10 +120,10 @@ For an example of a sidechain withdrawal, the following figure shows the sidecha
 The sequence of events is as follows:
 
 1. The sidechain funder makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the sidechain funder's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 TAPEX change back to the sidechain funder.
-2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 TAPEX withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the withdrawal on the mainchain.
-3. A federation boss is assigned to co-ordinate the mainchain withdrawal.
+2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 TAPEX withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the deposit on the mainchain.
+3. A federation boss is assigned to co-ordinate the mainchain deposit.
 4. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTRAT that was previously deposited.
-5. A transaction is created that pays 50 TSTRAT to the sidechain funder's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
+5. A transaction is created that pays 50 TSTRAT to the mainchain address targeted by the sidechain funder. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
 
 .. note::
     At the end of this withdrawal, the federation has 50 TSTRAT locked in the mainchain P2SH address and 19,999,950 TAPEX locked in the sidechain P2SH address.

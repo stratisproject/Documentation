@@ -6,7 +6,7 @@ This chapter details the practical steps a sidechain funder must take to make de
 
 Turning on cross-chain functionality
 ====================================
-Before you begin make cross-chain transactions, you must ensure cross-chain functionality is turned on in the wallet you are using. The procedure is the same for both wallets. The screenshots below are from the Stratis Core wallet.
+Before you start making cross-chain transactions, you must ensure cross-chain functionality is turned on in the wallet you are using. The procedure is the same for both wallets. The screenshots below are from the Stratis Core wallet.
 
 1. On the main page, click the *Settings* button.
 2. The *Settings* dialog is displayed:
@@ -41,7 +41,7 @@ Deposit TSTRAT on the sidechain using the Stratis Core wallet
 5. Specify the Mainchain Federation address. For the alpha release of sidechains, use ??Add later??. This is a P2SH address. More details are available here. || Link
 6. Specify the Sidechain Destination address. You can obtain an address by clicking the *Receive* button in your APEX wallet.
 7. Specify a transaction fee.
-8. Enter your wallet password and press the *Deposit* button.
+8. Enter your wallet password and press the *Send* button.
 
 Withdraw TSTRAT on the sidechain using the Stratis Core wallet
 ===============================================================
@@ -65,7 +65,7 @@ Withdraw TSTRAT on the sidechain using the Stratis Core wallet
 5. Specify the Sidechain Federation address. For the alpha release of sidechains use ??Add later??. This is a P2SH address. More details are available here. || Link
 6. Specify the Mainchain Destination address. You can obtain an address by clicking the *Receive* button in your Stratis Core wallet.
 7. Specify a transaction fee.
-8. Enter your wallet password and press the *Deposit* button.
+8. Enter your wallet password and press the *Send* button.
 
 Setting a default federation address
 =========================================================
