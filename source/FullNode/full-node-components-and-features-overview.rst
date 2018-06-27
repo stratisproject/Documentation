@@ -10,10 +10,7 @@ The following figure shows the components and features of the Full Node:
     :align: center
 
 All the components and features are described in the following sections. Several of the sections cover a task that the full node needs to carry out. The individual components are explained along the way.
-
-The source code for the Full Node is available here: <>   
-
-
+ 
 Accessing the network
 ======================
 
@@ -54,14 +51,14 @@ There are numerous behaviour components in the Full Node. For example: block pul
 Syncing with the blockchain
 ============================
 
-Once a Full Node has found other peers on the network, it needs to sync its copy of the blockchain. The components involved with this are the consensus Manager, the chained header tree, the block puller, the validators, and the coin view.
+Once a Full Node has found other peers on the network, it needs to sync its copy of the blockchain. The components involved with this are the consensus manager, the chained header tree, the block puller, the validators, and the coin view.
 
 Consensus Manager
 ------------------
 
 Once a connection has been made to other peers on the network, the peers send block headers to the consensus manager. It is the *chained header behaviour* which consumes the messages sent by these peers. When new block headers are received, the consensus manager contacts the chained header tree and informs it that it has new headers. The chained header tree analyzes whether the blocks are interesting and reports back to the consensus manager if they are. The consensus manager's response to this is to download the full blocks for the headers. The block puller is invoked to download the blocks.
 
-When downloading blocks after the last checkpoint, the consensus manager uses the validators to perform all three validation steps (minimal, partial, and full) on the blocks that are received.
+The consensus manager uses the validators to perform validation on the blocks which it receives.
 
 When the consensus manager fully validates a block, the consensus tip moves forward by one and the coin view is updated. The block is also added to the block store.  
  
@@ -70,7 +67,10 @@ Chained Header Tree
 
 The first thing to realize about the chained header tree is that, as its name implies, it is a tree structure that is built out of block headers. This is distinct from the blockchain, which does not have forks (branches) in it and is made up of full blocks. The chained header tree relates to a concept known as the consensus tip, which is the height in blocks on the blockchain at which a consensus has been reached. If the chained header tree becomes aware of a fork which is ahead of the consensus tip, it requests the consensus manager obtains the blocks for this new fork. Once the blocks are obtained, the consensus manager begins validating the blocks for this potentially interesting fork.
 
-The chained header tree represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a fork that is ahead of the consensus tip only to then switch to a second fork half way through this. 
+The chained header tree represents a potential state of flux around the consensus tip. It can potentially proceed with validation on a fork that is ahead of the consensus tip only to then switch to a second fork half way through this.
+
+.. note::
+    The chained header tree is interested in and can keep a record of any alternative chain. For example, some headers received from the consensus manager could form an extension without a fork.
 
 The chained header tree stores the headers it receives in memory and contacts the validators to perform header validation.
  
@@ -83,7 +83,10 @@ The consensus manager and chained header tree make use of the validators. Valida
 3. Partial validation
 4. Full validation
 
-As discussed in the block puller section, in the case of an initial block download, validation requirements are significantly less when dealing with a block that proceeds a checkpoint. 
+The amount of validation carried out on a block is linked to the concept of a checkpoint. A checkpoint is a point at which the blockchain can never be reorganized behind (think of the blockchain as moving forward).
+Because blocks before the last checkpoint can never be changed, the validation carried out on them is minimal. The headers are validated, and minimal validation is carried out on the blocks. Part of the full validation is also carried out. This is the part that involves updating the coin view.
+
+All three validation steps (minimal, partial, and full) are performed on blocks that are after the last checkpoint.
 
 Block Puller
 --------------
@@ -91,14 +94,12 @@ Block Puller
 The block puller works in one of two modes:
 
 1. IBD (Initial Block Download)
-2. Network synced.
+2. Close to block tip
 
-The mode that is selected depends on whether you have passed a checkpoint. A checkpoint is a point at which the blockchain can never be re-organized behind (think of the blockchain moving as forward). IBD is selected if you are not yet synced to the blockchain network, and the blocks you require are behind the checkpoint. Because these blocks can never be changed, validation is minimal. The headers are validated, and minimal validation is carried out on the blocks. Part of the full validation is carried out. This is the part that involves updating the coin view.
-
-The network synced mode is used when the network is synced, and all blocks behind the checkpoint are already on the node's blockchain.  
-
-Download Strategy
-^^^^^^^^^^^^^^^^^^
+The mode that is selected depends on whether a block has been reached which seems close to the tip of the chain. If the blocks being downloaded are not close to the tip, IBD mode is used.   
+  
+IBD Download Strategy
+^^^^^^^^^^^^^^^^^^^^^^
 A node is aware of the connection speed of the peers and gives smaller tasks to slower peers.
 
 In IBD mode, task distribution is important. Tasks are distributed between peers based on two factors:
@@ -124,7 +125,7 @@ Updating the coin view is the last step of full validation.
 Mining new blocks
 ==================
 
-If the Mining feature is enabled on the full node, it is able to mine new blocks on either the Stratis network or the Bitcoin network. The proof-of-stake methodology is used for STRAT and the proof-of-work methodology is used for BTC. The following components are involved with this: memory pool, miner, wallet, and broadcast manager.
+If the mining feature is enabled on the full node, it is able to mine new blocks on either the Stratis network or the Bitcoin network. The proof-of-stake methodology is used for STRAT and the proof-of-work methodology is used for BTC. The following components are involved with this: memory pool, miner, wallet, and broadcast manager.
 
 Memory Pool
 ------------
@@ -143,7 +144,7 @@ The miner component fills block templates up with transactions from the memory p
 
 The Stratis proof-of-stake algorithm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Stratis proof-of-stake algorithm is designed to mine a block every minute. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about one minute for one miner to hit the target. The more STRAT the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAT currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
+The Stratis proof-of-stake algorithm is designed to mine a block every 64 seconds. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about 64 seconds for one miner to hit the target. The more STRAT the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAT currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
 
 Because the algorithm is dependent on the STRAT that a miner is staking, the wallet is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
 
