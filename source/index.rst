@@ -10,12 +10,14 @@ Welcome to Stratis Academy
     :width: 100px
     :alt: Stratis logo
     :align: center
+    :target: https://stratisplatform.com/
 
 |
 
 Stratis is dedicated to sharing the knowledge of blockchain and nurturing a global C# and .Net developer community. The Stratis Academy will train the next generation of blockchain developers around the world to prepare them for in-demand blockchain projects in different industries. By providing course materials, worked examples, technical infrastructure and hands-on projects, we hope to build a community committed empowered with knowledge of the Stratis blockchain.
 
 The Stratis Academy will introduce:
+
   The blockchain beginner to the basics of the Stratis blockchain.
 
   The seasoned developer to tools and techniques for working with the Stratis blockchain.
@@ -25,7 +27,7 @@ The Stratis Academy will introduce:
 
 .. toctree::
   :maxdepth: 2
-  
+
   Blockchain 101 Course <Blockchain101/blockchain101-introduction>
   Full Node <FullNode/full-node-introduction>
   Sidechains <Sidechains/sidechains-introduction>
