@@ -42,7 +42,7 @@ If you are using version 3.x, enter:
 
 Haven't tried the 3.x command... Once the local Http Server is running, you should see something like this:
 
-![](/Users/jtopham/Documents/Stratis/Academy/Documentation/local_Http_server.png)Navigate to  [http://localhost:8000](http://localhost:8000/) and you should see the your updated version of the academy. 
+![](local_Http_server.png)Navigate to  [http://localhost:8000](http://localhost:8000/) and you should see the your updated version of the academy. 
 
 ## Ideas for new articles
 
