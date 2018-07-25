@@ -22,7 +22,7 @@ The only libraries that can be included in the current iteration of Stratis smar
     {
         return PersistentState.GetObject<Address>("Owner");
     }
-    set
+    private set
     {
         PersistentState.SetObject<Address>("Owner", value);
     }
