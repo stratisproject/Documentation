@@ -24,9 +24,15 @@ First, download a copy of `Microsoft Visual Studio <https://www.visualstudio.com
 
 Next, make sure you have the latest .NET SDK installed. You can verify this by running ``dotnet --version`` on the command line. If you do not have the .NET SDK installed, download and install it from `here <https://www.microsoft.com/net/learn/get-started/windows#install>`_.
 
-Next, you must download or clone the `sc-alpha branch of the Stratis Smart Contract Enabled Full Node <https://github.com/stratisproject/StratisBitcoinFullNode/tree/sc-alpha>`_. This repository contains everything you need to run a Stratis full node that can sync and mine on a Stratis smart contract network. It also contains the ``sct`` tool, which validates and deploys contracts.
+Next, you must download or clone the `latest alpha branch of the Stratis Smart Contract Enabled Full Node <https://github.com/stratisproject/StratisBitcoinFullNode/tree/sc-alpha-latest>`_. This repository contains everything you need to run a Stratis full node that can sync and mine on a Stratis smart contract network. It also contains the ``sct`` tool, which validates and deploys contracts.
 
-Installing the Visual Studio Project Template 
+ ::
+ 
+   git clone https://github.com/stratisproject/StratisBitcoinFullNode.git
+   git checkout sc-alpha-latest
+
+
+Installing the Visual Studio Project Template
 ---------------------------------------------
 
 The Stratis smart contract Visual Studio Project Template provides an easy way to create a new smart contract project. It contains a template for a smart contract, unit tests, and references to appropriate NuGet packages.
