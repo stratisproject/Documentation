@@ -1,6 +1,6 @@
-#####################################
+###############################
 Deploying Your First Smart Contract
-#####################################
+###############################
 
 This chapter takes you through deploying a smart contract, which simulates an auction. The smart contract is provided as a Visual Studio Project Template. As part of the deployment process, the smart contract is validated to ensure it does not contain any non-deterministic elements. Once deployed, a bid is then placed on the auction to test that the smart contract was deployed correctly. The steps taken when deploying the smart contract are as follows:
 
@@ -26,13 +26,13 @@ Next, make sure you have the latest .NET SDK installed. You can verify this by r
 
 Next, you must download or clone the `latest alpha branch of the Stratis Smart Contract Enabled Full Node <https://github.com/stratisproject/StratisBitcoinFullNode/tree/sc-alpha-latest>`_. This repository contains everything you need to run a Stratis full node that can sync and mine on a Stratis smart contract network. It also contains the ``sct`` tool, which validates and deploys contracts.
 
- ::
- 
-   git clone https://github.com/stratisproject/StratisBitcoinFullNode.git
-   git checkout sc-alpha-latest
+::
+
+  git clone https://github.com/stratisproject/StratisBitcoinFullNode.git
+  git checkout sc-alpha-latest
 
 
-Installing the Visual Studio Project Template
+Installing the Visual Studio Project Template 
 ---------------------------------------------
 
 The Stratis smart contract Visual Studio Project Template provides an easy way to create a new smart contract project. It contains a template for a smart contract, unit tests, and references to appropriate NuGet packages.
@@ -143,7 +143,7 @@ To interact with the smart contract test network, you now need to build the smar
 ::
 
   cd src/Stratis.StratisSmartContractsD
-  dotnet run -addnode=13.64.119.220 -addnode=20.190.57.145 -addnode=40.68.165.12
+  dotnet run -- -addnode=13.64.119.220 -addnode=20.190.57.145 -addnode=40.68.165.12
 
 Adding the three nodes attempts to connect the daemon to the smart contract test network. 
 
@@ -186,7 +186,7 @@ Alternatively, if you want to get more involved and earn some TSTRAT along the w
 
 ::
 
-  dotnet run -addnode=13.64.119.220 -addnode=20.190.57.145 -addnode=40.68.165.12 -mine=1 -mineaddress=[YOUR_WALLET_ADDRESS]
+  dotnet run -- -addnode=13.64.119.220 -addnode=20.190.57.145 -addnode=40.68.165.12 -mine=1 -mineaddress=[YOUR_WALLET_ADDRESS]
   
 Use the TSTRAT address you use for the mine address when deploying and testing the smart contract. 
 
@@ -210,7 +210,7 @@ As before, when you were validating the auction smart contract, you need to obta
 
 ::
 
-  dotnet run -- deploy PATH_TO_SMART_CONTRACT http://localhost:38220 -wallet [YOUR_WALLET_NAME] -password [YOUR_PASSWORD] -fee 0.002 -sender=[YOUR_WALLET_ADDRESS] --params 10#20
+  dotnet run -- deploy PATH_TO_SMART_CONTRACT http://localhost:38220 -wallet [YOUR_WALLET_NAME] -password [YOUR_PASSWORD] -fee 0.002 -sender=[YOUR_WALLET_ADDRESS] -params="10#20"
   
 A value of 20 is used because blocks are not confirmed until they are 5 blocks deep. Until the block which the smart contract is in has been confirmed, you cannot run the smart contract. You will notice that the value of 20 is preceeded by 10#. This information is part of the ``durationBlocks`` constructor parameter. More information on specifying constructor parameters is given in `Specifying smart contract constructor parameters`_. 
 
@@ -223,7 +223,9 @@ Specifying smart contract constructor parameters
 
 Smart contract parameters are serialized into a string. The format of each parameter is "{0}#{1}" where: {0} is an integer representing the Type of the serialized data and {1} is the serialized data itself. Serialized array values are separated by a dash ``-`` character.
 
-Each parameter must be separated by the pipe ``|`` character.
+These params must be serialized into a string. The format of each parameter is "{0}#{1}", where {0} is an integer representing the Type of the serialized data, and {1} is the serialized data itself.
+
+Multiple params must be specified in order and can be done like so: ``-param="7#abc" -param="8#123"``.
 
 Currently, only certain types of data can be serialized. Refer to the following table for the mapping between a type and its integer representation.
 
@@ -242,7 +244,11 @@ Currently, only certain types of data can be serialized. Refer to the following 
   NBitcoin.UInt160, 9, NBitcoin.UInt160.ToString()
   System.UInt64, 10, System.UInt64.ToString()
   Stratis.SmartContracts.Address, 11, Stratis.SmartContracts.Address.ToString()
-  
+  System.Int64, 12, System.Int64.ToString()
+
+.. note::
+    The requirement to pass in the Type is ugly, but it allows us to resolve overloaded methods easily.
+
 As a further example, imagine a smart contract which has a constructor with the following signature:
 
 ::
@@ -257,10 +263,11 @@ In addition to the mandatory ISmartContractState, there are 3 parameters which n
 
 The serialized string representation of this data looks like this:
 
+The command for passing these params to sct looks like this:
+
 ::
 
-  9#0x95D34980095380851902ccd9A1Fb4C813C2cb639|10#1000000|3#AD-BC-CD
-
+  -param="9#0x95D34980095380851902ccd9A1Fb4C813C2cb639" -param="10#1000000" -param="3#AD-BC-CD"
 
 Placing a bid on the auction smart contract
 -------------------------------------------
