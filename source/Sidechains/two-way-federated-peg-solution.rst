@@ -30,7 +30,7 @@ The creation of an APEX sidechain involves mining the genesis block and premine 
 The following figure shows the creation of the TAPEX sidechain:
 
  .. _image1:
- .. image:: Sidechain_Creation.png
+ .. image:: Sidechain_Creation.svg
      :width: 793px
      :alt: Sidechains Creation
      :align: center
@@ -89,7 +89,7 @@ Sidechain deposits
 For an example of a sidechain deposit, the following figure shows a sidechain funder, :ref:`who has been introduced previously <image1>`, making a deposit of 100 TSTRAT on the sidechain:
   
  .. _image2:
- .. image:: Sidechain_Deposit.png
+ .. image:: Sidechain_Deposit.svg
      :width: 906px
      :alt: Sidechains Creation
      :align: center
@@ -112,7 +112,7 @@ Sidechain withdrawals
 For an example of a sidechain withdrawal, the following figure shows the sidechain funder (who made the deposit of 100 TSRAT) making a withdrawal of 50 TAPEX from the sidechain:
 
  .. _image3:
- .. image:: Sidechain_Withdrawal.png
+ .. image:: Sidechain_Withdrawal.svg
      :width: 906px
      :alt: Sidechains Withdrawal
      :align: center
@@ -120,10 +120,10 @@ For an example of a sidechain withdrawal, the following figure shows the sidecha
 The sequence of events is as follows:
 
 1. The sidechain funder makes a payment of 50 TAPEX to the federation's sidechain P2SH address. They supply a TSTRAT address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the sidechain funder's 50 TAPEX were held in the single 100 TAPEX UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 TAPEX change back to the sidechain funder.
-2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 TAPEX withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the deposit on the mainchain.
-3. A federation boss is assigned to co-ordinate the mainchain deposit.
+2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 TAPEX withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the withdrawal on the mainchain.
+3. A federation boss is assigned to co-ordinate the withdrawal to the mainchain.
 4. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 TSTRAT that was previously deposited.
-5. A transaction is created that pays 50 TSTRAT to the mainchain address targeted by the sidechain funder. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
+5. A transaction is created that pays 50 TSTRAT to the sidechain funder's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 TSTRAT) back to the federation's mainchain P2SH address.
 
 .. note::
     At the end of this withdrawal, the federation has 50 TSTRAT locked in the mainchain P2SH address and 19,999,950 TAPEX locked in the sidechain P2SH address.
