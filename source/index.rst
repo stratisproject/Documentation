@@ -14,7 +14,7 @@ Welcome to Stratis Academy
 
 |
 
-Stratis is dedicated to sharing the knowledge of blockchain and nurturing a global C# and .Net developer community. The Stratis Academy will train the next generation of blockchain developers around the world to prepare them for in-demand blockchain projects in different industries. By providing course materials, worked examples, technical infrastructure and hands-on projects, we hope to build a community committed empowered with knowledge of the Stratis blockchain.
+Stratis is dedicated to sharing the knowledge of blockchain and nurturing a global C# and .Net developer community. The Stratis Academy will train the next generation of blockchain developers around the world to prepare them for in-demand blockchain projects in different industries. By providing course materials, worked examples, technical infrastructure and hands-on projects, we are aiming to build a community empowered with a knowledge of the Stratis blockchain.
 
 The Stratis Academy will introduce:
 
