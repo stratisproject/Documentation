@@ -23,9 +23,9 @@ Installing Sphinx using the resources available [here](http://www.sphinx-doc.org
 3. Install Sphinx by entering the following: `pip install Sphinx –-user`. Ideally, you should now see this:![](install_sphinx.png)However, it will (most likely) complain some packages it relies on, such as tornado and nose are not installed.
 4. If required, use sudo to install the missing packages: `sudo easy_install tornado`, `sudo easy_install nose`. Then enter `pip install Sphinx --user` again and you should see the requirement has been satisfied for all packages.
 5. The sphinx-build command is now in `$HOME/Library/Python/2.7/bin`. If you are using the up-to-date version of python, the version number will be different. It is best to add this path to the \$PATH enviromental variable. To do this, add the follwing line: `export PATH="$HOME/Library/Python/2.7/bin:$PATH"` to your `$HOME/.bash_profile` file. Note that this file is hidden.
-6. Clone this Documentation repository. Create a folder in which hold the clone. You will see why in the next step.
-7. In the "root" of the Documentation repository, enter `make html`. You should see something like this:![](building_academy.png) The output be in a `build` directory in the same level as your Documentation repository. This was done to stop the output getting mixed up with the source.
-8.  In your browser, now open `build/html/index.html` using the file protocol. From here, you should be able to navigate around your updated version of the academy.
+6. Clone this Documentation repository after first creating a folder in which hold the clone. You will see why in the next step.
+7. In the "root" of the Documentation repository, enter `make html`. You should see something like this:![](building_academy.png) The output be in a `build` directory at the same level as your Documentation repository. The `build` directory position is to stop the output getting mixed up with the source.
+8. In your browser, now open `build/html/index.html` using the file protocol. From here, you should be able to navigate around your updated version of the academy.
 9. When you are happy with your updates, submit a pull request.
 
 #### A quick way to run a local host
@@ -51,4 +51,46 @@ The pages listed here contain ideas for articles for each category. Currently, t
 [Full Node](Full_Node_Document_Ideas.md)
 
 This will give the full node category a "cookbook" type approach, which I think will work well under the current circumstances. I am thinking that when you look down the full node contents, you will see engaging questions like "How do you interpret the full node output?" Please feel free to add more ideas to the list (and start another list for smart contracts etc.).
+
+## Internal links
+Regarding links, Sphinx can be a a bit cryptic on the subject of internal links. If offers a number of options but, at least on the subject of anchors, I had to dig around for info:
+
+###Link to a header in the same file and use the header text
+
+Take the following header:
+
+My header
+=========
+
+If you are OK with the link text being the same as the header text: 
+
+This is how to link to `My header`_.
+
+
+###Link to something other than a header in the same file
+
+The next thing you might want to do is create an link to an image, code example etc. The text in the link could be anything. To do this, create a label above the image or whatever to create an anchor:
+
+.. _some_figure:
+
+.. image:: stars.jpg
+    :width: 200px
+    :align: center
+    :height: 100px
+    :alt: alternate text
+
+Then link like this:
+
+Please refer to the :ref:`previous figure <some_figure>`. 
+
+Remember to always leave a gap on one line between the label and what you want to link to; otherwise you get a warning.
+
+###Link to a header in the same file but don't use the header text
+
+
+
+
+
+
+
 
