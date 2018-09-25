@@ -15,7 +15,7 @@ The audience for this document is anyone who wants to get involved with further 
 1.	You want to contribute to ongoing development work on the Full Node project.
 2.	You want to fork the source code and adapt it for your own project. For example, you might want to add a new feature or modify the block size.
 
-A knowledge of C# is also assumed. However, if you are new to C# or even programming, you can continue to explore the Full Node as part of your C# learning experience. However, exploring Stratis Smart Contracts will give you “easier wins” and still enable you to have experience with blockchain-related code. More resources on the C# language are available `here <https://docs.microsoft.com/en-us/dotnet/csharp/>`_. 
+A knowledge of C# is also assumed. However, if you are new to C# or even programming, you can continue to explore the Full Node as part of your C# learning experience. However, exploring Stratis Smart Contracts will give you “easier wins” and still enable you to have experience with blockchain-related code. More resources on the C# language are available `here <https://docs.microsoft.com/en-us/dotnet/csharp/>`_.
 
 A background knowledge of `peer-to-peer (P2P) <https://en.wikipedia.org/wiki/Peer-to-peer>`_ computing including its uses prior to the invention of cryptocurrency will also be helpful.
 
@@ -28,3 +28,4 @@ The Full Node is open source, and you can find the source here on GitHub: https:
    :caption: Contents:
 
    full-node-components-and-features-overview
+   PoS/PoS-introduction
