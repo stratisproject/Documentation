@@ -1,26 +1,57 @@
-****************************************************
-Test Title
-****************************************************
+******************************************************
+Hitting the target with a proof of stake of algorithm
+******************************************************
 
-One similarity between the proof of stake algorithm and the proof of work algorithm is that in both cases a target must be reached before the miner can write the block. In fact, the target is a large 32 byte (256 bit) number and success is defined as producing a hash (another 32 byte number) that is less than the target. Because a lower target is more difficult to create a hash for, you can say the target and difficulty are inversely related.
+One similarity between a Proof-of-Stake algorithm and a Proof-of-Work algorithm is that in both cases a target must be reached before the miner can create the block. In fact, the target is a large 32 byte (256 bit) number, and success is defined as producing a hash (another 32 byte number) that is less than the target. Because a lower target is more difficult to create a hash for, you can say the target and difficulty are inversely related.
 
-Both the Bitcoin and Stratis network make adjustments to the difficulty of their algorithm. The Stratis network differs from the Bitcoin network converning the frequency at which difficulty is adjusted. On the Stratis network the difficulty is adjusted after every block as opposed to every 2016 blocks on the Bitcoin network. At this point it is worth noting that the minimal increment of the block timestamp on the Stratis network is 16 seconds, so 16 seconds is the fastest time in which one block could ever be written after another.
+Both the Bitcoin and Stratis network make adjustments to the difficulty of their algorithm. The Stratis network differs from the Bitcoin network concerning the frequency at which difficulty is adjusted. On the Stratis network, the difficulty is adjusted after every block as opposed to every 2016 blocks on the Bitcoin network. At this point, it is worth noting that the minimal increment of the block timestamp on the Stratis network is 16 seconds, so 16 seconds is the fastest time in which one block could ever be written after another.
 
-Next, let's take a closer look at how having more Strat staked increases your chance of being able to write the next block.
+How your stake determines your chance to hit the target
+========================================================
 
-Firstly, it's important to realise that whatever amount of Strat you have staked, it is made up of one or more Unspent Transaction Outputs (UTXOs). There is no rule to this; you could be staking 1,000,000 Strat which is just a single UTXO or 10 Strat made up from 1000 UTXOs. While these represent somewhat extreme examples, they demonstrate that your chances to create a block are calculated from each UTXO you have staked.
+Next, let's take a closer look at how the amount of STRAT you have staked determines your chance of being able to write the next block.
 
-Secondly, adding an element of randomness to each calculation performed on a UTXO is very important; otherwise user's staking larger amounts of Strat would most likely have a permanent advantage. Without the randomness element, the result calculated for each UTXO would be the same each time. Even a user staking a small amount of Strat could gain the advantage if the hash they produced was a freak result and very low. The randomness comes from several sources, which we will explore.
+Firstly, it is important to realise that whatever amount of STRAT you have staked, it is made up of one or more Unspent Transaction Outputs (UTXOs). There is no rule to this; you could be staking 1,000,000 STRAT which is just a single UTXO or 10 STRAT made up from 1000 UTXOs. While these represent somewhat extreme examples, they demonstrate that your chances to create a block are calculated from each UTXO you have staked. The target is adjusted for each UTXO depending how much STRAT the UTXO is worth. The target is multiplied by the value of the UTXO in Satoshi to make it easier to generate a hash that is lower than it.
+
+For example, if you have a single UTXO worth 1,000,000 STRAT, you have a single chance with a target that has been made substantially easier. Alternatively, if you have 10 UTXOs worth 100,000 STRAT, you have 10 chances but in all cases, the target will be 10 times harder to reach than when the single UTXO was checked. **This means that whatever configuration of UTXOs you hold your STRAT stake in, your chance of being able to write a block is always the same when staking any given amount of STRAT.** The code behind this is explored here.
+
+.. todo:: Link "here"
+
+.. note:: A UTXO that sucessfully generates a hash that is less than the adjusted target is known as the *coinstake kernel*.
+
+.. note:: You might be wondering at this point whether it matters from a performance point of view if your stake is held in multiple UTXOs. In other words, would there be any performance advantage to combining all your UTXOs into a single UTXO by making a payment to yourself of all the STRAT you own. In the above example, calculating whether the single 1,000,000 STRAT UTXO has hit target is 10 times faster than calculating whether one of the 100,000 STRAT UTXOs has hit the target. However, in reality, it is unlikely that making 10 calculations would take a significant amount of time and affect your chances of being able to write a block. You might want to consider combining your UTXOs if you are staking on a Rasberry Pi or similar device.  
+
+Secondly, adding an element of randomness to each calculation performed on a UTXO is very important; otherwise users staking larger amounts of STRAT would most likely have a permanent advantage. Without the randomness element, the result calculated for each UTXO would be the same each time. Even a user staking a small amount of STRAT could gain the advantage if the hash they produced was a freak result and very low. The randomness comes from several sources, which we will explore.
 
 We mentioned before that the minimal increment of the block timestamp is 16 seconds. This means that timestamps that are not divisable by 16 seconds are not valid and are rejected by the consensus rules. Also important is the concept of the maximum future offset, which is 16 seconds. For example, it the last timestamp was 07:00:00, it means that from 07:00:01, a timestamp of 07:00:16 is now valid.
 
-Using proof of stake demands that the submissable timestamps are strictly spaced because the actual calculation that determines whether you can write a block is trivial on most processors. The ease of performing the check means that if the timestamp is not strictly defined, miners could begin checking their UTXOs again with a new timestamp once they have ascertained that a previous one did not reach the target for their UTXOs. The problem with a "free" timestamp when using a proof of stake approach is that processing power again becomes a deciding factor in the same way as with a proof of work algorithm. So with proof of stake, you can only check the next valid timestamp and, if you are unsuccesful, wait until that timestamp moves into the past before checking again.
+Using proof of stake demands that the submissable timestamps are strictly spaced because the actual calculation that determines whether you can write a block is trivial on most processors. The ease of performing the check means that if the timestamp is not strictly defined, miners could begin checking their UTXOs again with a new timestamp once they have ascertained that a previous one did not reach the target for their UTXOs. The problem with a "free" timestamp when using a Proof-of-Stake approach is that processing power would again becomes a deciding factor in the same way as with a Proof-of-Work algorithm. So with a Proof-of-Stake methodology, you can only check the next valid timestamp and, if you are unsuccesful, wait until that timestamp moves into the past before checking again.
 
-The length of time to reach a target on a proof of work network is determined entirely by the processing power available with the variable difficulty used to ensure a timeframe is adhered to.
+The length of time to reach a target on a Proof-of-Work network is determined entirely by the processing power available. The difficulty of hitting the target used to ensure a timeframe is adhered to.
 
- .. image:: Sidechain_Withdrawal.svg
+An example staking timeline
+============================
+
+ .. image:: PoS-Timeline.svg
      :width: 906px
-     :alt: Sidechains Withdrawal
+     :alt: PoS Timeline
      :align: center
 
-The diagram above 
+The diagram above shows a miner who staking STRAT at 07:00:00. 07:00:00 is also the timestamp of the last block that was added to the blockchain. The Full Node checks the user's UTXOs to see whether they meet the target using the timestamp of 07:00:16. All of the UTXOs fail to meet the target using this timestamp. Next, timestamps of 07:00:32 and 07:00:48 are tried respectively. In both cases, the user's UTXOs fail to meet the target. Finally, a timestamp of 07:01:04 is tried, and one of the UTXOs meets the target. The miner then writes the next block.
+
+.. note:: In the above diagram, the calculation is shown taking approximately 4 seconds. This is just a depiction and the calculation typically takes a couple of milliseconds.   
+
+In the above example, the most likely outcome is one of the miners writing a block with a timestamp of 07:01:04. It is unlikely that any of the miners would generate a block for the early timestamps: 07:00:16, 07:00:32, and 07:00:48. However, if the target had not been met for 07:01:04, then it is very likely that one miner, if not multiple miners would hit the target using a timestamp of 07:01:20. If the block is written early or late, the difficulty of the target is adjusted for the next block.  
+
+Timing is important as it takes 10 seconds to broadcast a block to the network. The optimal time to check whether your stake can create a block with a timestamp of, for example, 07:01:04, is by 07:00:39. That would mean the new block would be propagated over the network by 07:00:49, which is the earliest time a block with a timestamp of 07:01:04 can be accepted according to the consensus rules. Getting a new block to the network as quickly as possible minimizes the staking orphanage rate, which is when a block is rejected because another miner created a block with the same timestamp.     
+
+What is the minimal block spacing time?
+=======================================
+
+
+ The timestamp is one of three randomizing factors. 
+ 
+ Does the difficulty adapt to staking power?
+ ============================================
+
+ 
