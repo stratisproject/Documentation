@@ -8,3 +8,6 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+source/_build/*
+.vscode
