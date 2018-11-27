@@ -218,7 +218,7 @@ When you deploy the smart contract, you should also check the block height. To d
 
 The tool returns the address of the contract if the contract was deployed successfully. Make sure you record this as you are going to use it when you place a bid.
 
-Specifying smart contract constructor parameters
+Specifying smart contract parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Smart contract parameters are serialized into a string. The format of each parameter is "{0}#{1}" where: {0} is an integer representing the Type of the serialized data and {1} is the serialized data itself. Serialized array values are separated by a dash ``-`` character.
@@ -229,19 +229,19 @@ Currently, only certain types of data can be serialized. Refer to the following 
 
 .. csv-table:: Param Type Serialization
   :header: "Type", "Integer representing
-   serialized type", "Serialize to string"
+   serialized type", "Serialize to string", 
+   "Example"
 
-  System.Boolean, 1, System.Boolean.ToString()
-  System.Byte, 2, System.Byte.ToString()  
-  System.Byte[], 3, BitConverter.ToString()
-  System.Char, 4, System.Char.ToString()
-  System.SByte, 5, System.SByte.ToString()
-  System.Short, 6, System.Short.ToString()
-  System.String, 7, System.String
-  System.UInt32, 8, System.UInt32.ToString()
-  NBitcoin.UInt160, 9, NBitcoin.UInt160.ToString()
-  System.UInt64, 10, System.UInt64.ToString()
-  Stratis.SmartContracts.Address, 11, Stratis.SmartContracts.Address.ToString()
+  System.Boolean, 1, System.Boolean.ToString(), "1#true"
+  System.Byte, 2, System.Byte.ToString(), "2#255"
+  System.Char, 3, System.Char.ToString(), "3#c"
+  System.String, 4, System.String, "4#Stratis"
+  System.UInt32, 5, System.UInt32.ToString(), "5#123"
+  System.Int32, 6, System.Int32.ToString(), "6#-123"
+  System.UInt64, 7, System.UInt64.ToString(), "7#456"
+  System.Int64, 8, System.Int64.ToString(), "8#-456"
+  Stratis.SmartContracts.Address, 9, Base58Address.ToString(), "9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy"
+  System.Byte[], 10, BitConverter.ToString(), "10#04A6B9"
   
 As a further example, imagine a smart contract which has a constructor with the following signature:
 
