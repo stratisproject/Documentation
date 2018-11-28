@@ -249,11 +249,11 @@ As a further example, imagine a smart contract which has a constructor with the 
 
 ::
 
-  public Token(ISmartContractState state, UInt160 owner, UInt64 supply, Byte[] secretBytes)
+  public Token(ISmartContractState state, Address owner, UInt64 supply, Byte[] secretBytes)
 
 In addition to the mandatory ISmartContractState, there are 3 parameters which need to be supplied. Assuming they have these values:
 
-* UInt160 owner = 0x95D34980095380851902ccd9A1Fb4C813C2cb639
+* Address owner = mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy
 * UInt64 supply = 1000000
 * Byte[] secretBytes = { 0xAD, 0xBC, 0xCD }
 
@@ -263,7 +263,7 @@ The command for passing these params to sct looks like this:
 
 ::
 
-  -param="9#0x95D34980095380851902ccd9A1Fb4C813C2cb639" -param="10#1000000" -param="3#AD-BC-CD"
+  -param="9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy" -param="7#1000000" -param="10#ADBCCD"
 
 Placing a bid on the auction smart contract
 -------------------------------------------
