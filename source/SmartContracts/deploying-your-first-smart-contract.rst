@@ -231,8 +231,7 @@ Currently, only certain types of data can be serialized. Refer to the following 
 
 .. csv-table:: Param Type Serialization
   :header: "Type", "Integer representing
-   serialized type", "Serialize to string", 
-   "Example"
+   serialized type", "Serialize to string", "Example"
 
   System.Boolean, 1, System.Boolean.ToString(), "1#true"
   System.Byte, 2, System.Byte.ToString(), "2#255"
