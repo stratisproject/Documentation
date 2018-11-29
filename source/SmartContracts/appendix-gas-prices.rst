@@ -10,7 +10,8 @@ Smart contract execution costs the gas price (in satoshis) multiplied by the gas
 * **Gas Price:** Minimum: 100. Maximum: 10000.
 * **Gas Limit:** Minimum: 10000 for calling a contract. 12000 for creating a contract. Maximum: 100000.
 
-**For most transactions, we would recommend setting your gas price to 100 and the gas limit to 50000.**
+.. note::
+    For most transactions, we would recommend setting your gas price to 100 and the gas limit to 50000.
 
 .. csv-table:: Gas Costs
   :header: "Operation", "Cost", "Description"
