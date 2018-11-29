@@ -14,13 +14,14 @@ Smart contract execution costs the gas price (in satoshis) multiplied by the gas
     For most transactions, we would recommend setting your gas price to 100 and the gas limit to 50000.
 
 .. csv-table:: Gas Costs
+  :escape: \
   :header: "Operation", "Cost", "Description"
 
   Base CALL, 10000, The cost for executing a smart contract method.
   Base CREATE, 12000, The cost for creating a new smart contract.
   Instruction, 1, The cost for executing any one CIL instruction.
   System Method Call, 5, The cost for calling any system method.
-  Storage (byte), 20, The cost for storing 1 byte via PersistentState. This currently includes both keys and values, every time a value is set.
+  Storage (byte), 20, The cost for storing 1 byte via PersistentState. This currently includes both keys and values\, every time a value is set.
   Storage Retrieval (byte), 1, The cost for retrieving 1 byte from PersistentState. 
   Contract Exists, 5, The cost to check if a contract exists at the given address.
   Log Indexed Data (byte), 2, The cost when logging indexed data.
