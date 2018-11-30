@@ -15,4 +15,4 @@ PoS, PoW, and PoA algorithms all have their own distinct set for each group.
    :maxdepth: 2
    :caption: Contents:
 
-	consensus-architecture
+   consensus-architecture
