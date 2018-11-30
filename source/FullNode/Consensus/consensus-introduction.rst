@@ -11,7 +11,8 @@ There are four groups of rules which can be defined for an algorithm:
 
 PoS, PoW, and PoA algorithms all have their own distinct set for each group.
 
-  
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-
-
+	consensus-architecture
