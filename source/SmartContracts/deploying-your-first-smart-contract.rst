@@ -1,6 +1,6 @@
-###############################
+#####################################
 Deploying Your First Smart Contract
-###############################
+#####################################
 
 This chapter takes you through deploying a smart contract, which simulates an auction. The smart contract is provided as a Visual Studio Project Template. As part of the deployment process, the smart contract is validated to ensure it does not contain any non-deterministic elements. Once deployed, a bid is then placed on the auction to test that the smart contract was deployed correctly. The steps taken when deploying the smart contract are as follows:
 
@@ -8,7 +8,7 @@ This chapter takes you through deploying a smart contract, which simulates an au
 2. Installing the Visual Studio Project Template. 
 3. Create a smart contracts project, which will include an auction smart contract and unit tests.
 4. Validate the smart contract with the smart contract tool (SCT).
-5. Run the smart contract enabled version of the full node.
+5. Run the smart contract enabled version of the full node...
 6. Get the funds to deploy the auction smart contract and place a bid.
 7. Build and deploy the smart contract.
 8. Place a bid.
@@ -212,7 +212,7 @@ As before, when you were validating the auction smart contract, you need to obta
 
   dotnet run -- deploy PATH_TO_SMART_CONTRACT http://localhost:38220 -wallet [YOUR_WALLET_NAME] -password [YOUR_PASSWORD] -fee 0.002 -sender=[YOUR_WALLET_ADDRESS] -params="10#20"
   
-A value of 20 is used because blocks are not confirmed until they are 5 blocks deep. Until the block which the smart contract is in has been confirmed, you cannot run the smart contract. You will notice that the value of 20 is preceeded by 10#. This information is part of the ``durationBlocks`` constructor parameter. More information on specifying constructor parameters is given in `Specifying smart contract constructor parameters`_. 
+A value of 20 is used because blocks are not confirmed until they are 5 blocks deep. Until the block which the smart contract is in has been confirmed, you cannot run the smart contract. You will notice that the value of 20 is preceeded by 10#. This information is part of the ``durationBlocks`` constructor parameter. More information on specifying constructor parameters is given in `Specifying smart contract parameters`_. 
 
 When you deploy the smart contract, you should also check the block height. To do this, find the Consensus.Height in the Node Stats of the full node output. Keep checking the block height. After Consensus.Height has incremented by 5, you can be sure the smart contract has been deployed.
 

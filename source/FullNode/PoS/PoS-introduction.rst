@@ -1,5 +1,5 @@
 ****************************************************
-Proof of Stake Implementation
+Proof-of-Stake (PoS) implementation
 ****************************************************
 
 The Stratis Full Node uses a Proof-of-Stake (PoS) algorithm in its consensus protocol. The means that miners must "stake" STRAT to gain the right to create blocks. The more STRAT that a miner stakes, the greater their chance of being able to write a block. Staking STRAT is a simple process, which anyone who has a wallet and owns some STRAT can do. As you will learn, the Full Node randomizes block creator selection to ensure that the individual staking the most STRAT does not have a permanent advantage.
@@ -12,7 +12,7 @@ Ultimately, you can, by staking, gain the same advantages when it comes to writi
 
 The Stratis network and the Bitcoin network differ with respect to "target spacing", which is the interval at which blocks are written. This is an effect of the difference in their consensus protocol. On the bitcoin network, blocks are written every 10 minutes, and on the Stratis blockchain, blocks are written every 64 seconds. As you will learn, the processing power a miner uses when checking if their stake will allow them to create a block is, in most cases, trivial. This contributes to a drastic reduction in the time needed to write blocks on the Stratis network.   
 
-The purpose of this document is to detail exactly how the proof of stake algorithm is implemented on the Stratis blockchain.
+The purpose of this document is to detail exactly how the Proof-of-Stake algorithm is implemented on the Stratis blockchain.
 
 .. toctree::
    :maxdepth: 2
