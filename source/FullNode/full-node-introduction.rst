@@ -29,3 +29,5 @@ The Full Node is open source, and you can find the source here on GitHub: https:
 
    full-node-components-and-features-overview
    PoS/PoS-introduction
+   PoA/PoA-introduction
+   Consensus/consensus-introduction

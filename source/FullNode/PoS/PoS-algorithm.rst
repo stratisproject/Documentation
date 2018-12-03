@@ -1,5 +1,5 @@
 ******************************************************
-Hitting the target with a proof of stake of algorithm
+Hitting the target with a Proof-of-Stake algorithm
 ******************************************************
 
 One similarity between a Proof-of-Stake algorithm and a Proof-of-Work algorithm is that in both cases a target must be reached before the miner can create the block. In fact, the target is a large 32 byte (256 bit) number, and success is defined as producing a hash (another 32 byte number) that is less than the target. Because a lower target is more difficult to create a hash for, you can say the target and difficulty are inversely related.
@@ -14,8 +14,6 @@ Next, let's take a closer look at how the amount of STRAT you have staked determ
 Firstly, it is important to realise that whatever amount of STRAT you have staked, it is made up of one or more Unspent Transaction Outputs (UTXOs). There is no rule to this; you could be staking 1,000,000 STRAT which is just a single UTXO or 10 STRAT made up from 1000 UTXOs. While these represent somewhat extreme examples, they demonstrate that your chances to create a block are calculated from each UTXO you have staked. The target is adjusted for each UTXO depending how much STRAT the UTXO is worth. The target is multiplied by the value of the UTXO in Satoshi to make it easier to generate a hash that is lower than it.
 
 For example, if you have a single UTXO worth 1,000,000 STRAT, you have a single chance with a target that has been made substantially easier. Alternatively, if you have 10 UTXOs worth 100,000 STRAT, you have 10 chances but in all cases, the target will be 10 times harder to reach than when the single UTXO was checked. **This means that whatever configuration of UTXOs you hold your STRAT stake in, your chance of being able to write a block is always the same when staking any given amount of STRAT.** The code behind this is explored here.
-
-.. todo:: Link "here"
 
 .. note:: A UTXO that sucessfully generates a hash that is less than the adjusted target is known as the *coinstake kernel*.
 
@@ -43,15 +41,6 @@ The diagram above shows a miner who staking STRAT at 07:00:00. 07:00:00 is also 
 
 In the above example, the most likely outcome is one of the miners writing a block with a timestamp of 07:01:04. It is unlikely that any of the miners would generate a block for the early timestamps: 07:00:16, 07:00:32, and 07:00:48. However, if the target had not been met for 07:01:04, then it is very likely that one miner, if not multiple miners would hit the target using a timestamp of 07:01:20. If the block is written early or late, the difficulty of the target is adjusted for the next block.  
 
-Timing is important as it takes 10 seconds to broadcast a block to the network. The optimal time to check whether your stake can create a block with a timestamp of, for example, 07:01:04, is by 07:00:39. That would mean the new block would be propagated over the network by 07:00:49, which is the earliest time a block with a timestamp of 07:01:04 can be accepted according to the consensus rules. Getting a new block to the network as quickly as possible minimizes the staking orphanage rate, which is when a block is rejected because another miner created a block with the same timestamp.     
-
-What is the minimal block spacing time?
-=======================================
-
-
- The timestamp is one of three randomizing factors. 
- 
- Does the difficulty adapt to staking power?
- ============================================
+Timing is important as it takes 10 seconds to broadcast a block to the network. The optimal time to check whether your stake can create a block with a timestamp of, for example, 07:01:04, is by 07:00:39. That would mean the new block would be propagated over the network by 07:00:49, which is the earliest time a block with a timestamp of 07:01:04 can be accepted according to the consensus rules. Getting a new block to the network as quickly as possible minimizes the staking orphanage rate, which is when a block is rejected because another miner created a block with the same timestamp.
 
  
