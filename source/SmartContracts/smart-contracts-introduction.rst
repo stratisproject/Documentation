@@ -20,6 +20,7 @@ This document assumes that you are familiar with basic blockchain concepts. When
    uses-of-smart-contracts
    deploying-your-first-smart-contract
    auction-smart-contract
+   testing-locally-with-testchain
    testing
    support
    appendix-future-enhancements-to-smart-contracts
