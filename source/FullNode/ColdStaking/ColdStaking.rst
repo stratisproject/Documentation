@@ -2,7 +2,7 @@
 Stratis Full Node
 ****************************************************
 
-Test??? The Stratis Full Node is the backbone of the Stratis Platform. It implements both the STRAT and BTC protocol and maintains an up-to-date copy of the STRAT and BTC blockchains. Because of this, Full Nodes can:
+Test??? ???!!! The Stratis Full Node is the backbone of the Stratis Platform. It implements both the STRAT and BTC protocol and maintains an up-to-date copy of the STRAT and BTC blockchains. Because of this, Full Nodes can:
 
 1.	Autonomously and authoritatively validate blocks and transactions.
 2.	Serve blocks and transactions to other peers on the STRAT or BTC blockchain networks. 
