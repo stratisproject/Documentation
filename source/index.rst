@@ -32,6 +32,7 @@ The Stratis Academy will introduce:
   Full Node <FullNode/full-node-introduction>
   Sidechains <Sidechains/sidechains-introduction>
   Smart Contracts <SmartContracts/smart-contracts-introduction>
+  DLT <DLT/DLT-introduction>
 	Wallets <Wallets/wallet-introduction>
 	ICO Platform <ICO/ico-introduction>
 
