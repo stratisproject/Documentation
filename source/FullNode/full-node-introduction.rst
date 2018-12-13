@@ -28,7 +28,9 @@ The Full Node is open source, and you can find the source here on GitHub: https:
    :caption: Contents:
 
    full-node-components-and-features-overview
+   Features/features
    PoS/PoS-introduction
    PoA/PoA-introduction
    Consensus/consensus-introduction
    ColdStaking/ColdStaking
+

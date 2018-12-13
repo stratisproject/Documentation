@@ -1,0 +1,6 @@
+﻿Stratis.BitcoinD,Runs the Full Node as a daemon on the Bitcoin network.
+Stratis.BreezeD,"Runs a lightweight verson of the Full Node, which supports a Breeze wallet running on either a Stratis or Bitcoin network."
+Stratis.PoAChainD,Runs the Full Node as a daemon on a test PoA network.
+Stratis.StratisD,Runs the Full Node as a daemon on the Stratis network.
+Stratis.StratisDnsD,Runs the Full Node with a DNS service for initial peer discovery.
+Stratis.StratisSmartContractsD,Runs the Full Node as a daemon on a test network with PoA and smart contracts enabled. 
