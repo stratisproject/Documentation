@@ -27,7 +27,7 @@ Next, let's take a look at the scenario where there is a disagreement between th
      :alt: PoA
      :align: center
 
-However, after 48 seconds, Member B has only suceeded in creating one block as opposed to two. Because there is less chainwork on the chain produced by Member B, the nodes on the network will prefer the correct chain produced by Member A and Member C.
+However, after 48 seconds, Member B has only succeeded in creating one block as opposed to two. Because there is less chainwork on the chain produced by Member B, the nodes on the network will prefer the correct chain produced by Member A and Member C.
 
 
 Is there an optimal size for a federation?
