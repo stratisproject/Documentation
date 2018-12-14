@@ -92,9 +92,11 @@ Essentially, the feature ``FullNodeBuilder.ConfigureFeature()`` receives has the
 Other Full Node features
 =========================
 
-Each optional Full Node feature has its own project in the source code, and every feature has its own Full Node Builder extension method and a static class in which this method is declared. As a general rule, the static class is named FullNodeBuilder*Extension.cs and held in a file called \*Feature.cs (found at the top level of a feature project) where \* is the name of the feature. The feature class (\*Feature) is also usually declared in this file too.
+Each Full Node feature usually has its own project in the source code, and every feature has its own Full Node Builder extension method, which is declared in a static class. As a general rule, the static class is named FullNodeBuilder*Extension.cs and held in a file called \*Feature.cs (found at the top level of a feature project) where \* is the name of the feature. The feature class (\*Feature) is also usually declared in this file too.
 
-It is a good idea to look at the code for including some of these features in a build. Comparing the code of the different features can help cement the ideas behind the Full Node Builder in your mind. 
+It is a good idea to look at the code for including some of the other features in a build. Comparing the code of the different features can help cement the ideas behind the Full Node Builder in your mind.
+
+:ref:`registering-consensus-features` discusses the registration of consensus features. In particular, it focusses on how you would adapt an existing registration to create the code for your own custom consensus feature.
 
 
 

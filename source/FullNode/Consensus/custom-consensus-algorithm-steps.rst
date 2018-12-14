@@ -1,0 +1,13 @@
+***********************************************************************
+Creating a custom consensus algorithm summary
+***********************************************************************
+
+This chapter summarizes the steps that you need to take to create a custom consensus algorithm:
+
+1. Decide how the consensus on blocks will be reached on your custom network. Does your customization require an adjustment to one of the three existing algorithms, or would your algorithm be better described as a new approach? 
+2. Create a custom consensus rule engine class based on one of the existing three classes: ``PowConsensusRuleEngine``, ``PoSConsensusRulesEngine``, and ``PoAConsensusRulesEngine``. Because you will be using at least some of the existing consensus rules, choose the rule engine that is closest to the algorithm that you intend to create. Your custom consensus rule engine should inherit from the class you choose. Remember that ``PoSConsensusRulesEngine`` and ``PoAConsensusRulesEngine`` inherit from ``PowConsensusRuleEngine``. 
+3. Make your consensus options available to the rules. In most cases, you will just be adding to or modifying one of the three existing classes: ``ConsensusOptions``, ``PoAConsensusOptions``, and ``PoSConsensusOptions``. If your consensus options class inherits from one of the existing classes, you will want to make sure you can override any hardcoded settings in the base class, possibly by writing a new base class constructor, when you instantiate your custom class.
+4. Adjust your network class to instantiate your own custom consensus options class.
+5. Create the rules themselves, inheriting from, or creating, any abstract rule classes as required.
+6. Implement your own "mining" class if required. For example, if your customization is essentially the supplied PoS consensus algorithm with customized rules and consensus options, you will `not` need to alter the ``PosMinting`` class. In relation to consensus, the important thing about all three "mining" classes is the call they make to ``ConsensusManager.BlockMinedAsync()`` when a block is mined. If your mining approach differs to the three existing implementation, you should keep in mind that consensus checks need to be carried out on any newly created blocks.
+7. Create an extension method to register your custom consensus algorithm as a Consensus feature in a Full Node build. If you implemented your own "mining" class, you must create a new Mining feature as well.

@@ -2,7 +2,7 @@
 The role of the federation on PoA networks
 ****************************************************
 
-Setting up a PoA network involves selecting real-world entities, who function as "authorities" and make up the federation. Each federation member controls one node on the network. When a block is created by a federation member, the block is signed using the private key of the authority to create a signature. A hash of the block header is signed to produce the signature. *If the private key's corresponding public key is available along with the header hash, it can be proved that the signer is also the owner of the public key.* Because the public keys of each federation member are available to all nodes on the network, any node can check that a block has been signed by a valid federation member.
+Setting up a PoA network involves selecting real-world entities, who function as "authorities" and make up the federation. Each federation member controls one node on the network. When a block is created by a federation member, the block is signed using the private key of the authority to `create a signature <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#pay-to-public-key-hash-p2pkh>`_. A hash of the block header is signed to produce the signature. *If the private key's corresponding public key is available along with the header hash, it can be proved that the signer is also the owner of the public key.* Because the public keys of each federation member are available to all nodes on the network, any node can check that a block has been signed by a valid federation member.
 
  .. image:: PoA.svg
      :width: 906px
