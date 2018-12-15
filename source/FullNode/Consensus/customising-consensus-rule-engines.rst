@@ -103,6 +103,8 @@ Defining your own rules
 
 You need to implement either the ``SyncConsensusRule::Run()`` and ``AsyncConsensusRule::RunAsync()`` abstract functions for any rules that you create. However, rules should in fact inherit from either ``HeaderValidationConsensusRule``, ``IntegrityValidationConsensusRule``, ``PartialValidationConsensusRule``, or ``FullValidationConsensusRule`` to be future proof. These four classes do not implement any methods and the interfaces they support do not define any although this may change in the future. You can find the implementations of these base rule classes `here <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin/Consensus/Rules/ConsensusRule.cs>`_ and the declarations of the interfaces they support `here <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/NBitcoin/Rules/IConsensusRule.cs>`_.
 
+.. _consensus-rules:
+
 The following image shows the four rulesets for each of the three consensus engines:  
 
 .. image:: consensus-rules.svg
