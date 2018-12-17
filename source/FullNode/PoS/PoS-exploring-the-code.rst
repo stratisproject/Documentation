@@ -1,5 +1,5 @@
 ********************************************************************
-Exploring the Proof-of-Stake calculations in code
+Exploring the Proof-of-Stake code
 ********************************************************************
 
 There are two classes that implement Proof-of-Stake: `PosMinting <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.Miner/Staking/PosMinting.cs>`_ and `StakeValidator <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.Consensus/StakeValidator.cs>`_. The ``PosMinting`` class implements the `IPosMinting <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.Miner/Interfaces/IPosMinting.cs>`_ interface and the ``StakeValidator`` class implements the `IStakeValidator <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.Consensus/Interfaces/IStakeValidator.cs>`_ interface. `MiningFeature <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.Miner/MiningFeature.cs>`_ holds a reference to a ``PosMinting`` singleton, which references a ``StakeValidator`` singleton.
@@ -27,6 +27,34 @@ The attempt to create the block progresses further via a call to ``PosMinting.St
 1. The coinstake transaction (which provides a reference to the coinstake kernel) is added to the new block.
 2. Any transactions within the block which have a date further in the future than the coinstake transaction are removed.
 3. The miner signs the block.
+
+What defines a coinstake transaction?
+======================================
+
+`Transaction.IsCoinStake() <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/NBitcoin/Transaction.cs>`_ provides a useful definition of a coinstake transaction:
+
+::
+
+    public bool IsCoinStake
+    {
+        get
+        {
+            // ppcoin: the coin stake transaction is marked with the first output empty
+            return this.Inputs.Any()
+                && !this.Inputs.First().PrevOut.IsNull
+                && this.Outputs.Count() >= 2
+                && this.Outputs.First().IsEmpty;
+        }
+    }
+
+There are four criteria that need to be met here:
+
+1. At least one transaction input is required.
+2. The previous output (a UTXO from another transaction) of the first transaction input cannot be Null. *This is a reference to the coinstake kernel.* 
+3. At least two transaction outputs are required. The second of these contains a UTXO that reimburses the coinstake kernel UTXO and pays the mining reward of 1 STRAT.
+4. The first transaction output must be empty. A first transaction output containing a UTXO is a characteristic of a `coinbase transaction on a PoW network <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch10.asciidoc#the-coinbase-transaction>`_.
+
+You might be wondering why the second output needs to reimburse the coinstake kernel. This is because the unlocking script must be presented to prove miner ownership when the coinstake kernel is added to the first transaction input. Doing this spends the coinstake kernel on one side of the transaction, so the miner needs to be reinbursed. If this didn't happen, the value of the coinstake kernel would disappear from the miner's wallet. For an example, if a coinstake kernel was worth 100 STRAT, the second output UTXO would be worth 101 STRAT.   
 
 How workers calculate if a UTXO can be the coinstake kernel
 =============================================================
