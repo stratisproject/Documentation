@@ -8,7 +8,7 @@ One check which the proven header rules carry out determines whether the coinsta
 
 The extra information supplied allows the PoS consensus engine to check that:
 
-1. The coinstake transaction (which references the coinstake kernel) is present in the block the header represents.
+1. The :ref:`coinstake transaction <coinstake-tx-definition>` (which references the coinstake kernel) is present in the block the header represents.
 2. The coinstake kernel is valid, which includes checking that the UTXO is old enough. If the transaction that created the UTXO hasn’t been in the blockchain long enough, it cannot be part of a stake.  
 
 The :ref:`formula <coinstake-hash-params-table>` for calculating a coinstake hash actually requires, in addition to a coinstake kernel, a Stake Modifier V2, which is taken from the previous block. As with the full blockchain, a received batch of proven headers must be valid in its entirety, with each header reliant on the one before when attempting to hit the target. The checks carried out on proven headers are actually more involved than just checking the coinstake kernel is valid, and we will take a look at them in greater detail in a later section in this chapter.

@@ -28,6 +28,8 @@ The attempt to create the block progresses further via a call to ``PosMinting.St
 2. Any transactions within the block which have a date further in the future than the coinstake transaction are removed.
 3. The miner signs the block.
 
+.. _coinstake-tx-definition:
+
 What defines a coinstake transaction?
 ======================================
 
