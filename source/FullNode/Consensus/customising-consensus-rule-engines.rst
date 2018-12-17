@@ -1,5 +1,5 @@
 ******************************************************
-Customizing consensus rule engines and the rulesets
+Customizing consensus rule engines and their rulesets
 ******************************************************
 
 The purpose of this chapter is to explore how consensus rule engines (and the rulesets they define) are used, customized, and registered on the Stratis Full Node. 
@@ -238,17 +238,21 @@ Next, the block weight is checked to see if it is greater than the maximum block
 
 Finally, the block checks if the block has exceeded the maximum block size allowed and if this is the case, an error is thrown.
 
+.. note:: :ref:`exploring-the-proven-header-rules-in-detail` takes an in-depth look at how the proven header rules are implemented. 
+
+.. _consensus-options:
+
 Consensus options
-------------------
+--------------------
 
 A class that defines the consensus options is available for each consensus algorithm. `PoAConsensusOptions <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.PoA/PoAConsensusOptions.cs>`_ and `PoSConsensusOptions <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/NBitcoin/ConsensusOptions.cs>`_ classes inherit from `ConsensusOptions <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/NBitcoin/ConsensusOptions.cs>`_, which is used for the PoW algorithm. The instance of one of these classes, which is available at ``ConsensusRuleEngine.Network.Consensus.Options``, is created when the custom network object (`BitcoinMain <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Networks/BitcoinMain.cs>`_, `StratisMain <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Networks/StratisMain.cs>`_, or `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/master/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_) is created for the Full Node.
 
-If you want to add access to consensus options that are easily modifiable, and at the same time, available to each rule defined, you need to create a custom consensus options class and make sure it is assigned to ``Network.Consensus``. Although it is outside the scope of this document, you may well be creating a custom network class anyway.
+If you want to add access to consensus options that are easily modifiable, and at the same time, available to each rule defined, you need to create a custom consensus options class and make sure it is assigned to ``Network.Consensus.Options``. Although it is outside the scope of this document, you may well be creating a custom network class anyway.
 
 .. _registering-consensus-features:
 
 Registering consensus features
---------------------------------
+=======================================
  
 You may find it useful to read :doc:`../Features/features` before reading this section. 
 

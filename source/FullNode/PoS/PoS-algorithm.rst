@@ -11,7 +11,6 @@ How your stake determines your chance to hit the target
 
 Next, let's take a closer look at how the amount of STRAT you have staked determines your chance of being able to write the next block.
 
-
 Stakes consist of Unspent Transaction Outputs (UTXOs)
 -------------------------------------------------------------------
 

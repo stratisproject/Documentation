@@ -14,6 +14,8 @@ The Stratis network and the Bitcoin network differ with respect to "target spaci
 
 The purpose of this document is to detail exactly how the Proof-of-Stake algorithm is implemented on the Stratis blockchain.
 
+The later part of this document dives into the code and here a knowledge of C# is assumed. 
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

@@ -33,6 +33,8 @@ How workers calculate if a UTXO can be the coinstake kernel
 
 Now let's take a closer look at ``CreateCoinstakeAsync()``. This function creates "workers" to check the UTXOs. The number of workers created depends on the number of UTXOs that need to be checked. Each worker checks their UTXOs via a call to ``PosMinting.CoinstakeWorker()``. A call is then made to ``StakeValidator.CheckKernel()`` to check each UTXO in turn and see if any of them can be the coinstake kernel. Some checks are made on the UTXO and then an attempt is made to calculate a hash which meets the target. This is done within ``StakeValidator.CheckStakeKernelHash()``. Exploring the code within this function gives an excellent opportunity the see exactly how the hash is calculated and how the target is reduced (made easier) according to the value of the UTXO.
 
+.. _coinstake-hash-formula:
+
 First, let's look at the formula which checks if a coinstake hash meets the target and can be used for the next block:
 
 ::
@@ -63,8 +65,9 @@ The Stake Modifier V2 comes from the tip of the best chain of block headers sinc
   
 So, you can see how the Stake Modifier V2 ties each block into the transaction containing the coinstake kernel *and* forms a "link" right back to the genesis block.
 
-The main idea behind including the other parameters is to scramble the value which is hashed so no miner hashes the same value as another. If two miners hash the same value at roughly the same time, one will end up being rejected even though they both hit the target. So which parameters, in particular, prevent this? Other miners mining at this time will use the same Coinstake Transaction Timestamp, and there is also a tiny chance they will have the same UTXO Transaction Timestamp. This would be the case if they are both staking UTXOs from a single transaction (meaning they were both involved in the transaction). However, no miner will have the same combination of UTXO Transaction Hash and UTXO Output Number, so this is what significantly reduces the chance of two miners hitting the target at the same time.       
+The main idea behind including the other parameters is to scramble the value which is hashed so no miner hashes the same value as another. If two miners hash the same value at roughly the same time, one will end up being rejected even though they both hit the target. So which parameters, in particular, prevent this? Other miners mining at this time will use the same Coinstake Transaction Timestamp, and there is also a tiny chance they will have the same UTXO Transaction Timestamp. This would be the case if they are both staking UTXOs from a single transaction (meaning they were both involved in the transaction). However, no miner will have the same combination of UTXO Transaction Hash and UTXO Output Number, so this is what significantly reduces the chance of two miners hitting the target at the same time.
 
+.. _looking-at-the-coinstake-kernel-calculations:
 
 Looking at the coinstake kernel calculations in code
 =====================================================
