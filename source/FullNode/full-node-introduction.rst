@@ -28,6 +28,7 @@ The Full Node is open source, and you can find the source here on GitHub: https:
    :caption: Contents:
 
    ComponentsOverview/full-node-components-and-features-overview
+   ConsoleOutput/ConsoleOutput
    Features/features
    PoS/PoS-introduction
    PoA/PoA-introduction
