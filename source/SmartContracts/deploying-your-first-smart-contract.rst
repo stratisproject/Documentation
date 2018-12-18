@@ -14,13 +14,11 @@ There is a Visual Studio Project Template that provides an easy way to create a 
 
 Validating a contract
 -------------------
-A Stratis smart contract must not contain any non-deterministic elements. This restricts the standard .NET libraries that can be used when writing a contract.
+A Stratis smart contract must not contain any non-deterministic elements. This restricts the standard .NET libraries that can be used when writing a contract. There are additional constraints around the format of the contract that are required to be met before it can be executed. 
 
-There are additional constraints around the format of the contract that are required to be met before it can be executed.
+All contracts are validated by a node when the contract is being deployed. Invalid contracts will fail validation on-chain. Because of this, it is recommended to validate contracts locally before deployment. 
 
-It is recommended to validate contracts locally before deployment. Invalid contracts will fail validation on-chain if they are deployed.
-
-Validation before deployment can be done using the ``sct`` command line tool.
+Validation can be done using the ``sct`` command line tool.
 
 ::
 
@@ -51,9 +49,9 @@ The easiest way to interact with a contract is to use the Stratis Core wallet wi
 - Local calls
 
 Parameter Serialization
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
-When interacting with a contract via the wallet, the API, or SCT, you will need to provide contract parameters as a string. This requires that a parameter is serialized to a string in the format that the API is expecting.
+When deploying or interacting with a contract via the wallet, the API, or SCT, contract parameters must be provided as a string. This requires that a parameter is serialized to a string in the format that the API is expecting.
 
 Additionally, when using the API or SCT, the type of each parameter must be provided in the format "{0}#{1}", where: {0} is an integer representing the Type of the serialized data and {1} is the serialized data itself.
 
@@ -74,7 +72,7 @@ Refer to the following table for the mapping between a type, its integer represe
   Stratis.SmartContracts.Address, 9, Base58Address.ToString(), "9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy"
   System.Byte[], 10, BitConverter.ToString(), "10#04A6B9"
 
-The parameters must be provided in the order they occur in the method signature. For example, to call a method with the signature ``SomeMethod(Address myAddress, byte[] someData)`` with the values `myAddress = mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy`, `someData = 0xFF00AA`
+The parameters must be provided in the order they occur in the method signature. For example, calling a method with the signature ``SomeMethod(Address myAddress, byte[] someData)`` with the values ``myAddress = mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy``, ``someData = 0xFF00AA`` looks like:
 
 In the API:
 ::
@@ -87,7 +85,7 @@ In the API:
 As parameters to SCT:
 ::
 
-  ``-param="9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy" -param="10#FF00AA"``
+  -param="9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy" -param="10#FF00AA"
 
 In the wallet:
 
