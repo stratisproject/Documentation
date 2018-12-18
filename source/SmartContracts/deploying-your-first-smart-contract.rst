@@ -34,19 +34,39 @@ Contracts can be compiled using the ``sct`` command line tool.
   cd src/Stratis.SmartContracts.Tools.Sct
   dotnet run -- compile [CONTRACT_PATH_HERE]
 
+If validation is successful, the output will be the compiled bytecode of the contract.
+
 Deploying a contract
 -------------------
 Contracts can be deployed in several ways:
 
 * Using the ``sct`` command line tool
-* Via the swagger API
+* Via the API
 * Via the wallet
+
+See the documentation of each for more details.
 
 Interacting with a contract
 -------------------
-The easiest way to interact with a contract is to use the Stratis Core wallet with smart contracts enabled.
+Interaction with a contract comes in two forms:
 
-- Local calls
+* Interacting with a contract through a transaction - a contract call
+* Interacting with a contract without a transaction - a local call
+
+Calls and Local Calls
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A contract call uses a regular transaction that is broadcast to the network. The call parameters are encapsulated in the transaction and handled by the network in the same way as any other transaction. Every node in the network will execute a contract call. If a contract call modifies the state database, the global state is changed.
+
+A local call does not require a transaction. Instead, it passes the call data directly to the local node, and executes it on the local machine only. A local call runs against a copy of the state database. If the local call makes changes to the state, these changes are discarded after execution.
+
+A good example of when to use a local call is to read contract state without expending gas, eg. to query the value of a property. A local call can also aid in estimating gas costs without needing to broadcast transactions to the main network.
+
+Interacting with a contract can be done in several ways:
+
+* Via the API
+* Via the wallet
+
+At the moment, it is only possible to make local calls via the API.
 
 Parameter Serialization
 -------------------
@@ -95,15 +115,11 @@ In the wallet:
 
     Entering contract parameters in the wallet
 
-Testing a contract
--------------------
-
-
 Gas
 -------------------
-Gas fees charged
-Gas fees and refunds and where they end up on a transaction (coinbase)
 
-SmartContract object
----------------
-What the diff fields are etc
+Contracts require 'gas' to run. How much gas is needed is related to the amount of processing required to execute the contract. Gas is an additional expenditure to transaction fees and is different from STRAT. Its relationship to STRAT is defined by ``strat = gas * gasPrice``.
+
+All contract transactions contain a gas price and gas limit specified by the sender of the transaction. When a miner mines the contract transaction, they receive the gas as a fee for the work they had to do to execute the contract. Miners can choose to prioritise transactions based on profitability by mining transactions with a higher gas price first.
+
+Gas fees are charged according to the gas price schedule. When a contract execution takes place, gas is consumed until the gas limit is reached. If execution completes before the gas limit is reached, the gas will be refunded to the sender of the transaction. If execution exhausts all available gas, the execution will fail, the contract state will not change, and no gas will be refunded.
