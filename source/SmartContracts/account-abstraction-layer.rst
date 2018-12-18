@@ -42,6 +42,6 @@ Limitations
 
 There are a few limitations of using an AAL.
 
-The UTXO spent to create a contract create/call transaction must use a P2PKH script. This is so a sender address is obtainable and can be made available to a contract during execution.
+The UTXO spent to create a contract create/call transaction must use a P2PK or P2PKH script. This ensures that the sender's address is always obtainable. The sender address is used to provide the gas refund, and as context during contract execution.
 
 There is a reduction of privacy as a degree of address reuse is required. For example, if your ownership of a token is recorded in a contract, you must always interact with that contract using the same address.
