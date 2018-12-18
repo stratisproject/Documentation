@@ -1,8 +1,58 @@
 #####################################
-Deploying Your First Smart Contract
+Working with Contracts
 #####################################
 
-This chapter takes you through deploying a smart contract, which simulates an auction. The smart contract is provided as a Visual Studio Project Template. As part of the deployment process, the smart contract is validated to ensure it does not contain any non-deterministic elements. Once deployed, a bid is then placed on the auction to test that the smart contract was deployed correctly. The steps taken when deploying the smart contract are as follows:
+Writing a contract
+-------------------
+Stratis smart contracts are CIL bytecode that is executed on top of the dotnet core runtime. Tooling and support is currently provided for writing and compiling contracts in the C# language.
+
+Contracts can be written in any editor that supports C#, however Visual Studio is the recommended contract development environment.
+
+Installing the Visual Studio Project Template 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There is a Visual Studio Project Template that provides an easy way to create a new smart contract project. The template can be `found on the Visual Studio marketplace <https://marketplace.visualstudio.com/items?itemName=StratisGroupLtd.StratisSmartContractsTemplate>`_.
+
+Validating a contract
+-------------------
+A Stratis smart contract must not contain any non-deterministic elements. This restricts the standard .NET libraries that can be used when writing a contract.
+
+There are additional constraints around the format of the contract that are required to be met before it can be executed.
+
+It is recommended to validate contracts locally before deployment. Invalid contracts will fail validation on-chain if they are deployed.
+
+Validation before deployment can be done using the ``sct`` command line tool.
+
+Compiling a contract
+-------------------
+Contracts can be compiled using the ``sct`` command line tool.
+
+Deploying a contract
+-------------------
+Contracts can be deployed in several ways:
+* Using the ``sct`` command line tool
+* Via the swagger API
+* Via the wallet
+
+Interacting with a contract
+-------------------
+The easiest way to interact with a contract is using the Stratis Core wallet with smart contracts enabled.
+
+- Local calls
+
+
+Testing a contract
+-------------------
+
+Gas
+-------------------
+Gas fees charged
+Gas fees and refunds and where they end up on a transaction (coinbase)
+
+SmartContract object
+---------------
+What the diff fields are etc
+
+
 
 1. Download or clone the source.
 2. Installing the Visual Studio Project Template. 
@@ -17,32 +67,6 @@ This chapter takes you through deploying a smart contract, which simulates an au
 .. note::
     This chapter assumes a Windows development environment. Stratis smart contracts can be developed on other platforms, and documentation to support this will be available soon.
 
-Downloading the smart contract source
--------------------------------------
-
-First, download a copy of `Microsoft Visual Studio <https://www.visualstudio.com/downloads/>`_ if you don't have a copy already. This is the standard IDE for C# development and the Community Edition is available for free.
-
-Next, make sure you have the latest .NET SDK installed. You can verify this by running ``dotnet --version`` on the command line. If you do not have the .NET SDK installed, download and install it from `here <https://www.microsoft.com/net/learn/get-started/windows#install>`_.
-
-Next, you must download or clone the `latest beta branch of the Stratis Smart Contract Enabled Full Node <https://github.com/stratisproject/StratisBitcoinFullNode/tree/sc/v0.13.0-beta>`_. This repository contains everything you need to run a Stratis full node that can sync and mine on a Stratis smart contract network. It also contains the ``sct`` tool, which validates and deploys contracts.
-
-::
-
-  git clone https://github.com/stratisproject/StratisBitcoinFullNode.git
-  git checkout sc/v0.13.0-beta
-
-
-Installing the Visual Studio Project Template 
----------------------------------------------
-
-The Stratis smart contract Visual Studio Project Template provides an easy way to create a new smart contract project. It contains a template for a smart contract, unit tests, and references to appropriate NuGet packages.
-
-The template can be `found on the Visual Studio marketplace <https://marketplace.visualstudio.com/items?itemName=StratisGroupLtd.StratisSmartContractsTemplate>`_.
-
-Creating a smart contracts project
-----------------------------------
-
-To create a new smart contracts project, navigate to File > New > Project… and create a new ‘Stratis SmartContract Project’ under ‘Visual C#’. This generates a new solution containing Auction.cs and some sample unit tests. Notice that Auction.cs just contains a C# class called Auction. Later, you will explore the individual properties and methods on this class in detail.
 
 Validating your smart contract
 ------------------------------
