@@ -4,7 +4,7 @@ Components and Features Overview
 
 The following figure shows the components and features of the Full Node:
 
-.. image:: Full-Node-Overview.png
+.. image:: Full-Node-Overview.svg
     :width: 738px
     :alt: Full Node Overview
     :align: center
@@ -16,7 +16,7 @@ Accessing the network
 
 The P2P and connection manager components are responsible for getting and maintaining access to other peers on the P2P network.  
 
-When a full node is connected to the network, behaviours respond to messages received from other nodes.
+When a full node is connected to the network, behaviors respond to messages received from other nodes.
 
 P2P
 ---
@@ -34,19 +34,19 @@ An example of the P2P component messaging
 2. An attempt is made to connect to the peer.
 3. The Peer Discovery Loop asks for a "handshake" to be initialized.
 4. After the handshake has been completed, a ``getaddr`` message is sent.
-5. The returned ``addr`` message containing information on known nodes is handled by the peer address manager behaviour.
+5. The returned ``addr`` message containing information on known nodes is handled by the peer address manager behavior.
 
 The Stratis network protocol is 98% similar to the Bitcoin network protocol. More information on the Bitcoin network protocol is available `here <https://en.bitcoin.it/wiki/Protocol_documentation#Message_types>`_.
 
 Connection Manager
 -------------------
 
-The connection manager contains a list of the connected peers. This component and not P2P is talked to by the higher-level components such as the broadcast manager. This component provides an interface for banning peers. Other components decide who to ban and why, and then use the interface to achieve this. The mechanism for banning the peers is implemented by the *peer banning behaviour*. Peer banning behaviour does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is dropped.
+The connection manager contains a list of the connected peers. This component and not P2P is talked to by the higher-level components such as the broadcast manager. This component provides an interface for banning peers. Other components decide who to ban and why, and then use the interface to achieve this. The mechanism for banning the peers is implemented by the *peer banning behavior*. Peer banning behavior does not consume any message; instead, if a message identifies a banned peer, the connection to the banned peer is dropped.
 
 Behaviour Components
 ---------------------
 
-There are numerous behaviour components in the Full Node. For example: block puller behaviour, chained header behaviour, memory pool behaviour, and block store behaviour. You can think of the behaviour components as plugins which are responsible for filtering out messages that are not relevant to their related component. For example, memory pool behaviour only cares about messages related to the memory pool.
+There are numerous behavior components in the Full Node. For example: block puller behavior, chained header behavior, memory pool behavior, and block store behavior. You can think of the behavior components as plugins which are responsible for filtering out messages that are not relevant to their related component. For example, memory pool behavior only cares about messages related to the memory pool.
 
 Syncing with the blockchain
 ============================
@@ -56,7 +56,7 @@ Once a Full Node has found other peers on the network, it needs to sync its copy
 Consensus Manager
 ------------------
 
-Once a connection has been made to other peers on the network, the peers send block headers to the consensus manager. It is the *chained header behaviour* which consumes the messages sent by these peers. When new block headers are received, the consensus manager contacts the chained header tree and informs it that it has new headers. The chained header tree analyzes whether the blocks are interesting and reports back to the consensus manager if they are. The consensus manager's response to this is to download the full blocks for the headers. The block puller is invoked to download the blocks.
+Once a connection has been made to other peers on the network, the peers send block headers to the consensus manager. It is the *chained header behavior* which consumes the messages sent by these peers. When new block headers are received, the consensus manager contacts the chained header tree and informs it that it has new headers. The chained header tree analyzes whether the blocks are interesting and reports back to the consensus manager if they are. The consensus manager's response to this is to download the full blocks for the headers. The block puller is invoked to download the blocks.
 
 The consensus manager uses the validators to perform validation on the blocks which it receives.
 
@@ -177,7 +177,7 @@ Interfaces are employed to pass information around. For example, the initial blo
 
 NBitcoin
 ---------
-`NBitcoin <https://github.com/MetacoSA/NBitcoin/tree/master/NBitcoin>`_ is a external Bitcoin library for the .NET platform written in C#. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and cryptographic hashing and signing.
+`NBitcoin <https://github.com/MetacoSA/NBitcoin/tree/master/NBitcoin>`_ is an external Bitcoin library for the .NET platform written in C#. It implements many Bitcoin Improvement Proposals (BIPs). The Stratis Full Node uses NBitcoin for multiple functionalities including running scripts and cryptographic hashing and signing.
 
 Interfacing with the Full Node
 ===============================
