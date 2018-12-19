@@ -10,15 +10,15 @@ Compiled contract assembly
 -------------------------------------
 All Stratis CIL contracts must be deployed as `assemblies <https://docs.microsoft.com/en-us/dotnet/api/system.reflection.assembly>`_ which contain one or more `Types <https://docs.microsoft.com/en-us/dotnet/api/system.type>`_.
 
-A contract maps one-to-one with a type in the assembly. Multiple types are allowed in an assembly, but this requires that a primary type is denoted with ``[Deploy]``. If multiple types are present, only the primary type will be deployed in a contract creation transaction. During execution, the primary type has access to the other types defined in an assembly and can use these to deploy new contracts.
+A contract maps one-to-one with a type in the assembly. Multiple types are allowed in an assembly, but this requires that the primary type is denoted with the ``[Deploy]`` attribute. If multiple types are present, only the primary type will be deployed in a CREATE transaction. During execution, the primary type has access to the other types defined in an assembly and can use these to deploy new contracts.
 
 Contracts exist as object instances in the dotnet runtime. Conceptually, they can be thought of as singletons with an infinite lifetime. CREATE transactions invoke the type's constructor to create an instance of the type. On deployment, each contract is assigned an address, which can be thought of as a reference to the object instance. CALL transactions invoke methods on the instance and are the means of interacting with a contract.
 
-Unlike a .NET object, a contract's state is not stored in fields on the object. Instead, it must be explicitly accessed using the ``PersistentState`` object exposed on the ``Stratis.SmartContracts`` base class.
+Unlike a .NET object, a contract's state is not stored in fields on the object. Instead, it must be explicitly accessed using the ``PersistentState`` object exposed on the ``Stratis.SmartContract`` base class.
 
 The Stratis.SmartContract object
 -------------------------------------
-All contracts must inherit from the ``Stratis.SmartContract`` type, which exposes methods useful to the contract. Contracts must contain a single constructor whose first parameter is an ``ISmartContractState`` object. The ``ISmartContractState`` object is injected at runtime and provides the current state and services used within a contract.
+All contracts must inherit from the ``Stratis.SmartContract`` type, which exposes useful members to the contract. Contracts must contain a single constructor whose first parameter is an ``ISmartContractState`` object. The ``ISmartContractState`` object is injected at runtime and provides the current state and services used within a contract.
 
 .. csv-table:: Stratis.SmartContract base class methods
   :header: "Method Name", "Description"
@@ -36,7 +36,7 @@ All contracts must inherit from the ``Stratis.SmartContract`` type, which expose
   Keccak256, Used to keccak256 hash a byte array
   Assert, Used to halt execution if a condition is false
   Log<T>, Used to log an event of type T
-  Receive, Used to apply processing incoming funds
+  Receive, Used to process incoming funds
 
 Example
 ~~~~~~~~~~~~~~~~~~~
@@ -53,7 +53,7 @@ The contract below represents a simple use case of storing a value provided on c
     }
   }
 
-The lifecycle of the contract creation is:
+The execution flow of the contract creation is then:
 
 * Constructor called with ``IPersistentState`` object injected and constructor params injected
 * ``PersistentState`` called and state database updated with ``value``
@@ -74,7 +74,7 @@ and
 
 ::
 
-  var serialized = Serializer.Serialize(100_000);
+  var serialized = Serializer.Serialize(100_000U);
   PersistentState.SetBytes(serialized);
 
 
@@ -151,8 +151,9 @@ Deterministic execution is enforced by only permitting whitelisted members to be
   Stratis, SmartContract
 
 As well as the whitelist, a contract:
+
 * Must not use floating-point arithmetic
-* Must not use the ``new`` keyword for unsupported types
+* Must not use the ``new`` keyword for reference types
 * Must not use object finalizers
 
 Format Validation
@@ -160,10 +161,12 @@ Format Validation
 Contract assemblies are evaluated using these rules:
 
 Assembly:
+
 * Must have a type marked with the ``[Deploy]`` attribute if multiple types are present
 * Must not reference any disallowed assemblies
 
 Types:
+
 * Must not have a namespace
 * Must inherit from ``Stratis.SmartContract``
 * Must not use fields
@@ -172,14 +175,17 @@ Types:
 * Must have a single constructor
 
 Constructor:
+
 * Must have first param of type ``ISmartContractState``
 
 Methods:
+
 * Must not use generic parameters
 * Must not use try-catch
 * Must only accept primitive parameters
 
 Nested Types:
+
 * Must be a value type
 * Must not define nested types
 * Must not define methods
