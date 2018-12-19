@@ -91,8 +91,23 @@
                     <path d="M29.2314853,10.8284141 C29.2314853,10.8284141 30.1800853,7.0898142 27.3903425,3.21209996 C33.3604281,7.62004276 32.2446853,15.180557 32.2446853,15.180557 C30.4590853,16.9660284 30.4590853,21.4296426 30.4590853,21.4296426 L28.6734854,19.6440426 C28.6734854,19.6440426 29.3626282,14.4862712 25.995214,12.5022856 C22.8705426,10.6610142 20.1365997,11.6096141 17.3468569,11.6096141 C16.1309569,11.6096141 15.0711427,11.5280999 14.127557,11.3885999 C19.8858855,11.581457 23.2800426,7.21992848 29.2314853,10.8284141" id="Fill-12" fill="#2074A4"></path>
                 </g>
             </g>
-            <image id="64x64" mask="url(#mask-2)" x="85" y="30" width="40" height="40" xlink:href="data:image/png;base64,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"></image>
-            <image id="icons8-coins-50" mask="url(#mask-2)" x="50" y="88" width="50" height="50" xlink:href="data:image/png;base64,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"></image>
+        </g>
+        <g id="Wallet" transform="translate(87.000000, 184.000000)">
+            <rect id="Rectangle-3" fill="#277CB3" x="0" y="9" width="40" height="27" rx="6"></rect>
+            <rect id="Rectangle-3" fill="#277CB3" x="0" y="0" width="36" height="27" rx="6"></rect>
+            <path d="M5.5,2 L30.5,2 C31.8807119,2 33,3.11928813 33,4.5 L33,6.5 C33,7.88071187 31.8807119,9 30.5,9 L5.5,9 C4.11928813,9 3,7.88071187 3,6.5 L3,4.5 C3,3.11928813 4.11928813,2 5.5,2 Z" id="Rectangle-6" fill="#CCD7E5"></path>
+            <rect id="Rectangle-7" fill="#CCD7E5" x="28" y="6" width="5" height="3"></rect>
+            <rect id="Rectangle-8" fill="#277CB3" x="5" y="4" width="26" height="3" rx="1.5"></rect>
+            <rect id="Rectangle-9" fill="#CCD7E5" x="25" y="17" width="20" height="9" rx="4.5"></rect>
+            <rect id="Rectangle-10" fill="#277CB3" x="27" y="19" width="15" height="5" rx="2.5"></rect>
+            <circle id="Oval-3" fill="#D8D8D8" cx="30" cy="21.5" r="1"></circle>
+            <rect id="Rectangle-11" fill="#CCD7E5" x="40" y="12" width="4" height="19"></rect>
+            <g id="Strat-Symbol" transform="translate(7.000000, 15.000000)">
+                <circle id="Oval-4" fill="#D8D8D8" cx="7" cy="7" r="7"></circle>
+                <text id="S" font-family="OpenSans-Bold, Open Sans" font-size="10" font-weight="bold" fill="#277CB3">
+                    <tspan x="4.5" y="11">S</tspan>
+                </text>
+            </g>
         </g>
         <g id="Key" transform="translate(19.000000, 0.000000)">
             <text id="Federation" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
@@ -122,5 +137,26 @@
             <tspan x="2" y="455">one miner has </tspan>
             <tspan x="2" y="469">met the target</tspan>
         </text>
+        <g id="Coins" transform="translate(51.000000, 238.000000)">
+            <g id="Stack-1" transform="translate(24.000000, 0.000000)">
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="32" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="29" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="26" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="23" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="20" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="17" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="14" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="11" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="8" rx="15" ry="8"></ellipse>
+            </g>
+            <rect id="Rectangle-5" fill="#CCD7E5" x="26" y="21" width="6" height="22"></rect>
+            <g id="Stack-2" transform="translate(0.000000, 17.000000)">
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="20" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="17" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="14" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#CCD7E5" cx="15" cy="11" rx="15" ry="8"></ellipse>
+                <ellipse id="Oval-2" fill="#277CB3" cx="15" cy="8" rx="15" ry="8"></ellipse>
+            </g>
+        </g>
     </g>
 </svg>
