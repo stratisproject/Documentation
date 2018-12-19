@@ -116,4 +116,70 @@ The Receive function
 -------------------------------------
 The ``Receive`` function defines processing that occurs when a contract is sent funds. It accepts no arguments and does not return a value.
 
-The ``Receive`` function is invoked when a contract transfers funds to another contract using the ``Transfer`` method, or when a CALL transaction is made but no method name is specified. If it is invoked by another contract, the maximum amount of gas will be the default gas limit of ``20000 - 1``.
+``Receive`` is invoked when a contract transfers funds to another contract using the ``Transfer`` method, or when a CALL transaction is made but no method name is specified. If it is invoked by another contract, the maximum amount of gas supplied will be ``20000 - 1``.
+
+Contract Validation
+-------------------------------------
+All types in a contract assembly are validated to check for non-deterministic elements and conformance to a specific format.
+
+Determinism Validation
+~~~~~~~~~~~~~~~~~~~
+Deterministic execution is enforced by only permitting whitelisted members to be used in a contract. 
+
+.. csv-table:: Whitelisted members
+  :header: "Namespace", "Type", "Member"
+  :escape: \
+
+  System, Bool
+  System, Byte
+  System, SByte
+  System, Char
+  System, Int32
+  System, UInt32
+  System, Int64
+  System, UInt64
+  System, String
+  System, Array, GetLength
+  System, Array, Copy
+  System, Array, GetValue
+  System, Array, SetValue
+  System, Array, Resize
+  System, Void
+  System, Object, ToString
+  System, IteratorStateMachineAttribute
+  System, RuntimeHelpers, InitializeArray
+  Stratis, SmartContract
+
+As well as the whitelist, a contract:
+* Must not use floating-point arithmetic
+* Must not use the ``new`` keyword for unsupported types
+* Must not use object finalizers
+
+Format Validation
+~~~~~~~~~~~~~~~~~~~
+Contract assemblies are evaluated using these rules:
+
+Assembly:
+* Must have a type marked with the ``[Deploy]`` attribute if multiple types are present
+* Must not reference any disallowed assemblies
+
+Types:
+* Must not have a namespace
+* Must inherit from ``Stratis.SmartContract``
+* Must not use fields
+* Must not use generic parameters
+* Must not use static constructors
+* Must have a single constructor
+
+Constructor:
+* Must have first param of type ``ISmartContractState``
+
+Methods:
+* Must not use generic parameters
+* Must not use try-catch
+* Must only accept primitive parameters
+
+Nested Types:
+* Must be a value type
+* Must not define nested types
+* Must not define methods
