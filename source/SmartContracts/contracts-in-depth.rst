@@ -111,3 +111,9 @@ The table below outlines the behaviour when a byte array is interpreted unsucces
 Deserializing a Base58 Address
 ~~~~~~~~~~~~~~~~~~~
 The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to interpret a string as a base58 encoded address. If the string is ``null``, empty, or not a valid base58 address, then ``Address.Zero`` is returned.
+
+The Receive function
+-------------------------------------
+The ``Receive`` function defines processing that occurs when a contract is sent funds. It accepts no arguments and does not return a value.
+
+The ``Receive`` function is invoked when a contract transfers funds to another contract using the ``Transfer`` method, or when a CALL transaction is made but no method name is specified. If it is invoked by another contract, the maximum amount of gas will be the default gas limit of ``20000 - 1``.
