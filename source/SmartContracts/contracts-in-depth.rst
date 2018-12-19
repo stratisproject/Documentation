@@ -83,7 +83,7 @@ and
 
 Serialization
 ~~~~~~~~~~~~~~~~~~~
-Serialization of primitive types to byte arrays can be performed using the ``Serializer`` object exposed on ``Stratis.SmartContracts``.
+Serialization of primitive types to byte arrays can be performed using the ``Serializer`` object exposed on ``Stratis.SmartContracts``. Serialization should always be successful, except when attempting to serialize a ``null`` reference type, which will return ``null``.
 
 Deserialization
 ~~~~~~~~~~~~~~~~~~~
@@ -108,6 +108,6 @@ The table below outlines the behaviour when a byte array is interpreted unsucces
   ToArray<T>, bytes == null || bytes.Length == 0, T[0]
   ToStruct<T>, bytes == null || bytes.Length == 0, default(T)  
 
-Base58 Address
+Deserializing a Base58 Address
 ~~~~~~~~~~~~~~~~~~~
-The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to deserialize a base58 string to an ``Address``.
+The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to interpret a string as a base58 encoded address. If the string is ``null``, empty, or not a valid base58 address, then ``Address.Zero`` is returned.
