@@ -96,7 +96,9 @@ The block puller works in one of two modes:
 1. IBD (Initial Block Download)
 2. Close to block tip
 
-The mode that is selected depends on whether a block has been reached which seems close to the tip of the chain. If the blocks being downloaded are not close to the tip, IBD mode is used.   
+The mode that is selected depends on whether a block has been reached which seems close to the tip of the chain. If the blocks being downloaded are not close to the tip, IBD mode is used.
+
+.. _ibd-mode:
   
 IBD Download Strategy
 ^^^^^^^^^^^^^^^^^^^^^^
