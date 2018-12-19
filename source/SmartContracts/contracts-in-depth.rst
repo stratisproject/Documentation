@@ -57,3 +57,57 @@ The lifecycle of the contract creation is:
 
 * Constructor called with ``IPersistentState`` object injected and constructor params injected
 * ``PersistentState`` called and state database updated with ``value``
+
+Persistent State
+-------------------------------------
+A contract's state is stored in a key/value store where both the key and the value are byte arrays. Access to the state is exposed to a contract through the ``PersistentState`` object. ``PersistentState`` can access the k/v store directly using byte arrays through the ``SetBytes`` method.
+
+PersistentState also exposes methods which perform de/serialization before storing or retrieving a byte array. These methods are provided for **convenience only**. Internally, they use ``Stratis.SmartContract.Serializer`` to convert a value to its byte array representation before persisting or returning it.
+
+The following are equivalent:
+
+::
+
+  PersistentState.SetUInt32(100_000);
+  
+and
+
+::
+
+  var serialized = Serializer.Serialize(100_000);
+  PersistentState.SetBytes(serialized);
+
+
+.. note:: 
+  All methods except for ``GetBytes`` and ``SetBytes`` are convenience methods. It is **highly** important that you understand exactly how these work before using them. Pay particular attention to the default values returned when errors occur. To be certain what is happening in your code, perform the serialization yourself.
+
+Serialization
+~~~~~~~~~~~~~~~~~~~
+Serialization of primitive types to byte arrays can be performed using the ``Serializer`` object exposed on ``Stratis.SmartContracts``.
+
+Deserialization
+~~~~~~~~~~~~~~~~~~~
+Deserialization can be thought of as a means to 'interpret' a byte array as a particular type. For example, the same byte array can be interpreted as an Int32 using ``Serializer.ToUInt32``, or as a string using ``Serializer.ToString``.
+
+Interpreting a byte array as a particular type will not always be successful. A byte array that is 2 bytes long cannot be interpreted as an Int32 because an Int32 is a minimum of 4 bytes wide. When this occurs, the serializer will return a default object.
+
+The table below outlines the behaviour when a byte array is interpreted unsuccessfully.
+
+.. csv-table:: byte[] deserialization table
+  :header: "Deserialization method", "Error Condition", "Return value"
+  :escape: \
+
+  ToBool, bytes == null || bytes.Length == 0, default(bool)
+  ToAddress, bytes == null || bytes.Length != 20, Address.Zero
+  ToInt32, bytes == null || bytes.Length < 4, default(int)
+  ToUInt32, bytes == null || bytes.Length < 4, default(uint)
+  ToInt64, bytes == null || bytes.Length < 8, default(int)
+  ToUInt64, bytes == null || bytes.Length < 8, default(uint)
+  ToString, bytes == null || bytes.Length < sizeof(char), string.Empty
+  ToChar, bytes == null || bytes.Length < sizeof(char), default(char)
+  ToArray<T>, bytes == null || bytes.Length == 0, T[0]
+  ToStruct<T>, bytes == null || bytes.Length == 0, default(T)  
+
+Base58 Address
+~~~~~~~~~~~~~~~~~~~
+The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to deserialize a base58 string to an ``Address``.
