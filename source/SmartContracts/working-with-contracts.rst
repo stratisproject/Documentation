@@ -32,7 +32,7 @@ Contracts can be compiled using the ``sct`` command line tool.
 ::
 
   cd src/Stratis.SmartContracts.Tools.Sct
-  dotnet run -- compile [CONTRACT_PATH_HERE]
+  dotnet run -- validate [CONTRACT_PATH_HERE] -sb
 
 If compilation is successful, the output will be the compiled bytecode of the contract.
 
