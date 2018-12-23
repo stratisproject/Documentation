@@ -1,827 +1,500 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="897px" height="1100px" viewBox="0 0 897 1100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
     <title>Consensus Rules Engine</title>
     <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M8,0.000462385017 L275,0.000462385017 L275,0.000462385017 C279.418278,0.000462385017 283,3.58218439 283,8.00046239 L283,799.118731 L283,997.000462 L283,997.000462 C283,1001.41874 279.418278,1005.00046 275,1005.00046 L8,1005.00046 L8,1005.00046 C3.581722,1005.00046 5.41083001e-16,1001.41874 0,997.000462 L0,8.00046239 L0,8.00046239 C-5.41083001e-16,3.58218439 3.581722,0.000462385017 8,0.000462385017 Z" id="path-1"></path>
-        <rect id="path-2" x="0" y="0" width="263" height="232" rx="8"></rect>
-        <rect id="path-3" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-4" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-5" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-6" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-7" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-8" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-9" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-10" x="0" y="0" width="263" height="349" rx="8"></rect>
-        <rect id="path-11" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-12" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-13" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-14" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-15" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-16" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-17" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-18" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-19" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-20" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-21" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-22" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-23" x="0" y="0" width="263" height="118" rx="8"></rect>
-        <rect id="path-24" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-25" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-26" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-27" x="0" y="0" width="263" height="233" rx="8"></rect>
-        <rect id="path-28" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-29" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-30" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-31" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-32" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-33" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-34" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-35" x="0" y="0" width="283" height="946" rx="8"></rect>
-        <rect id="path-36" x="0" y="0" width="263" height="174" rx="8"></rect>
-        <rect id="path-37" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-38" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-39" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-40" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-41" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-42" x="0" y="0" width="263" height="261" rx="8"></rect>
-        <rect id="path-43" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-44" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-45" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-46" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-47" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-48" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-49" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-50" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-51" x="0" y="0" width="263" height="60" rx="8"></rect>
-        <rect id="path-52" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-53" x="0" y="0" width="263" height="147" rx="8"></rect>
-        <rect id="path-54" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-55" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-56" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-57" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-58" x="0" y="0" width="283" height="946" rx="8"></rect>
-        <rect id="path-59" x="0" y="0" width="263" height="174" rx="8"></rect>
-        <rect id="path-60" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-61" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-62" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-63" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-64" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-65" x="0" y="0" width="263" height="232" rx="8"></rect>
-        <rect id="path-66" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-67" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-68" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-69" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-70" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-71" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-72" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-73" x="0" y="0" width="263" height="90" rx="8"></rect>
-        <rect id="path-74" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-75" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-76" x="0" y="0" width="263" height="147" rx="8"></rect>
-        <rect id="path-77" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-78" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-79" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-80" x="0" y="0" width="243.075758" height="21" rx="8"></rect>
-        <rect id="path-81" x="166" y="0" width="283" height="37" rx="8"></rect>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Consensus-Rules-Engine">
-            <g id="PoS-Consensus-Rules-Engine" transform="translate(307.000000, 95.000000)">
-                <g>
-                    <use fill="#CCD7E5" fill-rule="evenodd" xlink:href="#path-1"></use>
-                    <path stroke="#828C96" stroke-width="1" d="M8,0.500462385 C3.85786438,0.500462385 0.5,3.85832676 0.5,8.00046239 L0.5,997.000462 C0.5,1001.1426 3.85786438,1004.50046 8,1004.50046 L275,1004.50046 C279.142136,1004.50046 282.5,1001.1426 282.5,997.000462 L282.5,8.00046239 C282.5,3.85832676 279.142136,0.500462385 275,0.500462385 L8,0.500462385 Z"></path>
-                </g>
-                <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="51.9423828" y="25">PoS Consensus Rule Engine</tspan>
+    <defs></defs>
+    <g id="Consensus-Rules-Engine" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PoS-Consensus-Rules-Engine" transform="translate(307.000000, 95.000000)">
+            <path d="M8,0.499999078 C3.85786438,0.499999078 0.5,3.85786345 0.5,7.99999908 L0.5,997.000462 C0.5,1001.1426 3.85786438,1004.50046 8,1004.50046 L275,1004.50046 C279.142136,1004.50046 282.5,1001.1426 282.5,997.000462 L282.5,7.99999908 C282.5,3.85786345 279.142136,0.499999078 275,0.499999078 L8,0.499999078 Z" stroke="#828C96" fill="#CCD7E5"></path>
+            <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
+                <tspan x="51.9423828" y="25">PoS Consensus Rule Engine</tspan>
+            </text>
+            <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
+                <rect id="Full-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="231" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
                 </text>
-                <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
-                    <g id="Full-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="231" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
+                <g id="Save-Coinview" transform="translate(9.962121, 202.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Save Coinview</tspan>
                     </text>
-                    <g id="Save-Coinview" transform="translate(9.962121, 202.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Save Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="PoS-Coldstaking" transform="translate(9.962121, 173.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Coldstaking</tspan>
-                        </text>
-                    </g>
-                    <g id="PoS-Coinview" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-6"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Load-Coin-View" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Load Coin View</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Difficulty-Hybrid" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-8"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check Difficulty Hybrid</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
-                    <g id="Partial-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-10"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="348" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
+                <g id="PoS-Coldstaking" transform="translate(9.962121, 173.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Coldstaking</tspan>
                     </text>
-                    <g id="PoS-Coinstake" transform="translate(9.962121, 260.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-11"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
-                        </text>
-                    </g>
-                    <g id="PoS-Coinstake" transform="translate(9.962121, 317.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-12"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Coinstake</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Sig-Ops" transform="translate(9.962121, 289.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-13"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-PoS-Transaction-" transform="translate(9.962121, 260.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-14"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check PoS Transaction </tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Pow-Transaction-" transform="translate(9.962121, 231.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-15"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check PoW Transaction</tspan>
-                        </text>
-                    </g>
-                    <g id="Ensure-Coinbase" transform="translate(9.962121, 202.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-16"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
-                        </text>
-                    </g>
-                    <g id="Block-Size" transform="translate(9.962121, 173.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-17"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Size</tspan>
-                        </text>
-                    </g>
-                    <g id="-Witness-Commitments" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-18"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Witness Commitments</tspan>
-                        </text>
-                    </g>
-                    <g id="Coinbase-Height-Activation" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-19"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="PoS-Time-Mask" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-20"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Time Mask</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-21"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-22"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-23"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="117" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
+                <g id="PoS-Coinview" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Coinview</tspan>
                     </text>
-                    <g id="PoS-Block-Signature" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-24"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Block Signature</tspan>
-                        </text>
-                    </g>
-                    <g id="PoS-Block-Signature-Representation" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-25"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoS Block Signature Representation</tspan>
-                        </text>
-                    </g>
-                    <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-26"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-27"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="232" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
+                <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
                     </text>
-                    <g id="Proven-Header-Coinstake" transform="translate(9.962121, 202.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-28"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Proven Header Coinstake</tspan>
-                        </text>
-                    </g>
-                    <g id="Proven-Header-Size" transform="translate(9.962121, 173.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-29"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Proven Header Size</tspan>
-                        </text>
-                    </g>
-                    <g id="Stratis-Header-Version" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-30"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Stratis Header Version</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Difficulty-PoS" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-31"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Check Difficulty PoS</tspan>
-                        </text>
-                    </g>
-                    <g id="Stratis-Bug-Fix-PoS-Future-Drift" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-32"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Stratis Bug Fix PoS Future Drift</tspan>
-                        </text>
-                    </g>
-                    <g id="Header-Time-Checks-PoS" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-33"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Header Time Checks PoS</tspan>
-                        </text>
-                    </g>
-                    <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-34"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Header Time Checks</tspan>
-                        </text>
-                    </g>
+                </g>
+                <g id="Load-Coin-View" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Load Coin View</tspan>
+                    </text>
+                </g>
+                <g id="Check-Difficulty-Hybrid" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check Difficulty Hybrid</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
+                    </text>
                 </g>
             </g>
-            <g id="PoW-Consensus-Rules-Engine" transform="translate(0.000000, 95.000000)">
-                <g>
-                    <use fill="#CCD7E5" fill-rule="evenodd" xlink:href="#path-35"></use>
-                    <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="282" height="945" rx="8"></rect>
-                </g>
-                <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="49.3037109" y="25">PoW Consensus Rule Engine</tspan>
+            <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
+                <rect id="Partial-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="348" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
                 </text>
-                <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
-                    <g id="Full-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-36"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="173" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
+                <g id="PoS-Coinstake" transform="translate(9.962121, 260.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
                     </text>
-                    <g id="Save-Coinview" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-37"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Save Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="PoW-Coinview" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-38"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoW Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-39"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Load-Coin-View" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-40"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Load Coin View</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-41"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
-                    <g id="Partial-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-42"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="260" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
+                <g id="PoS-Coinstake" transform="translate(9.962121, 317.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Coinstake</tspan>
                     </text>
-                    <g id="Check-Sig-Ops" transform="translate(9.962121, 231.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-43"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Pow-Transaction-" transform="translate(9.962121, 202.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-44"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check PoW Transaction </tspan>
-                        </text>
-                    </g>
-                    <g id="Ensure-Coinbase" transform="translate(9.962121, 173.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-45"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
-                        </text>
-                    </g>
-                    <g id="Block-Size" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-46"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Size</tspan>
-                        </text>
-                    </g>
-                    <g id="Witness-Commitments" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-47"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Witness Commitments</tspan>
-                        </text>
-                    </g>
-                    <g id="Coinbase-Height-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-48"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-49"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-50"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-51"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="59" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
+                <g id="Check-Sig-Ops" transform="translate(9.962121, 289.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
                     </text>
-                    <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-52"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-53"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="146" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
+                <g id="Check-PoS-Transaction-" transform="translate(9.962121, 260.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check PoS Transaction </tspan>
                     </text>
-                    <g id="Bitcoin-Header-Version" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-54"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Bitcoin Header Version</tspan>
-                        </text>
-                    </g>
-                    <g id="Bitcoin-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-55"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Bitcoin Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Difficulty-PoW" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-56"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Check Difficulty PoW</tspan>
-                        </text>
-                    </g>
-                    <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-57"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Header Time Checks</tspan>
-                        </text>
-                    </g>
+                </g>
+                <g id="Check-Pow-Transaction-" transform="translate(9.962121, 231.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check PoW Transaction</tspan>
+                    </text>
+                </g>
+                <g id="Ensure-Coinbase" transform="translate(9.962121, 202.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
+                    </text>
+                </g>
+                <g id="Block-Size" transform="translate(9.962121, 173.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Size</tspan>
+                    </text>
+                </g>
+                <g id="-Witness-Commitments" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Witness Commitments</tspan>
+                    </text>
+                </g>
+                <g id="Coinbase-Height-Activation" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
+                    </text>
+                </g>
+                <g id="PoS-Time-Mask" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Time Mask</tspan>
+                    </text>
+                </g>
+                <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
+                    </text>
                 </g>
             </g>
-            <g id="PoA-Consensus-Rules-Engine" transform="translate(614.000000, 95.000000)">
-                <g>
-                    <use fill="#CCD7E5" fill-rule="evenodd" xlink:href="#path-58"></use>
-                    <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="282" height="945" rx="8"></rect>
-                </g>
-                <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="51.3544922" y="25">PoA Consensus Rule Engine</tspan>
+            <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="117" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
                 </text>
-                <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
-                    <g id="Full-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-59"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="173" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
+                <g id="PoS-Block-Signature" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Block Signature</tspan>
                     </text>
-                    <g id="Save-Coinview" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-60"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Save Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="PoW-Coinview" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-61"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoA Coinview</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-62"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Load-Coin-View" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-63"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Load Coin View</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-64"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
-                    <g id="Partial-Valiadation-Rules">
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-65"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="231" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
+                <g id="PoS-Block-Signature-Representation" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoS Block Signature Representation</tspan>
                     </text>
-                    <g id="Check-Sig-Ops" transform="translate(9.962121, 200.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-66"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
-                        </text>
-                    </g>
-                    <g id="Check-Pow-Transaction-" transform="translate(9.962121, 173.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-67"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Check PoW Transaction </tspan>
-                        </text>
-                    </g>
-                    <g id="Ensure-Coinbase" transform="translate(9.962121, 144.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-68"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
-                        </text>
-                    </g>
-                    <g id="Block-Size" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-69"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Size</tspan>
-                        </text>
-                    </g>
-                    <g id="Coinbase-Height-Activation" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-70"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-71"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
-                        </text>
-                    </g>
-                    <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-72"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
-                        </text>
-                    </g>
                 </g>
-                <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-73"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="89" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
+                <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
                     </text>
-                    <g id="PoA-Integrity-Signature" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-74"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">PoA Integrity Signature</tspan>
-                        </text>
-                    </g>
-                    <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-75"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
-                        </text>
-                    </g>
-                </g>
-                <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
-                    <g>
-                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-76"></use>
-                        <rect stroke="#828C96" stroke-width="1" x="0.5" y="0.5" width="262" height="146" rx="8"></rect>
-                    </g>
-                    <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#000000">
-                        <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
-                    </text>
-                    <g id="PoA-Header-Signature" transform="translate(9.962121, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-77"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">PoA Header Signature</tspan>
-                        </text>
-                    </g>
-                    <g id="PoA-Header-Difficulty" transform="translate(9.962121, 86.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-78"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">PoA Header Difficulty</tspan>
-                        </text>
-                    </g>
-                    <g id="Stratis-Header-Version" transform="translate(9.962121, 57.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-79"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.46401515" y="15">Stratis Header Version</tspan>
-                        </text>
-                    </g>
-                    <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-80"></use>
-                            <rect stroke="#4EA8B2" stroke-width="1" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
-                        </g>
-                        <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
-                            <tspan x="9.96212121" y="15">Header Time Checks PoA</tspan>
-                        </text>
-                    </g>
                 </g>
             </g>
-            <g id="Header-Validator" transform="translate(141.000000, 0.000000)">
-                <g>
-                    <use fill="#CCD7E5" fill-rule="evenodd" xlink:href="#path-81"></use>
-                    <rect stroke="#828C96" stroke-width="1" x="166.5" y="0.5" width="282" height="36" rx="8"></rect>
-                </g>
-                <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="232.544922" y="23">Consensus Rule Engine</tspan>
+            <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="232" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
                 </text>
-                <path d="M307.5,37.5 L307.5,89.5" id="Line" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
-                <path id="Line-decoration-1" d="M307.5,89.5 L310.5,78.7 L304.5,78.7 L307.5,89.5 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
-                <polyline id="Line-2" stroke="#828C96" stroke-width="3" stroke-linecap="square" points="0 89 0 58.8257003 615 58.8257003 615 89"></polyline>
-                <path id="Line-2-decoration-1" d="M0,89 L-3,78.2 L3,78.2 L0,89 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
-                <path id="Line-2-decoration-2" d="M615,89 L618,78.2 L612,78.2 L615,89 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
+                <g id="Proven-Header-Coinstake" transform="translate(9.962121, 202.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Proven Header Coinstake</tspan>
+                    </text>
+                </g>
+                <g id="Proven-Header-Size" transform="translate(9.962121, 173.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Proven Header Size</tspan>
+                    </text>
+                </g>
+                <g id="Stratis-Header-Version" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Stratis Header Version</tspan>
+                    </text>
+                </g>
+                <g id="Check-Difficulty-PoS" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Check Difficulty PoS</tspan>
+                    </text>
+                </g>
+                <g id="Stratis-Bug-Fix-PoS-Future-Drift" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Stratis Bug Fix PoS Future Drift</tspan>
+                    </text>
+                </g>
+                <g id="Header-Time-Checks-PoS" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Header Time Checks PoS</tspan>
+                    </text>
+                </g>
+                <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Header Time Checks</tspan>
+                    </text>
+                </g>
             </g>
+        </g>
+        <g id="PoW-Consensus-Rules-Engine" transform="translate(0.000000, 95.000000)">
+            <rect stroke="#828C96" fill="#CCD7E5" x="0.5" y="0.5" width="282" height="945" rx="8"></rect>
+            <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
+                <tspan x="49.3037109" y="25">PoW Consensus Rule Engine</tspan>
+            </text>
+            <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
+                <rect id="Full-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="173" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
+                </text>
+                <g id="Save-Coinview" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Save Coinview</tspan>
+                    </text>
+                </g>
+                <g id="PoW-Coinview" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoW Coinview</tspan>
+                    </text>
+                </g>
+                <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
+                    </text>
+                </g>
+                <g id="Load-Coin-View" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Load Coin View</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
+                <rect id="Partial-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="260" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
+                </text>
+                <g id="Check-Sig-Ops" transform="translate(9.962121, 231.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
+                    </text>
+                </g>
+                <g id="Check-Pow-Transaction-" transform="translate(9.962121, 202.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check PoW Transaction </tspan>
+                    </text>
+                </g>
+                <g id="Ensure-Coinbase" transform="translate(9.962121, 173.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
+                    </text>
+                </g>
+                <g id="Block-Size" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Size</tspan>
+                    </text>
+                </g>
+                <g id="Witness-Commitments" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Witness Commitments</tspan>
+                    </text>
+                </g>
+                <g id="Coinbase-Height-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
+                    </text>
+                </g>
+                <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="59" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
+                </text>
+                <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="146" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
+                </text>
+                <g id="Bitcoin-Header-Version" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Bitcoin Header Version</tspan>
+                    </text>
+                </g>
+                <g id="Bitcoin-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Bitcoin Activation</tspan>
+                    </text>
+                </g>
+                <g id="Check-Difficulty-PoW" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Check Difficulty PoW</tspan>
+                    </text>
+                </g>
+                <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Header Time Checks</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="PoA-Consensus-Rules-Engine" transform="translate(615.000000, 95.000000)">
+            <rect stroke="#828C96" fill="#CCD7E5" x="0.5" y="0.5" width="282" height="945" rx="8"></rect>
+            <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
+                <tspan x="51.3544922" y="25">PoA Consensus Rule Engine</tspan>
+            </text>
+            <g id="Full-Validation-Rules" transform="translate(10.000000, 763.000000)">
+                <rect id="Full-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="173" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Full Validation Rules</tspan>
+                </text>
+                <g id="Save-Coinview" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Save Coinview</tspan>
+                    </text>
+                </g>
+                <g id="PoW-Coinview" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoA Coinview</tspan>
+                    </text>
+                </g>
+                <g id="Transaction-Duplication-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Duplication Activation</tspan>
+                    </text>
+                </g>
+                <g id="Load-Coin-View" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Load Coin View</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Full-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Full Validation</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Partial-Validation-Rules" transform="translate(10.000000, 406.000000)">
+                <rect id="Partial-Valiadation-Rules" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="231" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Partial Validation Rules</tspan>
+                </text>
+                <g id="Check-Sig-Ops" transform="translate(9.962121, 200.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check Sig Ops</tspan>
+                    </text>
+                </g>
+                <g id="Check-Pow-Transaction-" transform="translate(9.962121, 173.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Check PoW Transaction </tspan>
+                    </text>
+                </g>
+                <g id="Ensure-Coinbase" transform="translate(9.962121, 144.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Ensure Coinbase</tspan>
+                    </text>
+                </g>
+                <g id="Block-Size" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Size</tspan>
+                    </text>
+                </g>
+                <g id="Coinbase-Height-Activation" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Coinbase Height Activation</tspan>
+                    </text>
+                </g>
+                <g id="Transaction-Locktime-Activation" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Transaction Locktime Activation</tspan>
+                    </text>
+                </g>
+                <g id="Set-Activation-Deployment-Partial-Validation" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Set Activation Deployment Partial Validation</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Integrity-Validation-Rules" transform="translate(10.000000, 280.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="89" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.46780303" y="19">Integrity Validation Rules</tspan>
+                </text>
+                <g id="PoA-Integrity-Signature" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">PoA Integrity Signature</tspan>
+                    </text>
+                </g>
+                <g id="Block-Merkle-Root" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="8.96590909" y="15">Block Merkle Root</tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Header-Validation-Rules" transform="translate(10.000000, 39.000000)">
+                <rect stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="262" height="146" rx="8"></rect>
+                <text font-family="OpenSans-Bold, Open Sans" font-size="12" font-weight="bold" fill="#1E232D">
+                    <tspan x="8.96590909" y="19">Header Validation Rules</tspan>
+                </text>
+                <g id="PoA-Header-Signature" transform="translate(9.962121, 115.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">PoA Header Signature</tspan>
+                    </text>
+                </g>
+                <g id="PoA-Header-Difficulty" transform="translate(9.962121, 86.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">PoA Header Difficulty</tspan>
+                    </text>
+                </g>
+                <g id="Stratis-Header-Version" transform="translate(9.962121, 57.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.46401515" y="15">Stratis Header Version</tspan>
+                    </text>
+                </g>
+                <g id="Header-Time-Checks" transform="translate(9.962121, 28.000000)">
+                    <rect stroke="#4EA8B2" fill="#FFFFFF" x="0.5" y="0.5" width="242.075758" height="20" rx="8"></rect>
+                    <text font-family="OpenSans-Regular, Open Sans" font-size="11" font-weight="normal" fill="#000000">
+                        <tspan x="9.96212121" y="15">Header Time Checks PoA</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+        <g id="Header-Validator" transform="translate(141.000000, 0.000000)">
+            <rect stroke="#828C96" fill="#CCD7E5" x="166.5" y="0.5" width="282" height="36" rx="8"></rect>
+            <text font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
+                <tspan x="232.544922" y="23">Consensus Rule Engine</tspan>
+            </text>
+            <path d="M307.5,37.5 L307.5,89.5" id="Line" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
+            <path id="Line-decoration-1" d="M307.5,89.5 L310.5,78.7 L304.5,78.7 L307.5,89.5 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
+            <polyline id="Line-2" stroke="#828C96" stroke-width="3" stroke-linecap="square" points="0 89 0 58.8257003 615 58.8257003 615 89"></polyline>
+            <path id="Line-2-decoration-1" d="M0,89 L-3,78.2 L3,78.2 L0,89 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
+            <path id="Line-2-decoration-2" d="M615,89 L618,78.2 L612,78.2 L615,89 Z" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
         </g>
     </g>
 </svg>
