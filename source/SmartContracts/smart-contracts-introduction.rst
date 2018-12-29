@@ -18,8 +18,9 @@ This document assumes that you are familiar with basic blockchain concepts. When
 
    smart-contracts-basic-theory
    uses-of-smart-contracts
-   working-with-contracts
    account-abstraction-layer
+   working-with-contracts
+   contracts-in-depth
    auction-smart-contract
    testing-locally-with-testchain
    testing
