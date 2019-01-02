@@ -2,7 +2,7 @@
 The Auction Smart Contract
 ###############################
 
-This chapter takes a further look at the smart contract-specific parts of the Auction C# class.
+This chapter takes a further look at the smart contract-specific parts of an Auction C# class. You can check out the complete source `here <https://github.com/stratisproject/StratisSmartContractsSamples/blob/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples/Auction.cs>`
 
 ::
 
@@ -34,17 +34,17 @@ The ``Address`` class is included as part of ``Stratis.SmartContracts``. It is a
 
 ::
 
-  public ISmartContractMapping<ulong> ReturnBalances
-  {
-    get
+    public ulong GetBalance(Address address)
     {
-        return PersistentState.GetMapping<ulong>("ReturnBalances");
+        return this.PersistentState.GetUInt64($"Balances[{address}]");
     }
-  }
 
-``PersistentState.GetMapping`` returns a dictionary-like structure for storage. Using a standard .NET dictionary would require serializing and deserializing all the dictionary data every time it was updated. For dictionaries with thousands of entries (think balances of a token contract), this would require a significant amount of processing. ``ISmartContractMapping`` instead stores individual values directly into the underlying ``PersistentState``.
+    private void SetBalance(Address address, ulong balance)
+    {
+        this.PersistentState.SetUInt64($"Balances[{address}]", balance);
+    }
 
-If you require lists of information, you also have access to ``ISmartContractList`` and ``PersistentState.GetList``.
+The above methods emulate a dictionary-like structure for storage. Using a standard .NET dictionary would require serializing and deserializing all the dictionary data every time it was updated. For dictionaries with thousands of entries (think balances of a token contract), this would require a significant amount of processing. These methods instead store individual items in the underlying key/value store.
 
 
 ::
@@ -65,18 +65,18 @@ Assigning a value to ``Owner``, ``EndBlock``, and ``HasEnded`` saves the values 
 
 The ``Assert`` method, inherited from ``SmartContract``, provides a simple way to reject contract executions that don't meet certain criteria. In this case, we're using it to reject any further execution when the message sender doesn't have a balance in our contract.
 
-The ``TransferFunds`` method, also inherited from ``SmartContract``, enables the sending of funds to a specific address. This will send funds to ordinary addresses or contracts. A third parameter can be specified as input for this method to give more information about the method etc. to call on a contract.
+The ``Transfer`` method, also inherited from ``SmartContract``, enables the sending of funds to a specific address. This will send funds to ordinary addresses or contracts. A third parameter can be specified as input for this method to give more information about the method etc. to call on a contract.
 
 ::
 
   public bool Withdraw()
   {
-      ulong amount = ReturnBalances[Message.Sender];
+      ulong amount = GetBalance(this.Message.Sender);
       Assert(amount > 0);
-      ReturnBalances[Message.Sender] = 0;
-      ITransferResult transferResult = TransferFunds(Message.Sender, amount);
+      SetBalance(this.Message.Sender, 0);
+      ITransferResult transferResult = Transfer(this.Message.Sender, amount);
       if (!transferResult.Success)
-          ReturnBalances[Message.Sender] = amount;
+          this.SetBalance(this.Message.Sender, amount);
       return transferResult.Success;
   }
 
