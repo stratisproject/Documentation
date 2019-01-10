@@ -22,4 +22,6 @@
 19. How to upgrade the network: building in forks / upgrades via bip9 and BuriedDeployments
 20. How is the security of a network affected based on distribution of block producer algorithms: POS/POW/POA?
 21. Provide a discussion of the network class. Discuss how it defines which network your node will join, and how it can be used to begin a new network (for example a new sidechain).
-22.The Full Node makes a lot of  of async and await keywords. Explain why this is. Talk aboutIFullNode.RunAsync(). 
+22. The Full Node makes a lot of  of async and await keywords. Explain why this is. Talk aboutIFullNode.RunAsync().
+23. Detail the command line parameters. The help should produce these on the command line but a documented version could help.
+24. Discuss logging in the Full Node. How would you extend it?
