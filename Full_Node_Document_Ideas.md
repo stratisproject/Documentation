@@ -18,6 +18,7 @@
 16. Caching - what do we cache, why do we cache it, and can you adjust the storage for this.
 
 17. Chain header tree - elaborate on the logic and “decision making process” that this important part of the code allows.
-18. Consensus Manager - how and when would you want to modify consensus - combine with #17
+18. Consensus Manager - how and when would you want to modify consensus - combine with #12 and, possibly #17.
 19. How to upgrade the network: building in forks / upgrades via bip9 and BuriedDeployments
 20. How is the security of a network affected based on distribution of block producer algorithms: POS/POW/POA?
+21. Provide a discussion of the network class. Discuss how it defines which network your node will join, and how it can be used to begin a new network (for example a new sidechain).
