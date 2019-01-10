@@ -13,7 +13,7 @@
 11. How do our wallets come together with the full node? Give a thorough explanation of how this happens and identify the code involved. Could a wallet hold anything else? How would you do that?
 12. Validation - describe how we validate both headers and blocks in more detail - how would you modify validation?
 13. Can you alter the speed at which blocks are made if desired - could be part of an tutorial in which you can see this happen - link with PoS article (#1)
-14. The searching/lookup capabilities on Stratis blockchain - what are they and how could you extend them - Show how the blockchain is interrogated and the algorithms involved.
+14. The searching/lookup capabilities on Stratis blockchain - what are they and how could you extend them - Show how the blockchain is interrogated and tusehe algorithms involved.
 15. Persistent data storage in the full node - can you configure this (use a different database for example?)
 16. Caching - what do we cache, why do we cache it, and can you adjust the storage for this.
 
@@ -22,4 +22,4 @@
 19. How to upgrade the network: building in forks / upgrades via bip9 and BuriedDeployments
 20. How is the security of a network affected based on distribution of block producer algorithms: POS/POW/POA?
 21. Provide a discussion of the network class. Discuss how it defines which network your node will join, and how it can be used to begin a new network (for example a new sidechain).
-22.The Full node makes a lot of use of async and await keywords. Explain why this is. Talk aboutIFullNode.RunAsync(). 
+22.The Full Node makes a lot of  of async and await keywords. Explain why this is. Talk aboutIFullNode.RunAsync(). 
