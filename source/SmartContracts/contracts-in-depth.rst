@@ -109,7 +109,7 @@ The table below outlines the behaviour when a byte array is interpreted unsucces
   ToStruct<T>, bytes == null || bytes.Length == 0, default(T)  
 
 Deserializing a Base58 Address
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to interpret a string as a base58 encoded address. If the string is ``null``, empty, or not a valid base58 address, then ``Address.Zero`` is returned.
 
 The Receive function
@@ -123,7 +123,7 @@ Contract Validation
 All types in a contract assembly are validated to check for non-deterministic elements and conformance to a specific format.
 
 Determinism Validation
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Deterministic execution is enforced by only permitting whitelisted members to be used in a contract. 
 
 .. csv-table:: Whitelisted members
