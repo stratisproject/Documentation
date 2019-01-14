@@ -18,11 +18,9 @@ A Stratis smart contract must not contain any non-deterministic elements. This r
 
 All contracts are validated by a node when the contract is being deployed. Invalid contracts will fail validation on-chain. Because of this, it is recommended to validate contracts locally before deployment. 
 
-Validation can be done using the ``sct`` command line tool.
+Validation can be done using the ``sct`` command line tool which you can download `here <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_.
 
 ::
-
-  cd src/Stratis.SmartContracts.Tools.Sct
   dotnet run -- validate [CONTRACT_PATH_HERE]
 
 Compiling a contract
