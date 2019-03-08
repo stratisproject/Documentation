@@ -8,7 +8,6 @@ The audience for this document is anyone who wants to get started writing smart 
 
 This document assumes that you are familiar with basic blockchain concepts. When it comes to writing smart contracts, a basic knowledge of C# is also assumed. However, if you are new to C# or even programming, we recommend you continue to explore Stratis smart contracts as part of your C# learning experience. More resources on the C# language are available `here <https://docs.microsoft.com/en-us/dotnet/csharp/>`_. A basic knowledge of `Swagger <https://swagger.io>`_ and working with the command-line interface would also be useful.
 
-
 .. note::
     The Stratis Smart Contract platform is currently in an open alpha stage. Things may not be stable and aspects of the development process are subject to change. Please do not use the alpha version of Stratis Smart Contracts for production applications.
 
@@ -27,3 +26,7 @@ This document assumes that you are familiar with basic blockchain concepts. When
    support
    appendix-future-enhancements-to-smart-contracts
    appendix-gas-prices
+   Tutorial1-LocalSidechain/local-network-tutorial-introduction
+   Tutorial2-HelloWorld/hello-world-tutorial-introduction
+   Tutorial3-ExtendingHelloWorld/hello-world-extension-tutorial-introduction
+   

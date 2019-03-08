@@ -1,0 +1,8 @@
+datadir,Specifies the directory in which to hold the data for a node. The node creates the directory structure the first time it is run. Based on settings in the scripts you can find the data on a Windows PC in the miner1 node1 and node2 directories held within APPDATA\LocalSCNodes. On a Mac these directories are found in ~/LocalSCNodes. This overrides the standard settings which assume you will only run one node for each mainchain or sidechain on a device. In this slightly unusual situation three nodes from one network are run on one machine.
+port,Specifies the port to use to interact with peers on the network.
+apiport,Specifies the port to use for interactions via the Swagger API.
+txindex,A flag that specifies that transactions should be saved in the database so they can be queried.
+connect,Specifies a peer to connect to on the network. Giving the miner an invalid IP address for this option (0) ensures it makes no attempt to connect to other peers. When the connect option is used the node does not by default listen for other peers trying to connect.
+listen,Specifies the node should listen for other peers trying to connect. In the case of the miner this flag is used to override the effect of connect which is to turn off listening.
+addnode,Specifies a peer (node) to connect to. When a peer is connected to using addnode the peer sends back other nodes to connect to. For example if node1 connects to miner1 then miner1 can provided node2 has connected send back node2 as a peer for node1 to connect to. The end result is that node1 is connected to miner1 and node2.
+bind,The IP address to accept data from. Specifying a local address ensures that the network remains entirely local.
