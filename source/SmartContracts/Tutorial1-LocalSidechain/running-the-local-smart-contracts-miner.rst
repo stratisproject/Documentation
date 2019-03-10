@@ -82,7 +82,7 @@ On a Mac or Linux system, use:
 
     ./start_miner1.sh
 
-The miner will run for a short time and then abort. This is because of two ``Network.Assert()`` calls, which raise an exception if a boolean condition is not met. The two conditions are as follows:
+The miner will build, run for a short time, and then abort. This is because of two ``Network.Assert()`` calls, which raise an exception if a boolean condition is not met. The two conditions are as follows:
 
 1. The hash of the genesis block must match a supplied 256 integer representing the expected hash.
 2. The hash of the genesis block Merkle Root must match a supplied 256 integer representing the expected hash.
@@ -91,12 +91,15 @@ Blockchain architecture means that blocks hold a hash of the previous block, so 
 
 Because you know the reason for the change, you can go ahead and update the 256 integer values. Just before the "Invalid output" line, you will notice two lines of console output similar to the following:
 
- 
+::
+
+    Add here!!
+
 The 256 integer values will not be the same as shown above because your new timestamp will be different. Update the condition for the two assert functions:
 
 ::
 
-
+    Add here!!
 
 Now, if any changes happen inadvertently to *your* genesis block setup, the node will not run. The updated values you see in the console output are provided by the following lines of code:
 
@@ -176,6 +179,8 @@ Now stop the miner. Copy the ``federation.dat`` file into miner1's data director
      :align: center
 
 Once, you have copied the file over, the miner node will commence with creating the genesis block the next time it is run.
+
+.. note:: Because the Full Node source does not have to rebuilt after this point, you can add the ``--no-build`` option after the ``dotnet run`` command and before the cofig options in last line of the miner script. This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option. 
 
 
 
