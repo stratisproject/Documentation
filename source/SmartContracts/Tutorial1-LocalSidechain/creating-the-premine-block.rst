@@ -9,7 +9,7 @@ The first step is to create a wallet on the miner to pay the tokens into.
 Your miner's wallet
 ==================================
 
-To create a wallet, we will use the Swagger API, which requires that a node is running. Now we have mined the genesis block, we do not want the node to mine until we have a wallet to pay tokens to. To temporarily stop the node mining, *move the ``federationKey.dat`` file* out of the data directory and then run the node again.
+To create a wallet, we will use the Swagger API, which requires that a node is running. Now we have mined the genesis block, we do not want the node to mine until we have a wallet to pay tokens to. To temporarily stop the node mining, *move the federationKey.dat file out of the data directory* and then run the node again.
 
 Once the miner has started up, connect to the miner using Swagger: 
 
@@ -61,14 +61,16 @@ This script passed is a `scriptPubKey <https://github.com/bitcoinbook/bitcoinboo
         return address.Pubkey;
     }
 
-.. note:: ``return address.Pubkey;`` in the above code excerpt returns the full scriptPubKey locking script. 
+.. note:: In the above code excerpt, ``return address.Pubkey;`` returns the full scriptPubKey locking script. 
 
 Now take a look at the following code excerpt from ``onBuild()``.
+
+::
 
     var coinviewRule = this.ConsensusManager.ConsensusRules.GetRule<CoinViewRule>();
     this.coinbase.Outputs[0].Value = this.fees + coinviewRule.GetProofOfWorkReward(this.height);
 
-Even though this is a PoA network, the code path being followed is anaologous to a PoW network with the tokens being added to a coinbase transaction output (previously created). The code that actually checks how many tokens to create is part of :doc:`the rules used by the consensus manager </../../FullNode/Consensus/customising-consensus-rule-engines>`. Find the ``GetProofOfWorkReward()`` function in the ``CoinViewRule`` class:
+Even though this is a PoA network, the code path being followed is anaologous to a `Proof-of-Work <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch10.asciidoc#proof-of-work-algorithm>`_ network with the tokens being added to a `coinbase transaction output <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch10.asciidoc#the-coinbase-transaction>`_ (previously created). The code that actually checks how many tokens to create is part of :doc:`the rules used by the consensus manager </../../FullNode/Consensus/customising-consensus-rule-engines>`. Find the ``GetProofOfWorkReward()`` function in the `PoACoinviewRule <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/BasePoAFeatureConsensusRules/PoACoinviewRule.cs>`_ class:
 
 ::
 
