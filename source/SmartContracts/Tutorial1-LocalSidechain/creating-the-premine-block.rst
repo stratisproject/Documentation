@@ -61,7 +61,7 @@ This script passed is a `scriptPubKey <https://github.com/bitcoinbook/bitcoinboo
         return address.Pubkey;
     }
 
-.. note:: In the above code excerpt, ``return address.Pubkey;`` returns the full scriptPubKey locking script. 
+.. note:: In the above code excerpt, ``return address.Pubkey;`` returns the full scriptPubKey locking script.
 
 Now take a look at the following code excerpt from ``onBuild()``.
 

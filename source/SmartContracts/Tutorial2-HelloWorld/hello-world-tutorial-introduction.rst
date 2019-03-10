@@ -105,10 +105,12 @@ To see the general help on the sct, use the following command: ``dotnet run -- h
 Deploying the Hello World Smart Contract
 ===========================================
 
-Begin by making sure that you have a local smart contract network running. You will need funds to deploy the smart contract, and if you get the local network up and running, you should now be in possession of 100,000,000 LSC (Local Smart Contract) tokens! You can deploy the token using Swagger by connecting to either of the two standard  nodes once you have got them running:
+Begin by making sure that you have a local smart contract network running. You will need funds to deploy the smart contract, and if you get the local network up and running, you should now be in possession of 100,000,000 LSC (Local Smart Contract) tokens! You can deploy the token using Swagger by connecting to either of the two standard nodes once you have got them running:
 
 * http://localhost:38202/swagger/index.html
 * http://localhost:38203/swagger/index.html
+
+.. note:: **You must have the miner node up and running at all times when working on this tutorial and subsequent tutorial.** Only the miner has the ability to process these smart contract transactions into blocks. If a smart contract deployment or method call transaction does not make it into a block it does not exist on the network, and any related persistant state change never happens.  
 
 You will use the ``/api/SmartContracts/build-and-send-create`` API call to deploy the Smart Contract. This involves filling out the ``BuildCreateContractTransactionRequest`` object. Each member of the object is fully documented in the API. Copy the CIL code you generated in the previous section into the ``contractCode`` field. For the gas limit, specify the maximum value as we are not expending real gas.
 
@@ -179,7 +181,7 @@ The ``Return`` value proves the local call was successful.
 
 .. _creating-a-real-transaction-which-calls-sayhello:
 
-Creating a real transaction which calls SayHello()
+Creating a transaction which calls SayHello()
 ======================================================
 
 The value returned when the ``SayHello()`` method is called from within a transaction is the same as when it is called locally. This is because the call does not change the persistant state for the ``Greeting`` property. However, when the call is part of a broadcast transaction and subsequently included in a mined block, other nodes are able to see the result of the transaction call.

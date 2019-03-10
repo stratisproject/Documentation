@@ -66,6 +66,8 @@ Interacting with a contract can be done in several ways:
 
 At the moment, it is only possible to make local calls via the API.
 
+.. _parameter-serialization:
+
 Parameter Serialization
 --------------------------
 
