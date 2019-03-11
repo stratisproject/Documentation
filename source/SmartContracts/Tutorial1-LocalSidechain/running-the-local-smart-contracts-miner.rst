@@ -151,7 +151,7 @@ If you want, you can now comment them out. When you run the miner, the node now 
     MISS means that miner didn't produce a block at the timestamp he was supposed to.
     ...
 
-Now the mining node is running. However, the miner will not mine because it requires a file containing its private federation key.
+Although the mining node is running, the miner will not mine because it requires a file containing its private federation key.
 
 Adding the federation private key
 -----------------------------------
@@ -165,9 +165,9 @@ The miner's federation public key is specified in the constructor for the  `Loca
         new PubKey("02f5b2a2fc2aa9f2ab85e9727720f9b280ed937f897e444810abaada26738b13c4"),
     };
 
-However, as we have seen, the miner is currently not mining any blocks. This is because a corresponding file containing the private key which matches the public key has not been provided. The private key is required to sign the blocks produced for the network. The file is named ``federationKey.dat``, and you can find it in the ``Federation_Key`` directory of the ``LSC-tutorial`` branch. The file is not readable as the private key is necessarily encrypted.
+However, as we have seen, the miner is currently not mining any blocks. This is because a corresponding file containing a private key, which matches the public key, has not been provided. The private key is required to sign the blocks produced for the network. The file is named ``federationKey.dat``, and you can find it in the ``Federation_Key`` directory of the ``LSC-tutorial`` branch. The file is not readable as the private key is necessarily encrypted.
 
-The federationKey.dat file will only work for the public key supplied in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class. If you wanted to change the public key or have more miners (PoA federation members), then you can use the key generation facility. This topic is discussed in the tutorial on customizing this Local Smart Contract network.
+The federationKey.dat file will only work for the public key supplied in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class. If you wanted to change the public key or have more miners (PoA federation members), then you can use the key generation facility.
 
 .. note:: To shutdown a node down press ``Ctrl + C``. In order to return to the command prompt, you may have to press ``Ctrl + C`` a second time.
 
@@ -180,7 +180,16 @@ Now stop the miner. Copy the ``federation.dat`` file into miner1's data director
 
 Once, you have copied the file over, the miner node will commence with creating the genesis block the next time it is run.
 
-.. note:: Because the Full Node source does not have to rebuilt after this point, you can add the ``--no-build`` option after the ``dotnet run`` command and before the cofig options in last line of the miner script. This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option. 
+.. note:: Because the Full Node source does not have to rebuilt after this point, you can add the ``--no-build`` option in last line of the miner script, after the ``dotnet run`` command and before the config options . This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option. 
+
+Generating a federation private key
+------------------------------------
+
+For reference, this subsection details how to generate a federation private key. For example, you might want to later experiment with adding extra miners to your LSC network.
+
+To create the private key, on the command line navigate to the ` <>`_
+
+
 
 
 

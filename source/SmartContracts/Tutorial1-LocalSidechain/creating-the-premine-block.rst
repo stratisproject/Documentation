@@ -128,4 +128,7 @@ Your wallet should display the balance:
 
 Congratulations, you have now created your own local network on which to run smart contracts.
 
-.. note:: If you follow the Node Stats in the console output, you will notice that the ``Consensus.Height`` reaches 4 before the balance is displayed in the wallet. The ``Consensus.Height`` after mining the premine block is 2. The delay is because the premine transaction is being confirmed. This delay is defined by ``Consensus.CoinbaseMaturity`` and is set to 1 in ``LocalSmartContractsNetwork`` class; so one block must be mined after the premine block before the UTXO created in it is considered spendable. As you make transactions to deploy and call methods on smart contracts, you will notice that these transactions also take one block to confirm. 
+.. note:: If you follow the Node Stats in the console output, you will notice that the ``Consensus.Height`` reaches 4 before the balance is displayed in the wallet. The ``Consensus.Height`` after mining the premine block is 2. The delay is because the premine transaction is being confirmed. This delay is defined by ``Consensus.CoinbaseMaturity`` and is set to 1 in ``LocalSmartContractsNetwork`` class; so one block must be mined after the premine block before the UTXO created in it is considered spendable. As you make transactions to deploy and call methods on smart contracts, you will notice that these transactions also take one block to confirm.
+
+.. note:: You must now stop the miner and remove the ``-bootstrap``config option in last line of the miner script. The miner will now only mine when other peers are connected, which is required for normal running of a PoA network.
+
