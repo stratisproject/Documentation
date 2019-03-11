@@ -1,29 +1,29 @@
-**********************************************************************
-Running the Local Smart Contracts network miner for the first time  
-**********************************************************************
+***************************************************************************
+Running the Local Smart Contracts (LSC) network miner for the first time  
+***************************************************************************
 
-The Local Smart Contracts network is held in a branch on the `Stratis Full Node repository on GitHub <https://github.com/stratisproject/StratisBitcoinFullNode>`_. Make a clone of the Full Node repository on your systemn and then switch to the ``LSC-tutorial`` branch.
+The Local Smart Contracts (LSC) network is held in a branch on the `Stratis Full Node repository on GitHub <https://github.com/stratisproject/StratisBitcoinFullNode>`_. Make a clone of the Full Node repository on your system and then switch to the ``LSC-tutorial`` branch.
 
-The Node Scripts
-====================
+The network node scripts
+=========================
 
-Let's look at the scripts that run the three nodes in the ``LSC_Node_Scripts`` directory. Batch files (\*.bat) are supplied for Windows PCs, and Bash scripts (\*.sh) are supplied for Mac and Linux PCs. To give you an idea of how the the three nodes are going to interact, we are going examine the scripts in greater detail. 
+Let's look at the scripts in the ``LSC_Node_Scripts`` directory, which run the three nodes. Batch files (\*.bat) are supplied for Windows PCs, and Bash scripts (\*.sh) are supplied for Mac and Linux PCs. To give you an idea of how the three nodes are going to interact, we are going to examine the scripts in greater detail. 
 
 Open the three scripts for your system. The scripts don't do anything other than make sure the correct branch of the GitHub repository is checked out and run one of two daemons with the required configuration options.
 
 The miner node runs the ``Stratis.LocalSmartContracts.MinerD`` daemon, and the other two nodes run the ``Stratis.LocalSmartContracts.NodeD`` daemon. The configuration options used give us information on the topology of the network we are setting up.
 
 Daemon configuration options
------------------------------------------
+-------------------------------
 
-The table below shows the configuration options used for the miner and standard nodes daemons. These options represents a small subset of the configuration options available for the Stratis Full Node.
+The table below shows the configuration options used for the miner and standard nodes daemons. These options represent a small subset of the configuration options available for the Stratis Full Node.
 
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Config Option | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 +===============+===================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
 | datadir       | Specifies the directory in which to hold the data for a node. The node creates the directory structure the first time it is run. Based on settings in the scripts, you can find the data on a Windows PC in the miner1, node1, and node2 directories held within APPDATA\LocalSCNodes. On a Mac these directories are found in ~/LocalSCNodes. This overrides the standard settings which assume you will only run one node for each mainchain or sidechain on a device. In this slightly unusual situation, three nodes from one network are run on one machine. |
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| port          | Specifies the port to use to interact with peers on the network.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| port          | Specifies the port to use for peer interactions on the network.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | apiport       | Specifies the port to use for interactions via the Swagger API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -38,17 +38,17 @@ The table below shows the configuration options used for the miner and standard 
 | bind          | The IP address to accept data from. Specifying a local address ensures that the network remains entirely local.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 +---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The Local Smart Contracts Miner 
+The LSC miner 
 =================================
 
-Only the miner node needs to run to create the genesis and premine blocks.
+Only the miner node needs to be running to create the genesis and premine blocks.
 
-The genesis block has a timestamp and the miner will not begin mining the genesis block if the timestamp is too far in the past. The first thing to do before running the miner is to update the genesis block timestamp.
+The genesis block has a timestamp, and if the timestamp is too far in the past, the miner will not begin mining the genesis block. The first thing to do before running the miner is to update the genesis block timestamp in the source code.
 
-Setting the timestamp for your local smart contracts network
+Setting the timestamp for your LSC network
 -------------------------------------------------------------
 
-The timestamp is set in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class, which inherits from `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_ class and defines the LSC network. The following code excerpt from ``LocalSmartContracts()`` constructor shows the line of code where the genesis block property is set:
+The timestamp is set in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class, which inherits from the  `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_ class and defines the LSC network. The following code excerpt from the ``LocalSmartContracts()`` constructor shows the line of code where the genesis block property is set:
 
 ::
 
@@ -84,18 +84,18 @@ On a Mac or Linux system, use:
 
 The miner will build, run for a short time, and then abort. This is because of two ``Network.Assert()`` calls, which raise an exception if a boolean condition is not met. The two conditions are as follows:
 
-1. The hash of the genesis block must match a supplied 256 integer representing the expected hash.
-2. The hash of the genesis block Merkle Root must match a supplied 256 integer representing the expected hash.
+1. The hash of the genesis block must match a supplied 256-bit integer representing the expected hash.
+2. The hash of the genesis block Merkle Root must match a supplied 256-bit integer representing the expected hash.
 
-Blockchain architecture means that blocks hold a hash of the previous block, so the hash of the genesis block will be held by the premine block. Because a change of even one byte will produce a different hash, these functions check if anything unexpected has changed in the genesis block, and in this case, you have updated the timestamp.
+Blockchain architecture means that blocks hold a hash of the previous block, so the hash of the genesis block will be held by the premine block. Because a change of even one byte will produce a different hash, these functions check if anything unexpected has changed in the genesis block. In this case, they have identified that you have updated the timestamp.
 
-Because you know the reason for the change, you can go ahead and update the 256 integer values. Just before the "Invalid output" line, you will notice two lines of console output similar to the following:
+Because you know the reason for the change, you can go ahead and update the 256-bit integer values. Just before the "Invalid output" line, you will notice two lines of console output similar to the following:
 
 ::
 
     Add here!!
 
-The 256 integer values will not be the same as shown above because your new timestamp will be different. Update the condition for the two assert functions:
+The 256-bit integer values will not be the same as the above because your new timestamp will be different. Update the condition for the two assert functions:
 
 ::
 
