@@ -2,7 +2,7 @@
 Creating the genesis block
 *******************************************
 
-Running the mining node with the ``FederationKey.dat`` file in it's data directory will result in mining taking place. However, we only want to mine the genesis block, and then abort the node before it begins to create the premine block. 
+Running the mining node with the ``FederationKey.dat`` file in its data directory will result in mining taking place. However, we only want to mine the genesis block, and then abort the node before it begins to create the premine block. 
 
 Now run the node and keep a close eye on the miner node output. When you see the following output, shut the node down using ``Ctrl + C``:
 
@@ -16,7 +16,7 @@ Now run the node and keep a close eye on the miner node output. When you see the
 The code behind the creation of the genesis block
 ==================================================
 
-Now let's take a closer look at the code `behind the genesis block <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_. We took a look at one of the setting, ``GenesisTime``, and updated it when first running the miner.  
+Now let's take a closer look at the code `behind the genesis block <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_. We took a look at one of the settings, ``GenesisTime``, and updated it when first running the miner.  
 
 ::
 
@@ -32,12 +32,12 @@ Now let's take a closer look at the code `behind the genesis block <https://gith
 
     this.Genesis = genesisBlock;
 
-The genesis block contains a single transaction, which has one transaction input. Some of the genesis block settings are in fact stored as members of the ``LocalSmartContractsMain`` class:
+The genesis block contains a single transaction, which has one transaction input and one transaction output. Some of the genesis block settings are in fact stored as members of the ``LocalSmartContractsMain`` class:
 
 +----------------+------------------------------------------------------------------------------------------------------------------+
-| GenesisTime    | The UNIX time for genesis block.                                                                                 |
+| Setting        | Description                                                                                                      |
 +================+==================================================================================================================+
-| GenesisTime    | The UNIX time for genesis block.                                                                                 |
+| GenesisTime    | The UNIX time for the genesis block.                                                                             |
 +----------------+------------------------------------------------------------------------------------------------------------------+
 | GenesisNonce   | Not used by a PoA blockchain so a random value is supplied.                                                      |
 +----------------+------------------------------------------------------------------------------------------------------------------+
@@ -93,6 +93,6 @@ The genesis block transaction
 
 The genesis block transaction is given the same time as the genesis block and has one input and one output.
 
-Normally, transaction inputs consist of UTXOs, which are being spent in the transaction. The input here is not a normal input, and is a reference to a blockchain-related article from the BBC. It can be any string, but choosing a news article prooves the genesis block was created on the same day of the article or after the article. It is a consensus requirement that every transaction in a block should have at least one input, so from this perspective, it is also necessary to create this "news item" input.
+Normally, transaction inputs consist of UTXOs, which are being spent in the transaction. The input here is not a normal input, and is a reference to a blockchain-related article from the BBC. It can be any string but choosing a news article proves the genesis block was created on the same day of the article or after the article. It is a consensus requirement that every transaction in a block should have at least one input, so from this perspective, it is also necessary to create this "news item" input.
 
-The transaction output takes the reward argument, which is 0. Because the genesis block does not undergo full validation, it is not possible to create a spendable UTXO for a genesis block. Therefore, the zero value makes sense and there is no need to create a script for this UTXO.
+The transaction output takes the reward argument, which is 0. Because the genesis block does not undergo full validation, it is not possible to create a spendable UTXO for a genesis block. Therefore, the zero value makes sense and there is no need to create a `locking script <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#script-construction-lock--unlock>`_ for this UTXO.

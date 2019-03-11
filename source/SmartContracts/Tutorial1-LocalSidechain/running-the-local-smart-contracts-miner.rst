@@ -169,29 +169,36 @@ However, as we have seen, the miner is currently not mining any blocks. This is 
 
 The federationKey.dat file will only work for the public key supplied in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class. If you wanted to change the public key or have more miners (PoA federation members), then you can use the key generation facility.
 
-.. note:: To shutdown a node down press ``Ctrl + C``. In order to return to the command prompt, you may have to press ``Ctrl + C`` a second time.
+.. note:: To shutdown a node, press ``Ctrl + C``. In order to return to the command prompt, you may have to press ``Ctrl + C`` a second time.
 
-Now stop the miner. Copy the ``federation.dat`` file into miner1's data directory. This is specified by the ``-datadir`` command line option, and will have been created when you ran the miner node for the first time. The path on a Windows system will be something like ``C:\User\User_Name\LocalSCNodes/miner1/LocalSmartContracts/LSC``, and on a Mac or Linux system, it will be ``~/LocalSCNodes/miner1/LocalSmartContracts/LSC``. The following image shows miner1's directory structure and the ``federation.dat`` file in place. It includes the directories for node1 and node2, which you will not see until you have run them. The miner wallet file will also not be visible as no wallet has been created yet.
+Now stop the miner. Copy the ``federation.dat`` file into miner1's data directory. This is specified by the ``-datadir`` command line option and will have been created when you ran the miner node for the first time. The path on a Windows system will be something like ``C:\User\User_Name\LocalSCNodes/miner1/LocalSmartContracts/LSC``, and on a Mac or Linux system, it will be ``~/LocalSCNodes/miner1/LocalSmartContracts/LSC``. The following image shows miner1's directory structure and the ``federation.dat`` file in place. It includes the directories for node1 and node2, which you will not see until you have run them. The miner wallet file will also not be visible as no wallet has been created yet.
 
 .. image:: Directory_Structure.png
      :width: 900px
-     :alt: UNIX Timestamp
+     :alt: Directory Structure
      :align: center
 
 Once, you have copied the file over, the miner node will commence with creating the genesis block the next time it is run.
 
-.. note:: Because the Full Node source does not have to rebuilt after this point, you can add the ``--no-build`` option in last line of the miner script, after the ``dotnet run`` command and before the config options . This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option. 
+.. note:: Because the Full Node source does not have to be rebuilt after this point, you can add the ``--no-build`` option in the last line of the miner script, after the ``dotnet run`` command and before the config options. This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option to them. 
 
 Generating a federation private key
 ------------------------------------
 
-For reference, this subsection details how to generate a federation private key. For example, you might want to later experiment with adding extra miners to your LSC network.
+Just for reference, this subsection details how to generate a federation private key. For example, you might want to later experiment with adding extra miners to your LSC network.
 
-To create the private key, on the command line navigate to the ` <>`_
+To create the private key, on the command line, navigate to the `PoAChainD <https://github.com/stratisproject/StratisBitcoinFullNode/tree/LSC-tutorial/src/Stratis.PoAChainD>`_ project. Then run this command:
 
+::
 
+    dotnet run -generateKeyPair
 
+You should see output similar to the following:
 
+.. image:: Private_Key_Generation.png
+     :width: 900px
+     :alt: Private key Generation
+     :align: center
 
 
 

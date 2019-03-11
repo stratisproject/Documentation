@@ -31,14 +31,14 @@ How does the premine block create the tokens
 
 With the exception of the genesis block, block templates are created for each block using the `BlockDefinition <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.Miner/BlockDefinition.cs>`_ class. The ``BlockDefinition`` class is abstract, which means it requires subclassing. The LSC network uses the `SmartContractPoABlockDefinition <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.SmartContracts/PoA/SmartContractPoABlockDefinition.cs>`_ class, which, in fact, only adds minimal functionality. The ``SmartContractPoABlockDefinition`` inherits from `SmartContractBlockDefinition <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.SmartContracts/PoW/SmartContractBlockDefinition.cs>`_, and in this class more smart contract specific functionality is added.
 
-The code which creates the LSC tokens as spendable UTXO in the miner's wallet is in the ``BlockDefinition.onBuild()`` base function, which is called from ``SmartContractBlockDefinition.Build()``. ``Build()`` takes a ``Script`` argument:
+The code which creates the LSC tokens as a spendable UTXO in the miner's wallet is in the ``BlockDefinition.onBuild()`` base function, which is called from ``SmartContractBlockDefinition.Build()``. ``Build()`` takes a ``Script`` argument:
 
 ::
 
     public override BlockTemplate Build(ChainedHeader chainTip, Script scriptPubKeyIn)
     {
 
-This script passed is a `scriptPubKey <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#script-construction-lock--unlock>`_, which defines who has the right to spend the tokens created in ``onBuild()``. In this case, the hashed public key in the script relates to (is taken from) an *unused address* from the *first account (account 0)* in the *first wallet* on the node. You can see the code for this in the private ``GetScriptPubKeyFromWallet()`` function in the `PoAMiner <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoAMiner.cs>`_ class:
+The passed script is a `scriptPubKey <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc#script-construction-lock--unlock>`_, which defines who has the right to spend the tokens created in ``onBuild()``. In this case, the hashed public key in the script relates to (is taken from) an *unused address* from the *first account (account 0)* in the *first wallet* on the node. You can see the code for this in the private ``GetScriptPubKeyFromWallet()`` function in the `PoAMiner <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoAMiner.cs>`_ class:
 
 ::
 
@@ -130,5 +130,5 @@ Congratulations, you have now created your own local network on which to run sma
 
 .. note:: If you follow the Node Stats in the console output, you will notice that the ``Consensus.Height`` reaches 4 before the balance is displayed in the wallet. The ``Consensus.Height`` after mining the premine block is 2. The delay is because the premine transaction is being confirmed. This delay is defined by ``Consensus.CoinbaseMaturity`` and is set to 1 in ``LocalSmartContractsNetwork`` class; so one block must be mined after the premine block before the UTXO created in it is considered spendable. As you make transactions to deploy and call methods on smart contracts, you will notice that these transactions also take one block to confirm.
 
-.. note:: You must now stop the miner and remove the ``-bootstrap``config option in last line of the miner script. The miner will now only mine when other peers are connected, which is required for normal running of a PoA network.
+.. note:: You must now stop the miner and remove the ``-bootstrap`` config option in last line of the miner script. The miner will now only mine when other peers are connected, which is required for normal running of a PoA network.
 
