@@ -2,7 +2,7 @@
 Smart Contract Tutorial 3 - Extending the "Hello World" example
 *******************************************************************
 
-The next tutorial in the series extends the "Hello World" program from the previous example. Rather than just hold a single greeting, the smart contract is upgraded to hold multiple greetings and cycle through them as greetings are requested. To accomodate this, the smart contract is extended with a new method allowing users of the smart contract to add additional greetings.
+The next tutorial in the series extends the "Hello World" program from the previous example. Rather than just hold a single greeting, the smart contract is upgraded to hold multiple greetings and cycle through them as greetings are requested. To accommodate this, the smart contract is extended with a new method allowing users of the smart contract to add additional greetings.
 
 You can find the source code for the "Hello World 2" smart contract examples in the `Stratis.SmartContracts.Examples.HelloWord <https://github.com/stratisproject/StratisBitcoinFullNode/tree/LSC-tutorial/src/Stratis.SmartContracts.Examples.HelloWorld>`_ project, which is included in the ``LSC-tutorial`` branch of the Stratis Full Node. For this tutorial, you will study, build, and deploy `HelloWorld2.cs <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.SmartContracts.Examples.HelloWorld/HelloWorld2.cs>`_. 
 
@@ -19,7 +19,7 @@ The procedure is exactly the same, except you supply the ``HelloWorld2.cs`` file
 An overview of the code
 ==============================
 
-The upgrade to the smart contract essentially involves modifying the ``Greeting`` to hold and an array of strings. This first thing to be aware of is that smart contracts do not persists arrays, but if you want to store a group of a particular type of data, you can adapt key-value pairs to do this. The accessors for the ``Greeting`` property wrap up the logic but rely on two other integer properties to maintain the array: ``Index`` and ``Bounds``.
+The upgrade to the smart contract essentially involves modifying the ``Greeting`` property to hold an array of strings. The first thing to be aware of is that smart contracts do not persists arrays, but if you want to store a group of a particular type of data, you can adapt key-value pairs to do this. The accessors for the ``Greeting`` property wrap up the logic but rely on two other integer properties to maintain the array: ``Index`` and ``Bounds``.
 
 ::
 
@@ -68,12 +68,12 @@ The upgrade to the smart contract essentially involves modifying the ``Greeting`
 
 You can see that the indexes are built into the keys and as far as the smart contract is concerned, it is just persisting individual pieces of data.
 
-Because the properties contain the "array maintenance logic", ``AddGreeting()`` method just uses the ``Greeting`` property set accessor to add new greetings and, as before, the ``Greeting`` property get accessor supplies ``SayHello()`` method with a greeting.  
+Because the properties contain the "array maintenance logic", the ``AddGreeting()`` method just uses the ``Greeting`` property set accessor to add new greetings and, as before, the ``Greeting`` property get accessor supplies the ``SayHello()`` method with a greeting.
 
 Using a dictionary approach
 -----------------------------
 
-Because smart contracts key-value pair approach, you may want approach storing grouped data from a dictionary approach and not iterate through grouped data from start to finish at all. Take a look at this code excerpt from a `C# version of an ERC-20 smart contract <https://github.com/stratisproject/StratisSmartContractsSamples/blob/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples/StandardToken.cs>`_.
+Because smart contracts use the key-value pairs, you may want to approach storing grouped data from a dictionary approach and not iterate through grouped data from start to finish at all. Take a look at this code excerpt from a `C# version of an ERC-20 smart contract <https://github.com/stratisproject/StratisSmartContractsSamples/blob/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples/StandardToken.cs>`_:
 
 ::
 
@@ -88,14 +88,14 @@ Because smart contracts key-value pair approach, you may want approach storing g
         return PersistentState.GetUInt64($"Allowance:{owner}:{spender}");
     }
 
-``Allowance`` is effectively a 2D dictionary with two addresses being used to form the key. As the only requirement is to access the allowance for any two addresses, there is no need to keep a record of an index or bounds. In fact, the bounds of 2D dictionary can grow as required. Again, when storing allowances, as far as the smart contract is concerned, it is just persisting individual pieces of data.
+``Allowance`` is effectively a 2D dictionary with two addresses being used to form the key. As the only requirement is to access the allowance for any two addresses, there is no need to keep a record of an index or bounds. In fact, the bounds of the 2D dictionary can grow as required. When storing the allowances in the above code, as far as the smart contract is concerned, it is just persisting individual pieces of data.
 
 Calling a method on the contract for the first time
 ====================================================
 
-To begin, we are going SayHello(). Fromm examining the code, you can see that the call receipt will give a ``returnValue`` of "Hello World" no matter how many times the method is called. The ``Index`` property updates from -1 to 0 and, from then on, remain at 0. To remind yourself how to make a method call, refer to :ref:`creating-a-real-transaction-which-calls-sayhello`.
+To begin, we are going to call the ``SayHello()`` again. From examining the code, you will see that the call receipt will give a ``returnValue`` of "Hello World" no matter how many times the method is called. The ``Index`` property updates from -1 to 0 and, from then on, remains at 0. To remind yourself how to make a method call, refer to :ref:`creating-a-real-transaction-which-calls-sayhello`.
 
-.. note:: If you want to check the Index value, you could try and create a method to retrieve it. In this case you must redeploy the smart contract. You don't have to rename the smart contract because, as you saw in the last tutorial, smart contracts are identified by their address. However, it is good from a code management point of view.
+.. note:: If you want to check the ``Index`` value, you could try and create a method to retrieve it. In this case you must redeploy the smart contract. You don't have to rename the smart contract because, as you saw in the last tutorial, smart contracts are identified by their address. However, it is good from a code management point of view.
 
 Adding multiple greetings to the smart contract
 ================================================
@@ -151,12 +151,12 @@ After you have added a greeting in French, you can add a "Hello World" greeting 
 Cycling through the greetings
 ------------------------------
 
-Make repeat calls of ``/api/SmartContracts/build-and-send-call``. The first call you make should have a ``returnValue`` of "Bonjour le monde!". If you have added all four languages shown previously, all four will then be returned. Assuming "Hej Verden!" was the last greeting added, then after it has been returned, the next call displays "Hello World!" and the cycle begins again.
+Use ``/api/SmartContracts/build-and-send-call`` to make repeat calls to ``SayHello()``. The first call you make should have a ``returnValue`` of "Bonjour le monde!". If you have added all four languages shown previously, they will then be returned with each subsequent call. Assuming "Hej Verden!" was the last greeting added, then after it has been returned, the next call returns "Hello World!" and the cycle begins again.
 
-What happens if SayHello() is called by different node?
---------------------------------------------------------
+What happens if SayHello() is called by a different node?
+-----------------------------------------------------------
 
-This is an interesting question, and answering it can help clarify how smart contracts work. You can also see this in action by running both node1 and node 2 and alternating the calls to ``SayHello()``. between the nodes. Assuming the smart contract holds all six greetings and the ``Index`` property is 0, the following results are returned:
+This is an interesting question and answering it can help clarify how smart contracts work. You can also see this in action by running both node1 and node 2 and alternating the calls to ``SayHello()`` between the nodes. Assuming the smart contract holds all six greetings and the ``Index`` property begins at 0, the following results are returned:
 
 1. Node1: Hello World! 
 2. Node2: Bonjour le monde!
@@ -167,7 +167,7 @@ This is an interesting question, and answering it can help clarify how smart con
 7. Node1: Hello World!
 8. and so on...
 
-When ``SayHello()`` accesses the Greeting property the ``Index`` property is incremented in the Greeting get accessor. As you might expect, using the ++ operator invokes the ``Index`` write accessor:
+When ``SayHello()`` accesses the ``Greeting`` property, the ``Index`` property is incremented in the ``Greeting`` get accessor. As you might expect, using the ``++`` operator invokes the ``Index`` write accessor:
 
 ::
 
@@ -176,15 +176,15 @@ When ``SayHello()`` accesses the Greeting property the ``Index`` property is inc
        PersistentState.SetInt32("Index", value);
    }
 
-Every node receives this state update once the related transaction has been mined, and the same is true of every update made by ``PersistentState.Set*()``. Therefore, in terms of cycling through the greeting, the persisting of the index across the network allows each node to carry on where the last one left off.
+Every node receives this state update once the related transaction has been mined, and the same is true of any state update made by ``PersistentState.Set*()``. Therefore, in terms of cycling through the greetings, the persisting of the index across the network allows each node to carry on where the last one left off.
 
 What happens if you call Hello World 2 methods locally?
 ---------------------------------------------------------
 
-Related to the previous subsection is the question of what happens if you call either ``HelloWorld2.SayHello()`` and ``HelloWorld2.AddGreeting()`` using the ``/api/SmartContracts/local-call`` API call. Based on the knowledge that local smart contract calls make a copy of the persisted state but never persist any changes they make, the following predications can be made:
+Related to the previous subsection is the question of what happens if you call either ``HelloWorld2.SayHello()`` and ``HelloWorld2.AddGreeting()`` using the ``/api/SmartContracts/local-call`` API call. Based on the knowledge that local smart contract calls make a copy of the persisted state but never persist any changes they make, the following predictions can be made:
 
-1. ``SayHello()`` returns the next greeting. This continues until a node creates a transaction containing a ``SayHello()`` call, which is then succesfully mined.
-2. ``AddGreeting()``returns "Added '*the_new_greeting*!' as a greeting.". However, the new greeting will never be displayed by any ``SayHello()`` call.
+1. ``SayHello()`` returns the next greeting. This continues until a node creates a transaction containing a ``SayHello()`` call, which is then successfully mined.
+2. ``AddGreeting()`` returns "Added '*the_new_greeting*!' as a greeting.". However, the new greeting will never be displayed by any ``SayHello()`` call.
 
 If you like, you can check the results of calling Hello World 2 methods locally.
 
