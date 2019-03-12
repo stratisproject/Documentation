@@ -18,14 +18,14 @@ You can find the source code for the "Hello World" smart contract examples in th
 How the concept of a class links to a smart contract
 =====================================================
 
-Smart contracts in C# are intriniscally linked to object oriented design even when they are very basic.
+Smart contracts in C# are intrinsically linked to object-oriented design even when they are very basic.
+
+Being object-oriented also enables smart contracts to inherit methods and properties. This allows a level of basic smart contract functionality to be readily available to all smart contracts via base class methods and properties.
 
 The smart contract constructor
-================================
+---------------------------------
 
-Being object oriented also enables smart contracts to inherit methods and properties. This allows a level of basic smart contract functionality to be readily available to all smart contracts via base class methods and properties.
-
-Deployment of the smart contract involves calling the constructor for the smart contract class. This is when any initialization of the smart contract should take place. Before we look at what the constructor does, let's examine its syntax.
+Deployment of a smart contract involves calling the constructor for the smart contract class. This is where any initialization of the smart contract should take place. Before we look at what the constructor does, let's examine its syntax.
 
 Firstly, as previously mentioned, all smart contracts in C# inherit from ``SmartContract``. It is mandatory to include the following line at the top of the file:
 
@@ -45,7 +45,9 @@ The class declaration specifies that your class inherits from the ``SmartContrac
         ...
     }
 
-The ``[Deploy]`` attribute only needs to be specified when more than one class is declared in the file, but specifying it anyway is fine. When a smart contract is deployed, the entire cs file is compiled into Common Intermediate Language (CIL), which is then supplied to the deployment call.
+The ``[Deploy]`` attribute only needs to be specified when more than one class is declared in the file, but specifying it anyway is fine. When a smart contract is deployed, the entire C# file is compiled into Common Intermediate Language (CIL), which is then supplied to the deployment call.
+
+The first parameter passed to the constructor must be an object conforming to the ``ISmartContractState`` interface:
 
 ::
 
@@ -55,15 +57,18 @@ The ``[Deploy]`` attribute only needs to be specified when more than one class i
         ...
     }
 
-The first parameter passed to the constructor must be an object conforming to the ``ISmartContractState`` interface. You can define additional parameters, and when you deploy the smart contract, you only need to specify the parameters you defined. The first parameter is handled internally. The ``base`` constructor (the ``SmartContract`` constructor) must also be called with the ``ISmartContractState`` parameter and you can see this in the code above. The name of the first parameter could theorectically be changed, but ``smartContractState`` will work fine.
+You can define additional parameters, and when you deploy the smart contract, you only need to specify arguments for the parameters you defined. The first parameter is handled internally. The ``base`` constructor (the ``SmartContract`` constructor) must also be called with the ``ISmartContractState`` parameter, and you can see this in the code above. The name of the first parameter could theoretically be changed, but ``smartContractState`` will work fine.
 
-In our Hello World example, we do one thing and that is initialize the ``Greeting`` property.
+Greeting - a smart contract property
+--------------------------------------
+
+In our Hello World example, we do one thing and that is initialize the ``Greeting`` property:
 
 ::
 
     this.Greeting = "Hello World!";
 
-The actual line intiating the ``Greeting`` property if fairly self-explanatory. Let's take a look at the property getter and setters.
+The actual line initiating the ``Greeting`` property is fairly self-explanatory. Let's take a look at the property getter and setters.
 
 ::
 
@@ -79,13 +84,25 @@ The actual line intiating the ``Greeting`` property if fairly self-explanatory. 
         }
     }
 
-The ``PersistentState`` property belongs to the ``SmartContract`` class and facilitates the storage and retrieval of a string. Smart contract data is stored as a series of key-value pairs and in this case "Greeting" is used as the key. THe ``Greeting`` property is marked as private as there is no need for it to be accessed from anywhere other than inside the smart contract. Unlike methods, C# properties on a smart contract cannot be called even if they are public.
+The ``PersistentState`` property belongs to the ``SmartContract`` class and facilitates the storage and retrieval of data (in this case a string). Smart contract data is stored as a series of key-value pairs and in this case "Greeting" is used as the key. The ``Greeting`` property is marked as private as there is no need for it to be accessed from anywhere other than inside the smart contract. Unlike methods, C# properties on a smart contract cannot be called even if they are public.
+
+SayHello() - a smart contract method
+--------------------------------------
 
 Finally, let's look at the simple method ``Greeting()``, which returns the "Hello World!" string.
 
+::
+
+    public string SayHello()
+    {
+        return this.Greeting;
+    }
+
+As you can see, this method just accesses the ``Greeting`` property.
+
 .. _compiling-the-hello-world-smart-contract:
 
-Compiling the Hello World Smart Contact
+Compiling the Hello World smart contract
 ==========================================
 
 A smart contract in C# must be compiled into CIL before it can be deployed. For this, we are going to use the `Stratis sct tool <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_. After cloning the repository:
@@ -94,7 +111,7 @@ A smart contract in C# must be compiled into CIL before it can be deployed. For 
 2. Execute the following command: ``dotnet run -- validate [PATH_TO_SMART_CONTRACT] -sb``. A relative path to ```HelloWorld.cs`` in your Stratis Full Node repository should work fine.
 3. Copy the CIL to your clipboard.
 
-To see more information on the options available for the sct ``validate`` command, use the following comand: ``dotnet run -- validate --help`` 
+To see more information on the options available for the sct ``validate`` command, use the following command: ``dotnet run -- validate --help`` 
 
 To see the general help on the sct, use the following command: ``dotnet run -- help``
 
@@ -102,17 +119,17 @@ To see the general help on the sct, use the following command: ``dotnet run -- h
 
 .. _deploying-the-hello-world-smart-contract:
 
-Deploying the Hello World Smart Contract
+Deploying the Hello World smart contract
 ===========================================
 
-Begin by making sure that you have a local smart contract network running. You will need funds to deploy the smart contract, and if you get the local network up and running, you should now be in possession of 100,000,000 LSC (Local Smart Contract) tokens! You can deploy the token using Swagger by connecting to either of the two standard nodes once you have got them running:
+Begin by making sure that you have the Local Smart Contract network running. You will need funds to deploy the smart contract, and if you got the local network up and running in Tutorial 1, you should now be in possession of 100,000,000 LSC (Local Smart Contract) tokens! In addition, each standard node should now have 100 LSC tokens. You can deploy the token using Swagger by connecting to either of the two standard nodes as long as they are running:
 
 * http://localhost:38202/swagger/index.html
 * http://localhost:38203/swagger/index.html
 
-.. note:: **You must have the miner node up and running at all times when working on this tutorial and subsequent tutorial.** Only the miner has the ability to process these smart contract transactions into blocks. If a smart contract deployment or method call transaction does not make it into a block it does not exist on the network, and any related persistant state change never happens.  
+.. note:: *You must have the miner node up and running at all times when working on this tutorial and subsequent tutorial.* Only the miner has the ability to process these smart contract transactions into blocks. If a smart contract deployment or method call transaction does not make it into a block, the contract does not exist on the network, and any related persistent state change never happens.
 
-You will use the ``/api/SmartContracts/build-and-send-create`` API call to deploy the Smart Contract. This involves filling out the ``BuildCreateContractTransactionRequest`` object. Each member of the object is fully documented in the API. Copy the CIL code you generated in the previous section into the ``contractCode`` field. For the gas limit, specify the maximum value as we are not expending real gas.
+You will use the ``/api/SmartContracts/build-and-send-create`` API call to deploy the smart contract. This involves filling out the ``BuildCreateContractTransactionRequest`` object. Each member of the object is fully documented in the API. Copy the CIL code you generated in the previous section into the ``contractCode`` field. For the gas limit, specify the maximum value as we have plenty of LSC tokens to pay for the gas.
 
 Execute the API call, and you should see something like the following:
 
@@ -148,7 +165,7 @@ Although the message says that the contract has been successfully deployed, it d
 
 .. note:: If the transaction has been added to the blockchain, this also means that a miner has executed the smart contract constructor. The constructor is, in fact, executed by all nodes who receive the block containing this transaction during block validation. Executing the smart contract constructor effectively persists the ``Greeting`` property on all the nodes. 
 
-The ``newContractAddres`` field is particularly important to note as you use this to identify a smart contract when you call a method on it.  
+The ``newContractAddres`` field is particularly important as you use this to identify a smart contract when you call a method on it.
 
 Calling the SayHello() method locally
 ===========================================
@@ -156,11 +173,11 @@ Calling the SayHello() method locally
 We are going to call the ``SayHello()`` method as a local call. This means that:
 
 1. No gas will be expended making the call.
-2. The persistant state for the ``Greeting`` property will be copied and worked on for the duration of the call.
+2. The persisted state for the ``Greeting`` property will be copied and worked on for the duration of the call.
 
-The second point is academic in this situation because the value is only read and not written to. However, as we shall see, what this means is that persistant state is not updated by local calls made to smart contract methods.
+The second point is academic in this situation because the value is only read and not written to. However, as we shall see, what this means is that persistent state is not updated by local calls made to smart contract methods.
 
-Use the ``/api/SmartContracts/local-call`` API call to make a local method call on the smart contract. This involves filling out the ``LocalCallContractRequest`` object. Each member of the object is fully documented in the API. As before, for the gas limit, specify the maximum value. Even on a real sidechain, we would not be expending real gas when a local call is made.
+Use the ``/api/SmartContracts/local-call`` API call to make a local method call on the smart contract. This involves filling out the ``LocalCallContractRequest`` object. Each member of the object is fully documented in the API. For the gas limit, specify the maximum value as you can afford that cost in LSC tokens when calling the method for real. 
 
 You should see the following response:
 
@@ -177,16 +194,16 @@ You should see the following response:
     "Logs": []
     }
 
-The ``Return`` value proves the local call was successful.
+The ``Return`` field proves the local call was successful.
 
 .. _creating-a-real-transaction-which-calls-sayhello:
 
 Creating a transaction which calls SayHello()
 ======================================================
 
-The value returned when the ``SayHello()`` method is called from within a transaction is the same as when it is called locally. This is because the call does not change the persistant state for the ``Greeting`` property. However, when the call is part of a broadcast transaction and subsequently included in a mined block, other nodes are able to see the result of the transaction call.
+The value returned when the ``SayHello()`` method is called from within a transaction will be the same as when it is called locally. This is because the method just retrieves the state for the ``Greeting`` property, which was persisted when the smart contract was deployed. However, when the call is part of a broadcast transaction and subsequently included in a mined block, other nodes are able to see the result of the transaction call.
 
-Use the ``/api/SmartContracts/build-and-send-call`` API call to create a transaction containing a call to the smart contract. This involves filling out the "BuildCallContractTransactionRequest" object. Each member of the object is fully documented in the API. For the gas limit, specify the maximum value as we are not expending real gas.
+Use the ``/api/SmartContracts/build-and-send-call`` API call to create a transaction containing a call to the smart contract. This involves filling out the ``BuildCallContractTransactionRequest`` object. Each member of the object is fully documented in the API.  For the gas limit, specify the maximum value as we have plenty of LSC tokens to pay for the gas.
 
 Execute the API call, and you should see something like the following:
 
@@ -200,7 +217,7 @@ Execute the API call, and you should see something like the following:
       "transactionId": "2d6e07dfa0511aed2ee6c8c2af3149c2c5e01d9f6a6dceb95621c67a5efe9a4b"
     }
 
-Although the message says that the contract has been successfully deployed, it does not confirm whether the transaction containing the call to ``SayHello()`` method in now on the blockchain. Check that the transaction has been added to the blockchain using the ``/api/SmartContracts/receipt`` API call. Copy the ``transactionId`` field from the response above and paste it into the ``txHash`` field of the receipt API call. If the transaction has been successfully added, this API call returns something like the following:
+Although the message says that the contract method was successfully deployed, it does not confirm whether the transaction containing the call to the ``SayHello()`` method is now on the blockchain. Check that the transaction has been added to the blockchain using the ``/api/SmartContracts/receipt`` API call. Copy the ``transactionId`` field from *the response you received* and paste it into the ``txHash`` field of the receipt API call. If the transaction has been successfully added, this API call returns something like the following:
 
 ::
 
