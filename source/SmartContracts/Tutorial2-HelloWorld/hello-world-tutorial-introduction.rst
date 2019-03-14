@@ -115,7 +115,10 @@ To see more information on the options available for the sct ``validate`` comman
 
 To see the general help on the sct, use the following command: ``dotnet run -- help``
 
-**Picture of CIL**
+.. image:: CIL_Output.png
+     :width: 900px
+     :alt: UNIX Timestamp
+     :align: center
 
 .. _deploying-the-hello-world-smart-contract:
 

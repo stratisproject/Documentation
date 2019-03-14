@@ -91,44 +91,45 @@ The miner will build, run for a short time, and then abort. This is because of t
 
 Blockchain architecture means that blocks hold a hash of the previous block, so the hash of the genesis block will be held by the premine block. Because a change of even one byte will produce a different hash, these functions check if anything unexpected has changed in the genesis block. In this case, they have identified that you have updated the timestamp.
 
-Because you know the reason for the change, you can go ahead and update the 256-bit integer values. Just before the "Invalid output" line, you will notice two lines of console output similar to the following:
+Because you know the reason for the change, you can go ahead and update the 256-bit integer values. Just before the "There was a problem initializing the node. Details: 'Invalid network'" line, you will notice two lines of console output similar to the following:
 
 ::
 
-    Add here!!
+    Genesis Block Hash: 0x3e1a3d04c947b06285aa18873444cee68a7d2497e81c53514b5dac75e83c0d65
+    Merkle Root Hash: 0x6abb8137b005211ddd2878aebd97b69c89a7115ca5020e8fb3a98cc9a8bab09c
 
-The 256-bit integer values will not be the same as the above because your new timestamp will be different. Update the condition for the two assert functions:
+The 256-bit integer values (expressed as hexadecimal strings) will not be the same as the above because your new timestamp will be different. Update the condition for the two assert functions:
 
 ::
 
-    Add here!!
+    Assert(this.Consensus.HashGenesisBlock == uint256.Parse("0x3e1a3d04c947b06285aa18873444cee68a7d2497e81c53514b5dac75e83c0d65"));
+    Assert(this.Genesis.Header.HashMerkleRoot == uint256.Parse("0x6abb8137b005211ddd2878aebd97b69c89a7115ca5020e8fb3a98cc9a8bab09c"));
 
 Now, if any changes happen inadvertently to *your* genesis block setup, the node will not run. The updated values you see in the console output are provided by the following lines of code:
 
 ::
 
-    Console.WriteLine("Genesis Block Hash: '{0}'", genesisBlock.GetHash().ToString());
-    Console.WriteLine("Merkle Root Hash: '{0}'", genesisBlock.Header.HashMerkleRoot.ToString());
+    Console.WriteLine("Genesis Block Hash: 0x{0}", genesisBlock.GetHash().ToString());
+    Console.WriteLine("Merkle Root Hash: 0x{0}", genesisBlock.Header.HashMerkleRoot.ToString());
 
 If you want, you can now comment them out. When you run the miner, the node now displays output similar to the following:
 
 ::
 
-    ======Node stats====== 03/01/2019 14:50:11
-    Headers.Height:      0        Headers.Hash:     2fa8eaac7cd4e308b447470080352b0c3a4411d10c8c11e839d5e44dffd684c7
-    Consensus.Height:    0        Consensus.Hash:   2fa8eaac7cd4e308b447470080352b0c3a4411d10c8c11e839d5e44dffd684c7
-    BlockStore.Height:   0        BlockStore.Hash:  2fa8eaac7cd4e308b447470080352b0c3a4411d10c8c11e839d5e44dffd684c7
+    ======Node stats====== 03/13/2019 11:20:13
+    Headers.Height:      0        Headers.Hash:     3e1a3d04c947b06285aa18873444cee68a7d2497e81c53514b5dac75e83c0d65
+    Consensus.Height:    0        Consensus.Hash:   3e1a3d04c947b06285aa18873444cee68a7d2497e81c53514b5dac75e83c0d65
+    BlockStore.Height:   0        BlockStore.Hash:  3e1a3d04c947b06285aa18873444cee68a7d2497e81c53514b5dac75e83c0d65
     Wallet[SC].Height:   No Wallet
     
     ======Voting Manager======
     0 polls are pending, 0 polls are finished.
     0 votes are scheduled to be added to the next block this node mines.
     
-    ======Connection====== agent StratisNode:0.13.0 (70012) [in:0 out:0] [recv: 0 MB sent: 0 MB]
+    ======Connection====== agent LSC_Miner_Node:0.13.0 (70012) [in:0 out:0] [recv: 0 MB sent: 0 MB]
     
     
     ======Consensus Manager======
-    IBD Stage
     Chained header tree size: 0.00 MB
     Unconsumed blocks: 0 -- (0 / 200 MB). Cache is filled by: 0%
     Downloading blocks: 0 queued out of 0 pending

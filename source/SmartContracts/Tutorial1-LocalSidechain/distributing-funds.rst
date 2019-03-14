@@ -15,9 +15,32 @@ The steps are as follows:
 
 3. Connect to node 1 using Swagger: http://localhost:38202/swagger/index.html
 4. Use the ``/api/Wallet/mnemonic`` and ``api/Wallet/create`` API calls to create a wallet named "LSC_node1_wallet".
-5. Use the ``/api/SmartContractWallet/account-addresses`` API call to get an address to pay funds to. Choosing a smart contract account address has advantages, which are explored in later tutorials.
+5. Use the ``/api/SmartContractWallet/account-addresses`` API call to get an address to pay funds to. Choosing a smart contract account address has advantages if you are going work with smart contracts. 
 6. Connect to the miner using Swagger: http://localhost:38201/swagger/index.html
-7. Use the ``/api/Wallet/build-transaction`` API call to build a transaction that sends 100 LSC tokens from the miner's wallet to the smart contract account address from LSC_node1_wallet.
+7. Use the ``/api/Wallet/build-transaction`` API call to build a transaction that sends 100 LSC tokens from the miner's wallet to the smart contract account address from LSC_node1_wallet. For convenience, you can copy the following into the request and update the ``password`` and ``destinationAddress``: 
+
+::
+
+    {
+      "feeAmount": "0.02",
+      "password": "miner_wallet_password",
+      "walletName": "LSC_miner_wallet",
+      "accountName": "account 0",
+      "outpoints": [
+      ],
+      "recipients": [
+        {
+          "destinationAddress": "node_smart_contract_account_address",
+          "amount": "100"
+        }
+      ],
+      "opReturnData": "",
+      "opReturnAmount": "0",
+      "feeType": "",
+      "allowUnconfirmed": true,
+      "shuffleOutputs": true
+    }
+
 8. Use the ``/api/Wallet/send-transaction`` API call to broadcast the contract to the network.
 9. After a short time, LSC_node1_wallet should contain a balance of 100 LSC tokens.
  
