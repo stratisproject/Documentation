@@ -132,7 +132,23 @@ Begin by making sure that you have the Local Smart Contract network running. You
 
 .. note:: *You must have the miner node up and running at all times when working on this tutorial and subsequent tutorial.* Only the miner has the ability to process these smart contract transactions into blocks. If a smart contract deployment or method call transaction does not make it into a block, the contract does not exist on the network, and any related persistent state change never happens.
 
-You will use the ``/api/SmartContracts/build-and-send-create`` API call to deploy the smart contract. This involves filling out the ``BuildCreateContractTransactionRequest`` object. Each member of the object is fully documented in the API. Copy the CIL code you generated in the previous section into the ``contractCode`` field. For the gas limit, specify the maximum value as we have plenty of LSC tokens to pay for the gas.
+You will use the ``/api/SmartContracts/build-and-send-create`` API call to deploy the smart contract. This involves filling out the ``BuildCreateContractTransactionRequest`` object. Each member of the object is fully documented in the API. Use the CIL code you generated in the previous section for the ``contractCode`` field. For the gas limit, specify the maximum value as we have plenty of LSC tokens to pay for the gas. For convenience, if you deploy on node 1, you can copy the following into the request and update the ``password``, ``contractCode``, and ``sender``: 
+
+::
+
+    {
+      "walletName": "LSC_node1_wallet",
+      "accountName": "account 0",
+      "amount": "0",
+      "feeAmount": "0.02",
+      "password": "node_wallet_password",
+      "contractCode": "CIL_code",
+      "gasPrice": 100,
+      "gasLimit": 100000,
+      "sender": "node_smart_contract_account_address",
+      "parameters": [
+      ]
+    }
 
 Execute the API call, and you should see something like the following:
 
@@ -180,7 +196,23 @@ We are going to call the ``SayHello()`` method as a local call. This means that:
 
 The second point is academic in this situation because the value is only read and not written to. However, as we shall see, what this means is that persistent state is not updated by local calls made to smart contract methods.
 
-Use the ``/api/SmartContracts/local-call`` API call to make a local method call on the smart contract. This involves filling out the ``LocalCallContractRequest`` object. Each member of the object is fully documented in the API. For the gas limit, specify the maximum value as you can afford that cost in LSC tokens when calling the method for real. 
+Use the ``/api/SmartContracts/local-call`` API call to make a local method call on the smart contract. This involves filling out the ``LocalCallContractRequest`` object. Each member of the object is fully documented in the API. For the gas limit, specify the maximum value as you can afford that cost in LSC tokens when calling the method for real. For convenience, if you deployed on node 1, you can copy the following into the request and update the ``contractAddress``, ``password``, and ``sender``: 
+
+::
+
+    {
+      "walletName": "LSC_node1_wallet",
+      "accountName": "account 0",
+      "contractAddress": "hello_world_smart_contract_address",
+      "methodName": "SayHello",
+      "amount": "0",
+      "feeAmount": "0.02",
+      "password": "node_wallet_password",
+      "gasPrice": 100,
+      "gasLimit": 100000,
+      "sender": "node_smart_contract_account_address",
+      "parameters": []
+    }
 
 You should see the following response:
 

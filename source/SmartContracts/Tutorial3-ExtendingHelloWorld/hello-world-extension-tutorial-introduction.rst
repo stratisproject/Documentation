@@ -100,12 +100,12 @@ To begin, we are going to call the ``SayHello()`` again. From examining the code
 Adding multiple greetings to the smart contract
 ================================================
 
-The new smart contract method, ``AddGreeting()``, takes a single string parameter which specifies the new greeting. To begin with, add the greeting in French: "Bonjour le monde!". Again, use the ``/api/SmartContracts/build-and-send-call`` API call to make a method call on the smart contract. When filling out the ``BuildCallContractTransactionRequest`` object, the important thing to notice is how the single string argument to the smart contract is specified as one of the ``parameters``:
+The new smart contract method, ``AddGreeting()``, takes a single string parameter which specifies the new greeting. To begin with, add the greeting in French: "Bonjour le monde!". Again, use the ``/api/SmartContracts/build-and-send-call`` API call to make a method call on the smart contract. When filling out the ``BuildCallContractTransactionRequest`` object, the important thing to notice is how the single string argument to the smart contract is specified as one of the ``parameters``. For example:
 
 ::
 
     {
-      "walletName": "LocalSC_wallet2",
+      "walletName": "LSC_node1_wallet",
       "accountName": "account 0",
       "contractAddress": "CWbdDECSwo4m5eDeUbjCXJgWyvtueu2yuM",
       "methodName": "AddGreeting",
