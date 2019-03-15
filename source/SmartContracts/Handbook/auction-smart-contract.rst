@@ -2,7 +2,7 @@
 The Auction Smart Contract
 ###############################
 
-This chapter takes a further look at the smart contract-specific parts of an Auction C# class. You can check out the complete source `here <https://github.com/stratisproject/StratisSmartContractsSamples/blob/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples/Auction.cs>`
+This chapter takes a further look at the smart contract-specific parts of an Auction C# class. You can check out the complete source `here <https://github.com/stratisproject/StratisSmartContractsSamples/blob/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples/Auction.cs>`_
 
 ::
 
