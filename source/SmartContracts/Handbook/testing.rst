@@ -51,8 +51,8 @@ The first step to testing your contracts is initialising them. A ``TestSmartCont
 
 ::
 
-  Assert.IsNull(SmartContractState.PersistentState.GetObject<Address>("HighestBidder").Value);
-  Assert.AreEqual(0uL, SmartContractState.PersistentState.GetObject<ulong>("HighestBid"));
+  Assert.AreNotEqual(Address.Zero, SmartContractState.PersistentState.GetAddress("HighestBidder"));
+  Assert.AreEqual(0uL, SmartContractState.PersistentState.GetUInt64("HighestBid"));
 
 These calls check that the world state is as expected after contract instantiation. In other words, they check that no highest bidder has yet been set and that the current highest bidder is set to 0, which is exactly what the constructor is set to do.
 
