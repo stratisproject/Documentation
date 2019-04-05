@@ -21,6 +21,7 @@ All contracts are validated by a node when the contract is being deployed. Inval
 Validation can be done using the ``sct`` command line tool which you can download `here <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_.
 
 ::
+
   dotnet run -- validate [CONTRACT_PATH_HERE]
 
 Compiling a contract
