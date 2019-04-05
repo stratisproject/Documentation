@@ -28,5 +28,6 @@ The first thing that we do inside the ``TestChain_Auction`` method is to compile
 The local blockchain can be started by calling ``Initialize`` on a new instance of ``TestChain``. This will set up a new chain with very similar properties to the live Stratis smart contract chain. It also sets up 5 addresses with 100,000 test coins each. The following line inside the scope of the TestChain demonstrates how you can access these funded addresses:
 
 ::
+
   // Get an address we can use for deploying
   Base58Address deployerAddress = chain.PreloadedAddresses[0];
