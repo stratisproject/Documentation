@@ -120,6 +120,8 @@ To see the general help on the sct, use the following command: ``dotnet run -- h
      :alt: UNIX Timestamp
      :align: center
 
+.. note:: If you have previously cloned the Stratis sct tool repository, please ensure that before you compile any smart contracts, you sync the repository to the latest version of the source code and rebuild the tool.
+
 .. _deploying-the-hello-world-smart-contract:
 
 Deploying the Hello World smart contract

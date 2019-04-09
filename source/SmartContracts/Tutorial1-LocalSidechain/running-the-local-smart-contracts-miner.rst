@@ -11,34 +11,57 @@ Let's look at the scripts in the ``LSC_Node_Scripts`` directory, which run the t
 
 Open the three scripts for your system. The scripts don't do anything other than make sure the correct branch of the GitHub repository is checked out and run one of two daemons with the required configuration options.
 
-The miner node runs the ``Stratis.LocalSmartContracts.MinerD`` daemon, and the other two nodes run the ``Stratis.LocalSmartContracts.NodeD`` daemon. The configuration options used give us information on the topology of the network we are setting up.
+The miner node runs the ``Stratis.LocalSmartContracts.MinerD`` daemon, and the other two nodes run the ``Stratis.LocalSmartContracts.NodeD`` daemon. The configuration options are detailed in the next section and give us information on the topology of the network we are setting up.
 
 Daemon configuration options
--------------------------------
+================================
 
-The table below shows the configuration options used for the miner and standard nodes daemons. These options represent a small subset of the configuration options available for the Stratis Full Node.
+The subsections below below describe the configuration options used for the miner and standard nodes daemons. These options represent a small subset of the configuration options available for the Stratis Full Node.
 
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Config Option | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-+===============+===================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
-| bootstrap     | Permits a PoA federation member to mine even if it has no peers connected. This option allows genesis and premine blocks to be mined.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| datadir       | Specifies the directory in which to hold the data for a node. The node creates the directory structure the first time it is run. Based on settings in the scripts, you can find the data on a Windows PC in the miner1, node1, and node2 directories held within APPDATA\LocalSCNodes. On a Mac these directories are found in ~/LocalSCNodes. This overrides the standard settings which assume you will only run one node for each mainchain or sidechain on a device. In this slightly unusual situation, three nodes from one network are run on one machine. |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| port          | Specifies the port to use for peer interactions on the network.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| apiport       | Specifies the port to use for interactions via the Swagger API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| txindex       | A flag that specifies that transactions should be saved in the database so they can be queried.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| connect       | Specifies a peer to connect to on the network. Giving the miner an invalid IP address for this option (0) ensures it makes no attempt to connect to other peers. When the connect option is used, the node does not, by default, listen for other peers trying to connect.                                                                                                                                                                                                                                                                                        |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| listen        | Specifies the node should listen for other peers trying to connect. In the case of the miner, this flag is used to override the effect of connect which is to turn off listening.                                                                                                                                                                                                                                                                                                                                                                                 |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| addnode       | Specifies a peer (node) to connect to. When a peer is connected to using addnode, the peer sends back other nodes to connect to. For example, if node1 connects to miner1, then miner1 can, provided node2 has connected, send back node2 as a peer for node1 to connect to. The end result is that node1 is connected to miner1 and node2.                                                                                                                                                                                                                       |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| bind          | The IP address to accept data from. Specifying a local address ensures that the network remains entirely local.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-+---------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+bootstrap
+----------
+
+Permits a PoA federation member to mine even if it has no peers connected. This option allows genesis and premine blocks to be mined.
+
+datadir
+---------
+
+Specifies the directory in which to hold the data for a node. The node creates the directory structure the first time it is run. Based on settings in the scripts, you can find the data on a Windows PC in the miner1, node1, and node2 directories held within APPDATA\LocalSCNodes. On a Mac these directories are found in ~/LocalSCNodes. This overrides the standard settings which assume you will only run one node for each mainchain or sidechain on a device. In this slightly unusual situation, three nodes from one network are run on one machine.
+
+port
+-------
+
+Specifies the port to use for peer interactions on the network.
+
+apiport
+---------
+
+Specifies the port to use for interactions via the Swagger API.
+
+txindex
+---------
+
+A flag that specifies that transactions should be saved in the database so they can be queried.
+
+connect
+---------
+
+Specifies a peer to connect to on the network. Giving the miner an invalid IP address for this option (0) ensures it makes no attempt to connect to other peers. When the connect option is used, the node does not, by default, listen for other peers trying to connect.
+
+listen
+---------
+
+Specifies the node should listen for other peers trying to connect. In the case of the miner, this flag is used to override the effect of connect which is to turn off listening.
+
+addnode
+--------
+
+Specifies a peer (node) to connect to. When a peer is connected to using addnode, the peer sends back other nodes to connect to. For example, if node1 connects to miner1, then miner1 can, provided node2 has connected, send back node2 as a peer for node1 to connect to. The end result is that node1 is connected to miner1 and node2.
+
+bind
+-----
+
+The IP address to accept data from. Specifying a local address ensures that the network remains entirely local.
 
 The LSC miner 
 =================================
@@ -50,7 +73,7 @@ The genesis block has a timestamp, and if the timestamp is too far in the past, 
 Setting the timestamp for your LSC network
 -------------------------------------------------------------
 
-The timestamp is set in the `LocalSmartContracts <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class, which inherits from the  `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_ class and defines the LSC network. The following code excerpt from the ``LocalSmartContracts()`` constructor shows the line of code where the genesis block property is set:
+The timestamp is set in the `LocalSmartContractsNetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class, which inherits from the `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_ class and defines the LSC network. The following code excerpt from the ``LocalSmartContracts()`` constructor shows the line of code where the genesis block property is set:
 
 ::
 
@@ -184,6 +207,22 @@ Now stop the miner. Copy the ``federation.dat`` file into miner1's data director
 Once, you have copied the file over, the miner node will commence with creating the genesis block the next time it is run.
 
 .. note:: Because the Full Node source does not have to be rebuilt after this point, you can add the ``--no-build`` option in the last line of the miner script, after the ``dotnet run`` command and before the config options. This speeds up the running of the script. After the two non-mining nodes have run once, you can also add this option to them. 
+
+The LSC network magic number
+-----------------------------
+
+Blockchain nodes use a magic number to ensure that the nodes they connect to are on the same network. The magic number is used as the first four bytes of every network message, and no communication can be established if there is a mismatch. The magic number is also set in the `LocalSmartContractsNetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.LocalSmartContracts.Networks/LocalSmartContractsNetwork.cs>`_ class:
+
+::
+
+   var messageStart = new byte[4];
+    messageStart[0] = 0x76;
+    messageStart[1] = 0x36;
+    messageStart[2] = 0x23;
+    messageStart[3] = 0x06;
+    uint magic = BitConverter.ToUInt32(messageStart, 0);
+
+This magic number is copied from the `PoANetwork <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.Bitcoin.Features.PoA/PoANetwork.cs>`_ class code, which is intended as a template PoA class. As this is a local network, it is safe to stick with the magic number from the template.
 
 Generating a federation private key
 ------------------------------------
