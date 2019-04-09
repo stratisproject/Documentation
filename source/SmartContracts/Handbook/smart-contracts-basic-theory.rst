@@ -28,6 +28,3 @@ Smart contracts require 'gas' to run. How much gas they need relates to how many
 
 Gas is separate from STRAT. Its relationship to STRAT is defined by ``strat = gas * gasPrice``.
 
-.. note::
-    As this this is an Alpha release, you will use test STRAT, which are referred to as TSTRAT during this document.
-
