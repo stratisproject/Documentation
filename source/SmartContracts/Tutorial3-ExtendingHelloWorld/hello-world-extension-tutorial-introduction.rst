@@ -19,7 +19,7 @@ The procedure is exactly the same, except you supply the ``HelloWorld2.cs`` file
 An overview of the code
 ==============================
 
-The upgrade to the smart contract essentially involves modifying the ``Greeting`` property to hold an array of strings. The first thing to be aware of is that smart contracts do not persists arrays, but if you want to store a group of a particular type of data, you can adapt key-value pairs to do this. The accessors for the ``Greeting`` property wrap up the logic but rely on two other integer properties to maintain the array: ``Index`` and ``Bounds``.
+The upgrade to the smart contract essentially involves modifying the ``Greeting`` property to hold an array of strings. The first thing to be aware of is that smart contracts do not persist arrays, but if you want to store a group of a particular type of data, you can adapt key-value pairs to do this. The accessors for the ``Greeting`` property wrap up the logic but rely on two other integer properties to maintain the array: ``Index`` and ``Bounds``.
 
 ::
 
@@ -100,21 +100,21 @@ To begin, we are going to call the ``SayHello()`` again. From examining the code
 Adding multiple greetings to the smart contract
 ================================================
 
-The new smart contract method, ``AddGreeting()``, takes a single string parameter which specifies the new greeting. To begin with, add the greeting in French: "Bonjour le monde!". Again, use the ``/api/SmartContracts/build-and-send-call`` API call to make a method call on the smart contract. When filling out the ``BuildCallContractTransactionRequest`` object, the important thing to notice is how the single string argument to the smart contract is specified as one of the ``parameters``. For example:
+The new smart contract method, ``AddGreeting()``, takes a single string parameter which specifies the new greeting. To begin with, add the greeting in French: "Bonjour le monde!". Again, use the ``/api/SmartContracts/build-and-send-call`` API call to make a method call on the smart contract. When filling out the ``BuildCallContractTransactionRequest`` object, the important thing to notice is how the single string argument to the smart contract method is specified as one of the ``parameters``. For convenience, if you deploy on node 1, you can copy the following into the request and update the ``contractAddress``, ``password``, and ``sender``:
 
 ::
 
     {
       "walletName": "LSC_node1_wallet",
       "accountName": "account 0",
-      "contractAddress": "CWbdDECSwo4m5eDeUbjCXJgWyvtueu2yuM",
+      "contractAddress": "hello_world2_smart_contract_address",
       "methodName": "AddGreeting",
       "amount": "0",
       "feeAmount": "0.02",
-      "password": "777777",
+      "password": "node_wallet_password",
       "gasPrice": 100,
       "gasLimit": 100000,
-      "sender": "CTr6DQ3RwSaFBPgMXKvMxqekkrnm88ia4z",
+      "sender": "node_smart_contract_account_address",
       "parameters": [
     "4#Bonjour le monde!"
     ]
@@ -125,16 +125,16 @@ The new smart contract method, ``AddGreeting()``, takes a single string paramete
 ::
 
     {
-      "transactionHash": "2d6e07dfa0511aed2ee6c8c2af3149c2c5e01d9f6a6dceb95621c67a5efe9a4b",
-      "blockHash": "92e37bc1a2345789788eea9603aa463c071fefaf436eaebc1b15f8ff6fbd94d4",
-      "postState": "5939ac0e3e3c28d6a31b040c1ce3fc4e7c6b9a039f907f317f511627745bea67",
-      "gasUsed": 10357,
-      "from": "CTr6DQ3RwSaFBPgMXKvMxqekkrnm88ia4z",
-      "to": "CWbdDECSwo4m5eDeUbjCXJgWyvtueu2yuM",
+      "transactionHash": "7449b4300b8b9f927115a12c46d5880a7682160cb18107312f1a7c3855edd1cb",
+      "blockHash": "675601c7f9fe0832b34cb46fd31c4b93261a5656468d553a68c04325eb3c2d60",
+      "postState": "f27700e71b6e69d1753a59bb76ceaca19c2639f30b2c431b095aa984664e314c",
+      "gasUsed": 10832,
+      "from": "CTK4cSRgZiVDotQkHz8J5yxgUTKAbwyDw8",
+      "to": "CXDaJfQpxc7FpFGAqF5ifJxgVKp6iaGLoN",
       "newContractAddress": null,
       "success": true,
       "returnValue": "Added 'Bonjour le monde!' as a greeting.",
-      "bloom":         "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "bloom": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
       "error": null,
       "logs": []
     }
@@ -183,7 +183,7 @@ What happens if you call Hello World 2 methods locally?
 
 Related to the previous subsection is the question of what happens if you call either ``HelloWorld2.SayHello()`` and ``HelloWorld2.AddGreeting()`` using the ``/api/SmartContracts/local-call`` API call. Based on the knowledge that local smart contract calls make a copy of the persisted state but never persist any changes they make, the following predictions can be made:
 
-1. ``SayHello()`` returns the next greeting. This continues until a node creates a transaction containing a ``SayHello()`` call, which is then successfully mined.
+1. ``SayHello()`` returns the next greeting but, because the increment made to the index is never persisted, the call never cycles through the greetings. Effectively, the same greeting is returned again and again. This continues until a node creates a transaction containing a ``SayHello()`` call, which is then successfully mined. The greeting returned by the local call will then change but again no cycling will occur.
 2. ``AddGreeting()`` returns "Added '*the_new_greeting*!' as a greeting.". However, the new greeting will never be displayed by any ``SayHello()`` call.
 
 If you like, you can check the results of calling Hello World 2 methods locally.
