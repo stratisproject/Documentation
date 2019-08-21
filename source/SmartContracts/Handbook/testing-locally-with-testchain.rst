@@ -6,10 +6,7 @@ When developing smart contracts locally you will likely want to test execution o
 
 For this purpose we have built an easy to use tool, ``TestChain``, which spawns a local development blockchain with near-identical parameters to the production Stratis smart contract blockchain, though you won't have to wait for the lengthy block times.
 
-The fastest way to get started is to jump into TestChainExample.cs in the Stratis.SmartContracts.IntegrationTests.TestChain namespace in the FullNode repository. This document will walk you through how this test works so you can get started on your own. You can run the test in Visual Studio by right clicking on ``[Fact]`` and selecting "Run Test(s)".
-
-.. note::
-  We expect TestChain will eventually become a standalone tool, but for now it is encapsulated as part of the core Stratis Full Node solution.
+The fastest way to get started is to jump into TestChainExample.cs in the Stratis.SmartContracts.TestChain.Tests namespace in the Stratis.SmartContracts.TestChain repository. This document will walk you through how this test works so you can get started on your own. You can run the test in Visual Studio by right clicking on ``[Fact]`` and selecting "Run Test(s)".
 
 The Code
 --------
