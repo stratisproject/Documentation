@@ -271,7 +271,7 @@ Whilst your Smart Contract has been fully developed, it cannot be deployed until
 
 Deploying the contract can be done from within the Cirrus Core wallet. The wallet can be downloaded and installed from the below release page.
 
-`https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0 <https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
+`https://github.com/stratisproject/StratisCore/releases <https://github.com/stratisproject/StratisCore/releases>`_
 
 
 Once you have installed Cirrus Core, you will need to follow the prompted steps to create a wallet, once this wallet has been created, you will be able to generate addresses that derive from the newly created wallet.
@@ -285,8 +285,8 @@ The Cirrus Token is required to deploy a Smart Contract, the amount is wholly de
 
 Initially you will need to obtain a minimum of 1 STRAT and have it available within the Stratis Core wallet. The Stratis Core wallet can be downloaded and installed from the below release page.
 
-`https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0
-<https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
+`https://github.com/stratisproject/StratisCore/releases
+<https://github.com/stratisproject/StratisCore/releases>`_
 
 Once you have installed Stratis Core, you will need to follow the prompted steps to create a wallet, once this wallet has been created, send a minimum of 1 STRAT to an address generated from the newly created wallet.
 
