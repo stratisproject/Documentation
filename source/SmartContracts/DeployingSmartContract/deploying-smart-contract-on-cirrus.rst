@@ -410,7 +410,7 @@ Whilst your Smart Contract has been fully developed, it cannot be deployed until
 
 Deploying the contract can be done from within the Cirrus Core wallet. The wallet can be downloaded and installed from the below release page.
 
-`https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0 <https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
+`https://github.com/stratisproject/StratisCore/releases <https://github.com/stratisproject/StratisCore/releases>`_
 
 
 Once you have installed Cirrus Core, you will need to run it either on testnet or mainnet. As this document refers to the StratisTest (TestNet) network, you will need to run the
@@ -443,8 +443,8 @@ The Cirrus Token is required to deploy a Smart Contract, the amount is wholly de
 
 Initially you will need to obtain a minimum of 1 STRAT and have it available within the Stratis Core wallet. The Stratis Core wallet can be downloaded and installed from the below release page.
 
-`https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0
-<https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
+`https://github.com/stratisproject/StratisCore/releases
+<https://github.com/stratisproject/StratisCore/releases>`_
 
 Once you have installed Stratis Core, you will need to run it either on testnet or mainnet. As this document refers to the StratisTest (TestNet) network, you will need to run the
 wallet in testnet.
@@ -484,13 +484,13 @@ As this document refers to the StratisTest (TestNet) network, the StratisTest an
 
 Federation detail for both test environments and production environments can be found below:
 
-**Production Environment**
-**Stratis Federation Address:** sg3WNvfWFxLJXXPYsvhGDdzpc9bT4uRQsN
-**Cirrus Federation Address:** cnYBwudqzHBtGVELyQNUGzviKV4Ym3yiEo
+| **Production Environment**
+| **Stratis Federation Address:** sg3WNvfWFxLJXXPYsvhGDdzpc9bT4uRQsN
+| **Cirrus Federation Address:** cnYBwudqzHBtGVELyQNUGzviKV4Ym3yiEo
 
-**Test Environment**
-**Stratis Federation Address:** 2N1wrNv5NDayLrKuph9YDVk8Fip8Wr8F8nX
-**Cirrus Federation Address:** xH1GHWVNKwdebkgiFPtQtM4qb3vrvNX2Rg
+| **Test Environment**
+| **Stratis Federation Address:** 2N1wrNv5NDayLrKuph9YDVk8Fip8Wr8F8nX
+| **Cirrus Federation Address:** xH1GHWVNKwdebkgiFPtQtM4qb3vrvNX2Rg
 
 The exchange of STRAT for CRS is known as a Cross-Chain Transfer. Each Cross-Chain Transfer will subject to an exchange fee of 0.001, meaning if you perform a Cross-Chain Transfer of 1 STRAT you will receive 0.999 CRS Tokens.
 
