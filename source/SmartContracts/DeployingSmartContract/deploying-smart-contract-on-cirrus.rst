@@ -413,7 +413,26 @@ Deploying the contract can be done from within the Cirrus Core wallet. The walle
 `https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0 <https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
 
 
-Once you have installed Cirrus Core, you will need to follow the prompted steps to create a wallet, once this wallet has been created, you will be able to generate addresses that derive from the newly created wallet.
+Once you have installed Cirrus Core, you will need to run it either on testnet or mainnet. As this document refers to the StratisTest (TestNet) network, you will need to run the
+wallet in testnet.
+
+| **On Windows**
+| From the command line run the following command:
+
+::
+
+    start "" "C:\\Program Files\Cirrus Core\Cirrus Core.exe" -testnet
+
+| **On Mac**
+| Open ScriptEditor to create a new applescript document and insert the following script:
+
+::
+
+    do shell script "open /Applications/Cirrus\\ Core.app --args -testnet"
+
+Save the script in the Applications folder with the name of CirrusCoreTest.app and make sure to save it as an application type.
+
+Once you have Cirrus Core running on testnet, you will need to follow the prompted steps to create a wallet, once this wallet has been created, you will be able to generate addresses that derive from the newly created wallet.
 
 .. image:: CirrusAddress.png
      :width: 900px
@@ -427,7 +446,27 @@ Initially you will need to obtain a minimum of 1 STRAT and have it available wit
 `https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0
 <https://github.com/stratisproject/StratisCore/releases/tag/v1.2.0.0>`_
 
-Once you have installed Stratis Core, you will need to follow the prompted steps to create a wallet, once this wallet has been created, send a minimum of 1 STRAT to an address generated from the newly created wallet.
+Once you have installed Stratis Core, you will need to run it either on testnet or mainnet. As this document refers to the StratisTest (TestNet) network, you will need to run the
+wallet in testnet.
+
+| **On Windows**
+| From the command line run the following command:
+
+::
+
+    start "" "C:\\Program Files\Stratis Core\Stratis Core.exe" -testnet
+
+| **On Mac**
+| Open ScriptEditor to create a new applescript document and insert the following script:
+
+::
+
+    do shell script "open /Applications/Stratis\\ Core.app --args -testnet"
+
+Save the script in the Applications folder with the name of StratisCoreTest.app and make sure to save it as an application type.
+
+
+Once you have Stratis Core running on testnet, you will need to follow the prompted steps to create a wallet, once this wallet has been created, send a minimum of 1 STRAT to an address generated from the newly created wallet.
 
 .. image:: StratisCore.png
      :width: 900px
