@@ -3,12 +3,12 @@ Deploying a Contract on Cirrus
 *******************************************************************
 This tutorial details the process of deploying a Smart Contract in C# on the Cirrus Sidechain. Dependant on the contract you are wishing to deploy, there may be additional steps required, this tutorial will focus on the deployment of a new Stratis Smart Contract and the steps required to have your contract deployed and executable on the Cirrus Sidechain.
 
-Unlike other blockchain platforms, there is a level of auditing and review that is required by the public prior to the acceptance of a Smart Contract on the Cirrus Sidechain. This is achieved by whitelisting a hash of the developed contract, allowing for the validation of contracts that have been voted in approval.  
+Unlike other blockchain platforms, there is a level of auditing and review that is required by the public prior to the acceptance of a Smart Contract on the Cirrus Sidechain. This is achieved by whitelisting a hash of the developed contract, allowing for the validation of contracts that have been voted in approval.
 
 
 Development of a Smart Contract in C#
 ==========================================
-The process begins by developing a Smart Contract that you want to deploy and utilize. For this example, the Standard Token Issuance contract will be utilized. 
+The process begins by developing a Smart Contract that you want to deploy and utilize. For this example, the Standard Token Issuance contract will be utilized.
 
 This contract has been designed to replicate the functionality offered by the ERC20 Token Contract.
 
@@ -181,25 +181,164 @@ Stratis has no control as to what is whitelisted and what is not. Smart Contract
 
 1. Use properties to store and retrieve data, with nameof(Property) as the PersistentState key.
 2. Ensure methods are only public when intended – especially property setters.
-3. Validate methods fail early with Asserts. 
+3. Validate methods fail early with Asserts.
 4. Check the inside of the Asserts are logically correct.
-5. Check for possible integer overflows. By default, contracts are compiled with overflow checking enabled which will throw an exception if this occurs. If overflows are desired, explicitly specify this using an unchecked block. 
-6. Decide whether you want your contract to accept the CRS Token sent from other contracts.  If so, and your contract needs to do any extra accounting, be sure to override SmartContract’s Receive method. 
-7. Generally, avoid loops and always avoid unbounded loops where the input of dynamic data could cause OutOfGas exceptions or other problems. 
-8. Be aware of truncation when using integer division. 
-9. Validate the result of transfers, sends or calls into other contracts - If they aren’t successful, you may not want to be updating the state of the contract being worked on. 
-10. Perform any updates to the contract’s state after transfers to other addresses has occurred. This avoids re-entrance attacks. 
-11. In general, make funds transfers in individual calls and require users to “pull” their CRS Token, rather than trying to push the funds as part of a wider method. This prevents malicious actors from denying payment to groups of users. 
+5. Check for possible integer overflows. By default, contracts are compiled with overflow checking enabled which will throw an exception if this occurs. If overflows are desired, explicitly specify this using an unchecked block.
+6. Decide whether you want your contract to accept the CRS Token sent from other contracts.  If so, and your contract needs to do any extra accounting, be sure to override SmartContract’s Receive method.
+7. Generally, avoid loops and always avoid unbounded loops where the input of dynamic data could cause OutOfGas exceptions or other problems.
+8. Be aware of truncation when using integer division.
+9. Validate the result of transfers, sends or calls into other contracts - If they aren’t successful, you may not want to be updating the state of the contract being worked on.
+10. Perform any updates to the contract’s state after transfers to other addresses has occurred. This avoids re-entrance attacks.
+11. In general, make funds transfers in individual calls and require users to “pull” their CRS Token, rather than trying to push the funds as part of a wider method. This prevents malicious actors from denying payment to groups of users.
 12. Write unit tests using a mocking framework like `Moq  <https://github.com/Moq/moq4/wiki/Quickstart>`_ or `NSubstitute <https://nsubstitute.github.io/help/getting-started/>`_. Use these to mock the properties on ISmartContractState and verify that the correct sequence of calls occur.
 
+Testing with Moq and XUnit
+--------------------------
+The example below illustrates the key portions of testing your smart contract using Moq and XUnit.
+
+First, we must create our test project and a test class. For this contract we'll name it StandardTokenTests. We'll define some private properties that hold common values that tests will use frequently and in the constructor of the class, set those values.
+
+The first three properties have types of Mock<T> where we are defining properties that will hold mocks of the different Interfaces we will need in our tests. Then we'll use the Setup method on mockContractState to set instances of the mocks we've created.
+There are other Interfaces than can and should be mocked when used such as:
+
+• IInternalHashHelper
+• IInternalTransactionExecutor
+• IMessage
+• ISerializer
+
+::
+
+    public class StandardTokenTests
+        {
+            private readonly Mock<ISmartContractState> mockContractState;
+            private readonly Mock<IPersistentState> mockPersistentState;
+            private readonly Mock<IContractLogger> mockContractLogger;
+            private Address owner;
+            private Address sender;
+            private Address contract;
+            private Address spender;
+            private Address destination;
+            private string name;
+            private string symbol;
+
+            public StandardTokenTests()
+            {
+                this.mockContractLogger = new Mock<IContractLogger>();
+                this.mockPersistentState = new Mock<IPersistentState>();
+                this.mockContractState = new Mock<ISmartContractState>();
+                this.mockContractState.Setup(s => s.PersistentState).Returns(this.mockPersistentState.Object);
+                this.mockContractState.Setup(s => s.ContractLogger).Returns(this.mockContractLogger.Object);
+                this.owner = "0x0000000000000000000000000000000000000001".HexToAddress();
+                this.sender = "0x0000000000000000000000000000000000000002".HexToAddress();
+                this.contract = "0x0000000000000000000000000000000000000003".HexToAddress();
+                this.spender = "0x0000000000000000000000000000000000000004".HexToAddress();
+                this.destination = "0x0000000000000000000000000000000000000005".HexToAddress();
+                this.name = "Test Token";
+                this.symbol = "TST";
+            }
+        }
+    }
+
+Now that the test class is setup and the constructor has set the properties you can begin writing your tests. See examples below or visit the full
+`StandardTokenTests.cs file  <https://github.com/stratisproject/CirrusSmartContracts/blob/master/Testnet/StandardToken/StandardToken.Tests/StandardTokenTests.cs>`_
+on Github.
+
+.. note::
+    For contract acceptance and whitelisting, it is important to test all successful and failing scenarios that come to mind. Smart contracts are immutable, once the hash is whitelisted or a contract is deployed, it cannot be modified.
+
+**Ensure Constructor Sets the Total Supply**
+
+::
+
+    [Fact]
+    public void Constructor_Sets_TotalSupply()
+    {
+        ulong totalSupply = 100_000;
+
+        // Set the message that would act as the initial transaction to the contract.
+        this.mockContractState.Setup(m => m.Message).Returns(new Message(this.contract, this.owner, 0));
+
+        // Create a new instance of the smart contract class.
+        var standardToken = new StandardToken(this.mockContractState.Object, totalSupply, this.name, this.symbol);
+
+        // Verify that PersistentState was called with the total supply
+        this.mockPersistentState.Verify(s => s.SetUInt64(nameof(StandardToken.TotalSupply), totalSupply));
+    }
+
+**Ensure TransferTo Full Balance Returns True**
+
+::
+
+    [Fact]
+    public void TransferTo_Full_Balance_Returns_True()
+    {
+        ulong balance = 10000;
+        ulong amount = balance;
+        ulong destinationBalance = 123;
+
+        // Setup the Message.Sender address
+        this.mockContractState.Setup(m => m.Message)
+            .Returns(new Message(this.contract, this.sender, 0));
+
+        var standardToken = new StandardToken(this.mockContractState.Object, 100_000, this.name, this.symbol);
+
+        // Setup the balance of the sender's address in persistent state
+        this.mockPersistentState.Setup(s => s.GetUInt64($"Balance:{this.sender}")).Returns(balance);
+
+        // Setup the balance of the recipient's address in persistent state
+        this.mockPersistentState.Setup(s => s.GetUInt64($"Balance:{this.destination}")).Returns(destinationBalance);
+
+        Assert.True(standardToken.TransferTo(this.destination, amount));
+
+        // Verify we queried the balance
+        this.mockPersistentState.Verify(s => s.GetUInt64($"Balance:{this.sender}"));
+
+        // Verify we set the sender's balance
+        this.mockPersistentState.Verify(s => s.SetUInt64($"Balance:{this.sender}", balance - amount));
+
+        // Verify we set the receiver's balance
+        this.mockPersistentState.Verify(s => s.SetUInt64($"Balance:{this.destination}", destinationBalance + amount));
+    }
+
+**Ensure TransferFrom Greater Than Owners Balance Returns False**
+
+::
+
+    [Fact]
+    public void TransferFrom_Greater_Than_Owners_Balance_Returns_False()
+    {
+        ulong balance = 0; // Balance should be less than amount we are trying to send
+        ulong amount = balance + 1;
+        ulong allowance = amount + 1; // Allowance should be more than amount we are trying to send
+
+        // Setup the Message.Sender address
+        this.mockContractState.Setup(m => m.Message)
+            .Returns(new Message(this.contract, this.sender, 0));
+
+        var standardToken = new StandardToken(this.mockContractState.Object, 100_000, this.name, this.symbol);
+
+        // Setup the balance of the owner in persistent state
+        this.mockPersistentState.Setup(s => s.GetUInt64($"Balance:{this.owner}")).Returns(balance);
+
+        // Setup the allowance of the sender in persistent state
+        this.mockPersistentState.Setup(s => s.GetUInt64($"Allowance:{this.owner}:{this.sender}")).Returns(allowance);
+
+        Assert.False(standardToken.TransferFrom(this.owner, this.destination, amount));
+
+        // Verify we queried the sender's allowance
+        this.mockPersistentState.Verify(s => s.GetUInt64($"Allowance:{this.owner}:{this.sender}"));
+
+        // Verify we queried the owner's balance
+        this.mockPersistentState.Verify(s => s.GetUInt64($"Balance:{this.owner}"));
+    }
 
 Generate Contract Hash
 ----------------------
-To obtain a hash of a contract, you will need to run the Stratis Smart Contracts Test Tool to validate and compile the contract. 
+To obtain a hash of a contract, you will need to run the Stratis Smart Contracts Test Tool to validate and compile the contract.
 
 1. Clone the Stratis.SmartContracts.Tools.SCT Repository
 
-:: 
+::
 
  git clone https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct.git
 
@@ -314,7 +453,7 @@ Federation detail for both test environments and production environments can be 
 **Stratis Federation Address:** 2N1wrNv5NDayLrKuph9YDVk8Fip8Wr8F8nX
 **Cirrus Federation Address:** xH1GHWVNKwdebkgiFPtQtM4qb3vrvNX2Rg
 
-The exchange of STRAT for CRS is known as a Cross-Chain Transfer. Each Cross-Chain Transfer will subject to an exchange fee of 0.001, meaning if you perform a Cross-Chain Transfer of 1 STRAT you will receive 0.999 CRS Tokens. 
+The exchange of STRAT for CRS is known as a Cross-Chain Transfer. Each Cross-Chain Transfer will subject to an exchange fee of 0.001, meaning if you perform a Cross-Chain Transfer of 1 STRAT you will receive 0.999 CRS Tokens.
 
 A Cross-Chain Transfer is also subject to a larger amount of confirmations, this is to cater for any reorganisations on the network and invalid credits being made on either chain. The confirmation times can be seen below.
 
@@ -372,7 +511,7 @@ Finally, you add the ByteCode that was retrieved earlier in the document and ent
      :alt: Cirrus Core Create2
      :align: center
 
-After ensuring your parameters are set correctly, select the Create Contract button to deploy the contract. 
+After ensuring your parameters are set correctly, select the Create Contract button to deploy the contract.
 
 Querying a Smart Contract on Cirrus
 ====================================
@@ -383,7 +522,7 @@ The deployed contract will be included in the next block, once the transaction c
      :alt: Cirrus Core SC
      :align: center
 
-By selecting the hash of the contract, you can view further detail regarding the Smart Contract deployment. 
+By selecting the hash of the contract, you can view further detail regarding the Smart Contract deployment.
 
 The address of the deployed contract will also be displayed as a value of the *newContractAddress* property.
 
