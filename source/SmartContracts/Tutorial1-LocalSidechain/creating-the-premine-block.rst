@@ -124,6 +124,8 @@ Your wallet should display the balance:
     ======Wallets======
     Wallet[SC]: LocalSC_wallet1,     Confirmed balance: 100000000.00000000
 
+.. Note:: If your wallet still displays zero balance after a minute or so, it is likely that the node wasn't stopped immediately after creating the genesis block and a premine block was created before the wallet was created. In this scenario delete the data directory created in previous steps and recreate the genesis block, ensuring the node is closed down before the premine block is created.
+
 Congratulations, you have now created your own local network on which to run smart contracts.
 
 .. note:: If you follow the Node Stats in the console output, you will notice that the ``Consensus.Height`` reaches 4 before the balance is displayed in the wallet. The ``Consensus.Height`` after mining the premine block is 2. The delay is because the premine transaction is being confirmed. This delay is defined by ``Consensus.CoinbaseMaturity`` and is set to 1 in the ``LocalSmartContractsNetwork`` class; so, before the UTXO created in the premine block is considered spendable, one block must be mined after the premine block. As you make transactions to deploy and call methods on smart contracts, you will notice that these transactions also take one block to confirm.
