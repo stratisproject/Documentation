@@ -112,6 +112,15 @@ Deserializing a Base58 Address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The serializer contains a special case, ``Serializer.ToAddress(string val)`` which will attempt to interpret a string as a base58 encoded address. If the string is ``null``, empty, or not a valid base58 address, then ``Address.Zero`` is returned.
 
+The PersistentState.IsContract function
+---------------------------------------
+Inside smart contract code, developers have access to the method `this.PersistentState.IsContract(Address address)`. This method, as the name suggests, will return true if a given address is a contract and false if not. Some of the occasions when this information may be useful:
+
+* You want to avoid further processing by calling into another contract within the current transaction.
+* You want to attempt to call a specific contract method if the address is a contract.
+
+Remember that you don't have to use this just to send funds though. The `Transfer` method will handle this for you, and send funds either to a wallet address as normal, or the `Receive` method if it exists on a contract.
+
 The Receive function
 -------------------------------------
 The ``Receive`` function defines processing that occurs when a contract is sent funds. It accepts no arguments and does not return a value.
