@@ -10,7 +10,7 @@ Stratis Smart Contracts are unit-testable in the same way as any other C# class.
 The Basics
 ----------
 
-The smart contract Visual Studio Project Template, which contains the Auction smart contract, also contains tests for this contract. The tests described here verify that your smart contract logic executes as intended before you deploy it to a live network. The tests inside the template use the ``Microsoft.VisualStudio.TestTools.UnitTesting`` library, which may be familiar to C# developers:
+The smart contract `token sample contract <https://github.com/stratisproject/StratisSmartContractsSamples/tree/master/src/Stratis.SmartContracts.Samples/Stratis.SmartContracts.Samples>`_ also contains tests for this contract. The tests described here verify that your smart contract logic executes as intended before you deploy it to a live network. The tests use the ``Microsoft.VisualStudio.TestTools.UnitTesting`` library, which may be familiar to C# developers:
 
 - ``[TestClass]`` defines a class in which tests are defined.
 - ``[TestInitialize]`` is used to mark a method to be run before tests execute, most commonly to set up some testing context.
@@ -41,25 +41,16 @@ A unit test can define its own representations of these interfaces and then inje
 An Example
 ----------
 
-Stepping through the `TestBidding()` method from the template should help you understand the basic approach to unit testing your contracts with a mock contract state.
+Stepping through the `Constructor_Assigns_TotalSupply_To_Owner()` method from tests should help you understand the basic approach to unit testing your contracts with a mock contract state.
 
 ::
 
-  var auction = new Auction(SmartContractState, Duration);
+  var standardToken = new StandardToken(this.mockContractState.Object, 100_000);
 
-The first step to testing your contracts is initialising them. A ``TestSmartContractState`` object is injected into the ``Auction`` object. This ``TestSmartContractState`` object is an implementation of the same ``ISmartContractState`` interface that is injected when smart contracts are initialised on-chain. The only difference is that in this case all of the properties can be set by you. This is really useful if you want to explicitly target scenarios in your contract's execution.
-
-::
-
-  Assert.AreNotEqual(Address.Zero, SmartContractState.PersistentState.GetAddress("HighestBidder"));
-  Assert.AreEqual(0uL, SmartContractState.PersistentState.GetUInt64("HighestBid"));
-
-These calls check that the world state is as expected after contract instantiation. In other words, they check that no highest bidder has yet been set and that the current highest bidder is set to 0, which is exactly what the constructor is set to do.
+The first step to testing your contracts is initialising them. A ``mockContractState`` object is injected into the ``StandardToken`` object. This ``TestSmartContractState`` object is a mock implementation of the same ``ISmartContractState`` interface that is injected when smart contracts are initialised on-chain. The only difference is that in this case all of the properties can be set by you. This is really useful if you want to explicitly target scenarios in your contract's execution.
 
 ::
 
-  ((TestMessage)SmartContractState.Message).Value = 100;
+  this.mockPersistentState.Verify(s => s.SetUInt64($"Balance:{this.owner}", totalSupply));
 
-  auction.Bid();
-
-The first line here is an example of setting the state to represent exact scenarios that you wish to test.
+This checks that a call was made to the PersistentState class to set the initial balance of the contract's owner.
