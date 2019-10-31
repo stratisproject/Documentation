@@ -12,8 +12,6 @@ When smart contracts are used for financial purposes, it is useful to think of t
 1.	The owner of the smart contract to receive the highest bid as payment for the item. 
 2.	Unsuccessful bidders to withdraw the bids they made.
 
-The Stratis smart contract Visual Studio Project Template contains a basic example of an auction. Later in this document, you will be given step-by-step instructions on how you can deploy and experiment with this example auction.
-
 Smart contracts for voting
 --------------------------
 
