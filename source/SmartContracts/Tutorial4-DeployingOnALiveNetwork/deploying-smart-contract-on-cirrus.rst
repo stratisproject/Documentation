@@ -1,7 +1,7 @@
 *******************************************************************
-Deploying a Contract on Cirrus
+Smart Contract Tutorial 4 - Deploying a Smart Contract on Mainnet
 *******************************************************************
-This tutorial details the process of deploying a Smart Contract in C# on the Cirrus Sidechain. Dependant on the contract you are wishing to deploy, there may be additional steps required, this tutorial will focus on the deployment of a new Stratis Smart Contract and the steps required to have your contract deployed and executable on the Cirrus Sidechain.
+This tutorial details the process of deploying a Smart Contract in C# on the CirrusMain Sidechain. Dependant on the contract you are wishing to deploy, there may be additional steps required, this tutorial will focus on the deployment of a new Stratis Smart Contract and the steps required to have your contract deployed and executable on the Cirrus Sidechain.
 
 Unlike other blockchain platforms, there is a level of auditing and review that is required by the public prior to the acceptance of a Smart Contract on the Cirrus Sidechain. This is achieved by whitelisting a hash of the developed contract, allowing for the validation of contracts that have been voted in approval.
 

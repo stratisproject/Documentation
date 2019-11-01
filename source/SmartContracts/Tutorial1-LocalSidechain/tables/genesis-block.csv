@@ -1,6 +1,0 @@
-﻿GenesisTime ,The UNIX time for genesis block. Here the current time is not used but that is OK for this local sidechain.
-GenesisNonce,Not used by a PoA blockchain so a random value is supplied.
-GenesisBits,Not used by a PoA blockchain so a random value is supplied.
-GenesisVersion,The version of the genesis block. Note that this is different from transaction versioning.
-GenesisReward,There is no reward for mining the genesis block as any transaction output for the genesis block cannot be spent.
-coinbaseText,Used as input to the first genesis block transaction.

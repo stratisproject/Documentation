@@ -26,5 +26,5 @@ Gas for Stratis smart contracts
 
 Smart contracts require 'gas' to run. How much gas they need relates to how many instructions they contain. Gas is an additional expenditure to transaction fees. For example, if you send money to a smart contract, you must pay normal transaction fees and the cost in gas for any methods you call on the smart contract.
 
-Gas is separate from STRAT. Its relationship to STRAT is defined by ``strat = gas * gasPrice``.
+Gas is separate from STRAT. Its relationship to STRAT is defined by ``STRAT = GAS * gasPrice``.
 

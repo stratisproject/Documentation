@@ -13,8 +13,8 @@ This material assumes that you are familiar with basic blockchain concepts. When
    :caption: Contents:
 
    Handbook/handbook-introduction
-   DeployingSmartContract/deploying-smart-contract-on-cirrus
    Tutorial1-LocalSidechain/local-network-tutorial-introduction
    Tutorial2-HelloWorld/hello-world-tutorial-introduction
    Tutorial3-ExtendingHelloWorld/hello-world-extension-tutorial-introduction
+   Tutorial4-DeployingOnALiveNetwork/deploying-smart-contract-on-cirrus
    

@@ -33,7 +33,7 @@ The Stratis Academy will introduce:
   Sidechains <Sidechains/sidechains-introduction>
   Smart Contracts <SmartContracts/smart-contracts-introduction>
   DLT <DLT/DLT-introduction>
-	Wallets <Wallets/wallet-introduction>
-	ICO Platform <ICO/ico-introduction>
+  Wallets <Wallets/wallet-introduction>
+  ICO Platform <ICO/ico-introduction>
 
 * :ref:`search`
