@@ -10,8 +10,7 @@ This version of the Cirrus Core Wallet contains a bootstrapped PoA Blockchain th
 Getting Started
 =========================
 
-The Cirrus Core (Hackathon Edition) can be downloaded from .... and is available for leading operating systems.
-
+The Cirrus Core (Hackathon Edition) can be downloaded from `here <https://github.com/stratisproject/StratisCore/releases/tag/1.3.1.0-hackathon>`_ and is available for all leading Operating Systems.
 
 For the purpose of this tutorial, we will focus on using the Windows x64 instance of the wallet. Once downloaded simply run the installer through to completion.
 
