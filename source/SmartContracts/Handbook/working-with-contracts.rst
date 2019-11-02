@@ -8,9 +8,26 @@ Stratis smart contracts are CIL bytecode that is executed on top of the dotnet c
 
 Contracts can be written in any editor that supports C#, however Visual Studio is the recommended contract development environment.
 
-Installing the Visual Studio Project Template 
+Creating a contract from a template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There is a Visual Studio Project Template that provides an easy way to create a new smart contract project. The template can be `found on the Visual Studio marketplace <https://marketplace.visualstudio.com/items?itemName=StratisGroupLtd.StratisSmartContractsTemplate>`_.
+To get started with a basic contract quickly, install the smartcontract CLI template.
+
+::
+
+    dotnet new --install Stratis.SmartContracts.Templates.CLI
+
+Then, create a new directory and run the following command:
+
+::
+
+    dotnet new smartcontract -n YOUR_PROJECT_NAME
+
+This will scaffold a basic contract with the necessary NuGet package references.
+
+Installing the Visual Studio Project Template for VS2017
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The recommended approach to starting a new contract is to use the `dotnet new` template described above. However, 
+there is the option of adding an extension to Visual Studio 2017 which can create new Smart Contract projects. The template can be `found on the Visual Studio marketplace <https://marketplace.visualstudio.com/items?itemName=StratisGroupLtd.StratisSmartContractsTemplate>`_.
 
 Validating a contract
 --------------------------

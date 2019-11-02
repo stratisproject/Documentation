@@ -10,7 +10,7 @@ This chapter takes a further look at the smart contract-specific parts of an Auc
 
   public class Auction : SmartContract
 
-The first line in the contract is a reference to the ``Stratis.SmartContracts`` NuGet package. This package allows you to inherit from the ``SmartContract`` class and thereby provides subclasses with useful functionality such as sending funds, hashing, and saving data. If you are not using the Visual Studio template, you can create smart contracts just by including the ``Stratis.SmartContracts`` NuGet package in your project and inheriting from ``SmartContract``.
+The first line in the contract is a reference to the ``Stratis.SmartContracts`` NuGet package. This package allows you to inherit from the ``SmartContract`` class and thereby provides subclasses with useful functionality such as sending funds, hashing, and saving data. You can create smart contracts just by including the ``Stratis.SmartContracts`` NuGet package in your project and inheriting from ``SmartContract``.
 
 The only libraries that can be included in the current iteration of Stratis smart contracts are ``System``, ``System.Linq`` and ``Stratis.SmartContracts``.
 
