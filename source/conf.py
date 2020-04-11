@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Stratis Academy'
-copyright = u'2018, Stratis Platform'
-author = u'Stratis Platform'
+copyright = u'2020, Stratis Group Ltd'
+author = u'Stratis Group Ltd'
 
 # The short X.Y version
 version = u''

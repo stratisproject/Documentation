@@ -28,12 +28,9 @@ The Stratis Academy will introduce:
 .. toctree::
   :maxdepth: 2
 
-  Blockchain 101 Course <Blockchain101/blockchain101-introduction>
-  Full Node <FullNode/full-node-introduction>
-  Sidechains <Sidechains/sidechains-introduction>
-  Smart Contracts <SmartContracts/smart-contracts-introduction>
-  DLT <DLT/DLT-introduction>
-  Wallets <Wallets/wallet-introduction>
-  ICO Platform <ICO/ico-introduction>
-
+  Blockchain Overview <Blockchain Overview/blockchain-overview-introduction>
+  Architecture Reference <Architecture Reference/architecture-reference-introduction>
+  Developer Guides <Developer Guides/smartcontracts-introduction>
+  Operation Guides <Operation Guides/operation-guides-introduction>
+  
 * :ref:`search`
