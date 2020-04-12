@@ -94,11 +94,9 @@ As you can see, this method just accesses the ``Greeting`` property.
 Compiling the Hello World smart contract
 ==========================================
 
-A smart contract in C# must be compiled into CIL before it can be deployed. For this, we are going to use the `Stratis Smart Contract Tool <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_. The Stratis Smart Contract Tool is compiled and packaged with the Cirrus Core Developer Edition wallet and can be found in the below directory:
+A smart contract in C# must be compiled into CIL before it can be deployed. For this, we are going to use the `Stratis Smart Contract Tool <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_. The Stratis Smart Contract Tool is compiled and packaged with the Cirrus Core Developer Edition wallet and can be found in the below directory: ``<INSTALLDIR>\resources\sdk``
 
-``<INSTALLDIR>\resources\sdk``
-
-.. note:: The default path is: ``%PROGRAMFILES%\cirrus-core-developers\resources\sdk``
+.. note:: If you are progressing through the tutorial headless, the Stratis Smart Contract Tool for compiling contracts compatible with the Developer Edition (DLT) can be found `here <https://github.com/stratisproject/StratisBitcoinFullNode/tree/DeveloperEdition-DLT/src/Stratis.SmartContracts.Tools.Sct>`_.
 
 1. Open ``Command Prompt`` and Navigate to the ``sdk`` directory
 2. Execute the following command: ``Stratis.SmartContracts.Tools.Sct.exe validate [PATH_TO_SMART_CONTRACT] -sb``. A relative path to ```HelloWorld.cs`` in your Stratis Full Node repository should work fine.
