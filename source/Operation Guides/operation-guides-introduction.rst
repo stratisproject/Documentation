@@ -4,5 +4,6 @@ Operation Guides
 
 .. toctree::
 
-  Security Token Offering Platform <STO/sto-introduction>
-   
+  Sidechains <Sidechain/sidechain-introduction>
+  Smart Contracts <SmartContracts/smartcontracts-introduction>
+  STO<STO/sto-introduction>

@@ -30,7 +30,7 @@ The Stratis Academy will introduce:
 
   Blockchain Overview <Blockchain Overview/blockchain-overview-introduction>
   Architecture Reference <Architecture Reference/architecture-reference-introduction>
-  Developer Guides <Developer Guides/smartcontracts-introduction>
+  Developer Resources <Developer Resources/developers-introduction>
   Operation Guides <Operation Guides/operation-guides-introduction>
-  
+    
 * :ref:`search`

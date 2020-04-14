@@ -1,6 +1,6 @@
-########################
-Stratis Smart Contracts
-########################
+###############
+Smart Contracts
+###############
 
 Smart contracts can now be deployed on the Stratis Full Node. Like the Full Node, Stratis smart contracts are written in C#. Smart contracts extend the functionality of a blockchain and allow it to map out complex financial interactions through the sending of funds and storage of data. However, as we shall see, the uses of smart contracts are not limited to financial interactions.
 
@@ -12,8 +12,7 @@ This material assumes that you are familiar with basic blockchain concepts. When
    :maxdepth: 2
    :caption: Contents:
 
-   SmartContracts/Tutorial1-LocalSidechain/local-network-tutorial-introduction
-   SmartContracts/Tutorial2-HelloWorld/hello-world-tutorial-introduction
-   SmartContracts/Tutorial3-ExtendingHelloWorld/hello-world-extension-tutorial-introduction
-   SmartContracts/Tutorial4-DeployingOnALiveNetwork/deploying-smart-contract-on-cirrus
+   Getting Started<Tutorial1-LocalSidechain/local-network-tutorial-introduction>
+   HelloWorld! <Tutorial2-HelloWorld/hello-world-tutorial-introduction>
+   Extending HelloWorld! <Tutorial3-ExtendingHelloWorld/hello-world-extension-tutorial-introduction>
    

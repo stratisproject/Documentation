@@ -1,5 +1,5 @@
 ************************************************************************
-Smart Contract Tutorial 1 - Running a local network with its own token 
+Running a local network with its own token 
 ************************************************************************
 
 Welcome to the first in this series of smart contract tutorials. Although you will not be running any smart contracts, this tutorial showing you how to set up a local network can be thought of as a primer. The local network you will set up:
@@ -17,4 +17,4 @@ A significant amount of focus has been put into simplifying the 'setup' process 
    :caption: Contents:   
    
    creating-a-local-chain
-   headless-local-chain
+   

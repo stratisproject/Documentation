@@ -1,5 +1,7 @@
+.. _gui-tutorials:
+
 **********************************************
-Running the Cirrus Core (Developer Edition) UI 
+Running Cirrus Core (Developer Edition) 
 **********************************************
 
 In an effort to greatly simplify the local development process, a Developer Edition of the Cirrus Core Wallet has been made available. 
@@ -135,12 +137,6 @@ This process can be repeated indefinitely to create a larger network if required
      :align: center
 	 
 This concludes the network setup and configuration, you can now move on to deploying a contract on the local network in Tutorial 2.
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:   
-   
-   headless-local-chain
 
 
 

@@ -91,7 +91,7 @@ As you can see, this method just accesses the ``Greeting`` property.
 
 .. _compiling-the-hello-world-smart-contract:
 
-Compiling the Hello World smart contract
+Compiling the HelloWorld smart contract
 ==========================================
 
 A smart contract in C# must be compiled into CIL before it can be deployed. For this, we are going to use the `Stratis Smart Contract Tool <https://github.com/stratisproject/Stratis.SmartContracts.Tools.Sct>`_. The Stratis Smart Contract Tool is compiled and packaged with the Cirrus Core Developer Edition wallet and can be found in the below directory: ``<INSTALLDIR>\resources\sdk``
@@ -115,7 +115,7 @@ To see the general help on the sct, use the following command: ``Stratis.SmartCo
 
 .. _deploying-the-hello-world-smart-contract:
 
-Deploying the Hello World smart contract
+Deploying the HelloWorld smart contract
 ===========================================
 
 Begin by making sure that you have the Local Smart Contract network running. You should now be in possession of 100,000,000 CRS-TEST tokens within your ``Hackathon_1`` wallet! You can deploy the token from the Cirrus Core UI or via Swagger which can be launched from the Wallet drop-down in the top right. This tutorial will demonstrate the deployment from the Cirrus Core GUI.

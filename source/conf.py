@@ -40,6 +40,7 @@ release = u''
 # ones.
 extensions = [
     'sphinx.ext.ifconfig',
+	'sphinxcontrib.openapi',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

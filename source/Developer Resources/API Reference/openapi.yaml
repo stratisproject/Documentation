@@ -1,0 +1,3149 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: Stratis Node API
+  description: Access to the Stratis Node's core features.
+paths:
+  /api/AddressBook/address:
+    post:
+      tags:
+        - AddressBook
+      summary: Adds an entry to the address book.
+      operationId: AddAddress
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AddressBookEntryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressBookEntryRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddressBookEntryRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddressBookEntryRequest'
+        required: true
+      responses:
+        '200':
+          description: The address book entry was added
+        '400':
+          description: Invalid address book entry request or unexpected exception occurred
+        '409':
+          description: Address book entry already exists
+        '500':
+          description: The request is null
+    delete:
+      tags:
+        - AddressBook
+      summary: Removes an entry from the address book.
+      operationId: RemoveAddress
+      parameters:
+        - name: label
+          in: query
+          description: The label of the entry to remove.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The address book entry was removed
+        '400':
+          description: Unexpected exception occurred
+        '404':
+          description: Address book entry not found
+        '500':
+          description: The label is null or empty
+  /api/AddressBook:
+    get:
+      tags:
+        - AddressBook
+      summary: Gets the address book entries with the option to implement pagination
+      description: >-
+        For example, specifying a value of 40 for skip and a value of 20 for
+        take gets entries 21 to 40. If neither skip or take arguments are
+        provided, then the entire address book is retrieved. An address book can
+        be accessed from a wallet, but it is a standalone feature, which is not
+        attached to any wallet.
+      operationId: GetAddressBook
+      parameters:
+        - name: skip
+          in: query
+          description: >-
+            A value representing how many entries to skip before retrieving the
+            first entry.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: take
+          in: query
+          description: A value representing how many entries to retrieve.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns the address book
+        '400':
+          description: Unexpected exception occurred
+        '404':
+          description: Address book was not found
+  /api/BlockStore/addressindexertip:
+    get:
+      tags:
+        - BlockStore
+      summary: >-
+        Retrieves the
+        Stratis.Bitcoin.Features.BlockStore.Controllers.BlockStoreController.addressIndexer's
+        tip.
+      operationId: GetAddressIndexerTip
+      responses:
+        '200':
+          description: Returns the address indexer tip
+        '400':
+          description: Unexpected exception occurred
+  /api/BlockStore/block:
+    get:
+      tags:
+        - BlockStore
+      summary: Retrieves the block which matches the supplied block hash.
+      operationId: GetBlock
+      parameters:
+        - name: Hash
+          in: query
+          description: The hash of the required block.
+          required: true
+          schema:
+            type: string
+        - name: ShowTransactionDetails
+          in: query
+          description: >-
+            A flag that indicates whether to return each block transaction
+            complete with details or simply return transaction hashes (TX IDs).
+          required: false
+          schema:
+            type: boolean
+        - name: OutputJson
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Returns data about the block or block not found message
+        '400':
+          description: 'Block hash invalid, or an unexpected exception occurred'
+  /api/BlockStore/GetBlockCount:
+    get:
+      tags:
+        - BlockStore
+      summary: Gets the current consensus tip height.
+      description: This is an API implementation of an RPC call.
+      operationId: GetBlockCount
+      responses:
+        '200':
+          description: Returns the block count
+        '400':
+          description: Unexpected exception occurred
+  /api/BlockStore/getaddressesbalances:
+    get:
+      tags:
+        - BlockStore
+      summary: >-
+        Provides balance of the given addresses confirmed with at least
+        minConfirmations confirmations.
+      operationId: GetAddressesBalances
+      parameters:
+        - name: addresses
+          in: query
+          description: A comma delimited set of addresses that will be queried.
+          required: false
+          schema:
+            type: string
+        - name: minConfirmations
+          in: query
+          description: >-
+            Only blocks below consensus tip less this parameter will be
+            considered.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns balances for the requested addresses
+        '400':
+          description: Unexpected exception occurred
+  /api/BlockStore/getverboseaddressesbalances:
+    get:
+      tags:
+        - BlockStore
+      summary: Provides verbose balance data of the given addresses.
+      operationId: GetVerboseAddressesBalancesData
+      parameters:
+        - name: addresses
+          in: query
+          description: A comma delimited set of addresses that will be queried.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns balances for the requested addresses
+        '400':
+          description: Unexpected exception occurred
+  /api/ConnectionManager/addnode:
+    get:
+      tags:
+        - ConnectionManager
+      summary: Sends a command to the connection manager.
+      description: This is an API implementation of an RPC call.
+      operationId: AddNodeAPI
+      parameters:
+        - name: endpoint
+          in: query
+          description: >-
+            The endpoint in string format. Specify an IP address. The default
+            port for the network will be added automatically.
+          required: false
+          schema:
+            type: string
+        - name: command
+          in: query
+          description: 'The command to run. {add, remove, onetry}'
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The node was added
+        '400':
+          description: An exception occurred
+  /api/ConnectionManager/getpeerinfo:
+    get:
+      tags:
+        - ConnectionManager
+      summary: Gets information about this node.
+      description: This is an API implementation of an RPC call.
+      operationId: GetPeerInfoAPI
+      responses:
+        '200':
+          description: Returns peer information list
+        '400':
+          description: Unexpected exception occurred
+  /api/Consensus/deploymentflags:
+    get:
+      tags:
+        - Consensus
+      summary: Get the threshold states of softforks currently being deployed.
+      description: 'Allowable states are: Defined, Started, LockedIn, Failed, Active.'
+      operationId: DeploymentFlags
+      responses:
+        '200':
+          description: Returns the list of deployment flags
+        '400':
+          description: Unexpected exception occurred
+  /api/Consensus/getbestblockhash:
+    get:
+      tags:
+        - Consensus
+      summary: Gets the hash of the block at the consensus tip.
+      description: This is an API implementation of an RPC call.
+      operationId: GetBestBlockHashAPI
+      responses:
+        '200':
+          description: Returns the block hash
+        '400':
+          description: Unexpected exception occurred
+  /api/Consensus/getblockhash:
+    get:
+      tags:
+        - Consensus
+      summary: Gets the hash of the block at a given height.
+      description: This is an API implementation of an RPC call.
+      operationId: GetBlockHashAPI
+      parameters:
+        - name: height
+          in: query
+          description: The height of the block to get the hash for.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns the block hash
+        '400':
+          description: Unexpected exception occurred
+  /api/Dashboard/Stats:
+    get:
+      tags:
+        - Dashboard
+      summary: Gets a web page containing the last log output for this node.
+      operationId: Stats
+      responses:
+        '200':
+          description: Returns webpage result
+  /api/Dashboard/AsyncLoopsStats:
+    get:
+      tags:
+        - Dashboard
+      summary: Returns a web page with Async Loops statistics
+      operationId: AsyncLoopsStats
+      responses:
+        '200':
+          description: Returns webpage result
+  /api/DefaultVoting/fedmembers:
+    get:
+      tags:
+        - DefaultVoting
+      summary: Retrieves a list of active federation members.
+      operationId: GetFederationMembers
+      responses:
+        '200':
+          description: Returns the active members
+        '400':
+          description: Unexpected exception occurred
+  /api/DefaultVoting/pendingpolls:
+    get:
+      tags:
+        - DefaultVoting
+      summary: Retrieves a list of active polls.
+      operationId: GetPendingPolls
+      responses:
+        '200':
+          description: Returns the active polls
+        '400':
+          description: Unexpected exception occurred
+  /api/DefaultVoting/finishedpolls:
+    get:
+      tags:
+        - DefaultVoting
+      summary: Retrieves a list of finished polls.
+      operationId: GetFinishedPolls
+      responses:
+        '200':
+          description: Returns the finished polls
+        '400':
+          description: Unexpected exception occurred
+  /api/DefaultVoting/whitelistedhashes:
+    get:
+      tags:
+        - DefaultVoting
+      summary: Retrieves a list of whitelisted hashes.
+      operationId: GetWhitelistedHashes
+      responses:
+        '200':
+          description: Returns the hashes
+        '400':
+          description: Unexpected exception occurred
+  /api/DefaultVoting/schedulevote-whitelisthash:
+    post:
+      tags:
+        - DefaultVoting
+      summary: Votes to add a hash to the whitelist.
+      operationId: VoteWhitelistHash
+      requestBody:
+        $ref: '#/components/requestBodies/HashModel'
+      responses:
+        '200':
+          description: Voted to add hash to whitelist
+        '400':
+          description: >-
+            Invalid request, node is not a federation member, or an unexpected
+            exception occurred
+        '500':
+          description: The request is null
+  /api/DefaultVoting/schedulevote-removehash:
+    post:
+      tags:
+        - DefaultVoting
+      summary: Votes to remove a hash from the whitelist.
+      operationId: VoteRemoveHash
+      requestBody:
+        $ref: '#/components/requestBodies/HashModel'
+      responses:
+        '200':
+          description: Voted to remove hash from whitelist
+        '400':
+          description: >-
+            Invalid request, node is not a federation member, or an unexpected
+            exception occurred
+        '500':
+          description: The request is null
+  /api/DefaultVoting/scheduledvotes:
+    get:
+      tags:
+        - DefaultVoting
+      summary: Retrieves the scheduled voting data.
+      operationId: GetScheduledVotes
+      responses:
+        '200':
+          description: Returns the voting data
+        '400':
+          description: Unexpected exception occurred
+  /api/Diagnostic/GetConnectedPeersInfo:
+    get:
+      tags:
+        - Diagnostic
+      summary: Returns the connected peers with some information
+      operationId: GetConnectedPeersInfo
+      responses:
+        '200':
+          description: Returns connected peers information
+        '400':
+          description: Unexpected exception occurred
+  /api/Diagnostic/GetStatus:
+    get:
+      tags:
+        - Diagnostic
+      summary: Gets the Diagnostic Feature status.
+      operationId: GetStatus
+      responses:
+        '200':
+          description: Returns the status
+        '400':
+          description: Unexpected exception occurred
+  /api/Diagnostic/GetPeerStatistics:
+    get:
+      tags:
+        - Diagnostic
+      summary: Returns the connected peers with some statistical information.
+      operationId: GetPeerStatistics
+      parameters:
+        - name: connectedOnly
+          in: query
+          description: 'if set to {true} returns statistics related to connected peers only.'
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Returns connected peers statistics
+          content:
+            text/plain:
+              schema:
+                uniqueItems: false
+                type: array
+                items:
+                  $ref: '#/components/schemas/PeerStatisticsModel'
+            application/json:
+              schema:
+                uniqueItems: false
+                type: array
+                items:
+                  $ref: '#/components/schemas/PeerStatisticsModel'
+            text/json:
+              schema:
+                uniqueItems: false
+                type: array
+                items:
+                  $ref: '#/components/schemas/PeerStatisticsModel'
+        '400':
+          description: Unexpected exception occurred
+  /api/Diagnostic/StartCollectingPeerStatistics:
+    get:
+      tags:
+        - Diagnostic
+      summary: Starts collecting peers statistics.
+      operationId: StartCollectingPeerStatistics
+      responses:
+        '200':
+          description: Peer statistics collection started
+        '400':
+          description: Unexpected exception occurred
+  /api/Diagnostic/StopCollectingPeerStatistics:
+    get:
+      tags:
+        - Diagnostic
+      summary: Stops collecting peers statistics.
+      description: >-
+        Stopping a running peer statistic collecotr doesn't clear obtained
+        results.
+      operationId: StopCollectingPeerStatistics
+      responses:
+        '200':
+          description: Peer statistics collection stopped
+        '400':
+          description: Unexpected exception occurred
+  /api/FederationVoting/schedulevote-addfedmember:
+    post:
+      tags:
+        - FederationVoting
+      summary: Votes to add a federation member.
+      operationId: VoteAddFedMember
+      requestBody:
+        $ref: '#/components/requestBodies/HexPubKeyModel'
+      responses:
+        '200':
+          description: Voted to add member
+        '400':
+          description: >-
+            Invalid request, node is not a federation member, or an unexpected
+            exception occurred
+        '500':
+          description: The request is null
+  /api/FederationVoting/schedulevote-kickfedmember:
+    post:
+      tags:
+        - FederationVoting
+      summary: Votes to kick a federation member.
+      operationId: VoteKickFedMember
+      requestBody:
+        $ref: '#/components/requestBodies/HexPubKeyModel'
+      responses:
+        '200':
+          description: Voted to kick member
+        '400':
+          description: >-
+            Invalid request, node is not a federation member, or an unexpected
+            exception occurred
+        '500':
+          description: The request is null
+  /api/Mempool/getrawmempool:
+    get:
+      tags:
+        - Mempool
+      summary: Gets a hash of each transaction in the memory pool.
+      description: >-
+        A list of the TX IDs for all the transactions in the mempool are
+        retrieved.
+      operationId: GetRawMempoolAsync
+      responses:
+        '200':
+          description: Returns memory pool transactions
+        '400':
+          description: Unexpected exception occurred
+  /api/Network/disconnect:
+    post:
+      tags:
+        - Network
+      summary: Disconnects a connected peer.
+      operationId: DisconnectPeer
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DisconnectPeerViewModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisconnectPeerViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DisconnectPeerViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DisconnectPeerViewModel'
+        description: The model that represents the peer to disconnect.
+      responses:
+        '200':
+          description: Peer disconnected
+        '400':
+          description: Unexpected exception occurred
+  /api/Network/setban:
+    post:
+      tags:
+        - Network
+      summary: Adds or remove a peer from the node's banned peers list.
+      operationId: SetBan
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SetBanPeerViewModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetBanPeerViewModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SetBanPeerViewModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SetBanPeerViewModel'
+        description: >-
+          The model that represents the peer to add or remove from the banned
+          list.
+      responses:
+        '200':
+          description: Ban status updated
+        '400':
+          description: An exception occurred
+  /api/Network/getbans:
+    get:
+      tags:
+        - Network
+      summary: Retrieves a list of all banned peers.
+      operationId: GetBans
+      responses:
+        '200':
+          description: Returns banned peers
+        '400':
+          description: Unexpected exception occurred
+  /api/Network/clearbanned:
+    post:
+      tags:
+        - Network
+      summary: Clears the node of all banned peers.
+      description: >-
+        See
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests"
+      operationId: ClearBannedPeers
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: boolean
+          application/json:
+            schema:
+              type: boolean
+          text/json:
+            schema:
+              type: boolean
+          application/*+json:
+            schema:
+              type: boolean
+        description: >-
+          This body parameter is here to prevent a CORS call from triggering
+          method execution.
+      responses:
+        '200':
+          description: Bans cleared
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/status:
+    get:
+      tags:
+        - Node
+      summary: Gets general information about this node.
+      description: >-
+        Including the version, protocol version, network name, coin ticker, and
+        consensus height.
+      operationId: Status
+      responses:
+        '200':
+          description: Returns node information
+  /api/Node/getblockheader:
+    get:
+      tags:
+        - Node
+      summary: Gets the block header of a block identified by a block hash.
+      description: Binary serialization is not supported with this method.
+      operationId: GetBlockHeader
+      parameters:
+        - name: hash
+          in: query
+          description: The hash of the block to retrieve.
+          required: false
+          schema:
+            type: string
+        - name: isJsonFormat
+          in: query
+          description: >-
+            A flag that specifies whether to return the block header in the JSON
+            format. Defaults to true. A value of false is currently not
+            supported.
+          required: false
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Returns block header
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/getrawtransaction:
+    get:
+      tags:
+        - Node
+      summary: Gets a raw transaction that is present on this full node.
+      description: "This method first searches the transaction pool and then tries the block store.\r\n\nRequires **txindex=1**, otherwise only transactions that spend or create UTXOs for a stored wallet can be returned."
+      operationId: GetRawTransactionAsync
+      parameters:
+        - name: trxid
+          in: query
+          description: The transaction ID (a hash of the trancaction).
+          required: false
+          schema:
+            type: string
+        - name: verbose
+          in: query
+          description: >-
+            A flag that specifies whether to return verbose information about
+            the transaction.
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Returns the transaction
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/decoderawtransaction:
+    post:
+      tags:
+        - Node
+      summary: Gets a JSON representation for a given transaction in hex format.
+      operationId: DecodeRawTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DecodeRawTransactionModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DecodeRawTransactionModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DecodeRawTransactionModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DecodeRawTransactionModel'
+        description: >-
+          A class containing the necessary parameters for a block search
+          request.
+      responses:
+        '200':
+          description: Returns the transaction
+        '400':
+          description: Invalid request or unexpected exception occurred
+  /api/Node/validateaddress:
+    get:
+      tags:
+        - Node
+      summary: Validates a bech32 or base58 bitcoin address.
+      operationId: ValidateAddress
+      parameters:
+        - name: address
+          in: query
+          description: A Bitcoin address to validate in a string format.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns validation result
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/gettxout:
+    get:
+      tags:
+        - Node
+      summary: Gets the unspent outputs of a specific vout in a transaction.
+      description: An API implementation of RPC call.
+      operationId: GetTxOutAsync
+      parameters:
+        - name: trxid
+          in: query
+          description: The transaction ID as a hash string.
+          required: false
+          schema:
+            type: string
+        - name: vout
+          in: query
+          description: The vout to get the unspent outputs for.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: includeMemPool
+          in: query
+          description: >-
+            A flag that specifies whether to include transactions in the
+            mempool.
+          required: false
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Returns transaction output
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/shutdown:
+    post:
+      tags:
+        - Node
+      summary: Triggers a shutdown of this node.
+      description: >-
+        See
+        https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests
+      operationId: Shutdown
+      requestBody:
+        $ref: '#/components/requestBodies/ShutdownCorsprotection'
+      responses:
+        '200':
+          description: Node was shutdown
+  /api/Node/stop:
+    post:
+      tags:
+        - Node
+      summary: Triggers a shutdown of this node.
+      operationId: stop
+      requestBody:
+        $ref: '#/components/requestBodies/ShutdownCorsprotection'
+      responses:
+        '200':
+          description: Node was shutdown
+  /api/Node/loglevels:
+    put:
+      tags:
+        - Node
+      summary: Changes the log levels for the specified loggers.
+      operationId: UpdateLogLevel
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LogRulesRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogRulesRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LogRulesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LogRulesRequest'
+        description: The request containing the loggers to modify.
+      responses:
+        '200':
+          description: Log level updated
+        '400':
+          description: Request is invalid or an unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Node/logrules:
+    get:
+      tags:
+        - Node
+      summary: Get the enabled log rules.
+      operationId: GetLogRules
+      responses:
+        '200':
+          description: Returns log rules
+        '400':
+          description: Unexpected exception occurred
+  /api/Node/asyncloops:
+    get:
+      tags:
+        - Node
+      summary: >-
+        Get the currently running async loops/delegates/tasks for diagnostic
+        purposes.
+      operationId: GetAsyncLoops
+      responses:
+        '200':
+          description: Returns running tasks
+        '400':
+          description: Unexpected exception occurred
+  /api/RPC/callbyname:
+    post:
+      tags:
+        - RPC
+      summary: Makes a Remote Procedural Call method by name.
+      operationId: CallByName
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: object
+          application/json:
+            schema:
+              type: object
+          text/json:
+            schema:
+              type: object
+          application/*+json:
+            schema:
+              type: object
+        description: A JObject containing the name of the method to process.
+      responses:
+        '200':
+          description: Returns method response
+        '400':
+          description: An exception occurred
+        '405':
+          description: RPC is disabled
+        '500':
+          description: Body is null
+  /api/RPC/listmethods:
+    get:
+      tags:
+        - RPC
+      summary: Lists the available Remote Procedural Call methods on this node.
+      operationId: ListMethods
+      responses:
+        '200':
+          description: Returns available methods
+        '400':
+          description: Unexpected exception occurred
+        '405':
+          description: RPC is disabled
+  /api/SmartContracts/code:
+    get:
+      tags:
+        - SmartContracts
+      summary: Gets the bytecode for a smart contract as a hexadecimal string.
+      description: >-
+        The bytecode is decompiled to C# source, which is returned as well. Be
+        aware, it is the bytecode which is being executed, so this is the source
+        of truth.
+      operationId: GetCode
+      parameters:
+        - name: address
+          in: query
+          description: >-
+            The address of the smart contract to retrieve as bytecode and C#
+            source.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns code response (may be unsuccessful)
+  /api/SmartContracts/balance:
+    get:
+      tags:
+        - SmartContracts
+      summary: Gets the balance of a smart contract.
+      description: This method only works for smart contract addresses.
+      operationId: GetBalance
+      parameters:
+        - name: address
+          in: query
+          description: The address of the smart contract to retrieve the balance for.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns balance
+  /api/SmartContracts/storage:
+    get:
+      tags:
+        - SmartContracts
+      summary: >-
+        Gets a single piece of smart contract data, which was stored as a
+        key–value pair using the SmartContract.PersistentState property.
+      description: "The method performs a lookup in the smart contract state database for the supplied smart contract address and key. The value associated with the given key, deserialized for the specified data type, is returned. \r\n\nIf the key does not exist or deserialization fails, the method  returns the default value for the specified type."
+      operationId: GetStorage
+      parameters:
+        - name: ContractAddress
+          in: query
+          description: The address of the smart contract.
+          required: true
+          schema:
+            type: string
+        - name: StorageKey
+          in: query
+          description: The key for the piece of stored data to retrieve.
+          required: true
+          schema:
+            type: string
+        - name: DataType
+          in: query
+          description: The stored data type.
+          required: true
+          schema:
+            type: string
+            enum:
+              - Bool
+              - Byte
+              - Char
+              - String
+              - UInt
+              - Int
+              - ULong
+              - Long
+              - Address
+              - ByteArray
+      responses:
+        '200':
+          description: Returns data response (may be unsuccessful)
+        '400':
+          description: Invalid request
+  /api/SmartContracts/receipt:
+    get:
+      tags:
+        - SmartContracts
+      summary: Gets a smart contract transaction receipt.
+      description: >-
+        Receipts contain information about how a smart contract transaction was
+        executed. This includes the value returned from a smart contract call
+        and how much gas was used.
+      operationId: GetReceipt
+      parameters:
+        - name: txHash
+          in: query
+          description: A hash of the smart contract transaction (the transaction ID).
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns transaction receipt
+        '400':
+          description: Transaction not found
+  /api/SmartContracts/receipt-search:
+    get:
+      tags:
+        - SmartContracts
+      summary: >-
+        Searches a Smart Contract's receipts for those which match a specific
+        event.
+      description: "The SmartContract.Log() function is capable of storing C# structs, and structs are used to store information about different events occurring on the smart contract.\r\n\nFor example, a \"TransferLog\" struct  could contain \"From\" and \"To\" fields and be used to log when a smart contract makes a transfer of funds from one wallet to another. The log entries are held inside the smart contract, indexed using the name of the struct, and are linked to individual transaction receipts.\r\n\nTherefore, it is possible to return a smart contract's transaction receipts which match a specific event (as defined by the struct name)."
+      operationId: ReceiptSearch
+      parameters:
+        - name: contractAddress
+          in: query
+          description: The address of the smart contract to retrieve the receipts for.
+          required: false
+          schema:
+            type: string
+        - name: eventName
+          in: query
+          description: The name of the event struct to retrieve matching receipts for.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns requested receipts
+        '500':
+          description: Contract does not exist
+  /api/SmartContracts/build-create:
+    post:
+      tags:
+        - SmartContracts
+      summary: Builds a transaction to create a smart contract.
+      description: "Although the transaction is created, the smart contract is not deployed on the network, and no gas or fees are consumed. Instead the created transaction is returned as a hexadecimal string within a JSON object.\r\n\nTransactions built using this method can be deployed using /api/SmartContractWallet/send-transaction. However, unless there is a need to closely examine the transaction before deploying it, you should use api/SmartContracts/build-and-send-create."
+      operationId: BuildCreateSmartContractTransaction
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCreateContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns create contract response
+        '400':
+          description: Invalid request or failed to build transaction
+  /api/SmartContracts/build-call:
+    post:
+      tags:
+        - SmartContracts
+      summary: Builds a transaction to call a smart contract method.
+      description: "Although the transaction is created, the call is not made, and no gas or fees are consumed. Instead the created transaction is returned as a JSON object.\r\n\nTransactions built using this method can be deployed using /api/SmartContractWallet/send-transaction. However, unless there is a need to closely examine the transaction before deploying it, you should use api/SmartContracts/build-and-send-call."
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCallContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns call contract response
+        '400':
+          description: Invalid request or failed to build transaction
+  /api/SmartContracts/build-transaction:
+    post:
+      tags:
+        - SmartContracts
+      summary: Builds a transaction to transfer funds on a smart contract network.
+      operationId: BuildTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/BuildContractTransactionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildContractTransactionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BuildContractTransactionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BuildContractTransactionRequest'
+        description: >-
+          An object containing the necessary parameters to build the
+          transaction.
+      responses:
+        '200':
+          description: Returns transaction response
+        '400':
+          description: Invalid request or unexpected exception occurred
+  /api/SmartContracts/estimate-fee:
+    post:
+      tags:
+        - SmartContracts
+      summary: >-
+        Gets a fee estimate for a specific smart contract account-based transfer
+        transaction.
+      description: >-
+        This differs from fee estimation on standard networks due to the way
+        inputs must be selected for account-based transfers.
+      operationId: EstimateFee
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ScTxFeeEstimateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScTxFeeEstimateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ScTxFeeEstimateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ScTxFeeEstimateRequest'
+        description: >-
+          An object containing the parameters used to build the the fee
+          estimation transaction.
+      responses:
+        '200':
+          description: Returns estimated fee
+        '400':
+          description: Invalid request or unexpected exception occurred
+  /api/SmartContracts/build-and-send-create:
+    post:
+      tags:
+        - SmartContracts
+      summary: >-
+        Builds a transaction to create a smart contract and then broadcasts the
+        transaction to the network.
+      description: >-
+        If the deployment is successful, methods on the smart contract can be
+        subsequently called.
+      operationId: BuildAndSendCreateSmartContractTransactionAsync
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCreateContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns create transaction response
+        '400':
+          description: >-
+            Invalid request, failed to build transaction, or cannot broadcast
+            transaction
+        '403':
+          description: No connected peers
+  /api/SmartContracts/build-and-send-call:
+    post:
+      tags:
+        - SmartContracts
+      summary: >-
+        Builds a transaction to call a smart contract method and then broadcasts
+        the transaction to the network.
+      description: >-
+        If the call is successful, any changes to the smart contract balance or
+        persistent data are propagated across the network.
+      operationId: BuildAndSendCallSmartContractTransactionAsync
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCallContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns call transaction response
+        '400':
+          description: Invalid request or cannot broadcast transaction
+        '403':
+          description: No connected peers
+  /api/SmartContracts/local-call:
+    post:
+      tags:
+        - SmartContracts
+      summary: >-
+        Makes a local call to a method on a smart contract that has been
+        successfully deployed.
+      description: "A transaction is not created as the call is never propagated across the network. All persistent data held by the smart contract is copied before the call is made.\r\n\nOnly this copy is altered by the call and the actual data is unaffected. Even if an amount of funds are specified to send with the call, no funds are in fact sent.\r\n\nThe purpose of this function is to query and test methods."
+      operationId: LocalCallSmartContractTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LocalCallContractRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocalCallContractRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LocalCallContractRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LocalCallContractRequest'
+        description: >-
+          An object containing the necessary parameters to build the
+          transaction.
+      responses:
+        '200':
+          description: Returns call response
+        '400':
+          description: Invalid request
+        '500':
+          description: Unable to deserialize method parameters
+  /api/SmartContracts/address-balances:
+    get:
+      tags:
+        - SmartContracts
+      summary: >-
+        Gets all addresses owned by a wallet which have a balance associated
+        with them.
+      description: "This method effectively returns the balance of all the UTXOs associated with a wallet.\r\n\nIn a case where multiple UTXOs are associated with one address, the amounts are tallied to give a total for that address."
+      operationId: GetAddressesWithBalances
+      parameters:
+        - name: walletName
+          in: query
+          description: The name of the wallet to retrieve the addresses from.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns address balances
+  /api/SmartContractWallet/account-addresses:
+    get:
+      tags:
+        - SmartContractWallet
+      summary: Gets a smart contract account address.
+      description: "This is a single address to use for all smart contract interactions.\r\n\nSmart contracts send funds to and store data at this address. For example, an ERC-20 token would store tokens allocated to a user at this address, although the actual data could, in fact, be anything. The address stores a history of smart contract create/call transactions.\r\n\nIt also holds a UTXO list/balance based on UTXOs sent to it from smart contracts or user wallets. Once a smart contract has written data to this address, you need to use the address to provide gas and fees for smart contract calls involving that stored data (for that smart contract deployment).\r\n\nIn the case of specific ERC-20 tokens allocated to you, using this address would be a requirement if you were to, for example, send some of the tokens to an exchange. It is therefore recommended that in order to keep an intact history and avoid complications, you use the single smart contract address provided by this function for all interactions with smart contracts.\r\n\nIn addition, a smart contract address can be used to identify a contract deployer. Some methods, such as a withdrawal method on an escrow smart contract, should only be executed by the deployer, and in this case, it is the smart contract account address that identifies the deployer.\r\n\nNote that this account differs from \"account 0\", which is the \"default\r holder of multiple addresses\". Other address holding accounts can be created, but they should not be confused with the smart contract account, which is represented by a single address."
+      operationId: GetAccountAddresses
+      parameters:
+        - name: walletName
+          in: query
+          description: >-
+            The name of the wallet to retrieve a smart contract account address
+            for.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns account addresses
+        '400':
+          description: Wallet name not provided or unexpected exception occurred
+  /api/SmartContractWallet/address-balance:
+    get:
+      tags:
+        - SmartContractWallet
+      summary: >-
+        Gets the balance at a specific wallet address in STRAT (or the
+        respective token/coin).
+      description: "This method gets the UTXOs at the address that the wallet can spend.\r\n\nThe function can be used to query the balance at a smart contract account address\r\nsupplied by /api/SmartContractWallet/account-addresses."
+      operationId: GetAddressBalance
+      parameters:
+        - name: address
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns address balance
+  /api/SmartContractWallet/history:
+    get:
+      tags:
+        - SmartContractWallet
+      summary: Gets the history of a specific wallet address.
+      description: "This includes the smart contract create and call transactions.\r\n\nThis method can be used to query the balance at a smart contract account address supplied by /api/SmartContractWallet/account-addresses.\r\n\nIt is advisable to use /api/SmartContractWallet/account-addresses to generate an address for all smart contract interactions. If this has been done, and that address is supplied to this method, a list of all smart contract interactions for a wallet will be returned."
+      operationId: GetHistory
+      parameters:
+        - name: WalletName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: Address
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: Skip
+          in: query
+          description: >-
+            An optional value allowing (with Take) pagination of the wallet's
+            history. If given, the member specifies the numbers of records in
+            the wallet's history to skip before beginning record retrieval;
+            otherwise the wallet history records are retrieved starting from 0.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: Take
+          in: query
+          description: >-
+            An optional value allowing (with Skip) pagination of the wallet's
+            history. If given, the member specifies the number of records in the
+            wallet's history to retrieve in this call; otherwise all wallet
+            history records are retrieved.
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns transaction history
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/SmartContractWallet/create:
+    post:
+      tags:
+        - SmartContractWallet
+      summary: >-
+        Builds a transaction to create a smart contract and then broadcasts the
+        transaction to the network.
+      description: >-
+        If the deployment is successful, methods on the smart contract can be
+        subsequently called.
+      operationId: Create
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCreateContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns build transaction response
+        '400':
+          description: >-
+            Invalid request, failed to build transaction, or could not broadcast
+            transaction
+  /api/SmartContractWallet/call:
+    post:
+      tags:
+        - SmartContractWallet
+      summary: >-
+        Builds a transaction to call a smart contract method and then broadcasts
+        the transaction to the network.
+      description: >-
+        If the call is successful, any changes to the smart contract balance or
+        persistent data are propagated across the network.
+      operationId: Call
+      requestBody:
+        $ref: '#/components/requestBodies/BuildCallContractTransactionRequest'
+      responses:
+        '200':
+          description: Returns build transaction response
+        '400':
+          description: >-
+            Invalid request, failed to build transaction, or could not broadcast
+            transaction
+  /api/SmartContractWallet/send-transaction:
+    post:
+      tags:
+        - SmartContractWallet
+      summary: >-
+        Broadcasts a transaction, which either creates a smart contract or calls
+        a method on a smart contract.
+      description: >-
+        If the contract deployment or method call are successful gas and fees
+        are consumed.
+      operationId: SendTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+        description: An object containing the necessary parameters to send the transaction.
+      responses:
+        '200':
+          description: Returns the broadcast transaction
+        '400':
+          description: >-
+            Invalid request, failed to broadcast transaction or unexpected
+            exception occurred
+        '500':
+          description: 'Request is null, or no peers are connected'
+  /api/Wallet/mnemonic:
+    get:
+      tags:
+        - Wallet
+      summary: Generates a mnemonic to use for an HD wallet.
+      operationId: GenerateMnemonic
+      parameters:
+        - name: language
+          in: query
+          description: >-
+            The language for the words in the mnemonic. The options are:
+            English, French, Spanish, Japanese, ChineseSimplified and
+            ChineseTraditional.
+          required: false
+          schema:
+            type: string
+            default: English
+        - name: wordCount
+          in: query
+          description: >-
+            The number of words in the mnemonic. The options are: 12,15,18,21 or
+            24.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 12
+      responses:
+        '200':
+          description: Returns mnemonic
+        '400':
+          description: Unexpected exception occurred
+  /api/Wallet/create:
+    post:
+      tags:
+        - Wallet
+      summary: Creates a new wallet on this node.
+      operationId: CreateWallet
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/WalletCreationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletCreationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WalletCreationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WalletCreationRequest'
+        description: An object containing the necessary parameters to create a wallet.
+      responses:
+        '200':
+          description: Returns mnemonic
+        '400':
+          description: Invalid request or problem creating wallet
+        '409':
+          description: Wallet already exists
+        '500':
+          description: Request is null
+  /api/Wallet/signmessage:
+    post:
+      tags:
+        - Wallet
+      summary: Signs a message and returns the signature.
+      operationId: SignMessage
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SignMessageRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignMessageRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SignMessageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SignMessageRequest'
+        description: The object containing the parameters used to sign a message.
+      responses:
+        '200':
+          description: Returns signature
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/verifymessage:
+    post:
+      tags:
+        - Wallet
+      summary: Verifies the signature of a message.
+      operationId: VerifyMessage
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+        description: The object containing the parameters verify a signature.
+      responses:
+        '200':
+          description: Returns verification result
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/load:
+    post:
+      tags:
+        - Wallet
+      summary: Loads a previously created wallet.
+      operationId: Load
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/WalletLoadRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletLoadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WalletLoadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WalletLoadRequest'
+        description: >-
+          An object containing the necessary parameters to load an existing
+          wallet
+      responses:
+        '200':
+          description: Wallet loaded
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '403':
+          description: Incorrect password
+        '404':
+          description: Wallet not found
+        '500':
+          description: Request is null
+  /api/Wallet/recover:
+    post:
+      tags:
+        - Wallet
+      summary: Recovers an existing wallet.
+      operationId: Recover
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/WalletRecoveryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletRecoveryRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WalletRecoveryRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WalletRecoveryRequest'
+        description: An object containing the parameters used to recover a wallet.
+      responses:
+        '200':
+          description: Wallet recovered
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '404':
+          description: Wallet not found
+        '409':
+          description: Wallet already exists
+        '500':
+          description: Request is null
+  /api/Wallet/recover-via-extpubkey:
+    post:
+      tags:
+        - Wallet
+      summary: Recovers a wallet using its extended public key.
+      description: >-
+        Note that the recovered wallet will not have a private key and is only
+        suitable for returning the wallet history using further API calls.
+      operationId: RecoverViaExtPubKey
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/WalletExtPubRecoveryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletExtPubRecoveryRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WalletExtPubRecoveryRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WalletExtPubRecoveryRequest'
+        description: >-
+          An object containing the parameters used to recover a wallet using its
+          extended public key.
+      responses:
+        '200':
+          description: Wallet recovered
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '404':
+          description: Wallet not found
+        '409':
+          description: Wallet already exists
+        '500':
+          description: Request is null
+  /api/Wallet/general-info:
+    get:
+      tags:
+        - Wallet
+      summary: Gets some general information about a wallet.
+      description: ' This includes the network the wallet is for, the creation date and time for the wallet, the height of the blocks the wallet currently holds, and the number of connected nodes.'
+      operationId: GetGeneralInfo
+      parameters:
+        - name: Name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns wallet information
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/history:
+    get:
+      tags:
+        - Wallet
+      summary: Gets the history of a wallet.
+      description: >-
+        This includes the transactions held by the entire wallet or a single
+        account if one is specified.
+      operationId: GetWalletHistory
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet to recover the history for.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: >-
+            Optional. The name of the account to recover the history for. If no
+            account name is specified, the entire history of the wallet is
+            recovered.
+          required: false
+          schema:
+            type: string
+        - name: Address
+          in: query
+          description: >-
+            Optional. If set, will filter the transaction history for all
+            transactions made to or from the given address.
+          required: false
+          schema:
+            type: string
+        - name: Skip
+          in: query
+          description: >-
+            An optional value allowing (with Take) pagination of the wallet's
+            history. If given, the member specifies the numbers of records in
+            the  wallet's history to skip before beginning record retrieval;
+            otherwise the wallet history records are retrieved starting from 0.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: Take
+          in: query
+          description: >-
+            An optional value allowing (with Skip) pagination of the wallet's
+            history. If given, the member specifies the number of records in the
+            wallet's history to retrieve in this call; otherwise all wallet
+            history records are retrieved.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: SearchQuery
+          in: query
+          description: "An optional string that can be used to match different data in the transaction records.\r\n\nIt is possible to match on the following:\r\n\nThe transaction ID, the address at which funds where received and the address to which funds where sent."
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns wallet history
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/balance:
+    get:
+      tags:
+        - Wallet
+      summary: Gets the balance of a wallet."
+      description: Both the confirmed and unconfirmed balance are returned.
+      operationId: GetWalletBalance
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet to retrieve the balance for.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: >-
+            The name of the account to retrieve the balance for. If no account
+            name is supplied, then the balance for the entire wallet (all
+            accounts) is retrieved.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns wallet balances
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/received-by-address:
+    get:
+      tags:
+        - Wallet
+      summary: Gets the balance at a specific wallet address.
+      description: >-
+        Both the confirmed and unconfirmed balance are returned. This method
+        gets the UTXOs at the address which the wallet can spend.
+      operationId: GetReceivedByAddress
+      parameters:
+        - name: Address
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns wallet address balances
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/maxbalance:
+    get:
+      tags:
+        - Wallet
+      summary: >-
+        Gets the maximum spendable balance for an account along with the fee
+        required to spend it.
+      operationId: GetMaximumSpendableBalance
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet to retrieve the maximum spendable amount for.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: >-
+            The name of the account to retrieve the maximum spendable amount
+            for.
+          required: false
+          schema:
+            type: string
+        - name: FeeType
+          in: query
+          description: "The type of fee to use when working out the fee required to spend the amount.\r\nSpecify \"low\", \"medium\", or \"high\"."
+          required: true
+          schema:
+            type: string
+        - name: AllowUnconfirmed
+          in: query
+          description: >-
+            A flag that specifies whether to include the unconfirmed amounts
+            held at account addresses as spendable.
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Returns spendable balance
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/spendable-transactions:
+    get:
+      tags:
+        - Wallet
+      summary: >-
+        Gets the spendable transactions for an account with the option to
+        specify how many confirmations a transaction needs to be included.
+      operationId: GetSpendableTransactions
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet to retrieve the spendable transactions for.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: MinConfirmations
+          in: query
+          description: "The minimum number of confirmations a transaction needs to have to be included.\r\n\nTo include unconfirmed transactions, set this value to 0."
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns spendable transactions
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/estimate-txfee:
+    post:
+      tags:
+        - Wallet
+      summary: Gets a fee estimate for a specific transaction.
+      description: >-
+        Fee can be estimated by creating a
+        Stratis.Bitcoin.Features.Wallet.TransactionBuildContext with no 
+        password and then building the transaction and retrieving the fee from
+        the context.
+      operationId: GetTransactionFeeEstimate
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TxFeeEstimateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TxFeeEstimateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TxFeeEstimateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TxFeeEstimateRequest'
+        description: >-
+          An object containing the parameters used to estimate the fee for a
+          specific transaction.
+      responses:
+        '200':
+          description: Returns fee estimate
+        '400':
+          description: Invalid request or unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/build-transaction:
+    post:
+      tags:
+        - Wallet
+      summary: >-
+        Builds a transaction and returns the hex to use when executing the
+        transaction.
+      operationId: BuildWalletTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/BuildTransactionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildTransactionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BuildTransactionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BuildTransactionRequest'
+        description: An object containing the parameters used to build a transaction.
+      responses:
+        '200':
+          description: Returns transaction information
+        '400':
+          description: >-
+            Invalid request, account not found, change address not found, or
+            unexpected exception occurred
+        '500':
+          description: Request is null
+  /api/Wallet/send-transaction:
+    post:
+      tags:
+        - Wallet
+      summary: Sends a transaction that has already been built.
+      description: Use the /api/Wallet/build-transaction call to create transactions.
+      operationId: SendWalletTransaction
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SendTransactionRequest'
+        description: >-
+          An object containing the necessary parameters used to a send
+          transaction request.
+      responses:
+        '200':
+          description: Returns transaction details
+        '400':
+          description: >-
+            Invalid request, cannot broadcast transaction, or unexpected
+            exception occurred
+        '403':
+          description: No connected peers
+        '500':
+          description: Request is null
+  /api/Wallet/files:
+    get:
+      tags:
+        - Wallet
+      summary: Lists all the files found in the default wallet folder.
+      operationId: ListWalletsFiles
+      responses:
+        '200':
+          description: Returns wallet files
+        '400':
+          description: Unexpected exception occurred
+  /api/Wallet/account:
+    post:
+      tags:
+        - Wallet
+      summary: Creates a new account for a wallet.
+      description: "Accounts are given the name \"account i\", where i is an incremental index which starts at 0.\r\n\nAccording to BIP44. an account at index i can only be created when the account at index (i - 1) contains at least one transaction. For example, if three accounts named \"account 0\", \"account 1\" and \"account 2\" already exist and contain at least one transaction, then the function will create \"account 3\".\r\n\nHowever, if \"account 2\", for example, instead contains no transactions, then this API call returns \"account 2\".\r\n\nAccounts are created deterministically, which means that on any device, the accounts and addresses for a given seed (or mnemonic) are always the same."
+      operationId: CreateNewAccount
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/GetUnusedAccountModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUnusedAccountModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetUnusedAccountModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetUnusedAccountModel'
+        description: >-
+          An object containing the necessary parameters to create a new account
+          in a wallet.
+      responses:
+        '200':
+          description: Returns account name
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '403':
+          description: Wallet is watch-only
+        '500':
+          description: Request is null
+  /api/Wallet/accounts:
+    get:
+      tags:
+        - Wallet
+      summary: Gets a list of accounts for the specified wallet.
+      operationId: ListAccounts
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet for which to list the accounts.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns account names
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/unusedaddress:
+    get:
+      tags:
+        - Wallet
+      summary: Gets an unused address (in the Base58 format) for a wallet account.
+      description: >-
+        This address will not have been assigned to any known UTXO (neither to
+        pay funds into the wallet or to pay change back to the wallet).
+      operationId: GetUnusedAddress
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet from which to get the address.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: The name of the account for which to get the address.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns address
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/unusedaddresses:
+    get:
+      tags:
+        - Wallet
+      summary: >-
+        Gets a specified number of unused addresses (in the Base58 format) for a
+        wallet account.
+      description: >-
+        These addresses will not have been assigned to any known UTXO (neither
+        to pay funds into the wallet or to pay change back to the wallet).
+      operationId: GetUnusedAddresses
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet from which to get the addresses.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: The name of the account for which to get the addresses.
+          required: false
+          schema:
+            type: string
+        - name: Count
+          in: query
+          description: The number of addresses to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns address list
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null or cannot be parsed
+  /api/Wallet/addresses:
+    get:
+      tags:
+        - Wallet
+      summary: Gets all addresses for a wallet account.
+      operationId: GetAllAddresses
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet from which to get the addresses.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          description: The name of the account for which to get the addresses.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns address information list
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/remove-transactions:
+    delete:
+      tags:
+        - Wallet
+      summary: Removes transactions from the wallet.
+      description: "You may want to remove transactions from a wallet if some unconfirmed transactions disappear from the blockchain or the transaction fields within the wallet are updated and a refresh is required to populate the new fields.\r\n\nIn one situation, you might notice several unconfirmed transaction in the wallet, which you now know were never confirmed. You can use this API to correct this by specifying a date and time before the first unconfirmed transaction thereby removing all transactions after this point.\r\n\nYou can also request a resync as part of the call, which calculates the block height for the earliest removal. The wallet sync manager then proceeds to resync from there reinstating the confirmed transactions in the wallet.\r\n\nYou can also cherry pick transactions to remove by specifying their transaction ID."
+      operationId: RemoveTransactions
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet to remove the transactions from.
+          required: true
+          schema:
+            type: string
+        - name: ids
+          in: query
+          description: The IDs of the transactions to remove.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+            uniqueItems: false
+        - name: fromDate
+          in: query
+          description: A date and time after which all transactions should be removed.
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: all
+          in: query
+          description: >-
+            A flag that specifies whether to delete all transactions from a
+            wallet.
+          required: false
+          schema:
+            type: boolean
+        - name: ReSync
+          in: query
+          description: >-
+            A flag that specifies whether to resync the wallet after removing
+            the transactions.
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Returns transaction list
+        '400':
+          description: 'Invalid request, or an exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/extpubkey:
+    get:
+      tags:
+        - Wallet
+      summary: Gets the extended public key of a specified wallet account.
+      operationId: GetExtPubKey
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet from which to get the extended public key.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns extended public key
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/sync:
+    post:
+      tags:
+        - Wallet
+      summary: Requests the node resyncs from a block specified by its block hash.
+      description: >-
+        Internally, the specified block is taken as the new wallet tip and all
+        blocks after it are resynced.
+      operationId: Sync
+      requestBody:
+        $ref: '#/components/requestBodies/HashModel'
+      responses:
+        '200':
+          description: Resync requested
+        '400':
+          description: 'Invalid request, or block not found'
+  /api/Wallet/sync-from-date:
+    post:
+      tags:
+        - Wallet
+      summary: Request the node resyncs starting from a given date and time.
+      description: >-
+        Internally, the first block created on or after the supplied date and
+        time is taken as the new wallet tip and all blocks after it are
+        resynced.
+      operationId: SyncFromDate
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/WalletSyncFromDateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletSyncFromDateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/WalletSyncFromDateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/WalletSyncFromDateRequest'
+        description: An object containing the necessary parameters to request a resync.
+      responses:
+        '200':
+          description: Resync requested
+        '400':
+          description: Invalid request
+  /api/Wallet/wallet-stats:
+    get:
+      tags:
+        - Wallet
+      summary: Retrieves information about the wallet
+      operationId: WalletStats
+      parameters:
+        - name: WalletName
+          in: query
+          description: The name of the wallet for which to get the stats.
+          required: true
+          schema:
+            type: string
+        - name: AccountName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: MinConfirmations
+          in: query
+          description: "The minimum number of confirmations a transaction needs to have to be included.\r\n\nTo include unconfirmed transactions, set this value to 0."
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: Verbose
+          in: query
+          description: Should the request return a more detailed output
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Returns wallet stats
+        '400':
+          description: 'Invalid request, or unexpected exception occurred'
+        '500':
+          description: Request is null
+  /api/Wallet/splitcoins:
+    post:
+      tags:
+        - Wallet
+      summary: Creates requested amount of UTXOs each of equal value.
+      operationId: SplitCoins
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SplitCoinsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitCoinsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SplitCoinsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SplitCoinsRequest'
+      responses:
+        '200':
+          description: Returns transaction details
+        '400':
+          description: >-
+            Invalid request, cannot broadcast transaction, or unexpected
+            exception occurred
+        '403':
+          description: No connected peers
+        '500':
+          description: Request is null
+  /api/Wallet/distribute-utxos:
+    post:
+      tags:
+        - Wallet
+      summary: Splits and distributes UTXOs across wallet addresses
+      operationId: DistributeUtxos
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DistributeUtxosRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistributeUtxosRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DistributeUtxosRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DistributeUtxosRequest'
+      responses:
+        '200':
+          description: Returns distribution details
+        '400':
+          description: >-
+            Invalid request, requested transactions exceeds number of UTXOs,
+            cannot broadcast transaction, or unexpected exception occurred
+        '500':
+          description: Request is null
+components:
+  requestBodies:
+    BuildCreateContractTransactionRequest:
+      content:
+        application/json-patch+json:
+          schema:
+            $ref: '#/components/schemas/BuildCreateContractTransactionRequest'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BuildCreateContractTransactionRequest'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/BuildCreateContractTransactionRequest'
+        application/*+json:
+          schema:
+            $ref: '#/components/schemas/BuildCreateContractTransactionRequest'
+      description: An object containing the necessary parameters to build the transaction.
+    ShutdownCorsprotection:
+      content:
+        application/json-patch+json:
+          schema:
+            type: boolean
+        application/json:
+          schema:
+            type: boolean
+        text/json:
+          schema:
+            type: boolean
+        application/*+json:
+          schema:
+            type: boolean
+      description: >-
+        This body parameter is here to prevent a Cross Origin Resource Sharing
+        (CORS) call from triggering method execution. CORS relaxes security and
+        you can read more about this here.
+    HashModel:
+      content:
+        application/json-patch+json:
+          schema:
+            $ref: '#/components/schemas/HashModel'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HashModel'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/HashModel'
+        application/*+json:
+          schema:
+            $ref: '#/components/schemas/HashModel'
+    HexPubKeyModel:
+      content:
+        application/json-patch+json:
+          schema:
+            $ref: '#/components/schemas/HexPubKeyModel'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HexPubKeyModel'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/HexPubKeyModel'
+        application/*+json:
+          schema:
+            $ref: '#/components/schemas/HexPubKeyModel'
+      description: Request containing member public key
+    BuildCallContractTransactionRequest:
+      content:
+        application/json-patch+json:
+          schema:
+            $ref: '#/components/schemas/BuildCallContractTransactionRequest'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BuildCallContractTransactionRequest'
+        text/json:
+          schema:
+            $ref: '#/components/schemas/BuildCallContractTransactionRequest'
+        application/*+json:
+          schema:
+            $ref: '#/components/schemas/BuildCallContractTransactionRequest'
+      description: An object containing the necessary parameters to build the transaction.
+  schemas:
+    AddressBookEntryRequest:
+      description: >-
+        A class containing the necessary parameters to perform an add address
+        book entry request.
+      required:
+        - label
+        - address
+      type: object
+      properties:
+        label:
+          description: A label to attach to the address book entry.
+          maxLength: 200
+          type: string
+        address:
+          description: The address to enter in the address book.
+          type: string
+    HashModel:
+      description: >-
+        A class containing the necessary parameters for a wallet
+        resynchronization request which takes the hash of the block to resync
+        after.
+      required:
+        - hash
+      type: object
+      properties:
+        hash:
+          description: The hash of the block to resync after.
+          type: string
+    PeerStatisticsModel:
+      type: object
+      properties:
+        peerEndPoint:
+          type: string
+        connected:
+          type: boolean
+        inbound:
+          type: boolean
+        bytesSent:
+          format: int64
+          type: integer
+        bytesReceived:
+          format: int64
+          type: integer
+        receivedMessages:
+          format: int32
+          type: integer
+        sentMessages:
+          format: int32
+          type: integer
+        latestEvents:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+    HexPubKeyModel:
+      required:
+        - pubKeyHex
+      type: object
+      properties:
+        pubKeyHex:
+          type: string
+    DisconnectPeerViewModel:
+      description: Represents the model that will disconnect a connected peer.
+      type: object
+      properties:
+        peerAddress:
+          description: The IP address and port of the connected peer to disconnect.
+          type: string
+    SetBanPeerViewModel:
+      description: Represents the model that will ban and disconnect a connected peer.
+      type: object
+      properties:
+        banCommand:
+          description: "Whether to add or remove the node from the banned list.\r\n\nOptions are \"Add\" or \"Remove\"."
+          type: string
+        banDurationSeconds:
+          format: int32
+          description: The duration in seconds the peer will be banned.
+          type: integer
+        peerAddress:
+          description: "The IP address of the connected peer to ban.\r\n\nThe port should not be specified in this instance."
+          type: string
+    DecodeRawTransactionModel:
+      description: A class containing the necessary parameters for a block search request.
+      type: object
+      properties:
+        rawHex:
+          description: The transaction to be decoded in hex format.
+          type: string
+    LogRulesRequest:
+      type: object
+      properties:
+        logRules:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/LogRuleRequest'
+    LogRuleRequest:
+      required:
+        - ruleName
+        - logLevel
+      type: object
+      properties:
+        ruleName:
+          description: The name of the rule.
+          type: string
+        logLevel:
+          description: The log level.
+          type: string
+    BuildCreateContractTransactionRequest:
+      description: >-
+        A class containing the necessary parameters to perform a smart contract
+        creation request.
+      required:
+        - walletName
+        - amount
+        - password
+        - contractCode
+        - sender
+      type: object
+      properties:
+        walletName:
+          description: >-
+            The name of the wallet containing funds to use to cover transaction
+            fees, gas, and any funds specified in the Amount field.
+          type: string
+        accountName:
+          description: >-
+            The name of the wallet account containing funds to use to cover
+            transaction fees, gas, and any funds specified in the Amount field.
+            Defaults to "account 0".
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        amount:
+          description: >-
+            The amount of STRAT (or the sidechain coin) to send to the smart
+            contract address on creation.
+          type: string
+        feeAmount:
+          description: >-
+            The fees in STRAT (or the sidechain coin) to cover the smart
+            contract creation transaction.
+          type: string
+        password:
+          description: The password for the wallet.
+          type: string
+        contractCode:
+          description: The smart contract bytecode.
+          type: string
+        gasPrice:
+          format: int64
+          description: >-
+            The gas price to charge when the smart contract constructor is run
+            by the miner mining the creation transaction.
+          maximum: 10000
+          minimum: 100
+          type: integer
+        gasLimit:
+          format: int64
+          description: "The maximum amount of gas that can be spent executing this transaction.\r\n\nThis limit cannot be exceeded when the method is run by the miner mining the creation transaction. If the gas spent exceeds this value, execution of the smart contract stops."
+          maximum: 100000
+          minimum: 12000
+          type: integer
+        sender:
+          description: "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the Amount field.\r\n\nSome methods, such as a withdrawal method on an escrow smart contract, should only be executed by the deployer. In this case, it is this address that identifies the deployer.\r\n\nIt is recommended that you use /api/SmartContractWallet/account-addresses to retrieve an address to use for smart contracts. This enables you to obtain a smart contract transaction history.\r\n\nHowever, any sender address containing the required funds will work."
+          type: string
+        parameters:
+          description: "An array of encoded strings containing the parameters (and their type) to pass to the smart contract constructor when it is called.\r\n\nMore information on the format of a parameter string is available here."
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+    OutpointRequest:
+      required:
+        - transactionId
+        - index
+      type: object
+      properties:
+        transactionId:
+          description: The transaction ID.
+          type: string
+        index:
+          format: int32
+          description: The index of the output in the transaction.
+          type: integer
+    BuildCallContractTransactionRequest:
+      description: >-
+        A class containing the necessary parameters to perform a smart contract
+        method call request.
+      required:
+        - walletName
+        - contractAddress
+        - methodName
+        - amount
+        - password
+        - sender
+      type: object
+      properties:
+        walletName:
+          description: >-
+            The name of the wallet containing funds to use to cover transaction
+            fees, gas, and any funds specified in the Amount field.
+          type: string
+        accountName:
+          description: "The name of the wallet account containing funds to use to cover transaction fees, gas, and any funds specified in the Amount field.\r\n\nDefaults to \"account 0\"."
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        contractAddress:
+          description: The address of the smart contract containing the method.
+          type: string
+        methodName:
+          description: The name of the method to call.
+          type: string
+        amount:
+          description: >-
+            The amount of STRAT (or sidechain coin) to send to the smart
+            contract address.
+          type: string
+        feeAmount:
+          description: >-
+            The fees in STRAT (or sidechain coin) to cover the method call
+            transaction.
+          type: string
+        password:
+          description: The password for the wallet.
+          type: string
+        gasPrice:
+          format: int64
+          description: >-
+            The gas price to charge when the method is run by the miner mining
+            the call transaction.
+          maximum: 10000
+          minimum: 100
+          type: integer
+        gasLimit:
+          format: int64
+          description: "The maximum amount of gas that can be spent executing this transaction.\r\n\nThis limit cannot be exceeded when the method is run by the miner mining the call transaction. If the gas  spent exceeds this value, execution of the smart contract stops."
+          maximum: 100000
+          minimum: 10000
+          type: integer
+        sender:
+          description: "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the Amount field.\r\n\nSome methods, such as a withdrawal method on an escrow smart contract, should only be executed by the deployer. In this case, it is this address that identifies the deployer.\r\n\nIt is recommended that you use /api/SmartContractWallet/account-addresses to retrieve an address to use for smart contracts. This enables you to obtain a smart contract transaction history.\r\n\nHowever, any sender address containing the required funds will work."
+          type: string
+        parameters:
+          description: "An array of encoded strings containing the parameters (and their type) to pass to the smart contract method when it is called.\r\n\nMore information on the format of a parameter string is available here."
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+    BuildContractTransactionRequest:
+      required:
+        - sender
+        - password
+        - walletName
+        - recipients
+      type: object
+      properties:
+        sender:
+          type: string
+        feeAmount:
+          description: The fee for the transaction in STRAT (or a sidechain coin).
+          type: string
+        password:
+          description: >-
+            The password for the wallet containing the funds for the
+            transaction.
+          type: string
+        walletName:
+          description: >-
+            The name of the wallet containing the UTXOs to use in the
+            transaction.
+          type: string
+        accountName:
+          description: >-
+            The name of the account containing the UTXOs to use in the
+            transaction.
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        recipients:
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          minLength: 1
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientModel'
+        opReturnData:
+          description: >-
+            A string containing any OP_RETURN output data to store as part of
+            the transaction.
+          type: string
+        opReturnAmount:
+          description: >-
+            The funds in STRAT (or a sidechain coin) to include with the
+            OP_RETURN output. Currently, specifying some funds helps OP_RETURN
+            outputs be relayed around the network.
+          type: string
+        feeType:
+          description: >-
+            The type of fee to use when working out the fee for the transaction.
+            Specify "low", "medium", or "high".
+          type: string
+        allowUnconfirmed:
+          description: "A flag that specifies whether to include the unconfirmed amounts as inputs to the transaction.\r\n\nIf this flag is not set, at least one confirmation is required for each input."
+          type: boolean
+        shuffleOutputs:
+          description: "A flag that specifies whether to shuffle the transaction outputs for increased privacy.\r\n\nRandomizing the the order in which the outputs appear when the transaction is being built stops it being trivial to determine whether a transaction output is payment or change. This helps defeat unsophisticated chain analysis algorithms.\r\n\nDefaults to true."
+          type: boolean
+        changeAddress:
+          description: >-
+            The address to which the change from the transaction should be
+            returned. If this is not set, the default behaviour from the
+            Stratis.Bitcoin.Features.Wallet.WalletTransactionHandler will be
+            used to determine the change address.
+          type: string
+    RecipientModel:
+      required:
+        - destinationAddress
+        - amount
+      type: object
+      properties:
+        destinationAddress:
+          description: The destination address.
+          type: string
+        amount:
+          description: The amount that will be sent.
+          type: string
+    ScTxFeeEstimateRequest:
+      required:
+        - sender
+        - walletName
+        - recipients
+      type: object
+      properties:
+        sender:
+          type: string
+        walletName:
+          description: >-
+            The name of the wallet containing the UTXOs to use in the
+            transaction.
+          type: string
+        accountName:
+          description: >-
+            The name of the account containing the UTXOs to use in the
+            transaction.
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        recipients:
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          minLength: 1
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientModel'
+        opReturnData:
+          description: >-
+            A string containing any OP_RETURN output data to store as part of
+            the transaction.
+          type: string
+        opReturnAmount:
+          description: "The funds in STRAT (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
+          type: string
+        feeType:
+          description: >-
+            The type of fee to use when working out the fee for the transaction.
+            Specify "low", "medium", or "high".
+          type: string
+        allowUnconfirmed:
+          description: "A flag that specifies whether to include the unconfirmed amounts as inputs to the transaction.\r\n\nIf this flag is not set, at least one confirmation is required for each input."
+          type: boolean
+        shuffleOutputs:
+          description: "A flag that specifies whether to shuffle the transaction outputs for increased privacy.\r\n\nRandomizing the the order in which the outputs appear when the transaction is being built stops it being trivial to determine whether a transaction output is payment or change. This helps defeat unsophisticated chain analysis algorithms.\r\n\nDefaults to true."
+          type: boolean
+        changeAddress:
+          description: >-
+            The address to which the change from the transaction should be
+            returned. If this is not set, the default behaviour from the
+            Stratis.Bitcoin.Features.Wallet.WalletTransactionHandler will be
+            used to determine the change address.
+          type: string
+    LocalCallContractRequest:
+      description: >-
+        A class containing the necessary parameters to perform a local smart
+        contract method call request.
+      required:
+        - contractAddress
+        - methodName
+      type: object
+      properties:
+        contractAddress:
+          description: The address of the smart contract containing the method.
+          type: string
+        methodName:
+          description: The name of the method to call.
+          type: string
+        amount:
+          description: "The amount of STRAT (or sidechain coin) to send to the smart contract address.\r\n\nNo funds are actually sent, but the Amount field allows certain scenarios, where the funds sent dictates the result, to be checked."
+          type: string
+        gasPrice:
+          format: int64
+          description: >-
+            The gas price to use. This is used to calculate the expected
+            expenditure if the method is run by a miner mining a call
+            transaction rather than locally.
+          maximum: 10000
+          minimum: 1
+          type: integer
+        gasLimit:
+          format: int64
+          description: "The maximum amount of gas that can be spent executing this transaction.\r\n\nAlthough the gas expenditure is theoretical rather than actual, this limit cannot be exceeded even when the method is run locally."
+          maximum: 100000
+          minimum: 10000
+          type: integer
+        sender:
+          description: "A wallet address containing the funds to cover transaction fees, gas, and any funds specified in the Amount field.\r\n\nNote that because the method call is local no funds are spent. However, the concept of the sender address is still valid and may need to be checked.\r\n\nFor example, some methods, such as a withdrawal method on an escrow smart contract, should only be executed by the deployer, and in this case, it is the Sender address that identifies the deployer."
+          type: string
+        parameters:
+          description: "An array of encoded strings containing the parameters (and their type) to pass to the smart contract  method when it is called.\r\n\nMore information on the format of a parameter string is available here."
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+    SendTransactionRequest:
+      description: >-
+        A class containing the necessary parameters for a send transaction
+        request.
+      required:
+        - hex
+      type: object
+      properties:
+        hex:
+          description: A string containing the transaction in hexadecimal format.
+          type: string
+    WalletCreationRequest:
+      description: A class containing the necessary parameters for a create wallet request.
+      required:
+        - password
+        - passphrase
+        - name
+      type: object
+      properties:
+        mnemonic:
+          description: The mnemonic used to create the HD wallet.
+          type: string
+        password:
+          description: A password used to encrypt the wallet for secure storage.
+          type: string
+        passphrase:
+          description: "An optional additional seed, which is joined together with the Stratis.Bitcoin.Features.Wallet.Models.WalletCreationRequest.Mnemonic  when the wallet is created.\r\n\nAlthough you will be prompted to enter a passphrase, an empty string is still valid."
+          type: string
+        name:
+          description: The name of the wallet.
+          type: string
+    SignMessageRequest:
+      description: Object to sign a message.
+      required:
+        - walletName
+        - password
+        - externalAddress
+        - message
+      type: object
+      properties:
+        walletName:
+          type: string
+        password:
+          type: string
+        externalAddress:
+          type: string
+        message:
+          type: string
+    VerifyRequest:
+      description: Object to verify a signed message.
+      required:
+        - signature
+        - externalAddress
+        - message
+      type: object
+      properties:
+        signature:
+          type: string
+        externalAddress:
+          type: string
+        message:
+          type: string
+    WalletLoadRequest:
+      description: A class containing the necessary parameters for a load wallet request.
+      required:
+        - password
+        - name
+      type: object
+      properties:
+        password:
+          description: The password that was used to create the wallet.
+          type: string
+        name:
+          description: The name of the wallet.
+          type: string
+    WalletRecoveryRequest:
+      description: >-
+        A class containing the necessary parameters for a wallet recovery
+        request.
+      required:
+        - mnemonic
+        - password
+        - passphrase
+        - name
+      type: object
+      properties:
+        mnemonic:
+          description: The mnemonic that was used to create the wallet.
+          type: string
+        password:
+          description: The password that was used to create the wallet.
+          type: string
+        passphrase:
+          description: The passphrase that was used to create the wallet.
+          type: string
+        name:
+          description: The name of the wallet.
+          type: string
+        creationDate:
+          format: date-time
+          type: string
+    WalletExtPubRecoveryRequest:
+      description: "A class containing the necessary parameters for a wallet recovery request using its extended public key.\r\n\nNote that the recovered wallet will not have a private key and is only suitable for returning the wallet history using further API calls. As such, only the extended public key is used in the recovery process."
+      required:
+        - extPubKey
+        - accountIndex
+        - name
+      type: object
+      properties:
+        extPubKey:
+          description: The extended public key used by the wallet.
+          type: string
+        accountIndex:
+          format: int32
+          description: >-
+            The index of the account to generate for the wallet. For example,
+            specifying a value of 0 generates "account0".
+          type: integer
+        name:
+          description: The name to give the recovered wallet.
+          type: string
+        creationDate:
+          format: date-time
+          description: The creation date and time to give the recovered wallet.
+          type: string
+    TxFeeEstimateRequest:
+      description: >-
+        A class containing the necessary parameters for a transaction fee
+        estimate request.
+      required:
+        - walletName
+        - recipients
+      type: object
+      properties:
+        walletName:
+          description: >-
+            The name of the wallet containing the UTXOs to use in the
+            transaction.
+          type: string
+        accountName:
+          description: >-
+            The name of the account containing the UTXOs to use in the
+            transaction.
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        recipients:
+          description: "A list of transaction recipients.\r\n\nFor each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          minLength: 1
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientModel'
+        opReturnData:
+          description: >-
+            A string containing any OP_RETURN output data to store as part of
+            the transaction.
+          type: string
+        opReturnAmount:
+          description: >-
+            The funds in STRAT (or a sidechain coin) to include with the
+            OP_RETURN output. Currently, specifying some funds helps OP_RETURN
+            outputs be relayed around the network.
+          type: string
+        feeType:
+          description: >-
+            The type of fee to use when working out the fee for the transaction.
+            Specify "low", "medium", or "high".
+          type: string
+        allowUnconfirmed:
+          description: "A flag that specifies whether to include the unconfirmed amounts as inputs to the transaction.\r\n\nIf this flag is not set, at least one confirmation is required for each input."
+          type: boolean
+        shuffleOutputs:
+          description: "A flag that specifies whether to shuffle the transaction outputs for increased privacy.\r\n\nRandomizing the the order in which the outputs appear when the transaction is being built stops it being trivial to determine whether a transaction output is payment or change. This helps defeat unsophisticated chain analysis algorithms.\r\n\nDefaults to true."
+          type: boolean
+        changeAddress:
+          description: >-
+            The address to which the change from the transaction should be
+            returned. If this is not set, the default behaviour from the
+            Stratis.Bitcoin.Features.Wallet.WalletTransactionHandler will be
+            used to determine the change address.
+          type: string
+    BuildTransactionRequest:
+      description: >-
+        A class containing the necessary parameters for a build transaction
+        request.
+      required:
+        - password
+        - walletName
+        - recipients
+      type: object
+      properties:
+        feeAmount:
+          description: The fee for the transaction in STRAT (or a sidechain coin).
+          type: string
+        password:
+          description: >-
+            The password for the wallet containing the funds for the
+            transaction.
+          type: string
+        walletName:
+          description: >-
+            The name of the wallet containing the UTXOs to use in the
+            transaction.
+          type: string
+        accountName:
+          description: >-
+            The name of the account containing the UTXOs to use in the
+            transaction.
+          type: string
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        recipients:
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          minLength: 1
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientModel'
+        opReturnData:
+          description: >-
+            A string containing any OP_RETURN output data to store as part of
+            the transaction.
+          type: string
+        opReturnAmount:
+          description: "The funds in STRAT (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
+          type: string
+        feeType:
+          description: >-
+            The type of fee to use when working out the fee for the transaction.
+            Specify "low", "medium", or "high".
+          type: string
+        allowUnconfirmed:
+          description: "A flag that specifies whether to include the unconfirmed amounts as inputs to the transaction.\r\n\nIf this flag is not set, at least one confirmation is required for each input."
+          type: boolean
+        shuffleOutputs:
+          description: "A flag that specifies whether to shuffle the transaction outputs for increased privacy.\r\n\nRandomizing the the order in which the outputs appear when the transaction is being built stops it being trivial to determine whether a transaction output is payment or change. This helps defeat unsophisticated chain analysis algorithms.\r\n\nDefaults to true."
+          type: boolean
+        changeAddress:
+          description: >-
+            The address to which the change from the transaction should be
+            returned. If this is not set, the default behaviour from the
+            Stratis.Bitcoin.Features.Wallet.WalletTransactionHandler will be
+            used to determine the change address.
+          type: string
+    GetUnusedAccountModel:
+      description: A class containing the necessary parameters for a new account request.
+      required:
+        - walletName
+        - password
+      type: object
+      properties:
+        walletName:
+          description: The name of the wallet in which to create the account.
+          type: string
+        password:
+          description: The password for the wallet.
+          type: string
+    WalletSyncFromDateRequest:
+      description: >-
+        A class containing the necessary parameters for a wallet
+        resynchronization request.
+      type: object
+      properties:
+        date:
+          format: date-time
+          description: The date and time from which to resync the wallet.
+          type: string
+    SplitCoinsRequest:
+      required:
+        - walletName
+        - walletPassword
+        - totalAmountToSplit
+        - utxosCount
+      type: object
+      properties:
+        walletName:
+          type: string
+        accountName:
+          type: string
+        walletPassword:
+          type: string
+        totalAmountToSplit:
+          description: The amount that will be sent.
+          type: string
+        utxosCount:
+          format: int32
+          type: integer
+    DistributeUtxosRequest:
+      required:
+        - walletName
+        - walletPassword
+        - utxosCount
+        - utxoPerTransaction
+        - dryRun
+      type: object
+      properties:
+        walletName:
+          type: string
+        accountName:
+          type: string
+        walletPassword:
+          type: string
+        useUniqueAddressPerUtxo:
+          default: false
+          type: boolean
+        reuseAddresses:
+          default: true
+          type: boolean
+        useChangeAddresses:
+          default: false
+          type: boolean
+        utxosCount:
+          format: int32
+          type: integer
+        utxoPerTransaction:
+          format: int32
+          type: integer
+        timestampDifferenceBetweenTransactions:
+          format: int32
+          default: 0
+          type: integer
+        minConfirmations:
+          format: int32
+          description: "The minimum number of confirmations a transaction needs to have to be included.\r\nTo include unconfirmed transactions, set this value to 0."
+          default: 1
+          type: integer
+        outpoints:
+          description: A list of outpoints to use as inputs for the transaction.
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/OutpointRequest'
+        dryRun:
+          type: boolean
+servers:
+  - url: 'http://localhost:37223/Swagger'
+    variables: {}
+    description: CirrusMain
