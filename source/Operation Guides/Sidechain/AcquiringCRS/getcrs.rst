@@ -30,7 +30,7 @@ Once you have Cirrus Core running on testnet, you will need to follow the prompt
 
 The Cirrus Token is required to interact or deploy contracts, the amount is wholly dependant on the computational cost defined by the complexity of the Smart Contract.
 
-Initially you will need to obtain a minimum of 1 STRAT and have it available within the Stratis Core wallet. The Stratis Core wallet can be downloaded and installed from the below release page.
+Initially you will need to obtain a minimum of 1 STRAX and have it available within the Stratis Core wallet. The Stratis Core wallet can be downloaded and installed from the below release page.
 
 `https://github.com/stratisproject/StratisCore/releases
 <https://github.com/stratisproject/StratisCore/releases>`_
@@ -53,7 +53,7 @@ Once you have installed Stratis Core, you will need to run it either on testnet 
 
 Save the script in the Applications folder with the name of StratisCoreTest.app and make sure to save it as an application type.
 
-Once you have Stratis Core running on testnet, you will need to follow the prompted steps to create a wallet, once this wallet has been created, send a minimum of 1 STRAT to an address generated from the newly created wallet.
+Once you have Stratis Core running on testnet, you will need to follow the prompted steps to create a wallet, once this wallet has been created, send a minimum of 1 STRAX to an address generated from the newly created wallet.
 
 .. image:: StratisCore.png
      :width: 900px
@@ -79,15 +79,15 @@ Federation detail for both test environments and production environments can be 
 | **Stratis Federation Address:** 2N1wrNv5NDayLrKuph9YDVk8Fip8Wr8F8nX
 | **Cirrus Federation Address:** xH1GHWVNKwdebkgiFPtQtM4qb3vrvNX2Rg
 
-The exchange of STRAT for CRS is known as a Cross-Chain Transfer. Each Cross-Chain Transfer will subject to an exchange fee of 0.001, meaning if you perform a Cross-Chain Transfer of 1 STRAT you will receive 0.999 CRS Tokens.
+The exchange of STRAX for CRS is known as a Cross-Chain Transfer. Each Cross-Chain Transfer will subject to an exchange fee of 0.001, meaning if you perform a Cross-Chain Transfer of 1 STRAX you will receive 0.999 CRS Tokens.
 
 A Cross-Chain Transfer is also subject to a larger amount of confirmations, this is to cater for any reorganisations on the network and invalid credits being made on either chain. The confirmation times can be seen below.
 
-**STRAT to CRS:** 500 Blocks (64 Second Block Time x 500 Blocks = 32000 Seconds ÷ 60 = 533 Minutes ÷ 60 = 8 Hours 48 Minutes)
+**STRAX to CRS:** 500 Blocks (64 Second Block Time x 500 Blocks = 32000 Seconds ÷ 60 = 533 Minutes ÷ 60 = 8 Hours 48 Minutes)
 
-**CRS to STRAT:** 240 Blocks (16 Second Block Time x 240 Blocks = 3840 Seconds ÷ 60 = 64 Minutes)
+**CRS to STRAX:** 240 Blocks (16 Second Block Time x 240 Blocks = 3840 Seconds ÷ 60 = 64 Minutes)
 
-Once 500 Blocks have passed after making a Cross-Chain Transfer from STRAT to CRS you will see the CRS Balance appear in your wallet.
+Once 500 Blocks have passed after making a Cross-Chain Transfer from STRAX to CRS you will see the CRS Balance appear in your wallet.
 
 .. image:: CirrusCore.png
      :width: 900px

@@ -118,7 +118,7 @@ The block store uses a NoSQL database (DBreeze) to store the blockchain on disk.
 
 Coin View
 -----------
-The coin view represents the UTXO set. Each time the consensus tip moves forward, it needs to be recalculated. It can be thought of as the amount of STRAT or BTC which is spendable at any given block height. As the consensus tip moves forward one block, the number of UTXOs changes, which reflects UTXOs being spent and new UTXOs being created as payments and change.
+The coin view represents the UTXO set. Each time the consensus tip moves forward, it needs to be recalculated. It can be thought of as the amount of STRAX or BTC which is spendable at any given block height. As the consensus tip moves forward one block, the number of UTXOs changes, which reflects UTXOs being spent and new UTXOs being created as payments and change.
 
 The coin view makes use of a database and cache. It can be rewound although rewinding is expensive.
 
@@ -127,7 +127,7 @@ Updating the coin view is the last step of full validation.
 Mining new blocks
 ==================
 
-If the mining feature is enabled on the full node, it is able to mine new blocks on either the Stratis network or the Bitcoin network. The proof-of-stake methodology is used for STRAT and the proof-of-work methodology is used for BTC. The following components are involved with this: memory pool, miner, wallet, and broadcast manager.
+If the mining feature is enabled on the full node, it is able to mine new blocks on either the Stratis network or the Bitcoin network. The proof-of-stake methodology is used for STRAX and the proof-of-work methodology is used for BTC. The following components are involved with this: memory pool, miner, wallet, and broadcast manager.
 
 Memory Pool
 ------------
@@ -142,13 +142,13 @@ The concept of an orphan block is relevant to the memory pool. It relates to the
 Miner
 ------
 
-The miner component fills block templates up with transactions from the memory pool (sorted by fees). When the block is full, the miner attempts to mine it using either the proof-of-stake function (for STRAT) or the proof-of-work function (for BTC). When a block is successfully mined, it is presented to the peers on the network who will then attempt to validate it.
+The miner component fills block templates up with transactions from the memory pool (sorted by fees). When the block is full, the miner attempts to mine it using either the proof-of-stake function (for STRAX) or the proof-of-work function (for BTC). When a block is successfully mined, it is presented to the peers on the network who will then attempt to validate it.
 
 The Stratis proof-of-stake algorithm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Stratis proof-of-stake algorithm is designed to mine a block every 64 seconds. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about 64 seconds for one miner to hit the target. The more STRAT the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAT currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
+The Stratis proof-of-stake algorithm is designed to mine a block every 64 seconds. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about 64 seconds for one miner to hit the target. The more STRAX the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAX currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
 
-Because the algorithm is dependent on the STRAT that a miner is staking, the wallet is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
+Because the algorithm is dependent on the STRAX that a miner is staking, the wallet is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
 
 Wallet
 ---------

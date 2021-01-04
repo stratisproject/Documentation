@@ -1224,7 +1224,7 @@ paths:
       tags:
         - SmartContractWallet
       summary: >-
-        Gets the balance at a specific wallet address in STRAT (or the
+        Gets the balance at a specific wallet address in STRAX (or the
         respective token/coin).
       description: "This method gets the UTXOs at the address that the wallet can spend.\r\n\nThe function can be used to query the balance at a smart contract account address\r\nsupplied by /api/SmartContractWallet/account-addresses."
       operationId: GetAddressBalance
@@ -2499,12 +2499,12 @@ components:
             $ref: '#/components/schemas/OutpointRequest'
         amount:
           description: >-
-            The amount of STRAT (or the sidechain coin) to send to the smart
+            The amount of STRAX (or the sidechain coin) to send to the smart
             contract address on creation.
           type: string
         feeAmount:
           description: >-
-            The fees in STRAT (or the sidechain coin) to cover the smart
+            The fees in STRAX (or the sidechain coin) to cover the smart
             contract creation transaction.
           type: string
         password:
@@ -2584,12 +2584,12 @@ components:
           type: string
         amount:
           description: >-
-            The amount of STRAT (or sidechain coin) to send to the smart
+            The amount of STRAX (or sidechain coin) to send to the smart
             contract address.
           type: string
         feeAmount:
           description: >-
-            The fees in STRAT (or sidechain coin) to cover the method call
+            The fees in STRAX (or sidechain coin) to cover the method call
             transaction.
           type: string
         password:
@@ -2629,7 +2629,7 @@ components:
         sender:
           type: string
         feeAmount:
-          description: The fee for the transaction in STRAT (or a sidechain coin).
+          description: The fee for the transaction in STRAX (or a sidechain coin).
           type: string
         password:
           description: >-
@@ -2653,7 +2653,7 @@ components:
           items:
             $ref: '#/components/schemas/OutpointRequest'
         recipients:
-          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAX (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
           minLength: 1
           uniqueItems: false
           type: array
@@ -2666,7 +2666,7 @@ components:
           type: string
         opReturnAmount:
           description: >-
-            The funds in STRAT (or a sidechain coin) to include with the
+            The funds in STRAX (or a sidechain coin) to include with the
             OP_RETURN output. Currently, specifying some funds helps OP_RETURN
             outputs be relayed around the network.
           type: string
@@ -2726,7 +2726,7 @@ components:
           items:
             $ref: '#/components/schemas/OutpointRequest'
         recipients:
-          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAX (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
           minLength: 1
           uniqueItems: false
           type: array
@@ -2738,7 +2738,7 @@ components:
             the transaction.
           type: string
         opReturnAmount:
-          description: "The funds in STRAT (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
+          description: "The funds in STRAX (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
           type: string
         feeType:
           description: >-
@@ -2774,7 +2774,7 @@ components:
           description: The name of the method to call.
           type: string
         amount:
-          description: "The amount of STRAT (or sidechain coin) to send to the smart contract address.\r\n\nNo funds are actually sent, but the Amount field allows certain scenarios, where the funds sent dictates the result, to be checked."
+          description: "The amount of STRAX (or sidechain coin) to send to the smart contract address.\r\n\nNo funds are actually sent, but the Amount field allows certain scenarios, where the funds sent dictates the result, to be checked."
           type: string
         gasPrice:
           format: int64
@@ -2951,7 +2951,7 @@ components:
           items:
             $ref: '#/components/schemas/OutpointRequest'
         recipients:
-          description: "A list of transaction recipients.\r\n\nFor each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          description: "A list of transaction recipients.\r\n\nFor each recipient, specify the Pubkey script and the amount the recipient will receive in STRAX (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
           minLength: 1
           uniqueItems: false
           type: array
@@ -2964,7 +2964,7 @@ components:
           type: string
         opReturnAmount:
           description: >-
-            The funds in STRAT (or a sidechain coin) to include with the
+            The funds in STRAX (or a sidechain coin) to include with the
             OP_RETURN output. Currently, specifying some funds helps OP_RETURN
             outputs be relayed around the network.
           type: string
@@ -2997,7 +2997,7 @@ components:
       type: object
       properties:
         feeAmount:
-          description: The fee for the transaction in STRAT (or a sidechain coin).
+          description: The fee for the transaction in STRAX (or a sidechain coin).
           type: string
         password:
           description: >-
@@ -3021,7 +3021,7 @@ components:
           items:
             $ref: '#/components/schemas/OutpointRequest'
         recipients:
-          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAT (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
+          description: "A list of transaction recipients. For each recipient, specify the Pubkey script and the amount the recipient will receive in STRAX (or a sidechain coin).\r\n\nIf the transaction was realized, both the values would be used to create the UTXOs for the transaction recipients."
           minLength: 1
           uniqueItems: false
           type: array
@@ -3033,7 +3033,7 @@ components:
             the transaction.
           type: string
         opReturnAmount:
-          description: "The funds in STRAT (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
+          description: "The funds in STRAX (or a sidechain coin) to include with the OP_RETURN output.\r\n\nCurrently, specifying some funds helps OP_RETURN outputs be relayed around the network."
           type: string
         feeType:
           description: >-

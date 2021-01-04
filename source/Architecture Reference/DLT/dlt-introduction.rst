@@ -25,17 +25,17 @@ Private blockchains are the same as a public blockchain in that consensus on a d
 
 Assets
 ===================================================================
-Blockchains track assets. On the Stratis blockchain, ownership of the STRAT token is tracked. Most public blockchains, including the Bitcoin blockchain, follow a similar model and the only assets tracked are some kind of token.
+Blockchains track assets. On the Stratis blockchain, ownership of the STRAX token is tracked. Most public blockchains, including the Bitcoin blockchain, follow a similar model and the only assets tracked are some kind of token.
 
-There are 100 million indivisible units of value in each STRAT, and the only asset tracked on the Stratis blockchain represents an amount of these units. If a participant on the Stratis blockchain has 1 STRAT, it means that they own an asset comprising 100 million of these indivisible units. When a transaction occurs on the Stratis blockchain:
+There are 100 million indivisible units of value in each STRAX, and the only asset tracked on the Stratis blockchain represents an amount of these units. If a participant on the Stratis blockchain has 1 STRAX, it means that they own an asset comprising 100 million of these indivisible units. When a transaction occurs on the Stratis blockchain:
 
-1. Existing STRAT asset/s belonging to the sending participant are spent (archived).
-2. New STRAT assets are created for the receiving participant/s.
-3. If applicable, STRAT assets are created to pay change to the sending participant. For example, a participant has two 5 STRAT assets and they need to send 8 STRAT. In the subsequent transaction, the two 5 STRAT assets are spent, an 8 STRAT asset is created for the receiver, and a 2 STRAT asset is paid as change to the sender.  The sender now has one asset worth 2 STRAT.
+1. Existing STRAX asset/s belonging to the sending participant are spent (archived).
+2. New STRAX assets are created for the receiving participant/s.
+3. If applicable, STRAX assets are created to pay change to the sending participant. For example, a participant has two 5 STRAX assets and they need to send 8 STRAX. In the subsequent transaction, the two 5 STRAX assets are spent, an 8 STRAX asset is created for the receiver, and a 2 STRAX asset is paid as change to the sender.  The sender now has one asset worth 2 STRAX.
 
 DLT solutions (through transactions) track a wider range of assets than currencies which only exist in an electronic form. While cryptocurrencies need to be stored on a public blockchain to encourage maximum uptake and reward participation, DLT solutions often track real-world assets in cases where asset ownership is sensitive information. It is easy to see tracking real-world assets can go hand in hand with a blockchain solution that limits the participants who can see them.
 
-Taking an example from the pharmaceutical industry, prescriptions can be stored as assets in a DLT solution. A patient owns their prescriptions in the same way that a user holds STRAT on the Stratis blockchain. Instead of each asset being a unit of STRAT (a number of Satoshi), one asset is assigned for each prescription. Information pertinent to each prescription is also held on the blockchain. A transaction is used to mark the prescription as fulfilled, which effectively spends the prescription, so it cannot be used again.    
+Taking an example from the pharmaceutical industry, prescriptions can be stored as assets in a DLT solution. A patient owns their prescriptions in the same way that a user holds STRAX on the Stratis blockchain. Instead of each asset being a unit of STRAX (a number of Satoshi), one asset is assigned for each prescription. Information pertinent to each prescription is also held on the blockchain. A transaction is used to mark the prescription as fulfilled, which effectively spends the prescription, so it cannot be used again.    
 
 Implementation
 ===================================================================

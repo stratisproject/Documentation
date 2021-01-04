@@ -107,7 +107,7 @@
                             <use fill="#C95383" fill-rule="evenodd" xlink:href="#path-9"></use>
                             <rect x="0" y="0" width="148" height="25" rx="8"></rect>
                         </g>
-                        <text id="100-TSTRAT" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#FFFFFF">
+                        <text id="100-TSTRAX" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#FFFFFF">
                             <tspan x="80.0351562" y="17">100 TAPEX</tspan>
                         </text>
                         <g id="Unlock" transform="translate(4.000000, 2.000000)">

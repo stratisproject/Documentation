@@ -9,23 +9,23 @@ Both the Bitcoin and Stratis network make adjustments to the difficulty of their
 How your stake determines your chance to hit the target
 ========================================================
 
-Next, let's take a closer look at how the amount of STRAT you have staked determines your chance of being able to write the next block.
+Next, let's take a closer look at how the amount of STRAX you have staked determines your chance of being able to write the next block.
 
 Stakes consist of Unspent Transaction Outputs (UTXOs)
 -------------------------------------------------------------------
 
-It is important to realize that whatever amount of STRAT you have staked, it is made up of one or more Unspent Transaction Outputs (UTXOs). There is no rule to this; you could be staking 1,000,000 STRAT which is just a single UTXO or 10 STRAT made up from 1000 UTXOs. While these represent somewhat extreme examples, they demonstrate that your chances to create a block are calculated from each UTXO you have staked. The target is adjusted for each UTXO depending on how much STRAT the UTXO is worth. The target is multiplied by the value of the UTXO in Satoshi to make it easier to generate a hash that is lower than it.
+It is important to realize that whatever amount of STRAX you have staked, it is made up of one or more Unspent Transaction Outputs (UTXOs). There is no rule to this; you could be staking 1,000,000 STRAX which is just a single UTXO or 10 STRAX made up from 1000 UTXOs. While these represent somewhat extreme examples, they demonstrate that your chances to create a block are calculated from each UTXO you have staked. The target is adjusted for each UTXO depending on how much STRAX the UTXO is worth. The target is multiplied by the value of the UTXO in Satoshi to make it easier to generate a hash that is lower than it.
 
-For example, if you have a single UTXO worth 1,000,000 STRAT, you have a single chance with a target that has been made substantially easier. Alternatively, if you have 10 UTXOs worth 100,000 STRAT, you have 10 chances, but in all cases, the target will be 10 times harder to reach than when the single UTXO was checked. **This means that whatever configuration of UTXOs you hold your STRAT stake in, your chance of being able to write a block is always the same when staking any given amount of STRAT.** The code behind this is explored in :doc:`PoS-exploring-the-code`.
+For example, if you have a single UTXO worth 1,000,000 STRAX, you have a single chance with a target that has been made substantially easier. Alternatively, if you have 10 UTXOs worth 100,000 STRAX, you have 10 chances, but in all cases, the target will be 10 times harder to reach than when the single UTXO was checked. **This means that whatever configuration of UTXOs you hold your STRAX stake in, your chance of being able to write a block is always the same when staking any given amount of STRAX.** The code behind this is explored in :doc:`PoS-exploring-the-code`.
 
 .. note:: A UTXO that successfully generates a hash that is less than the adjusted target is known as the *coinstake kernel*.
 
-.. note:: You might be wondering at this point whether it matters from a performance point of view if your stake is held in multiple UTXOs. In other words, would there be any performance advantage to combining all your UTXOs into a single UTXO. Doing the combination requires making a payment to yourself of all the STRAT you own. In the above example, checking whether the single 1,000,000 STRAT UTXO has hit the target is 10 times faster than checking if one of the 100,000 STRAT UTXOs has hit the target. However, in reality, it is highly unlikely that making 10 calculations would take a significant amount of time and affect your chances of being able to write a block.  
+.. note:: You might be wondering at this point whether it matters from a performance point of view if your stake is held in multiple UTXOs. In other words, would there be any performance advantage to combining all your UTXOs into a single UTXO. Doing the combination requires making a payment to yourself of all the STRAX you own. In the above example, checking whether the single 1,000,000 STRAX UTXO has hit the target is 10 times faster than checking if one of the 100,000 STRAX UTXOs has hit the target. However, in reality, it is highly unlikely that making 10 calculations would take a significant amount of time and affect your chances of being able to write a block.  
 
 How an element of randomness is added to each UTXO calculation
 -----------------------------------------------------------------
 
-Adding an element of randomness to each calculation performed on a UTXO is very important; otherwise users staking larger amounts of STRAT would most likely have a permanent advantage. Without the randomness element, the result calculated for each UTXO would be the same each time. Even a user staking a small amount of STRAT could gain the advantage if the hash they produced was a freak result and very low. The randomness comes from several sources, which we will explore.
+Adding an element of randomness to each calculation performed on a UTXO is very important; otherwise users staking larger amounts of STRAX would most likely have a permanent advantage. Without the randomness element, the result calculated for each UTXO would be the same each time. Even a user staking a small amount of STRAX could gain the advantage if the hash they produced was a freak result and very low. The randomness comes from several sources, which we will explore.
 
 In addition to the UTXO itself, there are are a couple of other random elements which are added to calculation. One of these is the timestamp for the prospective block.
 
@@ -46,7 +46,7 @@ An example staking timeline
      :alt: PoS Timeline
      :align: center
 
-The figure above shows a miner who is staking STRAT at 07:00:00. 07:00:00 is also the timestamp of the last block that was added to the blockchain. The Full Node checks the user's UTXOs to see whether they hit the target using the timestamp of 07:00:16. All of the UTXOs fail to meet the target using this timestamp. Next, timestamps of 07:00:32 and 07:00:48 are tried respectively. In both cases, the user's UTXOs fail to meet the target. Finally, a timestamp of 07:01:04 is tried, and one of the UTXOs meets the target. The miner then writes the next block.
+The figure above shows a miner who is staking STRAX at 07:00:00. 07:00:00 is also the timestamp of the last block that was added to the blockchain. The Full Node checks the user's UTXOs to see whether they hit the target using the timestamp of 07:00:16. All of the UTXOs fail to meet the target using this timestamp. Next, timestamps of 07:00:32 and 07:00:48 are tried respectively. In both cases, the user's UTXOs fail to meet the target. Finally, a timestamp of 07:01:04 is tried, and one of the UTXOs meets the target. The miner then writes the next block.
 
 .. note:: In the above diagram, the calculation is shown taking approximately 4 seconds. This is just a depiction, and the calculation typically takes a couple of milliseconds.   
 

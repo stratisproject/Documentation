@@ -53,10 +53,10 @@ There are four criteria that need to be met here:
 
 1. At least one transaction input is required.
 2. The previous output (a UTXO from another transaction) of the first transaction input cannot be Null. *This is a reference to the coinstake kernel.* 
-3. At least two transaction outputs are required. The second of these contains a UTXO that reimburses the coinstake kernel UTXO and pays the mining reward of 1 STRAT.
+3. At least two transaction outputs are required. The second of these contains a UTXO that reimburses the coinstake kernel UTXO and pays the mining reward of 1 STRAX.
 4. The first transaction output must be empty. A first transaction output containing a UTXO is a characteristic of a `coinbase transaction on a PoW network <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch10.asciidoc#the-coinbase-transaction>`_.
 
-You might be wondering why the second output needs to reimburse the coinstake kernel. This is because the unlocking script must be presented to prove miner ownership when the coinstake kernel is added to the first transaction input. Doing this spends the coinstake kernel on one side of the transaction, so the miner needs to be reinbursed. If this didn't happen, the value of the coinstake kernel would disappear from the miner's wallet. For an example, if a coinstake kernel was worth 100 STRAT, the second output UTXO would be worth 101 STRAT.   
+You might be wondering why the second output needs to reimburse the coinstake kernel. This is because the unlocking script must be presented to prove miner ownership when the coinstake kernel is added to the first transaction input. Doing this spends the coinstake kernel on one side of the transaction, so the miner needs to be reinbursed. If this didn't happen, the value of the coinstake kernel would disappear from the miner's wallet. For an example, if a coinstake kernel was worth 100 STRAX, the second output UTXO would be worth 101 STRAX.   
 
 How workers calculate if a UTXO can be the coinstake kernel
 =============================================================

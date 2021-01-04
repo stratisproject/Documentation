@@ -8,7 +8,7 @@
 6. Using the API and extending it too.
 7. How to encrypt information on the blockchain. Don’t rehash what’s out there but emphasise Stratis specific implementations using “Bouncy Castle” etc. Talk about how you can use the encryption libraries to hide custom data.
 8. More about how TXs are broadcast round the network. Include material on the methodology by which the network is widened. Could peers be adapted for special cases (become identifiable)? When would this be desirable?
-9. How the STRAT protocol adds to the Bitcoin protocol. If useful, provide easy lookup so we can see the code for any part of the protocol implementation.
+9. How the STRAX protocol adds to the Bitcoin protocol. If useful, provide easy lookup so we can see the code for any part of the protocol implementation.
 10. A deeper dive into behaviours - Writing your own behaviour by making use of their plugable nature.
 11. How do our wallets come together with the full node? Give a thorough explanation of how this happens and identify the code involved. Could a wallet hold anything else? How would you do that?
 12. Validation - describe how we validate both headers and blocks in more detail - how would you modify validation?

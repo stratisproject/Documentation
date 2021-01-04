@@ -156,7 +156,7 @@
                 <tspan x="26.5742188" y="63">Mainchain Test Network</tspan>
             </text>
         </g>
-        <g id="TSTRAT-Node" transform="translate(0.000000, 271.000000)">
+        <g id="TSTRAX-Node" transform="translate(0.000000, 271.000000)">
             <path d="M9,0.5 C4.30557963,0.5 0.5,4.30557963 0.5,9 L0.5,217 C0.5,221.69442 4.30557963,225.5 9,225.5 L191,225.5 C195.69442,225.5 199.5,221.69442 199.5,217 L199.5,9 C199.5,4.30557963 195.69442,0.5 191,0.5 L9,0.5 Z" stroke="#828C86" fill="#CCD7E5"></path>
             <path d="M99.5,219.5 L99.5,193.5" id="Line-5" stroke="#828C96" stroke-width="3" stroke-linecap="square" stroke-dasharray="4"></path>
             <path d="M100,190.5 L100,56.5" id="Line-5" stroke="#828C96" stroke-width="3" stroke-linecap="square"></path>
@@ -165,14 +165,14 @@
             <path d="M28.9044703,40.4110916 C24.7999263,40.4633767 21.5,43.8056063 21.5,47.9104832 L21.5,53.1446293 C21.5,57.2867649 24.8578644,60.6446293 29,60.6446293 L171,60.6446293 C175.142136,60.6446293 178.5,57.2867649 178.5,53.1446293 L178.5,46.1016405 C178.499899,46.0538743 178.499899,46.0538743 178.499392,46.0061107 C178.446632,41.8643111 175.04627,38.5494893 170.90447,38.6022489 L28.9044703,40.4110916 Z" id="Block" stroke="#828C96" fill="#FFFFFF"></path>
             <rect id="Block" stroke="#828C96" fill="#FFFFFF" x="21.5" y="182.5" width="157" height="22" rx="8"></rect>
             <text font-family="OpenSans-Regular, Open Sans" font-size="12" font-weight="normal" fill="#1E232D">
-                <tspan x="61.4941406" y="25">TSTRAT Node</tspan>
+                <tspan x="61.4941406" y="25">TSTRAX Node</tspan>
             </text>
             <g id="UTXO-Block" transform="translate(21.000000, 104.000000)">
                 <rect id="UTXO" stroke="#828C96" fill="#FFFFFF" x="0.5" y="0.5" width="157" height="34" rx="9"></rect>
                 <g id="UTXO" transform="translate(5.000000, 5.000000)">
                     <rect id="Rectangle-3" fill="#765F97" x="0" y="0" width="148" height="25" rx="8"></rect>
-                    <text id="100-TSTRAT" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#FFFFFF">
-                        <tspan x="19" y="17">100 STRAT</tspan>
+                    <text id="100-TSTRAX" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#FFFFFF">
+                        <tspan x="19" y="17">100 STRAX</tspan>
                     </text>
                     <g id="Lock" transform="translate(123.000000, 2.000000)">
                         <g id="Group-4">
@@ -224,8 +224,8 @@
             <text id="Balance" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#000000">
                 <tspan x="10" y="68">Balance:</tspan>
             </text>
-            <text id="100-TSTRAT" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#000000">
-                <tspan x="119.186523" y="68">100 STRAT</tspan>
+            <text id="100-TSTRAX" font-family="OpenSans-Regular, Open Sans" font-size="10" font-weight="normal" fill="#000000">
+                <tspan x="119.186523" y="68">100 STRAX</tspan>
             </text>
             <text id="Mainchain-Wallet" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#1E232D">
                 <tspan x="15.8813477" y="26">Mainchain </tspan>

@@ -136,7 +136,7 @@ In the wallet:
 Gas
 -------------------
 
-Contracts require 'gas' to run. How much gas is needed is related to the amount of processing required to execute the contract. Gas is an additional expenditure to transaction fees and is different from STRAT. Its relationship to STRAT is defined by ``strat = gas * gasPrice``.
+Contracts require 'gas' to run. How much gas is needed is related to the amount of processing required to execute the contract. Gas is an additional expenditure to transaction fees and is different from STRAX. Its relationship to STRAX is defined by ``strat = gas * gasPrice``.
 
 All contract transactions contain a gas price and gas limit specified by the sender of the transaction. When a miner mines the contract transaction, they receive the gas as a fee for the work they had to do to execute the contract. Miners can choose to prioritize transactions based on profitability by mining transactions with a higher gas price first.
 

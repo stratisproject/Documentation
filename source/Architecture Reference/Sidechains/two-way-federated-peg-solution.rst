@@ -32,12 +32,12 @@ The following figure shows the creation of the CRS sidechain:
      :alt: Sidechains Creation
      :align: center
 
-The UTXO for the premine is shown inside the premine block. The "locked padlock" symbol indicates that at this point the UTXO is unspent, but it is ready to be spent by the federation when they honour STRAT deposits made on the mainchain. A sidechain funder who owns 100 STRAT is also shown in the figure, and their single UTXO of 100 STRAT is shown inside one of the mainchain blocks.
+The UTXO for the premine is shown inside the premine block. The "locked padlock" symbol indicates that at this point the UTXO is unspent, but it is ready to be spent by the federation when they honour STRAX deposits made on the mainchain. A sidechain funder who owns 100 STRAX is also shown in the figure, and their single UTXO of 100 STRAX is shown inside one of the mainchain blocks.
 
-The previous figure is the first of 3 figures. In the subsequent figures, the sidechain funder deposits 100 STRAT on the sidechain and, finally, they withdraw 50 STRAT back.
+The previous figure is the first of 3 figures. In the subsequent figures, the sidechain funder deposits 100 STRAX on the sidechain and, finally, they withdraw 50 STRAX back.
 
 .. note::
-    When the term "locked" is used in relation to individual UTXOs, it refers to the fact they are spendable (when unlocked using the correct signature/s) and contribute to a balance in a wallet. Unlocked UTXOs are spent and no longer contribute to anyone's balance. You may have encountered references to STRAT being locked on the sidechain. In this case, the text is describing in general terms the deposits made by sidechain funders which remain held by the federation until they are withdrawn. 
+    When the term "locked" is used in relation to individual UTXOs, it refers to the fact they are spendable (when unlocked using the correct signature/s) and contribute to a balance in a wallet. Unlocked UTXOs are spent and no longer contribute to anyone's balance. You may have encountered references to STRAX being locked on the sidechain. In this case, the text is describing in general terms the deposits made by sidechain funders which remain held by the federation until they are withdrawn. 
 
 The next section discusses the role played by the federation and the significance of the P2SH addresses.
 
@@ -46,13 +46,13 @@ The role of the federation
 
 The role of a federation is to sign-off the deposits from the mainchain to the sidechain and sign-off withdrawals from the sidechain to the mainchain. To achieve this, Stratis Sidechains take advantage of an existing technology already built into the Stratis nodes: `Pay-To-Script-Hash addresses <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#p2sh-addresses>`_. P2SH addresses are a convenient way to make payments to an organization that requires `UTXOs with multisignature locking scripts <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#multisignature>`_, and they are adaptable to federation requirements. Although spending payments sent to P2SH addresses requires multiple signatories, not all the possible signatories are usually required. For example, only 4 of 5 signatories may be required to spend a payment. When a predefined minimum number of signatories is required from a group for an operation to proceed, this is also known as a quorum. The deposits and withdrawals that the federation controls also require the approval of a quorum.
 
-When a STRAT deposit is made, the federation signs for the release of CRS on the sidechain. When a STRAT withdrawal is made, the federation signs for the release of STRAT on the mainchain.
+When a STRAX deposit is made, the federation signs for the release of CRS on the sidechain. When a STRAX withdrawal is made, the federation signs for the release of STRAX on the mainchain.
 
 To achieve this, the Stratis Sidechains solution employs two P2SH addresses:
     
-1. The federation members supply private keys from their mainchain wallets and a mainchain P2SH address is created. STRAT sidechain deposits are sent to this P2SH address and remain there until they are withdrawn from the sidechain. Withdrawal of STRAT from this P2SH address requires multisignature unlocking.
+1. The federation members supply private keys from their mainchain wallets and a mainchain P2SH address is created. STRAX sidechain deposits are sent to this P2SH address and remain there until they are withdrawn from the sidechain. Withdrawal of STRAX from this P2SH address requires multisignature unlocking.
 
-2. The federation members supply private keys from their sidechain wallets, and a sidechain P2SH address is created. The premine of the 100 million TAPEX coins is sent to this P2SH address, which is shown in the previous figure. CRS are the issued from this P2SH address, subject to multisignature unlocking, when STRAT are deposited. When STRAT are withdrawn, CRS are returned to this address.  
+2. The federation members supply private keys from their sidechain wallets, and a sidechain P2SH address is created. The premine of the 100 million TAPEX coins is sent to this P2SH address, which is shown in the previous figure. CRS are the issued from this P2SH address, subject to multisignature unlocking, when STRAX are deposited. When STRAX are withdrawn, CRS are returned to this address.  
 
 Creation of each P2SH address requires a public key from each federation member, which is shown in the :ref:`previous figure <image1>`. All supplied keys are hashed before they are used in the locking script. More information on this is available `here <https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch07.asciidoc#pay-to-script-hash-p2sh>`_.
 
@@ -79,7 +79,7 @@ From now on in this document, the term "boss" is used for the federation member 
 Sidechain deposits
 -------------------
 
-For an example of a sidechain deposit, the following figure shows a sidechain funder, :ref:`who has been introduced previously <image1>`, making a deposit of 100 STRAT on the sidechain:
+For an example of a sidechain deposit, the following figure shows a sidechain funder, :ref:`who has been introduced previously <image1>`, making a deposit of 100 STRAX on the sidechain:
   
  .. _image2:
  .. image:: Sidechain_Deposit.svg
@@ -91,14 +91,14 @@ For an example of a sidechain deposit, the following figure shows a sidechain fu
 The sequence of events is as follows:
 
 1. The sidechain funder obtains a sidechains wallet. 
-2. The sidechain funder makes a payment of 100 STRAT to the federation's mainchain P2SH address. They supply a CRS address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the sidechain funder's 100 STRAT were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
-3. One of the mainchain federated gateways detects the transaction containing the deposit. The gateway must now wait for 10 blocks to be mined on top of the block containing the 100 STRAT deposit. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the deposit on the mainchain before proceeding to honour the deposit on the sidechain.  
+2. The sidechain funder makes a payment of 100 STRAX to the federation's mainchain P2SH address. They supply a CRS address from their sidechain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in red. In this case, the sidechain funder's 100 STRAX were held in a single UTXO (shown in purple), which is spent (unlocked) in this transaction. 
+3. One of the mainchain federated gateways detects the transaction containing the deposit. The gateway must now wait for 10 blocks to be mined on top of the block containing the 100 STRAX deposit. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the deposit on the mainchain before proceeding to honour the deposit on the sidechain.  
 4. A federation boss is assigned to co-ordinate this sidechain deposit and all subsequent deposits that are made on this block.
 5. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 million CRS that was premined.
 6. A transaction is created that pays 100 CRS to the sidechain funder's wallet. The two UTXOs that make up the transaction are shown in the latest sidechain block. The red UTXO is sent (locked) to the sidechain address supplied by the sidechain funder. The green UTXO pays the change (99,999,900 CRS) back to the federation's sidechain P2SH address.
 
 .. note::
-    At the end of this deposit, the federation has 100 STRAT locked in the mainchain P2SH address and 99,999,900 CRS locked in the sidechain P2SH address.
+    At the end of this deposit, the federation has 100 STRAX locked in the mainchain P2SH address and 99,999,900 CRS locked in the sidechain P2SH address.
 
 Sidechain withdrawals
 ----------------------
@@ -112,14 +112,14 @@ For an example of a sidechain withdrawal, the following figure shows the sidecha
 
 The sequence of events is as follows:
 
-1. The sidechain funder makes a payment of 50 CRS to the federation's sidechain P2SH address. They supply a STRAT address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the sidechain funder's 50 CRS were held in the single 100 CRS UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 CRS change back to the sidechain funder.
+1. The sidechain funder makes a payment of 50 CRS to the federation's sidechain P2SH address. They supply a STRAX address from their mainchain wallet with this transaction. The journey of this address, via a RETURN output UTXO, is shown in purple. In this case, the sidechain funder's 50 CRS were held in the single 100 CRS UTXO generated previously, which is spent (unlocked) in this transaction. Another UTXO is also created in the transaction that pays 50 CRS change back to the sidechain funder.
 2. One of the sidechain federated gateways detects the transaction containing the withdrawal. The gateway must now wait for 10 blocks to be mined on top of the block containing the 50 CRS withdrawal. The number of blocks to wait is defined by ``MAX_REORG``. In other words, the federation waits until it is impossible to undo the withdrawal on the sidechain before proceeding to honour the withdrawal on the mainchain.
 3. A federation boss is assigned to co-ordinate the withdrawal to the mainchain.
-4. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 STRAT that was previously deposited.
-5. A transaction is created that pays 50 STRAT to the sidechain funder's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 STRAT) back to the federation's mainchain P2SH address.
+4. The federation boss contacts one other federation member for their signature after providing their own. The size of the quorum in this federation is 2. The signatures are required to spend (unlock) the UTXO of 100 STRAX that was previously deposited.
+5. A transaction is created that pays 50 STRAX to the sidechain funder's mainchain wallet. The two UTXOs that make up the transaction are shown in the block. The purple UTXO is sent (locked) to the mainchain address supplied by the sidechain funder. The blue UTXO pays the change (50 STRAX) back to the federation's mainchain P2SH address.
 
 .. note::
-    At the end of this withdrawal, the federation has 50 STRAT locked in the mainchain P2SH address and 99,999,950 CRS locked in the sidechain P2SH address.
+    At the end of this withdrawal, the federation has 50 STRAX locked in the mainchain P2SH address and 99,999,950 CRS locked in the sidechain P2SH address.
 
 	
 Mining on the sidechain
