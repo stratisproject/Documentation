@@ -72,8 +72,8 @@ As this document refers to the StratisTest (TestNet) network, the StratisTest an
 Federation detail for both test environments and production environments can be found below:
 
 | **Production Environment**
-| **Stratis Federation Address:** sg3WNvfWFxLJXXPYsvhGDdzpc9bT4uRQsN
-| **Cirrus Federation Address:** cnYBwudqzHBtGVELyQNUGzviKV4Ym3yiEo
+| **Stratis Federation Address:** yU2jNwiac7XF8rQvSk2bgibmwsNLkkhsHV 
+| **Cirrus Federation Address:** cYTNBJDbgjRgcKARAvi2UCSsDdyHkjUqJ2
 
 | **Test Environment**
 | **Stratis Federation Address:** 2N1wrNv5NDayLrKuph9YDVk8Fip8Wr8F8nX
