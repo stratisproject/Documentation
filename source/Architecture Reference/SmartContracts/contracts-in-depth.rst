@@ -103,6 +103,8 @@ The table below outlines the behaviour when a byte array is interpreted unsucces
   ToUInt32, bytes == null || bytes.Length < 4, default(uint)
   ToInt64, bytes == null || bytes.Length < 8, default(int)
   ToUInt64, bytes == null || bytes.Length < 8, default(uint)
+  ToUInt128, bytes == null || bytes.Length < 16, UInt128.Zero
+  ToUInt256, bytes == null || bytes.Length < 32, UInt256.Zero
   ToString, bytes == null || bytes.Length < sizeof(char), string.Empty
   ToChar, bytes == null || bytes.Length < sizeof(char), default(char)
   ToArray<T>, bytes == null || bytes.Length == 0, T[0]
