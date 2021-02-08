@@ -149,8 +149,8 @@ Deterministic execution is enforced by only permitting whitelisted members to be
   System, UInt32
   System, Int64
   System, UInt64
-  System, UInt128
-  System, UInt256
+  Stratis.SmartContracts, UInt128
+  Stratis.SmartContracts, UInt256
   System, String
   System, Array, GetLength
   System, Array, Copy
