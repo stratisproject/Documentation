@@ -109,6 +109,8 @@ Refer to the following table to see the mapping between a type and its integer r
   System.Int64, 8, System.Int64.ToString(), "8#-456"
   Stratis.SmartContracts.Address, 9, Base58Address.ToString(), "9#mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy"
   System.Byte[], 10, BitConverter.ToString(), "10#04A6B9"
+  Stratis.SmartContracts.UInt128, 11, Stratis.SmartContracts.UInt128.ToString(), "11#789"
+  Stratis.SmartContracts.UInt256, 12, Stratis.SmartContracts.UInt256.ToString(), "12#987"
 
 The parameters must be provided in the order they occur in the method signature. For example, calling a method with the signature ``SomeMethod(Address myAddress, byte[] someData)`` with the values ``myAddress = mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy``, ``someData = 0xFF00AA`` looks like:
 
