@@ -12,3 +12,4 @@ Thumbs.db
 source/_build/*
 .vscode
 /.vs
+/source/.vs
