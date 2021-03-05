@@ -1,57 +1,6 @@
-#########################
+*************************
 STRAX-Wallet Cold-Staking
-#########################
-
-
-Introduction
-============
-
-Proof-of-Stake
---------------
-
-Staking is essential to the Proof of Stake consensus mechanism used on
-the STRAX Blockchain. Blocks are verified and mined by network
-participants who are willing to set aside a portion of their tokens,
-effectively freezing them so they cannot be spent. In return, these
-participants are granted the right to verify transactions and earn
-bonuses paid in tokens. The larger the number of tokens a participant is
-willing to stake, the greater the chance they will be selected to mine
-the next block and earn the associated reward.
-
-While tokens are being staked, they are frozen in a wallet. If the
-wallet is connected to the blockchain network, it is referred to as a
-hot wallet. Such an arrangement incurs a level of risk as the wallet is
-effectively exposed to the internet and therefore susceptible to attack.
-Conversely, if the wallet stores tokens offline (as is possible in the
-Stratis wallet, a hardware wallet, or even a paper wallet), it is known
-as a cold wallet and the staking process is referred to as "Cold
-Staking". Cold Staking is inherently safer than staking in a hot wallet
-since tokens are not susceptible to online attacks while held in an
-offline wallet.
-
-Pre-requisites
---------------
-
-To produce blocks on the Stratis network, a miner must be online with a
-node running and have their wallet open. The chances of earning a reward
-for staking increases linearly with the number of tokens staked, which
-means the most successful miners are likely to have large numbers of
-tokens frozen in their wallets. This represents a risk if the tokens are
-held in a hot wallet which is compromised. For this reason, Stratis
-permits Cold Staking where the miner still needs to be online with a
-node running and their hot wallet open, but the tokens used for staking
-can be safely stored offline in cold storage. Their hot wallet need not
-hold any significant number of tokens or may be empty.
-
-Stratis cold storage is implemented on the node, with the connected
-wallet only using the node's interfaces. The hot wallet should be an HD
-(Hierarchical Deterministic) Wallet and, initially, this must be the
-Stratis wallet which comprises a GUI for controlling the Cold Staking
-process. Also, a Cold Staking user needs to have an offline cold wallet
-to store the staked tokens.
-
-Cold-Staking Setup
-==================
+*************************
 
 We recommend setting up two separate wallets on separate systems to run
 your cold staking setup.
@@ -70,7 +19,7 @@ can use to share a text file.
 wallets on one computer.
 
 Creating a Hot-Wallet (Online)
-------------------------------
+==============================
 
 We will be using an online, fully synchronized wallet as the hot staking
 wallet.
@@ -108,7 +57,7 @@ Staking can be activated in the "staking" page by entering your wallet
 password and clicking the unlock button.
 
 Using a third-party service as your hot node
---------------------------------------------
+============================================================
 
 If you do not want to run a hot wallet node 24/7, you can opt to use a
 third-party service to run it for you. We do not officially endorse any
@@ -122,7 +71,7 @@ send funds to that address under any circumstance!**
 complete the setup process.
 
 Setting up your cold wallet
----------------------------
+==============================
 
 As mentioned at the start of the setup process, we will be using a
 separate wallet on a different computer to set up the cold wallet. The
@@ -300,7 +249,7 @@ Congratulations, you have now successfully set up cold staking.
 online and has staking enabled.
 
 Withdrawing from Cold-Staking
-=============================
+==============================
 
 To withdraw your cold staking balance, you need access to a synchronized
 online wallet and your cold wallet.
