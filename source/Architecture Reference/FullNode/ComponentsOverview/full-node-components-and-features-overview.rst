@@ -146,7 +146,7 @@ The miner component fills block templates up with transactions from the memory p
 
 The Stratis proof-of-stake algorithm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Stratis proof-of-stake algorithm is designed to mine a block every 64 seconds. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about 64 seconds for one miner to hit the target. The more STRAX the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAX currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
+The Stratis proof-of-stake algorithm is designed to mine a block every 45 seconds. Broadly speaking, it works by having a target, which can be hit by running a mathematical algorithm; if the target is hit by a miner, the miner can mine the block. The Stratis proof-of-stake algorithm is designed so that it takes about 45 seconds for one miner to hit the target. The more STRAX the miner has staked, the more likely they are to be the miner who hits the target. For example, if a miner is in possession of 40% of the STRAX currently being staked, they have a 40% chance of being able to mine a block during each block cycle.
 
 Because the algorithm is dependent on the STRAX that a miner is staking, the wallet is contacted to check the miner's staking power. UTXOs are retrieved from the wallet and checked that they are valid for staking.
 
