@@ -8,5 +8,6 @@ Operation Guides
   InterFlux Masternodes <InterFlux Masternodes/masternode-introduction>
   Sidechains <Sidechain/sidechain-introduction>
   Smart Contracts <SmartContracts/smartcontracts-introduction>
+  Stratis Decentralized Accelerator <SDA/sda-introduction>
   STO<STO/sto-introduction>
   

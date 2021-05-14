@@ -10,4 +10,4 @@ Guides contained within this section will relate to operations that can be achie
    :maxdepth: 2
    :caption: Contents:
 
-   Performing a Cross-Chain Transfer <AcquiringCRS/getcrs>
+   Performing a Cross-Chain Transfer <AcquiringCRS/cross-chain-transfer>
