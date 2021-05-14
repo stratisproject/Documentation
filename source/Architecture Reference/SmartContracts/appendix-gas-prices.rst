@@ -8,7 +8,7 @@ Gas Pricing
 Smart contract execution costs the gas price (in satoshis) multiplied by the gas used. The gas price and the maximum amount of gas to be used are set at the transaction level.
 
 * **Gas Price:** Minimum: 100. Maximum: 10000.
-* **Gas Limit:** Minimum: 10000 for calling a contract. 12000 for creating a contract. Maximum: 100000.
+* **Gas Limit:** Minimum: 10000 for calling a contract. 12000 for creating a contract. Maximum: 250000.
 
 .. note::
     For most transactions, we would recommend setting your gas price to 100 and the gas limit to 50000.
@@ -31,7 +31,7 @@ Smart contract execution costs the gas price (in satoshis) multiplied by the gas
 Memory Limit
 -------------------------------------
 
-Contract execution has a limit on how many objects can be created and held in memory. Certain operations contribute to a "memory unit" counter which will trigger an exception if it exceeds 100000.
+Contract execution has a limit on how many objects can be created and held in memory. Certain operations contribute to a "memory unit" counter which will trigger an exception if it exceeds 250000.
 
 .. csv-table:: Memory consuming operations
   :header: "Method", "Description"
