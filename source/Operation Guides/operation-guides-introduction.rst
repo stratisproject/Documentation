@@ -10,4 +10,4 @@ Operation Guides
   Smart Contracts <SmartContracts/smartcontracts-introduction>
   Stratis Decentralized Accelerator <SDA/sda-introduction>
   STO<STO/sto-introduction>
-  
+  Token Swap<Token Swap/tokenswap-introduction>
