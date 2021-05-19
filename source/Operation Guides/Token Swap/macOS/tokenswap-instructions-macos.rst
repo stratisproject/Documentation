@@ -2,9 +2,29 @@
 STRAX Token Swap Guide for MacOS
 ################################
 
-*****************************
-Obtain Address Ownership Tool
-*****************************
+************************************
+Step 1 - Obtain STRAX Wallet Address
+************************************
+
+1. Download and install the STRAX Wallet from https://www.stratisplatform.com/wallets/.
+
+..
+
+
+2. Create a new wallet and ensure you keep a secure record of your mnemonic words and *optional* passphrase.
+
+..
+
+
+3. Obtain a Receive Address. **Keep note of this address as it will be defined later in the process.**
+
+.. image:: media/receive.png
+   :align: center
+   :width: 900px
+
+**************************************
+Step 2 - Obtain Address Ownership Tool
+**************************************
 
 1. The **AddressOwnerShipTool** must be used to prove ownership of
    funds; please download the relevant package to your device using the
@@ -22,13 +42,15 @@ Obtain Address Ownership Tool
    :width: 6.26806in
    :height: 4.5875in
 
-There are two wallets that are supported by the
-**AddressOwnershipTool**; **please only complete the steps relevant to
+There are three wallets that are supported by the
+**AddressOwnershipTool**.
+
+**Only complete the steps relevant to
 the wallet software that contains your STRAT Wallet.**
 
-****************************
-StratisX/QT Recovery Process
-****************************
+*************************************
+Step 3 - StratisX/QT Recovery Process
+*************************************
 
 1. Open the Stratis Qt application that contains your wallet
 
@@ -103,9 +125,9 @@ Please change “yourusername” to your own username.
 7. Upload this CSV to `STRAX Token Swap Process
    Form <https://www.stratisplatform.com/strax-token-swap-process-form/>`__
 
-*****************************
-Stratis Core Recovery Process
-*****************************
+**************************************
+Step 3 - Stratis Core Recovery Process
+**************************************
 
 1. Open Terminal and navigate to the location where the
    AddressOwnershipTool was stored.

@@ -2,9 +2,29 @@
 STRAX Token Swap Guide for Windows
 ##################################
 
-*****************************
-Obtain Address Ownership Tool
-*****************************
+************************************
+Step 1 - Obtain STRAX Wallet Address
+************************************
+
+1. Download and install the STRAX Wallet from https://www.stratisplatform.com/wallets/.
+
+..
+
+
+2. Create a new wallet and ensure you keep a secure record of your mnemonic words and *optional* passphrase.
+
+..
+
+
+3. Obtain a Receive Address. **Keep note of this address as it will be defined later in the process.**
+
+.. image:: media/receive.png
+   :align: center
+   :width: 900px
+
+**************************************
+Step 2 - Obtain Address Ownership Tool
+**************************************
 
 1. The **AddressOwnerShipTool** must be used to prove ownership of
    funds; please download the relevant package to your device using the
@@ -22,12 +42,14 @@ Obtain Address Ownership Tool
    :height: 3.33465in
 
 There are three wallets that are supported by the
-**AddressOwnershipTool**; **please only complete the steps relevant to
+**AddressOwnershipTool**.
+
+**Only complete the steps relevant to
 the wallet software that contains your STRAT Wallet.**
 
-****************************
-StratisX/QT Recovery Process
-****************************
+*************************************
+Step 3 - StratisX/QT Recovery Process
+*************************************
 
 1. Open StratisX that contains your wallet
 
@@ -83,9 +105,9 @@ Please replace **STRAXAddress** with **YOUR** STRAX Address.
 7. Upload this CSV to `STRAX Token Swap Process
    Form <https://www.stratisplatform.com/strax-token-swap-process-form/>`__
 
-*****************************
-Stratis Core Recovery Process
-*****************************
+**************************************
+Step 3 - Stratis Core Recovery Process
+**************************************
 
 1. Open CMD or PowerShell and navigate to the location where the
    **AddressOwnershipTool** was stored.
@@ -138,9 +160,9 @@ your Stratis Wallet; i.e. walletName, walletPassword, STRAXAddress**
 5. Upload this CSV to `STRAX Token Swap Process
    Form <https://www.stratisplatform.com/strax-token-swap-process-form/>`__
 
-******************************
-Ledger Wallet Recovery Process
-******************************
+***************************************
+Step 3 - Ledger Wallet Recovery Process
+***************************************
 
 1. Connect your Ledger device to the computer where you have downloaded
    the **AddressOwnerShipTool**
