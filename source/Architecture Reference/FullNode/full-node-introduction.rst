@@ -2,10 +2,10 @@
 Stratis Full Node
 ****************************************************
 
-The Stratis Full Node is the backbone of the Stratis Platform. It implements both the STRAX and BTC protocol and maintains an up-to-date copy of the STRAX and BTC blockchains. Because of this, Full Nodes can:
+The Stratis Full Node is the backbone of the Stratis Platform. It implements the STRAX protocol and maintains an up-to-date copy of the STRAX and sidechain blockchains. Because of this, Full Nodes can:
 
 1.	Autonomously and authoritatively validate blocks and transactions.
-2.	Serve blocks and transactions to other peers on the STRAX or BTC blockchain networks. 
+2.	Serve blocks and transactions to other peers on the STRAX or sidechain blockchain networks. 
 
 The Full Node is open source software and is built in C# using the .NET Core platform.
 The design of the Full Node is modular and several of its features can be included or excluded from a build depending on requirements.
