@@ -150,7 +150,7 @@ Here you just type "y" for yes and press enter.
 
    sudo loadkeys <language abbrivation>
 
-Please do a google search for which keys that fit your spoken language and keyboard layout. If you are from the US it would be *sudo loadkeys u* but it is usually the default one, for Scandinavians use *sudo load keys no*
+Please do a google search for which keys that fit your spoken language and keyboard layout. If you are from the US it would be *sudo loadkeys us* but it is usually the default one, for Scandinavians use *sudo load keys no*
 
 ************
 Remote Login
