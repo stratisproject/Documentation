@@ -10,4 +10,4 @@ Guides contained within this section will relate to operations that can be achie
    :maxdepth: 2
    :caption: Contents:
 
-   Staking on a RaspberryPi <RPiStaking/rpistaking>
+   Staking on a Raspberry Pi <RPiStaking/rpistaking>

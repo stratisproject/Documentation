@@ -1,12 +1,20 @@
-##############################
-Staking STRAX On a RaspberryPi
-##############################
+###############################
+Staking STRAX On a Raspberry Pi
+###############################
 
 ************
 Introduction
 ************
 
-This guide was put together by a Stratis Community member @velo#8907! If you liked the guide so much that you want to donate, his STRAX Address is: *XRFYUHNonApGeBtgkipgJceBcE9ZMTQoEF*
+This guide was put together by a Stratis Community member @velo#8907!
+
+..
+
+https://strax.miew.org/
+
+..
+
+If you liked the guide so much that you want to donate, his STRAX Address is: *XRFYUHNonApGeBtgkipgJceBcE9ZMTQoEF*
 
 This guide will teach you how to stake your STRAX's on a Raspberry Pi. Fortunately, I have tried my best to make this guide, so you don't have to be tech-savvy or computer genius to follow along. 
 
