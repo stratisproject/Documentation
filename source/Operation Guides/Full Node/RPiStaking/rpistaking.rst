@@ -113,7 +113,7 @@ In a few seconds, you should see a bunch of gibberish text on your monitor. This
 
    ubuntu login:
 
-Every fresh installation of ubuntu has the same login details (unless configured beforehand). You can log in with username: **ubuntu **and password: **ubuntu**. So start by typing ubuntu and then hit enter on your keyboard.
+Every fresh installation of ubuntu has the same login details (unless configured beforehand). You can log in with username: **ubuntu** and password: **ubuntu**. So start by typing **ubuntu** and then hit enter on your keyboard.
 
 .. code:: bash
 
@@ -172,7 +172,7 @@ A good way to find the IP is by using the package net-tools. We can install it b
 
    sudo apt-get -y install net-tools
 
-Afterward typeifconfig and then write down/memorize the field inet where it starts with **192.168.X.X**. An example of this can be seen below:
+Afterward type **ifconfig** and then write down/memorize the field inet where it starts with **192.168.X.X**. An example of this can be seen below:
 
 .. image:: media/image3.png
 
@@ -209,7 +209,7 @@ After, It will prompt you for a password, so type your password. Your login scre
 Installing .NET and StraxFullNode
 *********************************
 
-Next up, we have to install .NET to run the StraxNode and connect to the MainNet. We'll do this to be available to stake. Please be aware there is no graphical user interface. I have made a script that is close to a GUI, which makes everything a lot easier for you, but more on that later. Let's first install .NET.
+Next up, we have to install .NET to run the StraxNode and connect to the main net. We'll do this to be available to stake. Please be aware there is no graphical user interface. I have made a script that is close to a GUI, which makes everything a lot easier for you, but more on that later. Let's first install .NET.
 
 ..
 
@@ -464,10 +464,9 @@ Again, you don't need to have the script running (the menu) when staking. You ca
 
 ..
 
-Furthermore, when you reboot your system, you have to rerun these two commands, remember the first command starts the StraxNode, the second one starts up the CLI, so you can enable staking (which requires you to type your password, as of now). Soon, I will extend the script, so you can choose to start staking when rebooting automatically.
+Furthermore, when you reboot your system, you have to rerun these two commands, remember the first command starts the StraxNode (use **Ctrl+A**, **Ctrl+D**, to make it run in the background), the second one starts up the CLI, so you can enable staking (which requires you to type your password, as of now). If possible try to close the *node* safely before rebooting by hooking the process, first get the pid **sudo screen -ls** and attach with **sudo screen -r <pid>** (as explained earlier) and press **Ctrl+C** to shut it down. The script will soon be extended, so you can choose to start staking when rebooting automatically.
 
 .. code:: bash
 
    sudo screen dotnet ~/StraxNode/Stratis.StraxD.dll run -mainnet
    sudo python3 ~/StraxCLI/StraxCLI-StraxCLI-1.0.0/straxcli.py
-
