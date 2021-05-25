@@ -464,10 +464,9 @@ Again, you don't need to have the script running (the menu) when staking. You ca
 
 ..
 
-Furthermore, when you reboot your system, you have to rerun these two commands, remember the first command starts the StraxNode (use **Ctrl+A**, **Ctrl+D**, to make it run in the backgrund), the second one starts up the CLI, so you can enable staking (which requires you to type your password, as of now). If possible try to close the *node* safely before rebooting by hooking the process, first get the pid **sudo screen -ls** and attach with **sudo screen -r <pid>** (as explained earlier) and press **Ctrl+C** to shut it down. Soon, I will extend the script, so you can choose to start staking when rebooting automatically.
+Furthermore, when you reboot your system, you have to rerun these two commands, remember the first command starts the StraxNode (use **Ctrl+A**, **Ctrl+D**, to make it run in the background), the second one starts up the CLI, so you can enable staking (which requires you to type your password, as of now). If possible try to close the *node* safely before rebooting by hooking the process, first get the pid **sudo screen -ls** and attach with **sudo screen -r <pid>** (as explained earlier) and press **Ctrl+C** to shut it down. The script will soon be extended, so you can choose to start staking when rebooting automatically.
 
 .. code:: bash
 
    sudo screen dotnet ~/StraxNode/Stratis.StraxD.dll run -mainnet
    sudo python3 ~/StraxCLI/StraxCLI-StraxCLI-1.0.0/straxcli.py
-
