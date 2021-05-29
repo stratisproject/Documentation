@@ -168,5 +168,8 @@ texinfo_documents = [
 epub_use_index = False
 epub_show_urls = 'no'
 
+epub_theme = 'stratis_epub_theme'
+epub_cover = ('', 'epub-cover.html')
+
 
 # -- Extension configuration -------------------------------------------------

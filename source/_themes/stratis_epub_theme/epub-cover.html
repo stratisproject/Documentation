@@ -1,0 +1,31 @@
+{#
+epub/epub-cover.html
+~~~~~~~~~~~~~~~~~~~~
+
+Sample template for the html cover page.
+
+:copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
+:license: BSD, see LICENSE for details.
+#}
+{% extends "layout.html" %}
+{%- block rootrellink %}{% endblock %}
+{%- block relbaritems %}{% endblock %}
+{%- block sidebarlogo %}{% endblock %}
+{%- block linktags %}{% endblock %}
+{%- block relbar1 %}{% endblock %}
+{%- block sidebar1 %}{% endblock %}
+{%- block sidebar2 %}{% endblock %}
+{%- block footer %}{% endblock %}
+
+{% block content %}
+{#
+Ultimately, this should probably just be an image of a nice
+cover like a real book instead of building it like a web page
+with a bunch of text elements.
+#}
+<div class="epub-cover">
+    <h1 style="text-align:center">{{ title }}</h1>
+    <hr />
+    <h2 style="text-align:center">Documentation</h2>
+</div>
+{% endblock %}
