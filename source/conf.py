@@ -158,4 +158,15 @@ texinfo_documents = [
 ]
 
 
+# -- Options for Epub output -------------------------------------------
+
+# Might want to exclude the api reference
+# epub_exclude_files = [
+#     'Developer-Resources/Api-Reference/api.rst'
+# ]
+
+epub_use_index = False
+epub_show_urls = 'no'
+
+
 # -- Extension configuration -------------------------------------------------
