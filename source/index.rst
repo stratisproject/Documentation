@@ -33,4 +33,6 @@ The Stratis Academy will introduce:
   Developer Resources <Developer-Resources/developers-introduction>
   Operation Guides <Operation-Guides/operation-guides-introduction>
 
-* :ref:`search`
+.. only:: builder_html
+
+    * :ref:`search`
