@@ -28,9 +28,9 @@ The Stratis Academy will introduce:
 .. toctree::
   :maxdepth: 2
 
-  Blockchain Overview <Blockchain Overview/blockchain-overview-introduction>
-  Architecture Reference <Architecture Reference/architecture-reference-introduction>
-  Developer Resources <Developer Resources/developers-introduction>
-  Operation Guides <Operation Guides/operation-guides-introduction>
-    
+  Blockchain Overview <Blockchain-Overview/blockchain-overview-introduction>
+  Architecture Reference <Architecture-Reference/architecture-reference-introduction>
+  Developer Resources <Developer-Resources/developers-introduction>
+  Operation Guides <Operation-Guides/operation-guides-introduction>
+
 * :ref:`search`

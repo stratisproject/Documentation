@@ -8,5 +8,5 @@ Guides contained within this section will relate to Masternodes provided by Stra
    :maxdepth: 2
    :caption: Contents:
 
-   Creating an InterFlux Masternode <Creating Masternode/creating-a-masternode>
-   Running an InterFlux Masternode <Running Masternode/running-the-masternode>
+   Creating an InterFlux Masternode <Creating-Masternode/creating-a-masternode>
+   Running an InterFlux Masternode <Running-Masternode/running-the-masternode>

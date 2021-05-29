@@ -6,8 +6,7 @@ This section of the Academy aims to provide developers with a guide to performin
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:   
-   
-   API Reference <API Reference/api>
+   :caption: Contents:
+
+   API Reference <API-Reference/api>
    Smart Contracts <SmartContracts/smartcontracts-introduction>
-   

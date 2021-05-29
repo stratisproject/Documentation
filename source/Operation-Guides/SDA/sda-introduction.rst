@@ -8,4 +8,4 @@ Guides contained within this section will relate to the Stratis Decentralized Ac
    :maxdepth: 2
    :caption: Contents:
 
-   Creating a Proposal <Creating a Proposal/creating-a-proposal>
+   Creating a Proposal <Creating-a-Proposal/creating-a-proposal>

@@ -48,6 +48,6 @@ Guides contained within this section will relate to how Cold-Staking can be conf
    :maxdepth: 2
    :caption: Contents:
 
-   STRAX Wallet Cold-Staking <STRAX Wallet/Cold-Staking-Guide>
+   STRAX Wallet Cold-Staking <STRAX-Wallet/Cold-Staking-Guide>
    Headless Cold-Staking <Headless/cold-staking-headless-setup>
-   Docker Example <Headless - Docker/cold-staking-headless-setup>
+   Docker Example <Headless-Docker/cold-staking-headless-setup>
