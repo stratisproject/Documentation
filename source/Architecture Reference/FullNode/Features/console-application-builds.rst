@@ -2,7 +2,7 @@
 The supplied console application builds
 ******************************************************************
 
-When you open up the Stratis.Bitcoin.FullNode solution in Visual Studio, you will notice that nine projects at the top level. Six of these projects build the Full Node as a console application, and we will be taking a closer look at these. The following table describes the purpose of the six projects:
+When you open up the Stratis.FullNode solution in Visual Studio, you will notice that nine projects at the top level. Six of these projects build the Full Node as a console application, and we will be taking a closer look at these. The following table describes the purpose of the six projects:
 
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | Project                        | Description                                                                                                                  |
@@ -11,13 +11,9 @@ When you open up the Stratis.Bitcoin.FullNode solution in Visual Studio, you wil
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | Stratis.BreezeD                | Runs a lightweight version of the Full Node, which supports a Breeze wallet running on either a Stratis or Bitcoin network.  |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.PoAChainD              | Runs the Full Node as a daemon on a test Proof-of-Authority network.                                                         |
+| Stratis.StraxD               | Runs the Full Node as a daemon on the Stratis network.                                                                       |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.StratisD               | Runs the Full Node as a daemon on the Stratis network.                                                                       |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.StratisDnsD            | Runs the Full Node with a DNS service for initial peer discovery.                                                            |
-+--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.StratisSmartContractsD | Runs the Full Node as a daemon on a test network with the Proof-of-Authority consensus algorithm and smart contracts enabled.|
+| Stratis.StraxDnsD            | Runs the Full Node with a DNS service for initial peer discovery.                                                            |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 If you look inside any of these projects, you will notice a single C# file, program.cs, which contains the entry point, ``Main()``, for the application.
@@ -25,7 +21,7 @@ If you look inside any of these projects, you will notice a single C# file, prog
 What happens in Main()?
 ========================
 
-It is in the ``Main()`` function that the settings for a Full Node are registered and its features are added in. Let's take a look at what happens in ``Main()`` at the code level using the Stratis.StratisD project as an example.
+It is in the ``Main()`` function that the settings for a Full Node are registered and its features are added in. Let's take a look at what happens in ``Main()`` at the code level using the Stratis.StraxD project as an example.
 
 ::
 
