@@ -31,29 +31,41 @@ It is in the ``Main()`` function that the settings for a Full Node are registere
         {
             try
             {
-                var nodeSettings = new NodeSettings(networksSelector: Networks.Stratis, protocolVersion: ProtocolVersion.PROVEN_HEADER_VERSION, args: args)
+                var nodeSettings = new NodeSettings(networksSelector: Networks.Strax, protocolVersion: ProtocolVersion.PROVEN_HEADER_VERSION, args: args)
                 {
-                    MinProtocolVersion = ProtocolVersion.ALT_PROTOCOL_VERSION
+                    MinProtocolVersion = ProtocolVersion.PROVEN_HEADER_VERSION
                 };
 
-                IFullNode node = new FullNodeBuilder()
-                    .UseNodeSettings(nodeSettings)
-                    .UseBlockStore()
-                    .UsePosConsensus()
+                // Set the console window title to identify this as a Strax full node (for clarity when running Strax and Cirrus on the same machine).
+                Console.Title = $"Strax Full Node {nodeSettings.Network.NetworkType}";
+
+                DbType dbType = nodeSettings.GetDbType();
+
+                IFullNodeBuilder nodeBuilder = new FullNodeBuilder()
+                    .UseNodeSettings(nodeSettings, dbType)
+                    .UseBlockStore(dbType)
+                    .UsePosConsensus(dbType)
                     .UseMempool()
                     .UseColdStakingWallet()
-                    .AddPowPosMining()
+                    .AddSQLiteWalletRepository()
+                    .AddPowPosMining(true)
                     .UseApi()
-                    .UseApps()
+                    .UseUnity3dApi()
                     .AddRPC()
-                    .Build();
+                    .AddSignalR(options =>
+                    {
+                        DaemonConfiguration.ConfigureSignalRForStrax(options);
+                    })
+                    .UseDiagnosticFeature();
+
+                IFullNode node = nodeBuilder.Build();
 
                 if (node != null)
                     await node.RunAsync();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("There was a problem initializing the node. Details: '{0}'", ex.ToString());
+                Console.WriteLine("There was a problem initializing the node. Details: '{0}'", ex);
             }
         }
     }
