@@ -36,7 +36,6 @@ It is in the ``Main()`` function that the settings for a Full Node are registere
                     MinProtocolVersion = ProtocolVersion.PROVEN_HEADER_VERSION
                 };
 
-                // Set the console window title to identify this as a Strax full node (for clarity when running Strax and Cirrus on the same machine).
                 Console.Title = $"Strax Full Node {nodeSettings.Network.NetworkType}";
 
                 DbType dbType = nodeSettings.GetDbType();
