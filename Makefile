@@ -20,7 +20,7 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	rm -rf temp/
-	rm -rf source/Developer\ Resources/Pystratis\ Reference/
+	rm -rf source/Developer\ Resources/Pystratis\ Reference/source/
 	mkdir -p temp/
 	mkdir -p source/Developer\ Resources/Pystratis\ Reference/source/
 	@$(GIT) clone https://github.com/stratisproject/pyStratis.git temp/pyStratis/

@@ -33,7 +33,7 @@ if errorlevel 9009 (
 )
 
 rmdir /s /q temp
-rmdir /s /q "source\Developer Resources\Pystratis Reference\"
+rmdir /s /q "source\Developer Resources\Pystratis Reference\source\"
 mkdir temp\
 mkdir "source\Developer Resources\Pystratis Reference\source\"
 %GIT% clone https://github.com/stratisproject/pyStratis.git temp/pyStratis/
