@@ -11,11 +11,11 @@
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../temp/pyStratis/'))
+os.environ['SPHINX_BUILD'] = '1'
 
 # -- Project information -----------------------------------------------------
 
@@ -41,6 +41,8 @@ release = u''
 extensions = [
     'sphinx.ext.ifconfig',
 	'sphinxcontrib.openapi',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,7 +67,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*setup.py', '../integration_tests', '*conftest.py']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -159,3 +161,22 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+
+# Sphinx Autodoc configuration for PyStratis
+add_module_names = False
+python_use_unqualified_type_names = True
+napoleon_numpy_docstring = True
+autoclass_content = 'class'
+autodoc_typehints = 'signature'
+autodoc_inherit_docstrings = False
+autodoc_default_options = {
+    'members': True,
+    'member-order': 'bysource',
+    'special-members': '__call__',
+    'undoc-members': False,
+    'inherited-members': True,
+    'show_inheritance': True,
+    'exclude-members': ("construct, copy, dict, update_forward_refs, schema, schema_json, validate, parse_raw, parse_file, parse_obj, json, from_orm, "
+                        "use_enum_values, extra, json_encoders, allow_population_by_field_name, route, Config, validate_class, calculate_checksum, validate_values"
+                        "validate_value, validate_allowed_types, update, get, put, post, delete, endpoints, api_route")
+}

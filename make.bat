@@ -7,6 +7,12 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
+if "%PIP%" == "" (
+	set PIP=pip
+)
+if "%GIT%" == "" (
+	set GIT=git
+)
 set SOURCEDIR=source
 set BUILDDIR=../build
 set SPHINXPROJ=StratisAcademy
@@ -26,6 +32,13 @@ if errorlevel 9009 (
 	exit /b 1
 )
 
+rmdir /s /q temp
+rmdir /s /q "source\Developer Resources\Pystratis Reference\source\"
+mkdir temp\
+mkdir "source\Developer Resources\Pystratis Reference\source\"
+%GIT% clone https://github.com/stratisproject/pyStratis.git temp/pyStratis/
+%PIP% install -r temp/pyStratis/requirements.txt
+copy "temp\pyStratis\doc_build\source\" "source\Developer Resources\Pystratis Reference\source\"
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 "%BUILDDIR%\html\index.html"
 goto end

@@ -13,3 +13,7 @@ source/_build/*
 .vscode
 /.vs
 /source/.vs
+
+env/
+temp/
+source/Developer Resources/Pystratis Reference/source

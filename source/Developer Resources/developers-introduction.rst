@@ -9,5 +9,5 @@ This section of the Academy aims to provide developers with a guide to performin
    :caption: Contents:   
    
    API Reference <API Reference/api>
+   PyStratis Reference <PyStratis Reference/pystratis>
    Smart Contracts <SmartContracts/smartcontracts-introduction>
-   
