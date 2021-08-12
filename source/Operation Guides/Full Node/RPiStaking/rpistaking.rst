@@ -256,14 +256,14 @@ StraxFullNode for 64-bit
 
 .. code:: bash
 
-   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.0.7.3/Stratis.StraxD-linux-arm64.zip
+   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.0.9.0/Stratis.StraxD-linux-arm64.zip
 
 StraxFullNode for 32-bit
 ========================
 
 .. code:: bash
 
-   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.0.7.3/Stratis.StraxD-linux-arm.zip
+   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.0.9.0/Stratis.StraxD-linux-arm.zip
 
 Once you have chosen the one that fits your system, install zip, so we can extract it. You can do that by running the command:
 
@@ -393,7 +393,7 @@ When staking is enabled the option should now have changed to **1. Stop staking*
 Balance
 =======
 
-You can check your balance by selecting option **1. Balance** it will then display your current balance. The result won't be accurate before the wallet is fully synced, it will notify you if this is the case. 
+You can check your balance by selecting option **2. Balance** it will then display your current balance. The result won't be accurate before the wallet is fully synced, it will notify you if this is the case. 
 
 ..
 
