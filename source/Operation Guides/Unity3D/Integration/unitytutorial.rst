@@ -1,6 +1,6 @@
-#######################
-Tutorial 1 Introduction
-#######################
+###################
+Unity3D Integration
+###################
 
 This tutorial will take you through the steps of setting up an environment and performing basic
 interaction with the STRAX Mainnet Blockchain.
