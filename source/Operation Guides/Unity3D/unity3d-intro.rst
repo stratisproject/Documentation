@@ -33,5 +33,5 @@ the utilization of Stratis Smart Contracts in C#.
    :maxdepth: 2
    :caption: Contents:
 
-   Tutorial 1 - Integration <Tutorial1/unitytutorial>
-   
+   Integration <Integration/unitytutorial>
+   Smart Contract Interaction <SmartContractInteraction/smartcontracts>
