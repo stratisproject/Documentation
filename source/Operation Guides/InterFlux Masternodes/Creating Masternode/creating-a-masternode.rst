@@ -260,7 +260,7 @@ Obtain the InterFlux Masternode Registration Script
 A script has been constructed to ease the setup process and ensure
 consistency, the script can be obtained from the below URL.
 
-https://www.stratisplatform.com/wp-content/uploads/2020/11/STRAX-Sidechain-Registration-Launch-Script.zip
+https://www.stratisplatform.com/wp-content/uploads/2021/08/STRAX-Sidechain-Registration-Launch-Script.zip
 
 Extract the STRAX Sidechain Registration Launch Script.PS1 Script to the
 Desktop of the where you are intending to run your Masternode.
