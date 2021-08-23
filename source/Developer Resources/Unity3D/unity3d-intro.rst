@@ -6,11 +6,11 @@ Developed by Unity Technologies, Unity is a cross-platform game engine
 with a built-in IDE and is used to create video games for web plugins,
 consoles, desktop platforms, and mobile devices.
 
-Stratis Unity SDK allows the STRAX Token to be used in game creation as
+Stratis Unity SDK allows the STRAX Token to be used in game creation as
 well as the InterFlux Hub, opening up a world of possibilities through
 Stratis’ Smart Contracts written in C#.
 
-Non-Fungible Tokens (NFTs)  are of special relevance to game developers
+Non-Fungible Tokens (NFTs) are of special relevance to game developers
 that want to include in-game currency. By implementing an NFT, in-game
 things can be truly held by the player, eliminating the possibility of
 losing acquired things due to lost login credentials or account
@@ -23,7 +23,7 @@ addition, some of the earliest opposition that cryptos found was due to
 the fact that they are a form of digital money that competes with fiat
 currency.
 
-Stratis Blockchain Technologies’ expanded Unity 3D support to include a
+Stratis Blockchain Technologies expanded Unity 3D support to include a
 light wallet and SDK for Stratis Blockchain Technologies. This
 achievement enables both the STRAX Token to be supported within game
 development and the InterFlux Hub, enabling endless use-cases through
