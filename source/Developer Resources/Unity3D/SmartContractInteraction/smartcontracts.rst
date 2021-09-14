@@ -10,7 +10,7 @@ You can also check if Smart Contract is whitelisted using
 ``/api/Voting/whitelistedhashes``. 
 
 For example if you run node on CirrusTest; this link will provide you with list of hashes of whitelisted
-contracts: http://localhost:38223/api/Voting/whitelistedhashes\`
+contracts: http://localhost:38223/api/Voting/whitelistedhashes`
 
 What is required to work with Stratis Smart Contracts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
