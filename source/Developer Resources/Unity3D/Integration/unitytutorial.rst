@@ -37,7 +37,7 @@ The above command will clone the source code to the below directory,
 
 .. code-block:: bash
 
-   C:\Users\Admin\Desktop\StratisFullNode
+   C:\Users\Admin\Desktop\StratisFullNode\src\Stratis.StraxD
 
 It's cloned now so let's go to the source and let's build it.
 
@@ -49,7 +49,7 @@ Once the build has completed, we can run the project.
 
 .. code-block:: bash
 
-   dotnet exec .\Stratis.StraxD.dll -txindex=1 -addressindex=1 -unityapi_enable=true -unityapi_apiuri=http://0.0.0.0
+   dotnet run -txindex=1 -addressindex=1 -unityapi_enable=true -unityapi_apiuri=http://0.0.0.0
 
 Once we execute the command, a local version of Stratis FullNode will
 start running and syncing with the mainnet. While it's syncing we can open the port in the firewall, as we want to
