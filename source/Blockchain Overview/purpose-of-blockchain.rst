@@ -20,7 +20,7 @@ In further iterations of blockchain technology, once a user decides to share PII
 
 Transparency
 ==============
-The blockchain is a public registry of who owns what and who transacted what. This auditable, shared ledger make it is possible for anyone to track the movement of transactions and resulting balances throughout the network. By using a block explorer like: https://chainz.cryptoid.info/strat/ you can track a multitude of details; track an address to see what transactions it has made and to what addresses, you can see a breakdown of token ownership throughout the network down to the “rich list” or biggest owner of tokens of that blockchain. 
+The blockchain is a public registry of who owns what and who transacted what. This auditable, shared ledger makes it is possible for anyone to track the movement of transactions and resulting balances throughout the network. By using a block explorer like: https://chainz.cryptoid.info/strat/ you can track a multitude of details; track an address to see what transactions it has made and to what addresses, you can see a breakdown of token ownership throughout the network down to the “rich list” or biggest owner of tokens of that blockchain. 
 
 Trustless
 ===========
