@@ -17,7 +17,7 @@ functionality to be readily available to all smart contracts via base
 class methods and properties.
 
 The smart contract constructor
-==============================
+-------------------------------
 
 Deployment of a smart contract involves calling the constructor for the
 smart contract class. This is where any initialization of the smart
@@ -80,7 +80,7 @@ above. The name of the first parameter could theoretically be changed,
 but ``smartContractState`` will work fine.
 
 Greeting - a smart contract property
-====================================
+-------------------------------------
 
 In our Hello World example, we do one thing and that is initialize
 the ``Greeting`` property:
@@ -125,7 +125,7 @@ than inside the smart contract. Unlike methods, C# properties on a smart
 contract cannot be called even if they are public.
 
 SayHello() - a smart contract method
-====================================
+-------------------------------------
 
 Finally, let’s look at the simple method ``Greeting()``, which returns the
 “Hello World!” string.
@@ -144,6 +144,8 @@ As you can see, this method just accesses the ``Greeting`` property.
 
 You can see the complete Hello World Contract code
 `here <https://github.com/stratisproject/StratisBitcoinFullNode/blob/LSC-tutorial/src/Stratis.SmartContracts.Examples.HelloWorld/HelloWorld.cs>`__.
+
+.. _compiling-the-hello-world-smart-contract:
 
 Compiling the HelloWorld smart contract
 =======================================
@@ -184,9 +186,10 @@ sct validate command, use the following command:
     any smart contracts, you sync the repository to the latest version of
     the source code and rebuild the tool.
 
-***************************************
+.. _deploying-the-hello-world-smart-contract:
+
 Deploying the HelloWorld smart contract
-***************************************
+========================================
 
 Begin by making sure that you have the Local Smart Contract network
 running. You should now be in possession of 1,000,000 TCRS-TEST tokens
