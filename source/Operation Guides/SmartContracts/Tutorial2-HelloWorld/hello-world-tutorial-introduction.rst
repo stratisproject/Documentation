@@ -1,8 +1,8 @@
 .. _hello-world-tutorial-introduction:
 
-**********************************************************
-Smart Contract Tutorial 2 - A "HelloWorld" smart contract
-**********************************************************
+*****************************
+A "HelloWorld" smart contract
+*****************************
 
 This next tutorial in the series looks at a classic "Hello World" program.
 

@@ -1,6 +1,6 @@
-*******************************************************************
-Smart Contract Tutorial 3 - Extending the "Hello World" example
-*******************************************************************
+***********************************
+Extending the "Hello World" example
+***********************************
 
 The next tutorial in the series extends the "Hello World" program from the previous example. Rather than just hold a single greeting, the smart contract is upgraded to hold multiple greetings and cycle through them as greetings are requested. To accommodate this, the smart contract is extended with a new method allowing users of the smart contract to add additional greetings.
 
