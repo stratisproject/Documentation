@@ -26,6 +26,10 @@ manner on a remote machine by performing the following steps.
 This guide will focus on utilizing the Cirrus Core GUI as this
 simplifies the contract deployment and overall management process.
 
+If you would prefer to run the environment in Docker, you can follow the below guide:
+
+* :ref:`creating-headless-network`
+
 Getting Started
 ===============
 
