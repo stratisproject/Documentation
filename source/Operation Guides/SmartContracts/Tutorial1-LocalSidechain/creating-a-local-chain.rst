@@ -1,152 +1,124 @@
 .. _gui-tutorials:
 
-**********************************************
-Running Cirrus Core (Developer Edition) 
-**********************************************
+***********************
+Setup Local Environment
+***********************
 
-In an effort to greatly simplify the local development process, a Developer Edition of the Cirrus Core Wallet has been made available. 
+A 'Development Edition' of the Cirrus Core Wallet has been made
+available to greatly simplify the local development process; this
+version is known as the "Private Net" version. This wallet is
+pre-configured to launch a new chain, providing a local development
+environment to deploy contracts and build solutions without any external
+interference.
 
-This version of the Cirrus Core Wallet contains a bootstrapped PoA Blockchain that enables you to begin development without the need of setting up and configuring your own bespoke blockchain. 
+The "Cirrus Core Private Net" wallet is essentially a GUI that interacts
+with an instance of the Stratis Full Node, specifically the
+'Stratis.CirrusMinerD' project. The environment can be run in a headless
+manner on a remote machine by performing the following steps.
 
+ .. code-block:: bash
+
+    git clone https://github.com/stratisproject/StratisFullNode
+    cd ./StratisFullNode/src/Stratis.CirrusMinerD
+    dotnet run -devmode=miner
+
+
+This guide will focus on utilizing the Cirrus Core GUI as this
+simplifies the contract deployment and overall management process.
+
+If you would prefer to run the environment in Docker, you can follow the below guide:
+
+* :ref:`creating-headless-network`
 
 Getting Started
-=========================
+===============
 
-Cirrus Core Developer Edition can be downloaded from the `Stratis Core GitHub repostitory <https://github.com/stratisproject/StratisCore/releases/tag/1.4.0.0-hackathon>`_ and is available for all leading Operating Systems.
+Cirrus Core Private Net can be downloaded from the Cirrus Core
+repository and is available for all leading Operating Systems.
 
-We understand that Blockchain Technology solutions can differ depending on both the use-case and the environment to which the solution will ultimately be targeting.
+https://github.com/stratisproject/CirrusCore/releases/tag/1.6.1.0-privatenet
 
-Therefore, we have released two packages that cater for different environments:
+For the purpose of this tutorial, we will focus on using the Windows x64
+instance of the Cirrus Core Private Net wallet.
 
-**Cirrus Core Developer Edition**
-This environment has restrictions in-place to cater for public blockchain solutions where determinism is crucial.
-
-**Cirrus Core Developer Edition (DLT)**
-This environment has the aforementioned restrictions relaxed to cater for a more predictable and managed environments, typically seen within private implementations where a Leader-Follower consensus is employed.
-
-For the purpose of this tutorial, we will focus on using the Windows x64 instance of the ``Cirrus Core Developer Edition`` wallet. 
-
-Once downloaded simply run the installer through to completion. Upon completion, on the final window, un-check the 'Run Cirrus Core (Developer Edition)' check-box.
-
-Pre-Requisites
-=================================
-
-The Developer Edition of Cirrus Core requires Docker Community Edition to be installed, this can be obtained from `here <https://docs.docker.com/install/>`_
+Once downloaded, run the installer through to completion.
 
 Starting a Node
-================================
+===============
 
-Once Cirrus Core Developer Edition has been installed, you can now launch a node. Whilst you can launch a node by simply double-clicking the shortcut created on your desktop, it is recommended that the node is started via command line. This provides you a console view of the running node and allows you to also enable the development tools within the Cirrus Core UI.
+Once Cirrus Core Private Net has been installed, you can now launch the
+wallet via the shortcut created on your desktop. This will start a node.
 
-To do this, open an instance of Command Prompt.
+Interacting with the UI
+-----------------------
 
-.. image:: Start-CirrusCoreHE.png
-     :width: 900px
-     :alt: First Run
-     :align: center
+You would have noticed that when launching the node via Command Prompt,
+an additional application appeared on your taskbar. This is the Cirrus
+Core GUI, which can be seen below for reference.
 
-Navigate to the installation directory as above and execute the below command:
+.. image:: media/image1.png
+   :width: 6.26806in
+   :height: 3.34028in
 
-::
+In addition to the GUI, DevTools has been made available within the GUI
+so you can see what calls are being made to the respective API endpoints
+when interacting with the Cirrus Core GUI. As part of the Private Net Edition, wallets are automatically created to
+save you time; log into the wallet by using the username `cirrusdev`
+and password `password` as seen in the password text field.
 
- "Cirrus Core (Developer Edition).exe" -devtools
- 
-This will start a node, however, initially, you will notice that there is no balance within the wallet that has been automatically created.
+.. image:: media/image2.png
+   :width: 6.26806in
+   :height: 3.34028in
 
-.. image:: FirstLaunch.png
-     :width: 900px
-     :alt: First Launch
-     :align: center
+.. note:: Even though the Stratis Blockchain is built upon a UTXO model,
+ to improve user experience vastly, we have introduced an account-based
+ model look and feel to the Cirrus Core Private Net wallet. This change
+ provides the end-user with the ability to interact with Smart Contracts
+ in a more efficient manner. 
 
-The pre-mine will be allocated after the second block has been mined, with the current block time set at 16 seconds, it won't be long before you will see a balance credited to the wallet.
+Upon entering the password and logging into the wallet, you will be
+presented with the above screen, requesting you to select an address.
+Select the first address, `Address[0]` and continue. 
 
-.. image:: PreMine.png
-     :width: 900px
-     :alt: Pre-Mine
-     :align: center
+.. note:: Initially, you may notice that there is no balance within the wallet that has been
+ automatically created. The pre-mine will be allocated after the second
+ block has been mined. The current block time is set at 16 seconds; it
+ will not be long before you see a balance credited to the wallet.
 
-Interacting with the UI 
-=================================
+You can see in the above image; you have 1,000,000 TCRS which you can
+utilize to deploy and call a contract for your development and testing
+purpose. 
 
-You would have noticed that when launching the node via Command Prompt, an additional application appeared on your task-bar. This is the Cirrus Core GUI, which can be seen below for reference.
+.. image:: media/image2.png
+   :width: 6.26806in
+   :height: 3.34028in
 
-.. image:: CirrusCoreHELanding.png
-     :width: 900px
-     :alt: Landing Screen
-     :align: center
+The `Dashboard` displays all information specific to your wallet. Since
+this is a local chain this is the only node currently running on the
+network, and all funds issued on-chain reside within this wallet.
 
-In addition to the GUI, DevTools has been made available within the GUI so you can clearly see what calls are being made to the respective API endpoints when interacting with the Cirrus Core GUI.
+There are several ways that the Stratis Full Node can be interacted with
+within the Cirrus Core UI; aside from basic wallet functions, there is
+also the ability to issue tokens and deploy and interact with Smart Contracts. If you are
+interested in other API's that are available, the Swagger interface can
+be accessed via browse swagger. Swagger is utilized to provide a
+graphical representation of the APIs that are available on the Stratis
+Full Node. These APIs are fully documented on the Academy and can be
+accessed via the `API Documentation <file:///D:/Code/build/html/Developer%20Resources/API%20Reference/api.html>`_ section.
 
-As part of the Developer Edition, wallets are automatically created to save you time, login to the wallet by using the password ``stratis`` as seen in the password text field.
+.. image:: media/image3.png
+   :width: 6.26806in
+   :height: 3.14514in
 
-.. image:: CirrusCoreHEAddress.png
-     :width: 900px
-     :alt: Select Address
-     :align: center
+.. note:: By default, only a single node can be running if utilizing the Cirrus Core Private Net Wallet. Additional nodes can be launched from the source code by passing the below parameters to the Stratis.CirrusMinerD project.
 
-Upon entering the password and logging into the wallet, you will be presented with the above screen, requesting you to select an address. Even though the Stratis Blockchain is built upon a UTXO model, to vastly improve user-experience we have introduced an account-based model look and feel to the Cirrus Core wallet. This change provides the end-user with the ability to interact with Smart Contracts in a more efficient manner. 
+ ::
 
-The pre-mine is deposited into the first available address, to proceed, select address [0] and select the 'Use Address' button to be presented with the wallet dashboard.
-
-.. image:: CirrusCoreHEDashboard.png
-     :width: 900px
-     :alt: Dashboard
-     :align: center
-
-The Dashboard displays all information specific to your wallet. Since this is a local-chain this is the only node currently running on the network and all funds issued on-chain reside within this wallet. 
-
-There are a number of ways that the Stratis Full Node can be interacted with within the Cirrus Core UI, aside from basic wallet functions, there is also the ability to issue tokens and deploy Smart Contracts. If you are interested in further API's that are available, the Swagger interface can be accessed via the Wallet drop-down in the top right.
-
-.. image:: CirrusCoreHESwagger.png
-     :width: 900px
-     :alt: Swagger
-     :align: center
-	 
-Swagger is utilised to provide a graphical representation of the APIs that are available on the Stratis Full Node. These APIs are fully documented on the Academy and can be accessed via the `API Documentation <../../../Swagger>`_ section .
-
-.. image:: SwaggerV1.png
-     :width: 900px
-     :alt: Swagger
-     :align: center
-	 
-Additional Nodes 
-=================================
-	 
-We are now in a position whereby we have a standalone node mining blocks every 16 seconds on the local chain. Additional nodes are also able to join the network and this can be simply achieved by launching a further instance of Cirrus Core as we did previously. 
-
-.. note:: Only a single node can be running if utilising the Cirrus Core Developer Edition (DLT) Package.
-
-Open another instance of Command Prompt, navigate to the installation directory of Cirrus Core and execute the same command used to launch the first instance.
-
-::
-
- "Cirrus Core (Developer Edition).exe" -devtools
- 
-You will notice another instance starting, this additional instance has its own respective data directory and wallet associated and will automatically become a peer of the already running node.
-
-.. image:: CirrusCoreHEConsole2.png
-     :width: 900px
-     :alt: Cirrus Node 2
-     :align: center
-
-This process can be repeated indefinitely to create a larger network if required.
-
-.. image:: CirrusCoreHEConsole3.png
-     :width: 900px
-     :alt: Cirrus Node 3
-     :align: center
-	 
-This concludes the network setup and configuration, you can now move on to deploying a contract on the local network in Tutorial 2.
+ -port=<>
+ -signalruri=http://127.0.0.1:<>
+ -apiuri=http://127.0.0.1:<>
+ -datadir=<>
 
 
-
-
-
-
-
-
-
-
-
-
-
+This concludes the network setup and configuration; you can now deploy a
+contract on the local network in Tutorial 2.

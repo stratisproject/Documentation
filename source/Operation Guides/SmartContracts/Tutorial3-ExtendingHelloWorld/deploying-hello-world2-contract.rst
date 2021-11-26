@@ -1,6 +1,6 @@
-*******************************************************************
+************************************************
 Deploying the HelloWorld2 Smart Contract Example
-*******************************************************************
+************************************************
 
 Let's now look at extending the functionality of the HelloWorld Smart Contract we previously deployed and interacted with as part of Tutorial 2.
 

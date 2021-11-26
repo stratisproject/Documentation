@@ -102,7 +102,7 @@ The new smart contract method, ``AddGreeting()``, takes a single string paramete
 
 ::
 
-	curl -X POST "http://localhost:37223/api/contract/CJxwacp4ZrLn1rH8idj7TADQ1twEbBN1sr/method/AddGreeting" -H "accept: application/json" -H "GasPrice: 100" -H "GasLimit: 100000" -H "Amount: 0" -H "FeeAmount: 0.01" -H "WalletName: Hackathon_1" -H "WalletPassword: stratis" -H "Sender: CZutRsBK78fWu8aY9u9K63v1zH7AmffnAc" -H "Content-Type: application/json" -d "{ \"helloMessage\": \"Witaj świecie!\"}"
+	curl -X POST "http://localhost:38223/api/contract/PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY/method/AddGreeting" -H "accept: application/json" -H "GasPrice: 100" -H "GasLimit: 100000" -H "Amount: 0" -H "FeeAmount: 0.01" -H "WalletName: cirrusdev" -H "WalletPassword: stratis" -H "Sender: P9zz49VdoPrirKhU2DBytwVTdCupcR4wYh" -H "Content-Type: application/json" -d "{ \"helloMessage\": \"Witaj świecie!\"}"
 	
 .. note:: Ensure you are specifying a Sender address that has a balance to fund the transaction.
 
@@ -122,7 +122,7 @@ Let's get the Transaction ID and pass it to the /SmartContracts/receipt endpoint
 
 ::
 
-	curl -X GET "http://localhost:37223/api/SmartContracts/receipt?txHash=997f923d0144e0d8249cea8e9c71efa17df63e33c18b189f192bb8a899e64999" -H "accept: application/json"
+	curl -X GET "http://localhost:38223/api/SmartContracts/receipt?txHash=997f923d0144e0d8249cea8e9c71efa17df63e33c18b189f192bb8a899e64999" -H "accept: application/json"
 	
 We can see from the response that ``'Witaj świecie!'`` was added as a greeting!
 
@@ -133,8 +133,8 @@ We can see from the response that ``'Witaj świecie!'`` was added as a greeting!
 		"blockHash": "e9fcb1fde9b4fbf1bc24b3a640468a71338a40feef30c8075a660bc7097d186d",
 		"postState": "c61e8e6a9d4d774830c4465be6a9cb1466a7eceac065ef6b72503d09846d1308",
 		"gasUsed": 10792,
-		"from": "CZutRsBK78fWu8aY9u9K63v1zH7AmffnAc",
-		"to": "CJxwacp4ZrLn1rH8idj7TADQ1twEbBN1sr",
+		"from": "P9zz49VdoPrirKhU2DBytwVTdCupcR4wYh",
+		"to": "PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY",
 		"newContractAddress": null,
 		"success": true,
 		"returnValue": "Added 'Witaj świecie!' as a greeting.",
@@ -158,7 +158,7 @@ Call the ``SayHello`` method on the same contract to see the difference in respo
 
 ::
 
-	curl -X POST "http://localhost:37223/api/contract/CJxwacp4ZrLn1rH8idj7TADQ1twEbBN1sr/method/SayHello" -H "accept: application/json" -H "GasPrice: 100" -H "GasLimit: 100000" -H "Amount: 0" -H "FeeAmount: 0.01" -H "WalletName: Hackathon_1" -H "WalletPassword: stratis" -H "Sender: CZutRsBK78fWu8aY9u9K63v1zH7AmffnAc" -H "Content-Type: application/json" -d "{}"
+	curl -X POST "http://localhost:38223/api/contract/PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY/method/SayHello" -H "accept: application/json" -H "GasPrice: 100" -H "GasLimit: 100000" -H "Amount: 0" -H "FeeAmount: 0.01" -H "WalletName: cirrusdev" -H "WalletPassword: password" -H "Sender: P9zz49VdoPrirKhU2DBytwVTdCupcR4wYh" -H "Content-Type: application/json" -d "{}"
 
 The first call will return the below, as we saw in the original HelloWorld contract.
 
@@ -169,8 +169,8 @@ The first call will return the below, as we saw in the original HelloWorld contr
 		"blockHash": "af7fab69533051ceae88cf66c75163515e6191d9a3eee4fd6c7f4aa8dddd2849",
 		"postState": "1c0b2cc765d6f0e17a1d0422fed0ba3972beb78aacf6ae659089ed9e9a4a025a",
 		"gasUsed": 10357,
-		"from": "CZutRsBK78fWu8aY9u9K63v1zH7AmffnAc",
-		"to": "CJxwacp4ZrLn1rH8idj7TADQ1twEbBN1sr",
+		"from": "P9zz49VdoPrirKhU2DBytwVTdCupcR4wYh",
+		"to": "PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY",
 		"newContractAddress": null,
 		"success": true,
 		"returnValue": "Hello World!",
@@ -188,8 +188,8 @@ However, a subsequent call will reutrn something different.
 		"blockHash": "8c4c6078044be2a75201e73d419240c9fabcc80da3ad8f0c4e3487347efdd355",
 		"postState": "1be6ba0cdc123f6ea9fb67cab76641e1303f40eb774e1c69265f4910b116404d",
 		"gasUsed": 10360,
-		"from": "CZutRsBK78fWu8aY9u9K63v1zH7AmffnAc",
-		"to": "CJxwacp4ZrLn1rH8idj7TADQ1twEbBN1sr",
+		"from": "P9zz49VdoPrirKhU2DBytwVTdCupcR4wYh",
+		"to": "PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY",
 		"newContractAddress": null,
 		"success": true,
 		"returnValue": "Witaj świecie!",
