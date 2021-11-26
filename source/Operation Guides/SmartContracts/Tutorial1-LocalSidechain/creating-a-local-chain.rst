@@ -36,6 +36,8 @@ Getting Started
 Cirrus Core Private Net can be downloaded from the Cirrus Core
 repository and is available for all leading Operating Systems.
 
+https://github.com/stratisproject/CirrusCore/releases/tag/1.6.1.0-privatenet
+
 For the purpose of this tutorial, we will focus on using the Windows x64
 instance of the Cirrus Core Private Net wallet.
 
