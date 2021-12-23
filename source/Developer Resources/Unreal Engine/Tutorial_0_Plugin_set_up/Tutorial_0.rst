@@ -1,6 +1,6 @@
 
-Tutorial #0. Setting up a basic project.
-========================================
+Getting Started
+===============
 
 In this tutorial, we'll show you how to set up a basic UE4 project with `Stratis Plugin <https://github.com/stratisproject/UnrealEnginePlugin>`_ on board.
 If you are looking for more information about Unreal Engine itself, please follow `an official UE's website <https://www.unrealengine.com/>`_.
@@ -22,7 +22,7 @@ Now we are going to create our new project. Run Unreal Engine, find a project br
 
 ..
 
-   But what is Blueprint? Blueprint is a graphical programming language used in Unreal Engine to simplify development for non-programmers and for people who are not familiar with C++. **Stratis Unreal Plugin** supports both C++ and Blueprint, so you can choose the tool you are more comfortable with.
+But what is Blueprint? Blueprint is a graphical programming language used in Unreal Engine to simplify development for non-programmers and for people who are not familiar with C++. **Stratis Unreal Plugin** supports both C++ and Blueprint, so you can choose the tool you are more comfortable with.
 
 
 Then, just press the **Create project** button and voilà, we did it!
@@ -34,7 +34,7 @@ Next, we need to install the plugin within our new project path. Go to the proje
 
 ..
 
-   Stratis Unreal Plugin uses Git LFS to maintain a large precompiled third-party dependencies for each of the supported platforms. You need to ensure that the LFS extension is installed on your computer, or you can get it from `the official website <https://git-lfs.github.com/>`_.
+Stratis Unreal Plugin uses Git LFS to maintain a large precompiled third-party dependencies for each of the supported platforms. You need to ensure that the LFS extension is installed on your computer, or you can get it from `the official website <https://git-lfs.github.com/>`_.
 
 
 Now go to the `Stratis Unreal Plugin <https://github.com/stratisproject/UnrealEnginePlugin>`_ GitHub repository and clone it to the **Plugin** directory. Rename the cloned directory to **Stratis** to eliminate potential missing path problems. Ensure that precompiled libraries within your plugin installation have a proper size (hundreds of MB), and if it's not, make sure you have the Git LFS plugin installed within your environment.
