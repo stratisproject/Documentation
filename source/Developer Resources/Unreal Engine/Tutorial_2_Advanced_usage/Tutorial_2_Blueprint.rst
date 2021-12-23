@@ -26,6 +26,7 @@ To deploy smart contract, we should use method ``sendCreateContractTransaction``
    :alt: Deploy contract
 
 |
+
 where:
 
 
@@ -51,6 +52,7 @@ Example:
    :alt: Example contract deployment
 
 |
+
 Calling contract's methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -62,6 +64,7 @@ To call contract's methods, we need to use ``sendCallContractTransaction`` metho
    :alt: Call contract
 
 |
+
 where:
 
 
@@ -80,6 +83,7 @@ where:
    :alt: Call contract example
 
 |
+
 Making a local call
 ^^^^^^^^^^^^^^^^^^^
 
@@ -93,6 +97,7 @@ To make a local call, we need to use the ``makeLocalCall`` method:
    :alt: Local call
 
 |
+
 where: 
 
 
@@ -107,6 +112,7 @@ Example:
    :alt: Local call example
 
 |
+
 Smart contract wrappers
 -----------------------
 
@@ -129,6 +135,7 @@ To create instance of UNFTWrapper, we can use ``createInstance`` or ``createDefa
    :alt: Create wrapper instance
 
 |
+
 where:
 
 
@@ -144,6 +151,7 @@ Example:
    :alt: Create wrapper instance example
 
 |
+
 Deploying a smart contract
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -155,6 +163,7 @@ To deploy NFT contract, we need to use ``deployNFTContract`` method:
    :alt: Deploy NFT contract
 
 |
+
 where:
 
 
@@ -169,6 +178,7 @@ Example:
    :alt: Deploy NFT contract example
 
 |
+
 Calling some methods
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -182,6 +192,7 @@ Get symbol of NFT:
    :alt: Get symbol
 
 |
+
 Mint NFT to current address:
 
 
@@ -190,6 +201,7 @@ Mint NFT to current address:
    :alt: Mint
 
 |
+
 Conclusion
 ----------
 

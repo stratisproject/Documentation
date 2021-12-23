@@ -24,6 +24,7 @@ Let's click on the **Blueprints** menu in the toolbar and click **Open Level Blu
    :alt: Menu
 
 |
+
 Now we see blueprint editor, let's create a variable ``stratisManager`` with the type ``Stratis Unreal Manager``.
 
 Also, let's create a function called ``InitializeStratisUnrealManager``\ , where we will define the initialization logic for our manager.
@@ -43,6 +44,7 @@ Define ``InitializeStratisUnrealManager`` like below:
    :alt: Object construction
 
 |
+
 Now we're going to set up base URL, network, and wallet mnemonic.
 
 Let's walk through the parameters:
@@ -92,6 +94,7 @@ Now, let's make a very similar function for the ``Error`` type:
    :alt: Print error
 
 |
+
 Well, now we can call the ``GetBalance`` function and await the result. Add ``GetBalance`` to the event graph (right after manager initialization or after delay like in the example) and set its ``Delegate`` and ``Error Delegate`` fields to custom events via **Get Custom Event**. 
 
 
@@ -110,6 +113,7 @@ Desired event graph is shown below (\ ``Delay`` node is not necessary):
    :alt: Get balance final scheme
 
 |
+
 Now, just press the **Play** key, and the balance will be printed on your screen & debug console.
 
 Getting unspent transaction outputs
@@ -125,6 +129,7 @@ At first, let's create a method ``Print UTXOs`` and add the input parameter ``UT
    :alt: Iterate over UTXOs
 
 |
+
 Now let's just print every UTXO using **Break...** and **Format Text** nodes:
 
 
@@ -133,6 +138,7 @@ Now let's just print every UTXO using **Break...** and **Format Text** nodes:
    :alt: Print UTXOs function
 
 |
+
 We are almost done. Now we just need to call the **Get Coins** node as we did for ``Get Balance`` node, and use functions (\ ``Print UTXOs`` and ``Print Error``\ ) we made previously. The final scheme is shown below:
 
 
@@ -141,6 +147,7 @@ We are almost done. Now we just need to call the **Get Coins** node as we did fo
    :alt: Print UTXOs scheme
 
 |
+
 Sending coins & waiting for a receipt
 -------------------------------------
 
@@ -158,6 +165,7 @@ At first, add the ``Send Coins Transaction`` node and set its inputs:
    :alt: Send Coins
 
 |
+
 And now we need to join the ``Transaction ID`` output of the ``TransactionSent`` event to the ``Transaction ID`` input of the ``Wait Till Receipt Available`` node.
 
 At last, add some printing logic to see when receipt is available, and we're done!
