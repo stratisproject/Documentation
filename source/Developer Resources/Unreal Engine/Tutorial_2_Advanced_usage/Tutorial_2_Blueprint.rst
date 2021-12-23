@@ -1,5 +1,5 @@
 
-Tutorial #2. Interacting with smart contracts.
+Tutorial #2 - Interacting with smart contracts
 ==============================================
 
 In this tutorial, we will learn how to deploy and interact with `smart contracts <https://academy.stratisplatform.com/Architecture%20Reference/SmartContracts/smartcontracts-introduction.html>`_ supported by the Stratis blockchain.

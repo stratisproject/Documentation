@@ -1,5 +1,5 @@
 
-Tutorial #1. Basic plugin usage.
+Tutorial #1 - Basic plugin usage
 ================================
 
 In this tutorial we'll show you how to use the basic functionality of the Stratis Unreal plugin: create a wallet, check your balance and unspent transaction outputs (UTXOs), and send coins to another address.
@@ -11,8 +11,8 @@ Prerequisite
 
 You need to set up your project and Stratis Unreal Plugin within it. If you looking for a tutorial about basic project setup, please check our :doc:`Tutorial #0 <../Tutorial_0_Plugin_set_up/Tutorial_0>`.
 
-Setting up ``StratisUnrealManager`` and creating a wallet
--------------------------------------------------------------
+Setting up StratisUnrealManager and creating a wallet
+-----------------------------------------------------
 
 First of all, we need to set up ``StratisUnrealManager`` to be able to use all of the API methods provided by the plugin.
 
