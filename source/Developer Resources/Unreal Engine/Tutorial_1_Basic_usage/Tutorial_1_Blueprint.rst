@@ -103,6 +103,7 @@ Well, now we can call the ``GetBalance`` function and await the result. Add ``Ge
    :alt: Bind delegate
 
 |
+
 Bind newly-created events to the functions we defined: ``Print Balance`` and ``Print Error``.
 
 Desired event graph is shown below (\ ``Delay`` node is not necessary):
