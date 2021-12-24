@@ -169,8 +169,8 @@ Running the Stratis Node
 **Windows Example**
 
 ::
-	Stratis.StraxD.exe -datadir=C:\StratisNode
 
+    Stratis.StraxD.exe -datadir=C:\StratisNode
 
 **Linux Example**
 
