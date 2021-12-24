@@ -114,7 +114,7 @@ Imagine 1000 blocks need to be downloaded. A fast peer with a score of 75 will b
 Block Store
 -------------
 
-The block store uses a NoSQL database (DBreeze) to store the blockchain on disk. The block store is an optional feature that enables a node to supply blocks to other nodes. It is possible to run a lightweight node without this feature. In this case, the node just works with the latest blocks, which are held in a cache.
+The block store uses a NoSQL database (RocksDB) to store the blockchain on disk. The block store is an optional feature that enables a node to supply blocks to other nodes. It is possible to run a lightweight node without this feature. In this case, the node just works with the latest blocks, which are held in a cache.
 
 Coin View
 -----------

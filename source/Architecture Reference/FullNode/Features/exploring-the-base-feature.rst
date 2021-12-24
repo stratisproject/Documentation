@@ -20,35 +20,52 @@ The ``UseBaseFeature()`` function typifies how a feature is added to a build of 
             .AddFeature<BaseFeature>()
             .FeatureServices(services =>
             {
+                services.AddSingleton(fullNodeBuilder.Network.Consensus.ConsensusFactory);
                 services.AddSingleton<DBreezeSerializer>();
                 services.AddSingleton(fullNodeBuilder.NodeSettings.LoggerFactory);
                 services.AddSingleton(fullNodeBuilder.NodeSettings.DataFolder);
                 services.AddSingleton<INodeLifetime, NodeLifetime>();
                 services.AddSingleton<IPeerBanning, PeerBanning>();
                 services.AddSingleton<FullNodeFeatureExecutor>();
-                services.AddSingleton<Signals.Signals>().AddSingleton<ISignals, Signals.Signals>(provider => provider.GetService<Signals.Signals>());
+                services.AddSingleton<ISignals, Signals.Signals>();
+                services.AddSingleton<ISubscriptionErrorHandler, DefaultSubscriptionErrorHandler>();
                 services.AddSingleton<FullNode>().AddSingleton((provider) => { return provider.GetService<FullNode>() as IFullNode; });
-                services.AddSingleton<ConcurrentChain>(new ConcurrentChain(fullNodeBuilder.Network));
-                services.AddSingleton<IDateTimeProvider>(DateTimeProvider.Default);
+                services.AddSingleton(new ChainIndexer(fullNodeBuilder.Network));
+                services.AddSingleton(DateTimeProvider.Default);
                 services.AddSingleton<IInvalidBlockHashStore, InvalidBlockHashStore>();
                 services.AddSingleton<IChainState, ChainState>();
                 services.AddSingleton<IChainRepository, ChainRepository>();
                 services.AddSingleton<IFinalizedBlockInfoRepository, FinalizedBlockInfoRepository>();
                 services.AddSingleton<ITimeSyncBehaviorState, TimeSyncBehaviorState>();
-                services.AddSingleton<IAsyncLoopFactory, AsyncLoopFactory>();
                 services.AddSingleton<NodeDeployments>();
                 services.AddSingleton<IInitialBlockDownloadState, InitialBlockDownloadState>();
+                services.AddSingleton<IKeyValueRepository, KeyValueRepository>();
+                services.AddSingleton<ITipsManager, TipsManager>();
+                services.AddSingleton<IAsyncProvider, AsyncProvider>();
 
                 // Consensus
                 services.AddSingleton<ConsensusSettings>();
                 services.AddSingleton<ICheckpoints, Checkpoints>();
+                services.AddSingleton<ConsensusRulesContainer>();
+
+                foreach (var ruleType in fullNodeBuilder.Network.Consensus.ConsensusRules.HeaderValidationRules)
+                    services.AddSingleton(typeof(IHeaderValidationConsensusRule), ruleType);
+
+                foreach (var ruleType in fullNodeBuilder.Network.Consensus.ConsensusRules.IntegrityValidationRules)
+                    services.AddSingleton(typeof(IIntegrityValidationConsensusRule), ruleType);
+
+                foreach (var ruleType in fullNodeBuilder.Network.Consensus.ConsensusRules.PartialValidationRules)
+                    services.AddSingleton(typeof(IPartialValidationConsensusRule), ruleType);
+
+                foreach (var ruleType in fullNodeBuilder.Network.Consensus.ConsensusRules.FullValidationRules)
+                    services.AddSingleton(typeof(IFullValidationConsensusRule), ruleType);
 
                 // Connection
                 services.AddSingleton<INetworkPeerFactory, NetworkPeerFactory>();
                 services.AddSingleton<NetworkPeerConnectionParameters>();
                 services.AddSingleton<IConnectionManager, ConnectionManager>();
                 services.AddSingleton<ConnectionManagerSettings>();
-                services.AddSingleton<PayloadProvider>(new PayloadProvider().DiscoverPayloads());
+                services.AddSingleton(new PayloadProvider().DiscoverPayloads());
                 services.AddSingleton<IVersionProvider, VersionProvider>();
                 services.AddSingleton<IBlockPuller, BlockPuller>();
 
@@ -61,7 +78,28 @@ The ``UseBaseFeature()`` function typifies how a feature is added to a build of 
                 services.AddSingleton<ISelfEndpointTracker, SelfEndpointTracker>();
 
                 // Consensus
-                services.AddSingleton<IConsensusManager, ConsensusManager>(); 
+                services.AddSingleton<IConsensusManager>(provider => new ConsensusManager(
+                    chainedHeaderTree: provider.GetService<IChainedHeaderTree>(),
+                    network: provider.GetService<Network>(),
+                    loggerFactory: provider.GetService<ILoggerFactory>(),
+                    chainState: provider.GetService<IChainState>(),
+                    integrityValidator: provider.GetService<IIntegrityValidator>(),
+                    partialValidator: provider.GetService<IPartialValidator>(),
+                    fullValidator: provider.GetService<IFullValidator>(),
+                    consensusRules: provider.GetService<IConsensusRuleEngine>(),
+                    finalizedBlockInfo: provider.GetService<IFinalizedBlockInfoRepository>(),
+                    signals: provider.GetService<ISignals>(),
+                    peerBanning: provider.GetService<IPeerBanning>(),
+                    ibdState: provider.GetService<IInitialBlockDownloadState>(),
+                    chainIndexer: provider.GetService<ChainIndexer>(),
+                    blockPuller: provider.GetService<IBlockPuller>(),
+                    blockStore: provider.GetService<IBlockStore>(),
+                    connectionManager: provider.GetService<IConnectionManager>(),
+                    nodeStats: provider.GetService<INodeStats>(),
+                    nodeLifetime: provider.GetService<INodeLifetime>(),
+                    consensusSettings: provider.GetService<ConsensusSettings>(),
+                    dateTimeProvider: provider.GetService<IDateTimeProvider>()));
+
                 services.AddSingleton<IChainedHeaderTree, ChainedHeaderTree>();
                 services.AddSingleton<IHeaderValidator, HeaderValidator>();
                 services.AddSingleton<IIntegrityValidator, IntegrityValidator>();
@@ -70,6 +108,9 @@ The ``UseBaseFeature()`` function typifies how a feature is added to a build of 
 
                 // Console
                 services.AddSingleton<INodeStats, NodeStats>();
+
+                // Controller
+                services.AddTransient<NodeController>();
             });
         });
 
