@@ -166,12 +166,13 @@ the Stratis Full Node.
 Running the Stratis Node
 ------------------------
 
-Windows Example
+**Windows Example**
 
 ::
 	Stratis.StraxD.exe -datadir=C:\StratisNode
 
-Linux example
+
+**Linux Example**
 
 ::
 
