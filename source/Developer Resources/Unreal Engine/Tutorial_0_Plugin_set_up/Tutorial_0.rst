@@ -11,7 +11,7 @@ Prerequisite
 ^^^^^^^^^^^^
 
 First of all, you need Unreal Engine to be installed on your computer. If you don't have it yet, you can `get it on the official website <https://www.unrealengine.com/>`_.
-As well as Unreal Engine, you need a Stratis Full Node to be installed either on your local machine or remote web server. Please check `Stratis Academy <https://academy.stratisplatform.com/Operation%20Guides/Full%20Node/fullnode-introduction.html>`_ if you need an Operation Guide for Full Node.
+As well as Unreal Engine, you need a Stratis Full Node to be installed either on your local machine or remote web server. Please check `Stratis Academy <https://academy.stratisplatform.com/Developer%20Resources/Stratis%20Full%20Node/Running.html#>`_ if you need an Operation Guide for Full Node.
 Also, you need something like a text editor or an IDE if you are going to work with C++ in your project. UE4 supports Visual Studio, Visual Studio Code, XCode, CLion, etc.
 Finally, some experience with Git will be very useful. If you want to learn more about Git VSC, please `follow git-scm.com <https://git-scm.com/>`_.
 

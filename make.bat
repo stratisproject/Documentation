@@ -32,6 +32,7 @@ if errorlevel 9009 (
 	exit /b 1
 )
 
+rmdir ..\build /s /q
 rmdir /s /q temp
 rmdir /s /q "source\Developer Resources\Pystratis Reference\source\"
 mkdir temp\

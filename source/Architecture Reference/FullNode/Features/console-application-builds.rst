@@ -7,13 +7,15 @@ When you open up the Stratis.FullNode solution in Visual Studio, you will notice
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | Project                        | Description                                                                                                                  |
 +================================+==============================================================================================================================+
-| Stratis.BitcoinD               | Runs the Full Node as a daemon on the Bitcoin network.                                                                       |
+| Stratis.StraxD                 | Runs the Full Node as a daemon on the Stratis network.                                                                       |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.BreezeD                | Runs a lightweight version of the Full Node, which supports a Breeze wallet running on either a Stratis or Bitcoin network.  |
+| Stratis.StraxDnsD              | Runs the Full Node with a DNS service for initial peer discovery.                                                            |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.StraxD               | Runs the Full Node as a daemon on the Stratis network.                                                                       |
+| Stratis.CirrusD                | Runs the Full Node as a daemon on the Cirrus network.                                                                        |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| Stratis.StraxDnsD            | Runs the Full Node with a DNS service for initial peer discovery.                                                            |
+| Stratis.CirrusDnsD             | Runs the Full Node with a DNS service for initial peer discovery.                                                            |
++--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Stratis.CirrusMinerD           | Runs the Full Node with the Miner Feature on the Cirrus Network (Masternode)                                                 |
 +--------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 If you look inside any of these projects, you will notice a single C# file, program.cs, which contains the entry point, ``Main()``, for the application.
