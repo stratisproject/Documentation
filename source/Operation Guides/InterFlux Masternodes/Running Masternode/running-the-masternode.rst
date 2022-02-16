@@ -21,7 +21,7 @@ Ltd.
 
 This script can be obtained from the below URL
 
-https://www.stratisplatform.com/wp-content/uploads/2021/07/STRAX-Masternode-Launch-Script.zip
+https://www.stratisplatform.com/wp-content/uploads/2022/02/STRAX-Masternode-Launch-Script-v2.zip
 
 Verifying the Launch Script
 ===========================
