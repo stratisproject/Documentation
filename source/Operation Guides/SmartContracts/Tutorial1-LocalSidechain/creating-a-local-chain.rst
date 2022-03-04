@@ -104,7 +104,7 @@ interested in other API's that are available, the Swagger interface can
 be accessed via browse swagger. Swagger is utilized to provide a
 graphical representation of the APIs that are available on the Stratis
 Full Node. These APIs are fully documented on the Academy and can be
-accessed via the `API Documentation <file:///D:/Code/build/html/Developer%20Resources/API%20Reference/api.html>`_ section.
+accessed via the `API Documentation <https://academy.stratisplatform.com/Developer%20Resources/API%20Reference/api.html>`_ section.
 
 .. image:: media/image3.png
    :width: 6.26806in
