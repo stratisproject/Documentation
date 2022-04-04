@@ -39,6 +39,8 @@ To run a local host, enter:
 
 Almost all the steps are identical to corresponding steps in macOS and GNU/Linux instruction. However, some steps are slighly different:
 - To build this documentation, you need MSVC++ Build Tools to be installed on your PC. For more information, check out [the VS tools download page](https://visualstudio.microsoft.com/ru/downloads/).
+- To install Sphinx and other required dependencies in Windows machine, go to the cloned Documentation directory and execute following command.
+`py -m pip install -r requirements.txt`
 - (_If you are **NOT** using virtual environment_) On Windows, Python may be installed on path: `C:\Users\<username>\AppData\Local\Programs\Python\Python37\bin`, and additional packages may be installed on `C:\Users\<username>\AppData\Roaming\Python\Lib`.
 - (_If you are **NOT** using virtual environment_) Keep in mind that PATH environmental variables are added in different way on Windows than on *nix systems. If you need help, check out [this instruction](https://java.com/en/download/help/path.html).
 - Instead of using `make html` command, you should use `make.bat html`.
