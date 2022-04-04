@@ -111,15 +111,15 @@ Minting NFT
 Calling ``UNFTWrapper::mint`` with specified target owner address will result in
 minting a new NFT that will belong to that address. For example:
 
-:: code-block:: cpp
+.. code-block:: cpp
 
-   FString owner(TEXT("tD5aDZSu4Go4A23R7VsjuJTL51YMyeoLyS"));
+      FString owner(TEXT("tD5aDZSu4Go4A23R7VsjuJTL51YMyeoLyS"));
 
-   wrapper->contractAddress = TEXT("t8snCz4kQgovGTAGReAryt863NwEYqjJqy");
+      wrapper->contractAddress = TEXT("t8snCz4kQgovGTAGReAryt863NwEYqjJqy");
 
-   wrapper->mint(owner, [](const auto &result) {
-   // Do something after mint
-   });
+      wrapper->mint(owner, [](const auto &result) {
+      // Do something after mint
+      });
 
 Getting NFT balance
 -------------------
@@ -127,20 +127,21 @@ Getting NFT balance
 NFT balance of address is the amount of NFTs that this address controls.
 You can get it with ``UNFTWrapper::getBalanceOf`` like this:
 
-:: code-block:: cpp
+.. code-block:: cpp
 
-   FString owner(TEXT("tD5aDZSu4Go4A23R7VsjuJTL51YMyeoLyS"));
+      FString owner(TEXT("tD5aDZSu4Go4A23R7VsjuJTL51YMyeoLyS"));
 
-   wrapper->contractAddress = TEXT("t8snCz4kQgovGTAGReAryt863NwEYqjJqy");
+      wrapper->contractAddress = TEXT("t8snCz4kQgovGTAGReAryt863NwEYqjJqy");
 
-   wrapper->getBalanceOf(owner, [](const auto &result) {
-   if (result::isSuccessful(result)) {
-      UE_LOG(LogTemp, Display, TEXT("NFT balance: %llu"),
-            result::getValue(result));
-   } else {
-      UE_LOG(LogTemp, Error, TEXT("%s"), *(result::getError(result).message));
-   }
-   });
+      wrapper->getBalanceOf(owner, [](const auto &result) {
+      if (result::isSuccessful(result)) {
+         UE_LOG(LogTemp, Display, TEXT("NFT balance: %llu"),
+               result::getValue(result));
+      } else {
+         UE_LOG(LogTemp, Error, TEXT("%s"), *(result::getError(result).message));
+      }
+      });
+
 
 Transferring NFT to another address
 -----------------------------------
@@ -149,7 +150,7 @@ To transfer an NFT you need to use ``UNFTWrapper::transferFrom`` and specify
 address from which transfer should occur, receiver address and id of a
 token you want to transfer.
 
-:: code-block:: cpp
+.. code-block:: cpp
 
    uint64 tokenId = 12345;
 
