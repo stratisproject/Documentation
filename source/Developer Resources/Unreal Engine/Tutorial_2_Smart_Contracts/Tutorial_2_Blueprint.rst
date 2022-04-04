@@ -8,7 +8,7 @@ Let's get started!
 Prerequisite
 ------------
 
-For this tutorial, you need to fully-setup the ``StratisUnrealManager`` instance, as described in Tutorial #1.
+For this tutorial, you need to fully-setup the ``StratisUnrealManager`` instance, as described in Tutorial #0.
 
 Transaction-level API
 ---------------------
@@ -122,90 +122,11 @@ this requires a lot of boilerplate code for each call.
 That's why we have wrappers for some of the white-listed contracts, such as the NFT contract.
 These wrappers encapsulate all of the necessary boilerplate, giving you a simple and powerful interface.
 
-Let's see how we can use ``UNFTWrapper`` to work with the NFT contract.
-
-Creating an instance of ``UNFTWrapper``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To create instance of UNFTWrapper, we can use ``createInstance`` or ``createDefaultInstance`` methods:
-
-
-.. image:: images/6-create-wrapper-instance.png
-   :target: images/6-create-wrapper-instance.png
-   :alt: Create wrapper instance
-
-|
-
-where:
-
-
-* ``contractAddress`` - address of deployed contract. For ``createDefaultInstance`` method, canonical NFT contract address will be used.
-* ``manager`` - valid pointer to ``UStratisUnrealManager`` instance.
-* ``outer`` - "parent" object for our new instance.
-
-Example:
-
-
-.. image:: images/7-create-wrapper-instance-example.png
-   :target: images/7-create-wrapper-instance-example.png
-   :alt: Create wrapper instance example
-
-|
-
-Deploying a smart contract
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To deploy NFT contract, we need to use ``deployNFTContract`` method:
-
-
-.. image:: images/8-deploy-nft-contract.png
-   :target: images/8-deploy-nft-contract.png
-   :alt: Deploy NFT contract
-
-|
-
-where:
-
-
-* ``name``\ , ``symbol``\ , ``tokenURIFormat``\ , ``ownerOnlyMinting`` - parameters passed to `constructor of the NFT contract <https://github.com/stratisproject/CirrusSmartContracts/blob/400e5399e85abf5e0fdb156f07109db5476648b2/Testnet/NonFungibleToken/NonFungibleToken/NonFungibleToken.cs#L159>`_
-* ``delegate``\ , ``error delegate`` - return delegates, returns either transactionID of contract deployment transaction or error.
-
-Example:
-
-
-.. image:: images/9-deploy-nft-contract-example.png
-   :target: images/9-deploy-nft-contract-example.png
-   :alt: Deploy NFT contract example
-
-|
-
-Calling some methods
-^^^^^^^^^^^^^^^^^^^^
-
-Now, let's try to call some of the wrapper's methods:
-
-Get symbol of NFT:
-
-
-.. image:: images/10-get-symbol.png
-   :target: images/10-get-symbol.png
-   :alt: Get symbol
-
-|
-
-Mint NFT to current address:
-
-
-.. image:: images/11-mint.png
-   :target: images/11-mint.png
-   :alt: Mint
-
-|
-
 Conclusion
 ----------
 
 In this tutorial, we've learned how to interact with smart contracts using low-level and high-level APIs.
+In the next tutorial we will see how we can use Stratis Unreal plugin to integrate NFT into your game.
 
 If you found a problem, you can `open an issue <https://github.com/stratisproject/UnrealEnginePlugin/issues>`_ on the project's Github page.
 If you still have questions, feel free to ask them in `our Discord channel <https://discord.gg/9tDyfZs>`_.

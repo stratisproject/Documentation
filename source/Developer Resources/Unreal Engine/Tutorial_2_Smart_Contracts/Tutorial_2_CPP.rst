@@ -8,7 +8,7 @@ Let's get started!
 Prerequisite
 ------------
 
-For this tutorial, you need to fully-setup the ``StratisUnrealManager`` instance, as described in Tutorial #1.
+For this tutorial, you need to fully-setup the ``StratisUnrealManager`` instance, as described in Tutorial #0.
 
 Transaction-level API
 ---------------------
@@ -144,93 +144,11 @@ this requires a lot of boilerplate code for each call.
 That's why we have wrappers for some of the white-listed contracts, such as the NFT contract.
 These wrappers encapsulate all of the necessary boilerplate, giving you a simple and powerful interface.
 
-Let's see how we can use ``UNFTWrapper`` to work with the NFT contract.
-
-Creating an instance of ``UNFTWrapper``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To create instance of UNFTWrapper, we can use ``createInstance`` or ``createDefaultInstance`` methods:
-
-.. code-block:: cpp
-
-   UFUNCTION(BlueprintCallable, Category = "NFTWrapper")
-   static UNFTWrapper* createInstance(const FString& contractAddress, UStratisUnrealManager* manager, UObject* outer);
-
-   UFUNCTION(BlueprintCallable, Category = "NFTWrapper")
-   static UNFTWrapper* createDefaultInstance(UStratisUnrealManager* manager, UObject* outer);
-
-where:
-
-
-* ``contractAddress`` - address of deployed contract. For ``createDefaultInstance`` method, canonical NFT contract address will be used.
-* ``manager`` - valid pointer to ``UStratisUnrealManager`` instance.
-* ``outer`` - "parent" object for our new instance.
-
-Example:
-
-.. code-block:: cpp
-
-   UNFTWrapper* wrapper(UNFTWrapper::createDefaultInstance(manager, this));
-
-Deploying a smart contract
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To deploy the NFT contract, we need to use the ``deployNFTContract`` method:
-
-.. code-block:: cpp
-
-   void UNFTWrapper::deployNFTContract(
-       const FString& name, 
-       const FString& symbol, 
-       const FString& tokenURIFormat,
-       bool ownerOnlyMinting, 
-       TFunction<void(const TResult<FString>&)> callback)
-
-where:
-
-
-* ``name``\ , ``symbol``\ , ``tokenURIFormat``\ , ``ownerOnlyMinting`` - parameters passed to `constructor of the NFT contract <https://github.com/stratisproject/CirrusSmartContracts/blob/400e5399e85abf5e0fdb156f07109db5476648b2/Testnet/NonFungibleToken/NonFungibleToken/NonFungibleToken.cs#L159>`_
-* ``callback`` - error-aware callback, return either transactionID of contract deployment transaction or error.
-
-Example:
-
-.. code-block:: cpp
-
-   wrapper->deployNFTContract(
-       /* name */ TEXT("GameSwords"), 
-       /* symbol */ TEXT("SW"),
-       /* tokenURIFormat */ TEXT(""),
-       /* ownerOnlyMinting */ false
-   );
-
-Calling some methods
-^^^^^^^^^^^^^^^^^^^^
-
-Now, let's try to call some of the wrapper's methods:
-
-Get symbol of NFT:
-
-.. code-block:: cpp
-
-   wrapper->getSymbol([](const auto& result) {
-       // Handle result
-   });
-
-Mint NFT to current address:
-
-.. code-block:: cpp
-
-   wrapper->mint(
-       TEXT("<some valid address>"),
-       [](const auto& result) { 
-           // Handle transaction id
-       }
-   );
-
 Conclusion
 ----------
 
-In this tutorial, we've learned how to interact with smart contracts using low-level and high-level APIs.
+In this tutorial, we've learned how to interact with smart contracts using low-level and high-level APIs. 
+In the next tutorial we will see how we can use Stratis Unreal plugin to integrate NFT into your game.
 
 If you found a problem, you can `open an issue <https://github.com/stratisproject/UnrealEnginePlugin/issues>`_ on the project's Github page.
 If you still have questions, feel free to ask them in `our Discord channel <https://discord.gg/9tDyfZs>`_.
