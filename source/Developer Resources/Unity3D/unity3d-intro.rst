@@ -25,5 +25,6 @@ development and the InterFlux Hub, enabling endless use-cases through the utiliz
    :caption: Contents:
 
    Integration <Integration/unitytutorial>
+   Basic operations <BasicOperations/unitysdkbasics>
    NFT Deployment and Minting <NFTDeployMint/nft>
    Smart Contract Interaction <SmartContractInteraction/smartcontracts>
