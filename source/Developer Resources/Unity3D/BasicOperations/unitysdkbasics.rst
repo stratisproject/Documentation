@@ -92,8 +92,7 @@ Now, if we want to convert response model to list of Coins, we can write somethi
    var coins = utxos.Utxos.Select(x => 
                new Coin(
                   new OutPoint(uint256.Parse(x.Hash), x.N), 
-                  new TxOut(new Money(x.Satoshis), 
-                  address)
+                  new TxOut(new Money(x.Satoshis), address)
                )
             ).ToList();
 
