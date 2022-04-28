@@ -15,17 +15,17 @@ Pre-Requisites
 
 -  Download `Stratis Unity SDK Package <https://github.com/stratisproject/Unity3dIntegration/tree/main/Resources>`_
 
-*The Stratis Unity SDK is currently going through the Unity Store approval process, in the meantime, the package can be obtained from our GitHub source above.*
+*The Stratis Unity SDK is currently going through the Unity Store approval process, in the meantime, the package can be obtained from our GitHub source above.*
 
 *************************
 Prepare Stratis Full Node
 *************************
 
 First, you must obtain a local copy of the Stratis Full Node; this can
-be achieved by using the git clone command. 
+be achieved by using the git clone command. 
 
 For the purpose of this document, we will be using the desktop as the
-root directory. 
+root directory. 
 
 **Execute the below command**: 
 
@@ -58,7 +58,7 @@ allow inbound ports.
 The default port for unity API is
 44336, but you can specify what you want by altering the ``-unityapi_apiuri=http://0.0.0.0`` parameter, for example ``-unityapi_apiuri=http://0.0.0.0:12345`` would configure the UnityAPI to listen on ``TCP12345``.
 
-Now let's check if it works, so first let's go to swagger on
+Now let's check if it works, so first let's go to swagger on
 http://localhost:44336.
 
 **Note**: The node can take some time depending on the internet speed, and available resources
@@ -78,15 +78,15 @@ Running Unity
 
 Create a new project within Unity and import the Stratis Blockchain SDK Unity Package that we obtained earlier.
 Once it's imported we can open and run the example scene. It is a simple UI that you can use to test the
-solution, first, we will need to provide the correct endpoint and in my
-case, ``http://localhost:44336`` is the IP address and port that was defined when launching the ``StratisFullNode``, so if you've set up
-everything properly, click test.
+solution, first, we will need to provide the correct endpoint and in my
+case, ``http://localhost:44336`` is the IP address and port that was defined when launching the ``StratisFullNode``, so if you've set up
+everything properly, click test.
 
 
-You will see that the API test was successful. And you can now generate a new mnemonic. 
-You can also just use your old mnemonic in case you already have a wallet created in unity. 
+You will see that the API test was successful. And you can now generate a new mnemonic. 
+You can also just use your old mnemonic in case you already have a wallet created in unity. 
 Click on ``Initialize`` and here is your address to which you can deposit
-STRAX. Let's copy it and now let's go back to our swagger API server. I
+STRAX. Let's copy it and now let's go back to our swagger API server. I
 has a default wallet that I have prepared here which has ``0.1 STRAX``.
 
 So let's send some STRAX from this wallet. We will go to ``StratisFullNode API`` and build a transaction via the
@@ -132,20 +132,20 @@ those. Let's say I deposited ``0.0505`` to an address.
 
 Now we can see the transaction was created and we get the transaction
 id, based on which we can explore about the transaction on
-`Stratis Block Explorer <https://chainz.cryptoid.info/strax/>`_.
+`Stratis Block Explorer <https://chainz.cryptoid.info/strax/>`_.
 Let's open this address in the blockchain explorer and see if any transaction was
 created, so it will take some time for the transaction to be mined
-before it will appear. Typically it will be less than half a minute, so
+before it will appear. Typically it will be less than half a minute, so
 let's wait.
 
 Once the transaction is confirmed, it will appear on the explorer, you can select the transaction to see the
 transaction detail. i.e. What inputs were selected and what the outputs were.
-Now you can do the second type of transaction, which is encoding any
-operator and data. So let's put any data in the ``SEND OP_RETURN transaction`` field and click send.
+Now you can do the second type of transaction, which is encoding any
+operator and data. So let's put any data in the ``SEND OP_RETURN transaction`` field and click send.
 
-Then again open `Stratis Block Explorer <https://chainz.cryptoid.info/strax/>`_ and look for this address, once the
+Then again open `Stratis Block Explorer <https://chainz.cryptoid.info/strax/>`_ and look for this address, once the
 transaction is confirmed and we can see the transaction details, if we
-open it that we have an output ``OP_RETURN`` and it will have your data encoded
+open it that we have an output ``OP_RETURN`` and it will have your data encoded
 there.
 
 So that's pretty much it! Click next to view a further guide based on integrating Stratis Smart Contracts.
