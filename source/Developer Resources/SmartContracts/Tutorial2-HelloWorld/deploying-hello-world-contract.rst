@@ -246,6 +246,8 @@ The response of this will tell you several things, the amount of GAS that was co
 
 We have now deployed the contract and verified the contract address, in this instance we can see that the address is ``PWyA6fYiGFbJxaLqpPq3aSyGkHw9QNv9kY``.
 
+.. _calling-the-sayhello-method:
+
 *****************************
 Calling the SayHello() method
 *****************************
