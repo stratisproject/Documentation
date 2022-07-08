@@ -1,3 +1,4 @@
+====================================
 Stratis Smart Contracts with Unity3D
 ====================================
 
@@ -10,17 +11,17 @@ You can also check if Smart Contract is whitelisted using
 ``/api/Voting/whitelistedhashes``. 
 
 For example if you run node on CirrusTest; this link will provide you with list of hashes of whitelisted
-contracts: http://localhost:38223/api/Voting/whitelistedhashes`
+contracts: http://localhost:38223/api/Voting/whitelistedhashes
 
 What is required to work with Stratis Smart Contracts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=====================================================
 
-The `Stratis Unity Integration <https://academy.stratisplatform.com/Operation%20Guides/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
+1. For this tutorial, you need a local development environment to be installed and setup.
+Follow the `Stratis Unity Integration guide <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_, if you hadn't setup environment before.
 
-Deploying Smart Contracts
-~~~~~~~~~~~~~~~~~~~~~~~~~
+2. Also, for this tutorial you need some coins in your STRAX wallet.
 
-When you deploy smart contracts you are creating a transaction which
+When you deploy or call smart contracts you are creating a transaction which
 requires a fee. So before you proceed make sure you have some STRAX or
 TSTRAX (STRAX on testnet) deposited to your address.
 
@@ -29,24 +30,54 @@ This can be obtained from members of the community in the `Stratis Discord Serve
 The following code generates your address and then displays it in the debug
 console.
 
-::
+.. code-block:: csharp
 
-    c# Unity3dClient Client = new
-    Unity3dClient("http://localhost:44336/");
+    Unity3dClient Client = new Unity3dClient("http://localhost:44336/");
 
-    Mnemonic mnemonic = new Mnemonic("legal door leopard fire attract stove
-    similar response photo prize seminar frown", Wordlist.English);
+    Mnemonic mnemonic = new Mnemonic(
+        "legal door leopard fire attract stove similar response photo prize seminar frown", 
+        Wordlist.English);
 
-    StratisUnityManager stratisUnityManager = new
-    StratisUnityManager(client, network, mnemonic);
+    StratisUnityManager stratisUnityManager = new StratisUnityManager(client, network, mnemonic);
 
     Debug.Log("Your address: " + stratisUnityManager.GetAddress());
 
+
+Transaction-level API
+=====================
+
+At first, let's see how we can interact with smart contracts using low-level (i.e. transaction-level) API.
+
+Deploying Smart Contracts
+-------------------------
+
 To deploy a smart contract you need to use ``stratisUnityManager.SendCreateContractTransactionAsync`` which returns the txId after execution. That txId can be used to get a receipt once the transaction has been executed. 
+
+.. code-block:: csharp
+
+    public async Task<string> SendCreateContractTransactionAsync(
+        string contractCode, 
+        string[] parameters = null,
+        Money amount = null)
+
+* 
+  ``contractCode`` - hex-encoded bytecode of the contract. You can compile your contract using `sct tool <https://academy.stratisplatform.com/Architecture%20Reference/SmartContracts/working-with-contracts.html#compiling-a-contract>`_\ , 
+  or you can use one of the whitelisted contracts from the ``WhitelistedContracts`` class.
+
+* 
+  ``parameters`` - `serialized <https://academy.stratisplatform.com/Architecture%20Reference/SmartContracts/working-with-contracts.html#parameter-serialization>`_ arguments passed to contract's constructor.
+  Supported data types described in ``MethodParameterDataType`` enum.
+
+* 
+  ``money`` - the number of satoshis to deposit on the contract's balance.
+
+* 
+  **Returns**  ``transactionID`` of contract creation.
+
 
 For example here is how to deploy StandardToken contract: 
 
-::
+.. code-block:: csharp
 
         List<string> constructorParameter = new List<string>()
         {
@@ -61,76 +92,97 @@ For example here is how to deploy StandardToken contract:
 
 And once transaction is confirmed you can use the below to query the receipt.
 
-::
+.. code-block:: csharp
 
     ReceiptResponse receipt = await
     client.ReceiptAsync("95b9c1e8ab28071b750ab61a3647954b0476d75173d91d0c8db0267c4894d1f6").ConfigureAwait(false);
 
     string contractAddr = receipt.NewContractAddress;
 
-Also there are wrappers for smart contracts that perform constructor parameter encoding for you. You can check `StandartTokenWrapper` and `NFTWrapper` for examples.  Here is StandardToken deployment example using a wrapper: 
-
-::
-
-    await NFTWrapper.DeployNFTContractAsync(this.stratisUnityManager, "TestNFT", "TNFT", "TestNFT\_{0}", false);
-
 Using Smart Contracts
-~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 There are two ways to interact with a Smart Contract: call and local call. Calls should be used when you want to change a smart contract's state. Local calls are used to get data from smart contract and using them doesn't result in creating an on-chain transaction, nor any associated cost. 
 
+To make local call, we need to use the ``Unity3dClient.LocalCallAsync`` method, which takes ``LocalCallContractRequest`` argument and returns ``LocalExecutionResult``.
+
 Here is an example of making local call: 
 
-::
+.. code-block:: csharp
 
-    var localCallData = new LocalCallContractRequest() { GasPrice = 10000,
-    Amount = "0", GasLimit = 250000, ContractAddress = contractAddr,
-    MethodName = "MaxVotingDuration", Sender =
-    stratisUnityManager.GetAddress().ToString(), Parameters = new List() };
+    var localCallData = new LocalCallContractRequest() { 
+        GasPrice = 10000,
+        Amount = "0", 
+        GasLimit = 250000, 
+        ContractAddress = contractAddr,
+        MethodName = "MaxVotingDuration", 
+        Sender = stratisUnityManager.GetAddress().ToString(), 
+        Parameters = new List() 
+    };
 
-    LocalExecutionResult localCallResult = await
-    client.LocalCallAsync(localCallData).ConfigureAwait(false);
+    LocalExecutionResult localCallResult = await client.LocalCallAsync(
+        localCallData).ConfigureAwait(false);
+
     Debug.Log("MaxVotingDuration: " + localCallResult.Return.ToString());
+
+To make a call that will push some data on-chain we need to use ``stratisUnityManager.SendCallContractTransactionAsync`` method:
+
+.. code-block:: csharp
+
+    public async Task<string> SendCallContractTransactionAsync(
+        string contractAddr, 
+        string methodName, 
+        string[] parameters = null, 
+        Money amount = null)
 
 The below is an example of making an on-chain call: 
 
-::
+.. code-block:: csharp
+    
+    string contractAddress = "CNiJEPppjvBf1zAAyjcLD81QbVd8NQ59Bv";
+    string methodName = "WhitelistAddress";
+    string whitelistAddress = "CPokn4GjJHtM7t2b99pdsbLuGd4RbM7pGL";
+    string[] parameters = new string[] {
+        $"{(int)MethodParameterDataType.Address}#{whitelistAddress}"
+    };
 
-    // Make an on-chain smart contract call. string callId = await
-    stratisUnityManager.SendCallContractTransactionAsync("CNiJEPppjvBf1zAAyjcLD81QbVd8NQ59Bv","WhitelistAddress",
-    new string[]
-    {"9#CPokn4GjJHtM7t2b99pdsbLuGd4RbM7pGL"}).ConfigureAwait(false);
+    string callId = await stratisUnityManager.SendCallContractTransactionAsync(
+        contractAddress, 
+        methodName, 
+        parameters).ConfigureAwait(false);
 
 For more information, you can check examples in `TestSmartContracts.cs <https://github.com/stratisproject/Unity3dIntegration/blob/main/Src/StratisUnity3d/Assets/Code/Examples/TestSmartContracts.cs>`_
 
-Using Smart Contracts via Wrappers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Smart Contract Wrappers
+=======================
 
-NFT and StandartToken contracts have wrappers to make it easier to interact with them. A Wrapper is a class that constructs call parameters and makes a call, further simplifying the process. 
+Although, we can use any method of any of smart contracts with 3 methods we discussed above (*deploy, call and local call*), 
+that requires a lot of boilerplate code for each call.
+
+That's why we have wrappers for some of the white-listed contracts, such as the NFT (SRC-721) or the StandardToken (SRC-20) contracts.
+These wrappers encapsulates all of necessary boilerplate, giving you a simple and powerful interface.
 
 Here is an example for StandardToken Wrapper that displays information about target StandardToken: 
 
-::
+.. code-block:: csharp
 
     string standartTokenAddr = "tLG1Eap1f7H5tnRwhs58Jn7NVDrP3YTgrg";
-    StandartTokenWrapper stw = new StandartTokenWrapper(stratisUnityManager,
-    standartTokenAddr);
+    StandartTokenWrapper stw = new StandartTokenWrapper(stratisUnityManager, standartTokenAddr);
 
-    Debug.Log("Symbol: " + await stw.GetSymbolAsync()); Debug.Log("Name: " +
-    await stw.GetNameAsync()); Debug.Log("TotalSupply: " + await
-    stw.GetTotalSupplyAsync()); Debug.Log("Balance: " + await
-    stw.GetBalanceAsync(firstAddress)); Debug.Log("Decimals: " + await
-    stw.GetDecimalsAsync());
+    Debug.Log("Symbol: " + await stw.GetSymbolAsync()); 
+    Debug.Log("Name: " + await stw.GetNameAsync()); 
+    Debug.Log("TotalSupply: " + await stw.GetTotalSupplyAsync()); 
+    Debug.Log("Balance: " + await stw.GetBalanceAsync(firstAddress)); 
+    Debug.Log("Decimals: " + await stw.GetDecimalsAsync());
 
 Here is an example for a NFT Contract and minting a new NFT: 
 
-::
+.. code-block:: csharp
 
-    string nftAddr = "t8snCz4kQgovGTAGReAryt863NwEYqjJqy"; NFTWrapper nft =
-    new NFTWrapper(stratisUnityManager, nftAddr);
+    string nftAddr = "t8snCz4kQgovGTAGReAryt863NwEYqjJqy"; 
+    NFTWrapper nft = new NFTWrapper(stratisUnityManager, nftAddr);
 
-    ulong balanceBefore = await
-    nft.BalanceOfAsync(this.firstAddress).ConfigureAwait(false);
+    ulong balanceBefore = await nft.BalanceOfAsync(this.firstAddress).ConfigureAwait(false);
     Debug.Log("NFT balance: " + balanceBefore);
 
     string mintId = await nft.MintAsync(firstAddress).ConfigureAwait(false);
@@ -145,7 +197,7 @@ Here is an example for a NFT Contract and minting a new NFT:
 For more examples, you can check in `SCInteractTest.cs <https://github.com/stratisproject/Unity3dIntegration/blob/main/Src/StratisUnity3d/Assets/Code/Examples/SCInteractTest.cs>`_
 
 Examples
-~~~~~~~~
+========
 
 You can find full listings for smart contract examples in the Examples
 folder.
