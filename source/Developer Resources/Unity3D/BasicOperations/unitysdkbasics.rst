@@ -7,7 +7,7 @@ This tutorial will show you how to use the basic functionality of the Stratis Un
 What is required to work with basic functionality of the SDK?
 =============================================================
 
-The `Stratis Unity Integration <https://academy.stratisplatform.com/Operation%20Guides/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
+The `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
 
 Setting up StratisUnityManager and creating a wallet
 ====================================================
