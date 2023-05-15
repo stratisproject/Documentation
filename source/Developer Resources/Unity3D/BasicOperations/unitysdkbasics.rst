@@ -34,20 +34,20 @@ Let's walk through the steps:
 
 
 #. 
-   Set base URL. To use Stratis Unity SDK, you need a full node to be running locally or remotely. Find your node's address (IP or domain) if you're running a remote node, or use ``http://localhost:44336`` if you're running your node locally.
+   Set base URL. To use Stratis Unity SDK, you need a full node to be running locally or remotely. Find your node's address (IP or domain) if you're going to use a remote Cirrus node in testnet then use ``https://cirrustest-api-ha.stratisplatform.com/``, or if you're running your Cirrus node locally in test network then use ``http://localhost:38223/`` .
 
 #. 
-   Set the network you want to operate on. Use ``StraxMain`` or ``CirrusMain`` to operate on Strax or Cirrus production networks, or use ``StraxTest`` or ``CirrusTest`` for testing purposes.
+   Set the network you want to operate on. Use ``StraxMain`` or ``CirrusMain`` to operate on Strax or Cirrus production networks, or use ``StraxTest`` or ``CirrusTest`` for testing purposes. For development and learning purpose we recommend to use test network where you don't need real tokens, you can use Test tokens.
 
 #. 
    Set a mnemonic for your wallet. Mnemonic is a sequence of words used to define the private key of your wallet. You can create mnemonic `using just a pen, a paper, and a dice <https://armantheparman.com/dicev1/>`_\ , or use different hardware & software mnemonic generators.
 
 .. code-block:: csharp
 
-   Network network = new StraxMain();
-   Unity3dClient Client = new Unity3dClient("http://localhost:44336/");
+   Network network = new CirrusTest();
+   StratisNodeClient client = new StratisNodeClient("https://cirrustest-api-ha.stratisplatform.com/");
    Mnemonic mnemonic = new Mnemonic("legal door leopard fire attract stove similar response photo prize seminar frown", Wordlist.English);
-   StratisUnityManager stratisUnityManager = new StratisUnityManager(client, network, mnemonic);
+   StratisUnityManager stratisUnityManager = new StratisUnityManager(client, new BlockCoreApi("https://cirrustestindexer.stratisnetwork.com/api/"), network, mnemonic);
 
 
 Now, let's print current wallet's address to the console:
@@ -76,25 +76,6 @@ Now let's learn how we can get a balance of our wallet.
 
 This code will print your balance if the call succeeds, and print an error otherwise.
 
-Getting unspent transaction outputs
-===================================
-
-Okay, now we will try to find unspent transaction outputs for our wallet:
-
-.. code-block:: csharp
-
-   GetUTXOsResponseModel utxos = await Client.GetUTXOsForAddressAsync(this.address.ToString());
-
-Now, if we want to convert response model to list of Coins, we can write something like this:
-
-.. code-block:: csharp
-
-   var coins = utxos.Utxos.Select(x => 
-               new Coin(
-                  new OutPoint(uint256.Parse(x.Hash), x.N), 
-                  new TxOut(new Money(x.Satoshis), address)
-               )
-            ).ToList();
 
 Sending coins & waiting for a receipt
 =====================================
