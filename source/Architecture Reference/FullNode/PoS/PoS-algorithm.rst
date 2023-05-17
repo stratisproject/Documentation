@@ -27,7 +27,7 @@ How an element of randomness is added to each UTXO calculation
 
 Adding an element of randomness to each calculation performed on a UTXO is very important; otherwise users staking larger amounts of STRAX would most likely have a permanent advantage. Without the randomness element, the result calculated for each UTXO would be the same each time. Even a user staking a small amount of STRAX could gain the advantage if the hash they produced was a freak result and very low. The randomness comes from several sources, which we will explore.
 
-In addition to the UTXO itself, there are are a couple of other random elements which are added to calculation. One of these is the timestamp for the prospective block.
+In addition to the UTXO itself, there are a couple of other random elements which are added to calculation. One of these is the timestamp for the prospective block.
 
 Proof-of-Stake timestamps
 ==========================
