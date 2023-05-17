@@ -22,8 +22,8 @@ Follow the `Stratis Unity Integration guide <https://academy.stratisplatform.com
 2. Also, for this tutorial you need some coins in your Cirrus wallet.
 
 When you deploy or call smart contracts you are creating a transaction which
-requires a fee. So before you proceed make sure you have some CIRRUS or
-TCRS (CIRRUS on testnet) deposited to your address.
+requires a fee. So before you proceed make sure you have some CRS or
+TCRS (TCRS for Testnet) deposited to your address.
 
 This can be obtained from members of the community in the `Stratis Discord Server <https://discord.gg/P5ZsX37M4X>`_
 
