@@ -24,10 +24,34 @@ Then, create a new directory and run the following command:
 
 This will scaffold a basic contract with the necessary NuGet package references.
 
-Installing the Visual Studio Project Template for VS2017
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The recommended approach to starting a new contract is to use the `dotnet new` template described above. However, 
-there is the option of adding an extension to Visual Studio 2017 which can create new Smart Contract projects. The template can be `found on the Visual Studio marketplace <https://marketplace.visualstudio.com/items?itemName=StratisGroupLtd.StratisSmartContractsTemplate>`_.
+Using Visual Studio for a contract 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Alternatively, once you installed Smart Contract template CLI using the command:
+
+::
+
+    dotnet new --install Stratis.SmartContracts.Templates.CLI
+
+You can create a Smart Contract using Visual Studio. Open Visual Studio, click on Create new project.
+
+.. figure:: CreateProject.jpg
+    :alt: Create Project in Visual Studio
+    :align: center
+
+Then, type Stratis in search box and search for Stratis Smart Contract. You can see the Stratis Smart Contract template in the list as depicted below. Select the template and click on Next.
+
+.. figure:: selecttemplate.jpg
+    :alt: Select Stratis Smart Contract
+    :align: center
+
+Give Project Name, Folder location and solution name as usual. Then, your Smart contract project will be created where you will get default MyContract class as illustrated below. 
+
+
+.. figure:: stratissmartcontract.jpg
+    :alt: Select Stratis Smart Contract
+    :align: center
+
+Hence, your basic Smart Contract with necessary NuGet package references is ready to use.
 
 Validating a contract
 --------------------------

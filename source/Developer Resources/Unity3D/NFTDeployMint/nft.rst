@@ -11,7 +11,7 @@ Non-Fungible Tokens are an area of particular interest for those developing game
 What is required to work with Stratis Smart Contracts and NFTs?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `Stratis Unity Integration <https://academy.stratisplatform.com/Operation%20Guides/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
+The `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
 
 Deploying a new NFT
 ~~~~~~~~~~~~~~~~~~~

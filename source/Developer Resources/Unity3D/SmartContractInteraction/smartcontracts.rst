@@ -19,11 +19,11 @@ What is required to work with Stratis Smart Contracts
 1. For this tutorial, you need a local development environment to be installed and setup.
 Follow the `Stratis Unity Integration guide <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_, if you hadn't setup environment before.
 
-2. Also, for this tutorial you need some coins in your STRAX wallet.
+2. Also, for this tutorial you need some coins in your Cirrus wallet.
 
 When you deploy or call smart contracts you are creating a transaction which
-requires a fee. So before you proceed make sure you have some STRAX or
-TSTRAX (STRAX on testnet) deposited to your address.
+requires a fee. So before you proceed make sure you have some CRS or
+TCRS (TCRS for Testnet) deposited to your address.
 
 This can be obtained from members of the community in the `Stratis Discord Server <https://discord.gg/P5ZsX37M4X>`_
 
