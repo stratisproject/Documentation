@@ -256,14 +256,13 @@ StraxFullNode for 64-bit
 
 .. code:: bash
 
-   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.1.1.1/Stratis.StraxD-linux-arm64.zip
-
+   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/latest/download/Stratis.StraxD-linux-arm64.zip
 StraxFullNode for 32-bit
 ========================
 
 .. code:: bash
 
-   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/download/1.1.1.1/Stratis.StraxD-linux-arm.zip
+   sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/latest/download/Stratis.StraxD-linux-arm.zip
 
 Once you have chosen the one that fits your system, install zip, so we can extract it. You can do that by running the command:
 
