@@ -257,6 +257,7 @@ StraxFullNode for 64-bit
 .. code:: bash
 
    sudo wget -O SNode.zip https://github.com/stratisproject/StratisFullNode/releases/latest/download/Stratis.StraxD-linux-arm64.zip
+
 StraxFullNode for 32-bit
 ========================
 
