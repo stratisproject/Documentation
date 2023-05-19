@@ -11,7 +11,13 @@ Non-Fungible Tokens are an area of particular interest for those developing game
 What is required to work with Stratis Smart Contracts and NFTs?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide can be followed to setup your local environment for development.
+Firstly, you need to create a new unity project and import StratisUnitySDK. Latest version can be found here: 
+https://github.com/stratisproject/Unity3dIntegration/tree/main/Resources
+
+Generate new address and fund it with some TCRS. You will need coins in order to deploy and interact with NFTs. If you have already Unity address in Cirrus chain then you can utilise existing address as well.
+
+This article uses Stratis hosted public API references in test network which is recommended. Alternatively, you can launch Fullnode locally in test network or main network for which you can refer to the `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide to setup your local environment for development.
+
 
 Deploying a new NFT
 ~~~~~~~~~~~~~~~~~~~
@@ -20,11 +26,13 @@ Firstly, we must generate a new address and fund it. You will need tokens in ord
 
 .. code:: c#
 
-      Unity3dClient Client = new Unity3dClient("http://localhost:44336/");
+      Network network = new CirrusTest();
+
+      StratisNodeClient client = new StratisNodeClient("https://cirrustest-api-ha.stratisplatform.com/");
 
       Mnemonic mnemonic = new Mnemonic("legal door leopard fire attract stove similar response photo prize seminar frown", Wordlist.English);
 
-      StratisUnityManager stratisUnityManager = new StratisUnityManager(client, network, mnemonic);
+      StratisUnityManager stratisUnityManager = new StratisUnityManager(client, new BlockCoreApi("https://cirrustestindexer.stratisnetwork.com/api/"), network, mnemonic);
 
       Debug.Log("Your address: " + stratisUnityManager.GetAddress());
 
@@ -39,7 +47,7 @@ contract’s address. For example:
    string nftName = "gameSword";
    string nftSymbol = "GS";
 
-   string txId = await NFTWrapper.DeployNFTContractAsync(this.stratisUnityManager, nftName, nftSymbol, nftName + "_{0}", false);
+   string txId = await NFTWrapper.DeployNFTContractAsync(stratisUnityManager, nftName, nftSymbol, false, stratisUnityManager.GetAddress().ToString(), 0);
 
    ReceiptResponse res = await this.stratisUnityManager.WaitTillReceiptAvailable(txId).ConfigureAwait(false);
 
@@ -53,9 +61,16 @@ minting a new NFT that will belong to that address. For example:
 
 ::
 
-   NFTWrapper nft = new NFTWrapper(stratisUnityManager, "t8snCz4kQgovGTAGReAryt863NwEYqjJqy");
+   
+   string firstAddress = "t8ehx5Nm4QXeRhzt92ATTgCRc1zDkFXAdw";
+   string uri = "https://stratisplatorm.com/content/nftcollction/demonft.png";
+   string nftContractAddress = "tRxYDrnKGAKcrSrc1VQMoKa28RSGUXywP5";
 
-   await nft.MintAsync(firstAddress).ConfigureAwait(false);
+   NFTWrapper nft = new NFTWrapper(stratisUnityManager, nftContractAddress);        
+
+   await nft.MintAsync(firstAddress, uri).ConfigureAwait(false);
+   Debug.Log("NFT minted successfully!");
+
 
 Getting NFT balance
 ~~~~~~~~~~~~~~~~~~~

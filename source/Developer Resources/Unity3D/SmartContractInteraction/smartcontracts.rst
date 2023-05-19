@@ -16,10 +16,8 @@ contracts: http://localhost:38223/api/Voting/whitelistedhashes
 What is required to work with Stratis Smart Contracts
 =====================================================
 
-1. For this tutorial, you need a local development environment to be installed and setup.
-Follow the `Stratis Unity Integration guide <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_, if you hadn't setup environment before.
 
-2. Also, for this tutorial you need some coins in your Cirrus wallet.
+For this tutorial you need some coins in your Cirrus wallet.
 
 When you deploy or call smart contracts you are creating a transaction which
 requires a fee. So before you proceed make sure you have some CRS or
@@ -32,15 +30,15 @@ console.
 
 .. code-block:: csharp
 
-    Unity3dClient Client = new Unity3dClient("http://localhost:44336/");
+      Network network = new CirrusTest();
 
-    Mnemonic mnemonic = new Mnemonic(
-        "legal door leopard fire attract stove similar response photo prize seminar frown", 
-        Wordlist.English);
+      StratisNodeClient client = new StratisNodeClient("https://cirrustest-api-ha.stratisplatform.com/");
 
-    StratisUnityManager stratisUnityManager = new StratisUnityManager(client, network, mnemonic);
+      Mnemonic mnemonic = new Mnemonic("legal door leopard fire attract stove similar response photo prize seminar frown", Wordlist.English);
 
-    Debug.Log("Your address: " + stratisUnityManager.GetAddress());
+      StratisUnityManager stratisUnityManager = new StratisUnityManager(client, new BlockCoreApi("https://cirrustestindexer.stratisnetwork.com/api/"), network, mnemonic);
+
+      Debug.Log("Your address: " + stratisUnityManager.GetAddress());
 
 
 Transaction-level API
@@ -90,7 +88,7 @@ For example here is how to deploy StandardToken contract:
         string txId = await stratisUnityManager.SendCreateContractTransactionAsync(WhitelistedContracts.StandartTokenContract.ByteCode, constructorParameter.ToArray(), 0).ConfigureAwait(false);
         Debug.Log("Contract deployment tx sent. TxId: " + txId);
 
-And once transaction is confirmed you can use the below to query the receipt.
+And once transaction is confirmed you can use transactionId to query the receipt as shown below.
 
 .. code-block:: csharp
 
@@ -179,18 +177,21 @@ Here is an example for a NFT Contract and minting a new NFT:
 
 .. code-block:: csharp
 
-    string nftAddr = "t8snCz4kQgovGTAGReAryt863NwEYqjJqy"; 
+    string nftAddr = "t8snCz4kQgovGTAGReAryt863NwEYqjJqy";
+    string uri = "https://stratisplatorm.com/content/nftcollction/demonft.png";
+    string nftContractAddress = "tRxYDrnKGAKcrSrc1VQMoKa28RSGUXywP5"; 
+    string firstAddress = "t8ehx5Nm4QXeRhzt92ATTgCRc1zDkFXAdw";
+
     NFTWrapper nft = new NFTWrapper(stratisUnityManager, nftAddr);
 
-    ulong balanceBefore = await nft.BalanceOfAsync(this.firstAddress).ConfigureAwait(false);
+    UInt256 balanceBefore = await nft.BalanceOfAsync(firstAddress);
     Debug.Log("NFT balance: " + balanceBefore);
 
-    string mintId = await nft.MintAsync(firstAddress).ConfigureAwait(false);
+    string mintId = await nft.MintAsync(firstAddress, uri);
 
-    await this.WaitTillReceiptAvailable(mintId).ConfigureAwait(false);
+    await stratisUnityManager.WaitTillReceiptAvailable(mintId);
 
-    ulong balanceAfter = await
-    nft.BalanceOfAsync(this.firstAddress).ConfigureAwait(false);
+    UInt256 balanceAfter = await nft.BalanceOfAsync(firstAddress);
 
     Assert.IsTrue(balanceAfter == balanceBefore + 1); 
 
