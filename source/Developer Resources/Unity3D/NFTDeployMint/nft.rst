@@ -16,7 +16,7 @@ https://github.com/stratisproject/Unity3dIntegration/tree/main/Resources
 
 Generate new address and fund it with some TCRS. You will need coins in order to deploy and interact with NFTs. If you have already Unity address in Cirrus chain then you can utilise existing address as well.
 
-This article uses Stratis hosted API references in test network; however, you can launch Fullnode locally in test network or main network for which you can refer to the `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide to setup your local environment for development.
+This article uses Stratis hosted public API references in test network which is recommended. Alternatively, you can launch Fullnode locally in test network or main network for which you can refer to the `Stratis Unity Integration <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_ guide to setup your local environment for development.
 
 
 Deploying a new NFT

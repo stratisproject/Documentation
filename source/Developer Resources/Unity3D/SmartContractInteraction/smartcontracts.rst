@@ -16,10 +16,8 @@ contracts: http://localhost:38223/api/Voting/whitelistedhashes
 What is required to work with Stratis Smart Contracts
 =====================================================
 
-1. For this tutorial, you need a local development environment to be installed and setup.
-Follow the `Stratis Unity Integration guide <https://academy.stratisplatform.com/Developer%20Resources/Unity3D/Integration/unitytutorial.html>`_, if you hadn't setup environment before.
 
-2. Also, for this tutorial you need some coins in your Cirrus wallet.
+For this tutorial you need some coins in your Cirrus wallet.
 
 When you deploy or call smart contracts you are creating a transaction which
 requires a fee. So before you proceed make sure you have some CIRRUS or
