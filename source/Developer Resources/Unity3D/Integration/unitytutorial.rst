@@ -19,9 +19,9 @@ Pre-Requisites
 
 To integrate Stratis Unity SDK in your Unity project you can use Stratis hosted Public nodes which is a recommended way. Alternatively, if you prefer to use a local node then you can run the Full Node locally as well.
 
-*************************
+***********************************
 Stratis Public Node for Integration
-*************************
+***********************************
 
 This section provides you information about public **Cirrus Node** references that you will need for integration.
 
@@ -111,9 +111,9 @@ open it that we have an output ``OP_RETURN`` and it will have your data encoded
 there.
 
 
-**********************************
+***********************************
 Preparing Stratis Full Node Locally
-**********************************
+***********************************
 This section provides you insight into how to run Full node locally for Unity SDK integration. However, running a Full node locally may take more time for synchronisation so we recommend using Public node references. If you prefer to use the public node then you don't need to run Full Node locally.
 
 Now let's commence. First, you must obtain a local copy of the Stratis Full Node; this can
