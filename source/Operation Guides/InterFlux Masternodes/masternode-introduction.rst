@@ -10,3 +10,4 @@ Guides contained within this section will relate to Masternodes provided by Stra
 
    Creating an InterFlux Masternode <Creating Masternode/creating-a-masternode>
    Running an InterFlux Masternode <Running Masternode/running-the-masternode>
+   Using the Masternode Setup Tool <Using Masternode Setup Tool/masternode-setup-tool>
