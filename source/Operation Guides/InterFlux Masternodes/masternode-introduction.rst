@@ -2,11 +2,10 @@
 InterFlux Masternodes
 ########################
 
-Guides contained within this section will relate to Masternodes provided by Stratis Blockchain Technologies.
+The guides in this section cover configuring and running Masternodes, as provided by Stratis Blockchain Technologies.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   Creating an InterFlux Masternode <Creating Masternode/creating-a-masternode>
-   Running an InterFlux Masternode <Running Masternode/running-the-masternode>
+   Creating and running the Masternode <Creating and running Masternode/create-run-masternode>
