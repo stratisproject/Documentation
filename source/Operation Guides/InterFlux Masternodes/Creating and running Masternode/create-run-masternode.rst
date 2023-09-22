@@ -431,7 +431,7 @@ Use existing Wallet
    :height: 3.27778in
 
 Congratulations, you have successfully completed the registration and are now 
-a member of the Federation. Your node will begin to earn rewards.
+a member of the Federation. Your node will begin to earn rewards dashboard will highlight mining status.
 
 Run Masternode
 ==============
